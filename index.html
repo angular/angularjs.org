@@ -1,0 +1,256 @@
+<!doctype html>
+<html xmlns:ng="http://angularjs.org" lang="en" dir="ltr">
+  <head>
+    <title>&lt;angular/&gt;</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="http://code.angularjs.org/angular-0.9.10.js" ng:autobind></script>
+
+    <link rel="stylesheet" href="css/angular.css" type="text/css">
+  </head>
+  <body id="page_bg">
+    <div id="wrapper-shadow">
+      <div id="wrapper">
+        <div id="beta"></div>
+        <div id="header">
+          <ul class="menu">
+            <li><a href="http://docs.angularjs.org/">Getting Started</a></li>
+            <li><a href="http://docs.angularjs.org/">Developer Guide</a></li>
+            <li><a href="http://docs.angularjs.org/">Reference</a></li>
+            <li><a href="http://docs.angularjs.org/">Cookbook</a></li>
+            <li><a href="http://docs.angularjs.org/">FAQ</a></li>
+            <li><a href="http://groups.google.com/group/angular">Mailing List</a></li>
+            <li><a href="http://github.com/angular/angular.js">GitHub</a></li>
+            <li><a href="http://docs.angularjs.org/">Contribute</a></li>
+          </ul>
+        </div>
+
+        <div id="heading">
+          <div class="breadcrumb">
+            <span class="icon icon-documentation">&nbsp;</span>
+            <span class="fragment">
+              <code id="logo">&lt;angular/&gt;</code>: Complex web apps made simple
+            </span>
+          </div>
+        </div>
+
+        <div id="main">
+          <div class="content">
+            <div class="left">
+              <div>
+                <div id="angularRoot">
+                  <h2>What is angular?</h2>
+                  <p>Angular is what HTML would have been if it had been designed for building web
+                    applications. It provides your application’s plumbing so you can focus on what
+                    your app does, rather than how to get your web browser to do what you need.
+                  </p>
+
+                  <h2>Live Example</h2>
+                  <p>Below is an angular mini demo of simple invoicing app built with just html, css
+                  and angular declarations. The demo showcases only some features of angular, mainly
+                  the two-way binding and extending html to enable declarative web development
+                  without DOM manipulation and unnecessary callbacks.</p>
+
+                  <table ng:init="invoice= {items:[{qty:10, description:'gadget', cost:9.95}]}">
+                    <tr><th>Qty</th><th>Description</th><th>Cost</th><th>Total</th><th></th></tr>
+                    <tr ng:repeat="item in invoice.items">
+                      <td><input name="item.qty" value="1" size="4" ng:required ng:validate="integer"></td>
+                      <td><input name="item.description"></td>
+                      <td><input name="item.cost" value="0.00" ng:required ng:validate="number" size="6"></td>
+                      <td>{{item.qty * item.cost | currency}}</td>
+                      <td>[<a href ng:click="invoice.items.$remove(item)">X</a>]</td>
+                    </tr>
+                    <tr>
+                      <td><a href ng:click="invoice.items.$add()">add item</a></td>
+                      <td></td>
+                      <td>Total:</td>
+                      <td>{{invoice.items.$sum('qty*cost') | currency}}</td>
+                    </tr>
+                  </table>
+
+                  <p>You can fiddle with the source code at
+                    <a href="http://jsfiddle.net/IgorMinar/PV53g/">jsfiddle</a>.</p>
+
+                  
+
+
+                  <h2>Complexity kills. Use angular. Here’s why:</h2>
+                  <ul>
+                    <li><b>Write less code. A lot less.</b>
+                      Forget about writing all that extra JavaScript to handle event listeners,
+                      DOM updates, formatters, and input validators. Angular comes with
+                      <a href="http://angularjs.org/Bootstrap">autobinding</a>, built-in
+                      <a href="http://angularjs.org/Validator">validators</a> and
+                      <a href="http://angularjs.org/Formatter">formatters</a> which take care of
+                      these.  And you can extend or replace these services at will.  With these
+                      and other services, you’ll write about 10x less code than writing your app
+                      without angular.
+                    </li>
+                    <li><b>Automatic view/model synchronization.</b>
+                      Tired of writing code to keep your view and model in sync?  Thanks to
+                      angular’s 2-way <a href="http://angularjs.org/Data_Binding">data binding</a>,
+                      your model is always the single source of truth for your application state
+                      and your view is simply a projection of your model.  You are only
+                      responsible for your business logic in a controller and the associated HTML
+                      template.
+                    </li>
+                    <li><b>No setup.</b>
+                      Nothing to download. No server required. No compilers to configure. No
+                      environment variables to set.  Angular’s UI templates run on the client so
+                      you never have to wait on the server to see your changes in the application.
+                    </li>
+                    <li><b>Readable code that is easy to maintain.</b>
+                      Angular apps are specified declaratively through custom HTML tags and
+                      attributes that specify the intent of your application.  By defining UI
+                      <a href="http://angularjs.org/Template" title="Template">templates</a> and
+                      widgets in HTML, you can read angular code and understand what it’s supposed
+                      to do.  Plus, less code means less to read, maintain and test.
+                    </li>
+                    <li><b>Testable code.</b>
+                      Angular comes with a set of
+                      <a href="http://angularjs.org/Service">services</a> that are useful for
+                      building web apps.  The services are dependency injected, which makes it
+                      easy to swap services or create mocks for testing. Some services are:
+                      history management, URL router, XHR requests, and data caching out of the
+                      box.
+                    </li>
+                    <li><b>Build reusable components with trivial effort.</b>
+                      Angular lets you write UI
+                      <a href="http://angularjs.org/Template">templates</a> and
+                      <a href="http://angularjs.org/Widget">widgets</a> that you can reuse
+                      throughout your app.
+                    </li>
+                    <li><b>Plays well with others.</b>
+                      You can easily use angular with the frameworks and libraries that you are
+                      already using.  Mix and match functionality freely.
+                    </li>
+                  </ul>
+
+                  <h2>Sounds awesome.  But what parts do I need to write?</h2>
+                  <ul>
+                    <li><b>HTML and CSS:</b>
+                      Standard HTML plus custom tags, which bring dynamic nature to HTML.
+                    </li>
+                    <li><b>Controllers:</b>
+                      Angular apps follow the model-view-controller pattern.  You’re responsible
+                      for the logic that's custom to your application and is implemented in
+                      JavaScript.
+                    </li>
+                    <li>(optional) <b>Server-side data service.</b>
+                      Write this in your technology of choice.
+                    </li>
+                  </ul>
+
+                  <h2>How do I get started with angular?</h2>
+                  <ul>
+                    <li>
+                      Work through the <a href="http://angularjs.org/Getting_Started">Getting Started</a> examples.
+                    </li>
+                    <li>
+                      Check out more examples in <a href="http://angularjs.org/Cookbook">Cookbook</a>.
+                    </li>
+                    <li>
+                      Read the <a href="http://angularjs.org/Guide">Developer Guide</a>.
+                    </li>
+                    <li> Check out what's new in the <a href="http://github.com/angular/angular.js/blob/master/CHANGELOG.md" class="external text" title="http://github.com/angular/angular.js/blob/master/CHANGELOG.md" rel="nofollow">latest release</a>.
+                    </li>
+                    <li> <a href="http://code.angularjs.org/" class="external text" title="http://code.angularjs.org/" rel="nofollow">Download the latest bits</a>.
+                    </li>
+                    <li>
+                      <a href="http://angularjs.org/Contribute" title="Contribute">Contribute to &lt;angular/&gt;</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="right">
+              <div id="twitter_news" class="twitter"></div>
+              <div id="twitter_chatter" class="twitter"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="footer">
+          <span>Copyright 2010-2011 - Angular / BRAT Tech. LLC</span>
+        </div>
+      </div>
+    </div>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script>
+      angular.element(document).ready(function() {
+        new TWTR.Widget({
+          id: 'twitter_news',
+          version: 2,
+          type: 'profile',
+          rpp: 4,
+          interval: 6000,
+          width: 'auto',
+          height: 300,
+          theme: {
+            shell: {
+              background: '#333333',
+              color: '#ffffff'
+            },
+            tweets: {
+              background: '#000000',
+              color: '#ffffff',
+              links: '#42ff68'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: false,
+            live: false,
+            hashtags: true,
+            timestamp: true,
+            avatars: false,
+            behavior: 'all'
+          }
+        }).render().setUser('angularjs').start();
+
+        new TWTR.Widget({
+          id: 'twitter_chatter',
+          version: 2,
+          type: 'search',
+          search: 'angularjs',
+          interval: 6000,
+          title: '',
+          subject: '&lt;angular/&gt; chatter',
+          width: 'auto',
+          height: 500,
+          theme: {
+            shell: {
+              background: '#333333',
+              color: '#ffffff'
+            },
+            tweets: {
+              background: '#000000',
+              color: '#ffffff',
+              links: '#42ff68'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: false,
+            live: true,
+            hashtags: true,
+            timestamp: true,
+            avatars: true,
+            toptweets: true,
+            behavior: 'all'
+          }
+        }).render().start();
+      });
+    </script>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try{
+        var pageTracker = _gat._getTracker('UA-8594346-3');
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  </body>
+</html>
