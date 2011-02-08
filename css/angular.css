@@ -22,6 +22,7 @@ body {
 	background: url(../img/bg.jpg);
 	font-family: Arial, sans-serif;
 	color: #1a1a1a;
+    margin-top: -13px;
 }
 
 p {
