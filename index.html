@@ -5,8 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
     <script src="http://code.angularjs.org/angular-0.9.11.js" ng:autobind></script>
+    <script src="js/jquery-1.5.js"></script>
+    <script src="js/menu.js"></script>
 
     <link rel="stylesheet" href="css/angular.css" type="text/css">
+    <link rel="stylesheet" href="css/menu.css" type="text/css">
+
   </head>
   <body id="page_bg">
     <div id="wrapper-shadow">
@@ -19,7 +23,12 @@
             <li><a href="http://docs.angularjs.org/">Reference</a></li>
             <li><a href="http://docs.angularjs.org/#!cookbook">Cookbook</a></li>
             <li><a href="http://docs.angularjs.org/#!faq">FAQ</a></li>
-            <li><a href="https://groups.google.com/forum/?fromgroups#!forum/angular">Mailing List</a></li>
+            <li><a href="#">Mailing List</a>
+                <ul class="submenu">
+                    <li><a href="https://groups.google.com/forum/?fromgroups#!forum/angular">Subscribe <u>with</u><br/>Google Account</a></li>
+                    <li><a href="mailto:angular+subscribe@googlegroups.com">Subscribe <u>without</u><br/>Google Account</a></li>
+                </ul>
+            </li>
             <li><a href="http://github.com/angular/angular.js">GitHub</a></li>
             <li><a href="http://docs.angularjs.org/#!guide.contribute">Contribute</a></li>
           </ul>
