@@ -10,12 +10,101 @@
     <link rel="stylesheet" href="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shCore.css" type="text/css"/>
     <link rel="stylesheet" href="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shThemeDefault.css" type="text/css"/>
 
-    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/jquery.min.js"></script>
-    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shCore.js"></script>
-    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shBrushJScript.js"></script>
-    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shBrushXml.js"></script>
-    <script src="http://code.angularjs.org/angular-0.9.12.js" ng:autobind></script>
-    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/doc_widgets.js"></script>
+    <script src="LAB.min.js"></script>
+    <script>
+    (function(ver){
+      $LAB
+      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/syntaxhighlighter/shCore.js')
+      .wait()
+      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/syntaxhighlighter/shBrushJScript.js')
+      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/syntaxhighlighter/shBrushXml.js')
+      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/jquery.min.js')
+      .wait()
+      .script('http://code.angularjs.org/angular-'+ver+'.js')
+      .wait()
+      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/doc_widgets.js')
+      .wait(function(){
+        // compile code
+        angular.compile(window.document)();
+      })
+      .script('http://widgets.twimg.com/j/2/widget.js')
+      .wait(function(){
+        // load widgets
+        $(function() {
+          new TWTR.Widget({
+            id: 'twitter_news',
+            version: 2,
+            type: 'profile',
+            rpp: 4,
+            interval: 6000,
+            width: 'auto',
+            height: 300,
+            theme: {
+              shell: {
+                background: '#333333',
+                color: '#ffffff'
+              },
+              tweets: {
+                background: '#000000',
+                color: '#ffffff',
+                links: '#a6ccf5'
+              }
+            },
+            features: {
+              scrollbar: false,
+              loop: false,
+              live: false,
+              hashtags: true,
+              timestamp: true,
+              avatars: false,
+              behavior: 'all'
+            }
+          }).render().setUser('angularjs').start();
+
+          new TWTR.Widget({
+            id: 'twitter_chatter',
+            version: 2,
+            type: 'search',
+            search: 'angularjs',
+            interval: 6000,
+            title: '',
+            subject: '&lt;angular/&gt; chatter',
+            width: 'auto',
+            height: 500,
+            theme: {
+              shell: {
+                background: '#333333',
+                color: '#ffffff'
+              },
+              tweets: {
+                background: '#000000',
+                color: '#ffffff',
+                links: '#a6ccf5'
+              }
+            },
+            features: {
+              scrollbar: false,
+              loop: false,
+              live: true,
+              hashtags: true,
+              timestamp: true,
+              avatars: true,
+              toptweets: true,
+              behavior: 'all'
+            }
+          }).render().start();
+        });
+      })
+      .script((("https:" == document.location.protocol) ? "https://ssl." : "http://www.") + 'google-analytics.com/ga.js')
+      .wait(function(){
+        try{
+          var pageTracker = _gat._getTracker('UA-8594346-3');
+          pageTracker._trackPageview();
+        } catch(err) {}
+      });
+    })('0.9.12');
+    </script>
+
 
   </head>
   <body id="page_bg" ng:init="$service('$window').SyntaxHighlighter.highlight();">
@@ -233,82 +322,5 @@
         </div>
       </div>
     </div>
-    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-    <script>
-      angular.element(document).ready(function() {
-        new TWTR.Widget({
-          id: 'twitter_news',
-          version: 2,
-          type: 'profile',
-          rpp: 4,
-          interval: 6000,
-          width: 'auto',
-          height: 300,
-          theme: {
-            shell: {
-              background: '#333333',
-              color: '#ffffff'
-            },
-            tweets: {
-              background: '#000000',
-              color: '#ffffff',
-              links: '#a6ccf5'
-            }
-          },
-          features: {
-            scrollbar: false,
-            loop: false,
-            live: false,
-            hashtags: true,
-            timestamp: true,
-            avatars: false,
-            behavior: 'all'
-          }
-        }).render().setUser('angularjs').start();
-
-        new TWTR.Widget({
-          id: 'twitter_chatter',
-          version: 2,
-          type: 'search',
-          search: 'angularjs',
-          interval: 6000,
-          title: '',
-          subject: '&lt;angular/&gt; chatter',
-          width: 'auto',
-          height: 500,
-          theme: {
-            shell: {
-              background: '#333333',
-              color: '#ffffff'
-            },
-            tweets: {
-              background: '#000000',
-              color: '#ffffff',
-              links: '#a6ccf5'
-            }
-          },
-          features: {
-            scrollbar: false,
-            loop: false,
-            live: true,
-            hashtags: true,
-            timestamp: true,
-            avatars: true,
-            toptweets: true,
-            behavior: 'all'
-          }
-        }).render().start();
-      });
-    </script>
-    <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-      try{
-        var pageTracker = _gat._getTracker('UA-8594346-3');
-        pageTracker._trackPageview();
-      } catch(err) {}
-    </script>
   </body>
 </html>
