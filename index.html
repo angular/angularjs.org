@@ -4,11 +4,21 @@
     <title>&lt;angular/&gt;</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
-    <script src="http://code.angularjs.org/angular-0.9.11.js" ng:autobind></script>
 
     <link rel="stylesheet" href="css/angular.css" type="text/css">
+    <link rel="stylesheet" href="http://code.angularjs.org/0.9.12/docs-0.9.12/doc_widgets.css" type="text/css" />
+    <link rel="stylesheet" href="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shCore.css" type="text/css"/>
+    <link rel="stylesheet" href="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shThemeDefault.css" type="text/css"/>
+
+    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/jquery.min.js"></script>
+    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shCore.js"></script>
+    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shBrushJScript.js"></script>
+    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shBrushXml.js"></script>
+    <script src="http://code.angularjs.org/angular-0.9.12.js" ng:autobind></script>
+    <script src="http://code.angularjs.org/0.9.12/docs-0.9.12/doc_widgets.js"></script>
+
   </head>
-  <body id="page_bg">
+  <body id="page_bg" ng:init="$service('$window').SyntaxHighlighter.highlight();">
     <div id="wrapper-shadow">
       <div id="wrapper">
         <div id="beta"></div>
@@ -52,70 +62,62 @@
                   </p>
 
                   <h2>Live Example</h2>
-                  <p>Below is an angular mini demo of simple invoicing app built with just html, css
-                  and angular declarations. The demo showcases only some features of angular, mainly
-                  the two-way binding and extending html to enable declarative web development
-                  without DOM manipulation and unnecessary callbacks.</p>
+                  <p>Below is an angular mini demo of simple password generator example which shows
+                     of MVC, dependency injection of services (XHR), and data-binding.</p>
 
-                  <pre ng:non-bindable>
-                    <!-- Code highlighting produced by Actipro CodeHighlighter (freeware)
-                         http://www.stevetrefethen.com/highlighter/ -->
-<span style="color: #008080;"> 1</span> <span style="color: #0000FF;">&lt;</span><span style="color: #800000;">table </span><span style="color: #FF0000;">ng:init</span><span style="color: #0000FF;">=&quot;invoice= {items:[{qty:10, description:'gadget', cost:9.95}]}&quot;</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">  </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;"> 3</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">Qty</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">Description</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">Cost</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">Total</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">  </span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">  </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">tr </span><span style="color: #FF0000;">ng:repeat</span><span style="color: #0000FF;">=&quot;item in invoice.items&quot;</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">10</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;&lt;</span><span style="color: #800000;">input </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;item.qty&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;1&quot;</span><span style="color: #FF0000;"> size</span><span style="color: #0000FF;">=&quot;4&quot;</span><span style="color: #FF0000;">
-</span><span style="color: #008080;">11</span> <span style="color: #FF0000;">               ng:required ng:validate</span><span style="color: #0000FF;">=&quot;integer&quot;</span><span style="color: #0000FF;">&gt;&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">12</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;&lt;</span><span style="color: #800000;">input </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;item.description&quot;</span><span style="color: #0000FF;">&gt;&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">13</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;&lt;</span><span style="color: #800000;">input </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;item.cost&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;0.00&quot;</span><span style="color: #FF0000;">
-</span><span style="color: #008080;">14</span> <span style="color: #FF0000;">               ng:required ng:validate</span><span style="color: #0000FF;">=&quot;number&quot;</span><span style="color: #FF0000;"> size</span><span style="color: #0000FF;">=&quot;6&quot;</span><span style="color: #0000FF;">&gt;&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">15</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">{{item.qty * item.cost | currency}}</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">16</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">[</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">a </span><span style="color: #FF0000;">href ng:click</span><span style="color: #0000FF;">=&quot;invoice.items.$remove(item)&quot;</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">X</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">]</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">17</span> <span style="color: #000000;">  </span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">18</span> <span style="color: #000000;">  </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">19</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;&lt;</span><span style="color: #800000;">a </span><span style="color: #FF0000;">href ng:click</span><span style="color: #0000FF;">=&quot;invoice.items.$add()&quot;</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">add item</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000FF;">&gt;&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">20</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">21</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">Total:</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">22</span> <span style="color: #000000;">    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">{{invoice.items.$sum('qty*cost') | currency}}</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">23</span> <span style="color: #000000;">  </span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
-</span><span style="color: #008080;">24</span> <span style="color: #000000;"></span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">table</span><span style="color: #0000FF;">&gt;</span>
-                  </pre>
+                  <doc:example>
+                    <pre class="doc-source">
+                      &lt;div ng:controller="PasswordController"&gt;
+                       Password:
+                       &lt;input type="password" name="password" placeholder="enter password"/&gt;
+                       &lt;input type="checkbox" name="showPwd"&gt;
+                       &lt;span ng:show="showPwd"&gt;{{password}}&lt;/span&gt;
+                       &lt;br/&gt;
+                       Password strength:
+                       &lt;span ng:class="strength"&gt;{{strength}}&lt;/span&gt;
+                       &lt;button ng:click="generate()"&gt;Generate&lt;/button&gt;
+                      &lt;/div&gt;
 
-                  <p>Because all angular applications are processed and executed only in the browser
-                    we can simply run this application right here on this page:</p>
+                      &lt;script&gt;
+                      var SERVICE_URL = 'http://angularjs.org/generatePassword.php?callback=JSON_CALLBACK';
+                      // Dependency Inject $xhr service
+                      function PasswordController($xhr){
+                        // reset the state of the model to defaults
+                        this.password = '';
+                        this.strength = null;
+                        this.showPwd = true;
 
-                  <table ng:init="invoice= {items:[{qty:10, description:'gadget', cost:9.95}]}">
-                    <tr>
-                      <th>Qty</th>
-                      <th>Description</th>
-                      <th>Cost</th>
-                      <th>Total</th>
-                      <th></th>
-                    </tr>
-                    <tr ng:repeat="item in invoice.items">
-                      <td><input name="item.qty" value="1" size="4"
-                                 ng:required ng:validate="integer"></td>
-                      <td><input name="item.description"></td>
-                      <td><input name="item.cost" value="0.00"
-                                 ng:required ng:validate="number" size="6"></td>
-                      <td>{{item.qty * item.cost | currency}}</td>
-                      <td>[<a href ng:click="invoice.items.$remove(item)">X</a>]</td>
-                    </tr>
-                    <tr>
-                      <td><a href ng:click="invoice.items.$add()">add item</a></td>
-                      <td></td>
-                      <th>Total:</th>
-                      <td>{{invoice.items.$sum('qty*cost') | currency}}</td>
-                    </tr>
-                  </table>
+                        // watch the password field and grade it.
+                        this.$watch('password', function(){
+                          if (this.password.length &gt; 8) {
+                            this.strength = 'strong';
+                          } else if (this.password.length &gt; 3) {
+                            this.strength = 'medium';
+                          } else {
+                            this.strength = 'weak';
+                          }
+                        });
 
-                  <p>Go ahead and fiddle with the source code at
-                    <a href="http://jsfiddle.net/IgorMinar/PV53g/">jsfiddle</a>!</p>
+                        // behavior
+                        this.generate = function(){
+                          var self = this;
+                          $xhr('JSON', SERVICE_URL, function(code, response){
+                            self.password = response.password;
+                          });
+                        }
+                      }
+                      &lt;/script&gt;
+
+                      &lt;style&gt;
+                       .strong { background-color: lightgreen;}
+                       .medium { background-color: yellow;}
+                       .weak { background-color: red; color: white;}
+                      &lt;/style&gt;
+                    </pre>
+                  </doc:example>
+
+                  <p>You can fiddle with the source code at
+                    <a href="http://jsfiddle.net/mhevery/7nzZv/2/">jsfiddle</a>.</p>
 
 
                   <h2>Complexity kills. Use angular. Here’s why:</h2>
@@ -190,7 +192,7 @@
                   <h2>How do I get started with angular?</h2>
                   <ul>
                     <li>
-                      Work through the 
+                      Work through the
                       <a href="http://docs.angularjs.org/#!started">Getting Started</a> examples.
                     </li>
                     <li>
