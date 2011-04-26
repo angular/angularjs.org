@@ -1,326 +1,164 @@
 <!doctype html>
-<html xmlns:ng="http://angularjs.org" lang="en" dir="ltr">
-  <head>
-    <title>&lt;angular/&gt;</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="shortcut icon" href="favicon.ico">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>&lt;angular/&gt;</title>
+  <link href="css/angular.css" rel="stylesheet" type="text/css" />
+</head>
 
-    <link rel="stylesheet" href="css/angular.css" type="text/css">
-    <link rel="stylesheet" href="http://code.angularjs.org/0.9.12/docs-0.9.12/doc_widgets.css" type="text/css" />
-    <link rel="stylesheet" href="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shCore.css" type="text/css"/>
-    <link rel="stylesheet" href="http://code.angularjs.org/0.9.12/docs-0.9.12/syntaxhighlighter/shThemeDefault.css" type="text/css"/>
+<body class="home">
+  <div class="home" id="container">
+  <div id="navigationHome">
+    <div id="navContainer">
+      <ul class="navContainerStyle">
+        <li><a href="index.html" class="current">&lt;angular/&gt;</a></li>
+        <li><a href="developer_guide.html">Developer Guide</a></li>
+        <li><a href="reference.html">API Reference</a></li>
+        <li><a href="examples.html">Examples</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+      </ul>
+    </div>
+  </div>
 
-    <script src="LAB.min.js"></script>
-    <script>
-    (function(ver){
-      $LAB
-      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/syntaxhighlighter/shCore.js')
-      .wait()
-      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/syntaxhighlighter/shBrushJScript.js')
-      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/syntaxhighlighter/shBrushXml.js')
-      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/jquery.min.js')
-      .wait()
-      .script('http://code.angularjs.org/angular-'+ver+'.js')
-      .wait()
-      .script('http://code.angularjs.org/'+ver+'/docs-'+ver+'/doc_widgets.js')
-      .wait(function(){
-        // compile code
-        angular.compile(window.document)();
-      })
-      .script('http://widgets.twimg.com/j/2/widget.js')
-      .wait(function(){
-        // load widgets
-        $(function() {
-          new TWTR.Widget({
-            id: 'twitter_news',
-            version: 2,
-            type: 'profile',
-            rpp: 4,
-            interval: 6000,
-            width: 'auto',
-            height: 300,
-            theme: {
-              shell: {
-                background: '#333333',
-                color: '#ffffff'
-              },
-              tweets: {
-                background: '#000000',
-                color: '#ffffff',
-                links: '#a6ccf5'
-              }
-            },
-            features: {
-              scrollbar: false,
-              loop: false,
-              live: false,
-              hashtags: true,
-              timestamp: true,
-              avatars: false,
-              behavior: 'all'
-            }
-          }).render().setUser('angularjs').start();
+  <div id="top">
+    <div id="logo">&lt;angular/&gt;</div>
 
-          new TWTR.Widget({
-            id: 'twitter_chatter',
-            version: 2,
-            type: 'search',
-            search: 'angularjs',
-            interval: 6000,
-            title: '',
-            subject: '&lt;angular/&gt; chatter',
-            width: 'auto',
-            height: 500,
-            theme: {
-              shell: {
-                background: '#333333',
-                color: '#ffffff'
-              },
-              tweets: {
-                background: '#000000',
-                color: '#ffffff',
-                links: '#a6ccf5'
-              }
-            },
-            features: {
-              scrollbar: false,
-              loop: false,
-              live: true,
-              hashtags: true,
-              timestamp: true,
-              avatars: true,
-              toptweets: true,
-              behavior: 'all'
-            }
-          }).render().start();
-        });
-      })
-      .script((("https:" == document.location.protocol) ? "https://ssl." : "http://www.") + 'google-analytics.com/ga.js')
-      .wait(function(){
-        try{
-          var pageTracker = _gat._getTracker('UA-8594346-3');
-          pageTracker._trackPageview();
-        } catch(err) {}
-      });
-    })('0.9.12');
-    </script>
+    <div id="tagline">
+      what HTML would have been if
+      it was designed for web apps.
+    </div>
 
 
-  </head>
-  <body id="page_bg" ng:init="$service('$window').SyntaxHighlighter.highlight();">
-    <div id="wrapper-shadow">
-      <div id="wrapper">
-        <div id="beta"></div>
-        <div id="header">
-          <ul class="menu">
-            <li><a href="http://docs.angularjs.org/#!started">Getting Started</a></li>
-            <li><a href="http://docs.angularjs.org/#!guide">Developer Guide</a></li>
-            <li><a href="http://docs.angularjs.org/">Reference</a></li>
-            <li><a href="http://docs.angularjs.org/#!cookbook">Cookbook</a></li>
-            <li><a href="http://docs.angularjs.org/#!faq">FAQ</a></li>
-            <li><a href="https://groups.google.com/forum/?fromgroups#!forum/angular">Mailing List</a></li>
-            <li><a href="http://github.com/angular/angular.js">GitHub</a></li>
-            <li><a href="http://docs.angularjs.org/#!contribute">Contribute</a></li>
-          </ul>
-        </div>
-
-        <div id="heading">
-          <div class="breadcrumb">
-            <span class="icon icon-documentation">&nbsp;</span>
-            <span class="fragment">
-              <code id="logo">&lt;angular/&gt;</code>: Complex web apps made simple
-            </span>
-          </div>
-        </div>
-
-        <div id="main">
-          <div class="content">
-            <div class="left">
-              <div>
-                <div id="angularRoot">
-                  <h2>What is angular?</h2>
-                  <p>Angular is what HTML would have been if it had been designed for building web
-                    applications. It provides your application’s plumbing so you can focus on what
-                    your app does, rather than how to get your web browser to do what you need.
-                  </p>
-                  <p>
-                    Angular is an extensible client-side HTML compiler and a JavaScript web
-                    framework for building interactive client-side web applications with very
-                    declarative, reusable and testable code that plays to strengths of both HTML
-                    and JavaScript.
-                  </p>
-
-                  <h2>Live Example</h2>
-                  <p>Below is an angular mini demo of simple password generator example which shows
-                     of MVC, dependency injection of services (XHR), and data-binding.</p>
-
-                  <doc:example>
-                    <pre class="doc-source">
-                      &lt;div ng:controller="PasswordController"&gt;
-                       Password:
-                       &lt;input type="password" name="password" placeholder="enter password"/&gt;
-                       &lt;input type="checkbox" name="showPwd"&gt;
-                       &lt;span ng:show="showPwd"&gt;{{password}}&lt;/span&gt;
-                       &lt;br/&gt;
-                       Password strength:
-                       &lt;span ng:class="strength"&gt;{{strength}}&lt;/span&gt;
-                       &lt;button ng:click="generate()"&gt;Generate&lt;/button&gt;
-                      &lt;/div&gt;
-
-                      &lt;script&gt;
-                      var SERVICE_URL = 'http://angularjs.org/generatePassword.php?callback=JSON_CALLBACK';
-                      // Dependency Inject $xhr service
-                      function PasswordController($xhr){
-                        // reset the state of the model to defaults
-                        this.password = '';
-                        this.strength = null;
-                        this.showPwd = true;
-
-                        // watch the password field and grade it.
-                        this.$watch('password', function(){
-                          if (this.password.length &gt; 8) {
-                            this.strength = 'strong';
-                          } else if (this.password.length &gt; 3) {
-                            this.strength = 'medium';
-                          } else {
-                            this.strength = 'weak';
-                          }
-                        });
-
-                        // behavior
-                        this.generate = function(){
-                          var self = this;
-                          $xhr('JSON', SERVICE_URL, function(code, response){
-                            self.password = response.password;
-                          });
-                        }
-                      }
-                      &lt;/script&gt;
-
-                      &lt;style&gt;
-                       .strong { background-color: lightgreen;}
-                       .medium { background-color: yellow;}
-                       .weak { background-color: red; color: white;}
-                      &lt;/style&gt;
-                    </pre>
-                  </doc:example>
-
-                  <p>You can fiddle with the source code at
-                    <a href="http://jsfiddle.net/mhevery/7nzZv/2/">jsfiddle</a>.</p>
-
-
-                  <h2>Complexity kills. Use angular. Here’s why:</h2>
-                  <ul>
-                    <li><b>Write less code. A lot less.</b>
-                      Forget about writing all that extra JavaScript to handle event listeners,
-                      DOM updates, formatters, and input validators. Angular comes with <a
-                      href="http://docs.angularjs.org/#!guide.bootstrap">autobinding</a>, built-in
-                      <a href="http://docs.angularjs.org/#!angular.validator">validators</a> and
-                      <a href="http://docs.angularjs.org/#!angular.formatter">formatters</a> which
-                      take care of these. And you can extend or replace these services at will.
-                      With these and other services, you’ll write about 10x less code than writing
-                      your app without angular.
-                    </li>
-                    <li><b>Automatic view/model synchronization.</b>
-                      Tired of writing code to keep your view and model in sync? Thanks to
-                      angular’s 2-way <a href="http://docs.angularjs.org/#!guide.data-binding">
-                      data binding</a>, your model is always the single source of truth for your
-                      application state and your view is simply a projection of your model. You
-                      are only responsible for your business logic in a controller and the
-                      associated HTML template.
-                    </li>
-                    <li><b>No setup.</b>
-                      Nothing to download. No server required. No compilers to configure. No
-                      environment variables to set.  Angular’s UI templates run on the client so
-                      you never have to wait on the server to see your changes in the application.
-                    </li>
-                    <li><b>Readable code that is easy to maintain.</b>
-                      Angular apps are specified declaratively through custom HTML tags and
-                      attributes that specify the intent of your application. By defining UI <a
-                      href="http://docs.angularjs.org/#!guide.template"
-                      title="Template">templates</a> and widgets in HTML, you can read angular
-                      code and understand what it’s supposed to do. Plus, less code means less to
-                      read, maintain and test.
-                    </li>
-                    <li><b>Testable code.</b>
-                      Angular comes with a set of <a
-                      href="http://docs.angularjs.org/#!angular.service">services</a> that are
-                      useful for building web apps. The services are dependency injected, which
-                      makes it easy to swap services or create mocks for testing. Some services
-                      are: history management, URL router, XHR requests, and data caching out of
-                      the box.
-                    </li>
-                    <li><b>Build reusable components with trivial effort.</b>
-                      Angular lets you write UI <a
-                      href="http://docs.angularjs.org/#!guide.template">templates</a> and <a
-                      href="http://docs.angularjs.org/#!guide.widget">widgets</a> that you can
-                      reuse throughout your app.
-                    </li>
-                    <li><b>Plays well with others.</b>
-                      You can easily use angular with the frameworks and libraries that you are
-                      already using.  Mix and match functionality freely.
-                    </li>
-                  </ul>
-
-                  <h2>Sounds awesome.  But what parts do I need to write?</h2>
-                  <ul>
-                    <li><b>HTML and CSS:</b>
-                      Standard HTML plus custom tags and attributes, which bring dynamic nature to
-                      HTML.
-                    </li>
-                    <li><b>Controllers:</b>
-                      Angular apps follow the model-view-controller pattern.  You’re responsible
-                      for the logic that's custom to your application which is encapsulated in
-                      one or more controllers. These are implemented in JavaScript.
-                    </li>
-                    <li>(optional) <b>Server-side data service.</b>
-                      Write this in your technology of choice.
-                    </li>
-                  </ul>
-
-                  <h2>How do I get started with angular?</h2>
-                  <ul>
-                    <li>
-                      Work through the
-                      <a href="http://docs.angularjs.org/#!started">Getting Started</a> examples.
-                    </li>
-                    <li>
-                      Check out more examples in <a href="http://docs.angularjs.org/#!cookbook">Cookbook</a>.
-                    </li>
-                    <li>
-                      Read the <a href="http://docs.angularjs.org/#!guide">Developer Guide</a>.
-                    </li>
-                    <li>
-                      Check out what's new in the
-                      <a href="http://github.com/angular/angular.js/blob/master/CHANGELOG.md">
-                        latest release.
-                      </a>.
-                    </li>
-                    <li>
-                      <a href="http://code.angularjs.org/">Download the latest bits</a> or quickly
-                      start a project with <a href="https://github.com/angular/angular-seed">angular
-                      seed repository</a>.
-                    </li>
-                    <li>
-                      <a href="http://docs.angularjs.org/#!guide.contribute" title="Contribute">
-                        Contribute to angular
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="right">
-              <div id="twitter_news" class="twitter"></div>
-              <div id="twitter_chatter" class="twitter"></div>
-            </div>
-          </div>
-        </div>
-
-        <div id="footer">
-          <span>Copyright 2010-2011 - angular / BRAT Tech. LLC</span>
+    <div id="buttons">
+      <div id="downloadButton">
+        <div id="downloadText">
+          <span class="ButtonHeadings">Download</span><br/>
+          <span class="blueText">Version v0.9.14 key-maker</span><br>
+          <span class="smallLinks"><a href="http://www.google.com">tarball</a> | angular-seed | js | min </span>
         </div>
       </div>
+
+      <div id="communityButton">
+       <div id="CommunityText"><span class="ButtonHeadings">Community</span><br />
+         <span class="blueText">Share with <br />
+          other Developers</span></div>
+       </div>
+      </div>
     </div>
-  </body>
+
+    <div id="twitterWidget"></div>
+
+    <div class="home" id="sidebar">
+      <div id="left">
+        <div id="icons">
+          <div id="iconWrap">
+            <div id="templatesIcon">
+              <img src="img/template_icon.png" width="92" height="89" alt="UI templates">
+            </div>
+            <div class="smallLinks" id="templatesLink">Declarative<br>UI Templates</div>
+            <div id="two-wayIcon">
+              <img src="img/two-way_icon.png" width="92" height="89" alt="two-way binding">
+            </div>
+            <div class="smallLinks" id="two-wayLink">Two-way<br>Binding</div>
+            <div id="frameworkIcon">
+              <img src="img/framework_icon.png" width="92" height="89" alt="framework">
+            </div>
+            <div class="smallLinks" id="frameworkLink">Framework</div>
+            <div id="mvcIcon">
+              <img src="img/mvc_icon.png" width="92" height="89" alt="MVC with Dependency">
+            </div>
+            <div class="smallLinks" id="mvcLink">MVC with<br>Dependency Injection</div>
+          </div>
+          <div id="Descriptions">
+            <div id="UItemplatesDescription">Declarative UI Templates: HTML is already a good templating language; angular makes it better.  Preview your UI in your favorite HTML editor.</div>
+            <div id="two-wayDescription">Two-way Data Binding: With angular this just works, without you needing to manipulate the DOM in your code.</div>
+            <div id="frameworkDescription">Framework: Instead of being just one piece of the puzzle, angular supports the entire development process. It provides structure for your web apps, and it works with the best JS libraries.</div>
+            <div id="mvcDescription">MVC With Dependency Injection: This makes development so much easier, and greatly improves testability.</div>
+          </div>
+        </div>
+
+        <div id="whatYouNeed">
+          <div id="listText">
+            <span class="h1">What you need to know</span>
+            <ul>
+              <li>Small: under 60KB minified (22KB Gzipped)</li>
+              <li>Pure JavaScript: one script tag to include</li>
+              <li>Supports all Class A browsers</li>
+              <li>Works great with jQuery</li>
+              <li>Works in existing we4 apps: <br />sprinkle in a little or pour it on, no need <br />for a big, scary commitment.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="testimonials">
+          <span class="h1">Testimonials</span>
+          <div id="testimonialsText">
+            “Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Scelerisqupae, ipsum ut congue faucibus, massa lorem pel esque risus, ac porta nisi dolor ut tortor. Quisque et comnunc. Curabitur a felis ante, eu cursus lacus....” more
+            <br /><br />
+          </div>
+          <div id="sigName"><strong>Praesent Quisique,</strong> Curabitur Vulputate</div>
+        </div>
+      </div>
+
+      <div id="right">
+        <div id="liveExTopGraphic"></div>
+        <div id="LiveExText">
+          <span class="h1">LiveExample</span>
+          <br /><br />
+          Below is an angula0r mini demo of simple password generator example which  shows of MVC, dependency injection of services (XHR), and data-binding.        
+          <br /><br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, sapien sed suscipit rutrum, metus sapien fringilla odio, in vestibulum eros tortor a elit. Quisque ut nisl nec orci imperdiet laoreet in sed lectus. Sed in sapien justo. Vestibulum consequat massa sit amet sem commodo iaculis. Duis sollicitudin tincidunt porta. Curabitur non lobortis dolor. Vestibulum accumsan egestas lorem quis porta. Morbi ullamcorper, orci sed imperdiet posuere, justo ante egestas erat, sit amet dignissim nisl urna et urna. Donec ultricies neque lorem. Morbi cursus, dui eget auctor pellentesque, felis quam scelerisque metus, id luctus est elit sit amet erat. Quisque lacus eros, scelerisque a commodo ac, ultrices ut mauris. Cras vitae nunc nibh, tempus consectetur augue. Mauris volutpat elit id nibh blandit non suscipit eros elementum. Fusce varius rhoncus tellus <a href="http://www.google.com">condimentum</a> rhoncus. Proin in imperdiet mi.
+          <br /><br />
+          Donec vel interdum urna. Nulla vitae odio quis felis interdum pulvinar sed non massa. In quis dignissim nisi. Quisque in semper ante. Mauris egestas diam tempor massa sagittis eu mollis orci tempus. Sed quis adipiscing nibh. Pellentesque leo purus, vehicula ut hendrerit tincidunt, consequat eget purus. In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna. Nulla fermentum, lacus at porttitor lobortis, mauris velit rutrum erat, nec ultrices est arcu vitae massa. Praesent ligula mauris, ultricies eget laoreet sit amet, mattis id augue. Vivamus eu purus orci, id lacinia nibh. Aliquam erat volutpat. Aliquam erat volutpat. Maecenas in libero metus. Proin orci odio, molestie at euismod id, rhoncus sed magna. Phasellus vitae risus lectus, sed egestas urna. Praesent eget diam lorem.
+          <br /><br />
+          Aliquam erat volutpat. Phasellus nec tincidunt erat. Morbi quis est ac lacus sagittis dictum. Mauris faucibus, odio nec tincidunt euismod, lorem tortor mollis urna, sit amet aliquam nunc urna ac sapien. Duis urna elit, aliquam non eleifend eget, vestibulum ac magna. Quisque eu mauris lorem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eleifend pulvinar enim, rhoncus sollicitudin eros pharetra sed. Quisque viverra rutrum nulla non condimentum. Nullam in est lacus. Phasellus sed velit ac ligula fringilla interdum. Praesent lacinia venenatis erat, id fringilla purus ornare nec. Donec consequat eget purus. In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna. Nulla fermentum, lacus at porttitor lobortis, mauris velit rutrum erat, nec ultrices est arcu vitae massa. Praesent ligula mauris, ultricies eget laoreet sit amet, mattis id augue. Vivamus eu purus orci, id lacinia nibh. Aliquam erat volutpat. Aliquam erat volutpat. Maecenas in libero metus. Proin orci odio, molestie at euismod id, rhoncus sed magna. Phasellus vitae risus lectus, sed egestas urna.
+          <br /><br />
+          In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna. Nulla fermentum, lacus at porttitor lobortis, mauris velit rutrum erat, nec ultrices est arcu vitae massa. Praesent ligula mauris, ultricies eget laoreet sit amet, mattis id augue. Vivamus eu purus orci, id lacinia nibh. Aliquam erat volutpat. Maecenas in libero metus. Proin orci odio, molestie at euismod id, rhoncus sed magna. Phasellus vitae risus lectus, sed egestas urna. In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna. Nulla fermentum, lacus at porttitor lobortis, mauris velit rutrum erat, nec ultrices est arcu vitae massa. Praesent ligula mauris, ultricies eget laoreet sit amet, mattis id augue.  Maecenas in libero metus. Proin orci odio, molestie at euismod id. Proin orci odio, molestie at euismod id, rhoncus sed magna. In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna.
+
+          In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna.
+        </div>
+
+        <div id="homeFooter">© Copyright 2010-2011 - angular/BRAT Tech LLC</div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="http://code.angularjs.org/angular-0.9.14.min.js" ng:autobind></script>
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+  angular.element(document).ready(function() {
+    new TWTR.Widget({
+      id: 'twitterWidget',
+      version: 2,
+      type: 'profile',
+      rpp: 3,
+      interval: 6000,
+      width: 250,
+      height: 250,
+      theme: {
+        shell: {
+          background: '#333333',
+          color: '#ffffff'
+        },
+        tweets: {
+          background: '#000000',
+          color: '#ffffff',
+          links: '#a6ccf5'
+        }
+      },
+      features: {
+        scrollbar: false,
+        loop: false,
+        live: false,
+        hashtags: true,
+        timestamp: true,
+        avatars: false,
+        behavior: 'all'
+      }
+    }).render().setUser('angularjs').start();
+  });
+</script>
+</body>
 </html>
