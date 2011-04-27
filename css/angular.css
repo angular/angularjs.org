@@ -385,7 +385,7 @@ li {
     -webkit-border-radius:10px;
 }
 
-#CommunityText {
+#communityText {
     width: 150px;
     padding-top: 7px;
     padding-left: 20px;
@@ -417,7 +417,7 @@ li {
     font-size: 13px;
     color: #7989D6;
 }
-.ButtonHeadings {
+.buttonHeadings {
     font-size: 22px;
     font-weight: bold;
 }
@@ -457,7 +457,7 @@ li {
     width: 300px;
 }
 
-#Descriptions {
+#descriptions {
     float: left;
     height: 500px;
     width: 230px;
@@ -631,7 +631,7 @@ li {
 }
 
 
-#LiveExText {
+#liveExText {
     font-size: 14px;
     background: #FFF;
     width: 475px;
