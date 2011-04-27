@@ -4,6 +4,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>&lt;angular/&gt;</title>
   <link href="css/angular.css" rel="stylesheet" type="text/css" />
+  <link href="lib/syntaxhighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+  <link href="lib/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+  <link href="css/doc_widgets.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="home">
@@ -103,19 +106,60 @@
     <div id="right">
       <div id="liveExTopGraphic"></div>
       <div id="liveExText">
-        <span class="h1">LiveExample</span>
-        <br /><br />
-        Below is an angula0r mini demo of simple password generator example which  shows of MVC, dependency injection of services (XHR), and data-binding.        
-        <br /><br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, sapien sed suscipit rutrum, metus sapien fringilla odio, in vestibulum eros tortor a elit. Quisque ut nisl nec orci imperdiet laoreet in sed lectus. Sed in sapien justo. Vestibulum consequat massa sit amet sem commodo iaculis. Duis sollicitudin tincidunt porta. Curabitur non lobortis dolor. Vestibulum accumsan egestas lorem quis porta. Morbi ullamcorper, orci sed imperdiet posuere, justo ante egestas erat, sit amet dignissim nisl urna et urna. Donec ultricies neque lorem. Morbi cursus, dui eget auctor pellentesque, felis quam scelerisque metus, id luctus est elit sit amet erat. Quisque lacus eros, scelerisque a commodo ac, ultrices ut mauris. Cras vitae nunc nibh, tempus consectetur augue. Mauris volutpat elit id nibh blandit non suscipit eros elementum. Fusce varius rhoncus tellus <a href="http://www.google.com">condimentum</a> rhoncus. Proin in imperdiet mi.
-        <br /><br />
-        Donec vel interdum urna. Nulla vitae odio quis felis interdum pulvinar sed non massa. In quis dignissim nisi. Quisque in semper ante. Mauris egestas diam tempor massa sagittis eu mollis orci tempus. Sed quis adipiscing nibh. Pellentesque leo purus, vehicula ut hendrerit tincidunt, consequat eget purus. In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna. Nulla fermentum, lacus at porttitor lobortis, mauris velit rutrum erat, nec ultrices est arcu vitae massa. Praesent ligula mauris, ultricies eget laoreet sit amet, mattis id augue. Vivamus eu purus orci, id lacinia nibh. Aliquam erat volutpat. Aliquam erat volutpat. Maecenas in libero metus. Proin orci odio, molestie at euismod id, rhoncus sed magna. Phasellus vitae risus lectus, sed egestas urna. Praesent eget diam lorem.
-        <br /><br />
-        Aliquam erat volutpat. Phasellus nec tincidunt erat. Morbi quis est ac lacus sagittis dictum. Mauris faucibus, odio nec tincidunt euismod, lorem tortor mollis urna, sit amet aliquam nunc urna ac sapien. Duis urna elit, aliquam non eleifend eget, vestibulum ac magna. Quisque eu mauris lorem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eleifend pulvinar enim, rhoncus sollicitudin eros pharetra sed. Quisque viverra rutrum nulla non condimentum. Nullam in est lacus. Phasellus sed velit ac ligula fringilla interdum. Praesent lacinia venenatis erat, id fringilla purus ornare nec. Donec consequat eget purus. In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna. Nulla fermentum, lacus at porttitor lobortis, mauris velit rutrum erat, nec ultrices est arcu vitae massa. Praesent ligula mauris, ultricies eget laoreet sit amet, mattis id augue. Vivamus eu purus orci, id lacinia nibh. Aliquam erat volutpat. Aliquam erat volutpat. Maecenas in libero metus. Proin orci odio, molestie at euismod id, rhoncus sed magna. Phasellus vitae risus lectus, sed egestas urna.
-        <br /><br />
-        In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna. Nulla fermentum, lacus at porttitor lobortis, mauris velit rutrum erat, nec ultrices est arcu vitae massa. Praesent ligula mauris, ultricies eget laoreet sit amet, mattis id augue. Vivamus eu purus orci, id lacinia nibh. Aliquam erat volutpat. Maecenas in libero metus. Proin orci odio, molestie at euismod id, rhoncus sed magna. Phasellus vitae risus lectus, sed egestas urna. In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna. Nulla fermentum, lacus at porttitor lobortis, mauris velit rutrum erat, nec ultrices est arcu vitae massa. Praesent ligula mauris, ultricies eget laoreet sit amet, mattis id augue.  Maecenas in libero metus. Proin orci odio, molestie at euismod id. Proin orci odio, molestie at euismod id, rhoncus sed magna. In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna.
+        <span class="h1">Live Example</span>
+        <doc:example>
+          <pre class="doc-source">
+            &lt;div ng:controller="PasswordController"&gt;
+             Password:
+             &lt;input type="password" name="password" placeholder="enter password"/&gt;
+             &lt;span class="strength" ng:class="strength"&gt;
+               This password is {{strength}} !
+             &lt;/span&gt;&lt;br /&gt;
+             &lt;button ng:click="generate()"&gt;Generate on server&lt;/button&gt;
+             &lt;input type="checkbox" name="showPwd"&gt;Show password:
+             &lt;span ng:show="showPwd"&gt;{{password}}&lt;/span&gt;
+            &lt;/div&gt;
 
-        In nisl tellus, tempus sit amet fringilla feugiat, scelerisque vitae urna.
+            &lt;script&gt;
+            var SERVICE_URL = 'http://angularjs.org/generatePassword.php?callback=JSON_CALLBACK';
+
+            // Dependency Injector injects $xhr service
+            function PasswordController($xhr) {
+
+              // reset the state of the model to defaults
+              this.password = '';
+              this.strength = null;
+              this.showPwd = true;
+
+              // watch the password field and grade it.
+              this.$watch('password', function() {
+                if (this.password.length &gt; 8) {
+                  this.strength = 'strong';
+                } else if (this.password.length &gt; 3) {
+                  this.strength = 'medium';
+                } else {
+                  this.strength = 'weak';
+                }
+              });
+
+              // behavior
+              this.generate = function() {
+                var self = this;
+                $xhr('JSON', SERVICE_URL, function(code, response) {
+                  self.password = response.password;
+                });
+              }
+            }
+            &lt;/script&gt;
+
+            &lt;style&gt;
+             .strength  {padding: 2px 10px; border: 2px solid; color: white;}
+             .strong { background-color: #060; border-color: #0F0;}
+             .medium { background-color: #C60; border-color: #FC0; }
+             .weak { background-color: #900; border-color: #F00;}
+            &lt;/style&gt;
+          </pre>
+        </doc:example>
       </div>
 
       <div id="homeFooter">© Copyright 2010-2011 - angular/BRAT Tech LLC</div>
@@ -124,10 +168,16 @@
   </div>
 </div>
 
-<script src="http://code.angularjs.org/angular-0.9.14.min.js" ng:autobind></script>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/angular.min.js" ng:autobind></script>
+<script src="js/doc_widgets.js"></script>
+<script src="lib/syntaxhighlighter/scripts/shCore.js"></script>
+<script src="lib/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script src="lib/syntaxhighlighter/scripts/shBrushXml.js"></script>
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <script>
   angular.element(document).ready(function() {
+    // twitter widget
     new TWTR.Widget({
       id: 'twitterWidget',
       version: 2,
@@ -157,6 +207,13 @@
         behavior: 'all'
       }
     }).render().setUser('angularjs').start();
+    
+    // syntax highlighter
+    SyntaxHighlighter.defaults['html-script'] = true;
+    SyntaxHighlighter.defaults['toolbar'] = false;
+    SyntaxHighlighter.defaults['gutter'] = false;
+    
+    SyntaxHighlighter.all();
   });
 </script>
 </body>

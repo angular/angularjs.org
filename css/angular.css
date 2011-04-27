@@ -52,7 +52,7 @@ ul {
 
     font-size: 16px;
     line-height: 22px;
-    list-style: url(img/bullet.png) outside;
+    list-style: url(../img/bullet.png) outside;
 }
 
 li {
@@ -622,17 +622,7 @@ li {
     position: relative;
 }
 
-#live {
-    width: 525px;
-    position: relative;
-    margin-top: 370px;
-    float: left;
-
-}
-
-
 #liveExText {
-    font-size: 14px;
     background: #FFF;
     width: 475px;
     height: 1045px;
@@ -645,16 +635,42 @@ li {
     border-radius: 15px;
     -webkit-box-shadow: 4px 4px 6px #48577D;
     -webkit-border-radius:15px;
-
 }
 
-#Example {
-    font-size: 14px;
-    width: 480px;
-    padding-right: 25px;
-    padding-top: 35px;
-    padding-left: 0px;
+#liveExText ul.doc-example {
+    margin: 0;
+    padding: 0;
 }
+
+#liveExText ul.doc-example li {
+    list-style: none;
+}
+
+#liveExText ul.doc-example li.doc-example-source {
+  font-size: 12px;
+}
+
+#liveExText h3 {
+    background: #7989D6;
+    padding-top: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    -moz-box-shadow: 4px 4px 6px #48577D;
+    -moz-border-radius: 7px;
+    box-shadow: 4px 4px 6px #48577D;
+    border-radius: 7px;
+    -webkit-box-shadow: 4px 4px 6px #48577D;
+    -webkit-border-radius:7px;
+    margin-left: -15px;
+    margin-right: -15px;
+    color: white;
+}
+
+#liveExText input[type=password] {
+    width: 170px;
+}
+
+
 
 /*-----float clearing---*/
 

@@ -1,0 +1,10 @@
+@namespace doc url("http://docs.angularjs.org/");
+
+doc\:example {
+  display: none;
+}
+
+div.syntaxhighlighter {
+  padding-bottom: 10px !important; /* fix to remove unnecessary scrollbars http://is.gd/gSMgC */
+  font-size: 12px;
+}
