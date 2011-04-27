@@ -105,8 +105,19 @@
 
     <div id="right">
       <div id="liveExTopGraphic"></div>
-      <div id="liveExText">
-        <span class="h1">Live Example</span>
+      <div id="liveExText" ng:init="selectedExample='password'">
+        <span class="h1">Live Examples</span>
+        <div id="liveExMenu">
+	      <input type="radio" name="selectedExample" value="password" id="examplePassword" />
+	      <label for="examplePassword">Password Strength</label>
+	      <input type="radio" name="selectedExample" value="invoice" id="exampleInvoice" />
+	      <label for="exampleInvoice">Invoice</label>
+	    </div>
+
+        <ng:switch on="selectedExample">
+        
+        <!-- Password Strength example -->
+        <div ng:switch-default>
         <doc:example>
           <pre class="doc-source">
             &lt;div ng:controller="PasswordController"&gt;
@@ -153,13 +164,41 @@
             &lt;/script&gt;
 
             &lt;style&gt;
-             .strength  {padding: 2px 10px; border: 2px solid; color: white;}
+             .strength  {padding: 1px 10px; border: 2px solid; color: white;}
              .strong { background-color: #060; border-color: #0F0;}
              .medium { background-color: #C60; border-color: #FC0; }
              .weak { background-color: #900; border-color: #F00;}
             &lt;/style&gt;
           </pre>
         </doc:example>
+        <script>try {SyntaxHighlighter.highlight();} catch(e) {}</script>
+        </div>
+
+        <!-- Invoice example -->
+        <div ng:switch-when="invoice">
+		<doc:example>
+		<pre class="doc-source">
+		 &lt;table ng:init="invoice= {items:[{qty:10, description:'gadget', cost:9.95}]}"&gt;
+		   &lt;tr&gt;&lt;th&gt;Qty&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Cost&lt;/th&gt;&lt;th&gt;Total&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;
+		   &lt;tr ng:repeat="item in invoice.items"&gt;
+		     &lt;td&gt;&lt;input name="item.qty" value="1" size="4" ng:required ng:validate="integer"&gt;&lt;/td&gt;
+		    &lt;td&gt;&lt;input name="item.description"&gt;&lt;/td&gt;
+		      &lt;td&gt;&lt;input name="item.cost" value="0.00" ng:required ng:validate="number" size="6"&gt;&lt;/td&gt;
+		     &lt;td&gt;{{item.qty * item.cost | currency}}&lt;/td&gt;
+		     &lt;td&gt;[&lt;a href ng:click="invoice.items.$remove(item)"&gt;X&lt;/a&gt;]&lt;/td&gt;
+		   &lt;/tr&gt;
+		   &lt;tr&gt;
+		     &lt;td&gt;&lt;a href ng:click="invoice.items.$add()"&gt;add item&lt;/a&gt;&lt;/td&gt;
+		     &lt;td&gt;&lt;/td&gt;
+		     &lt;td&gt;Total:&lt;/td&gt;
+		     &lt;td&gt;{{invoice.items.$sum('qty*cost') | currency}}&lt;/td&gt;
+		   &lt;/tr&gt;
+		 &lt;/table&gt;
+		</pre>
+		</doc:example>
+		<script>try {SyntaxHighlighter.highlight();} catch(e) {}</script>
+	  </div>
+	  </ng:switch>
       </div>
 
       <div id="homeFooter">© Copyright 2010-2011 - angular/BRAT Tech LLC</div>
@@ -208,12 +247,10 @@
       }
     }).render().setUser('angularjs').start();
     
-    // syntax highlighter
+    // syntax highlighter defaults
     SyntaxHighlighter.defaults['html-script'] = true;
     SyntaxHighlighter.defaults['toolbar'] = false;
     SyntaxHighlighter.defaults['gutter'] = false;
-    
-    SyntaxHighlighter.all();
   });
 </script>
 </body>

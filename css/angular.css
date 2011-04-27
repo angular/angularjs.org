@@ -666,10 +666,22 @@ li {
     color: white;
 }
 
-#liveExText input[type=password] {
+#liveExText li.doc-example-live input[type=password] {
     width: 170px;
 }
 
+#liveExText li.doc-example-live table {
+    width: 100%;
+}
+
+#liveExMenu {
+    float: right;
+}
+
+#liveExMenu label {
+    cursor: pointer;
+    cursor: hand;
+}
 
 
 /*-----float clearing---*/
