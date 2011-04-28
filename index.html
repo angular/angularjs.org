@@ -95,15 +95,12 @@
 
       <div id="testimonials" ng:controller="TestimonialsCtrl">
         <span class="h1">Testimonials</span><a href="" ng:click="next()" id="testimonialsNav">next</a>
-        <ul>
-          <li ng:repeat="opinion in TESTIMONIALS" ng:show="selected == $index">
-	        <div class="testimonialsText">
-	          {{opinion.content}}
-	          <br /><br />
-	        </div>
-	        <div class="sigName"><strong>{{opinion.name}}</strong></div>
-	      </li>
-	    </ul>
+        <div class="testimonialsText">
+          "{{content}}
+          <a href="" ng:click="open()" ng:show="!isOpen" title="More...">...</a>"
+          <br /><br />
+        </div>
+        <div class="sigName"><strong>{{name}}</strong></div>
       </div>
     </div>
 
