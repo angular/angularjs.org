@@ -561,7 +561,7 @@ li {
     margin-top: 35px;
     margin-bottom: 35px;
     background: #FFF;
-    height: 240px;
+    height: 220px;
     width: 410px;
     padding-top: 20px;
     -moz-box-shadow: 4px 4px 6px #48577D;
@@ -573,7 +573,7 @@ li {
 }
 
 #listText {
-    width: 350px;
+    width: 360px;
     padding-left: 20px;
 }
 
@@ -582,7 +582,7 @@ li {
 
 #testimonials {
     background: #FFF;
-    height: 175px;
+    height: 195px;
     width: 390px;
     clear: both;
     float: left;
@@ -594,17 +594,32 @@ li {
     border-radius: 15px;
     -webkit-box-shadow: 4px 4px 6px #48577D;
     -webkit-border-radius:15px;
-
+    overflow: auto;
 }
 
-#testimonialsText {
-    width: 340px;
-    margin-left: 20px;
+#testimonialsNav {
+    float: right;
+    margin-right: 25px;
+}
+
+#testimonials ul {
+    margin: 0;
+    padding: 0;
+}
+
+#testimonials ul li {
+    list-style: none;
+}
+
+.testimonialsText {
+    width: 360px;
     padding-top: 15px;
-
+    text-align: justify;
+    font-style: italic;
+    font-size: 14px;
 }
 
-#sigName {
+.sigName {
     width: 340px;
     font-size: 12px;
     font-style: italic;
