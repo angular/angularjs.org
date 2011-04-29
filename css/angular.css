@@ -582,19 +582,19 @@ li {
 
 #testimonials {
     background: #FFF;
-    height: 195px;
+    min-height: 185px;
     width: 390px;
     clear: both;
     float: left;
     padding-top: 20px;
     padding-left: 20px;
+    padding-bottom: 10px;
     -moz-box-shadow: 4px 4px 6px #48577D;
     -moz-border-radius: 15px;
     box-shadow: 4px 4px 6px #48577D;
     border-radius: 15px;
     -webkit-box-shadow: 4px 4px 6px #48577D;
     -webkit-border-radius:15px;
-    overflow: auto;
 }
 
 #testimonialsNav {
@@ -624,6 +624,7 @@ li {
     font-size: 12px;
     font-style: italic;
     text-align: right;
+    margin-top: 15px;
 }
 
 
