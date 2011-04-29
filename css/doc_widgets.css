@@ -5,6 +5,8 @@ doc\:example {
 }
 
 div.syntaxhighlighter {
-  padding-bottom: 10px !important; /* fix to remove unnecessary scrollbars http://is.gd/gSMgC */
+/* fix to remove unnecessary scrollbars http://is.gd/gSMgC */
+  padding-bottom: 1px !important;
+  padding-right: 6px;
   font-size: 12px;
 }

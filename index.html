@@ -123,7 +123,8 @@
           <pre class="doc-source">
             &lt;div ng:controller="PasswordController"&gt;
              Password:
-             &lt;input type="password" name="password" placeholder="enter password"/&gt;
+             &lt;input type="password" name="password"
+                    placeholder="enter password" /&gt;
              &lt;span class="strength" ng:class="strength"&gt;
                This password is {{strength}} !
              &lt;/span&gt;&lt;br /&gt;
@@ -133,7 +134,10 @@
             &lt;/div&gt;
 
             &lt;script&gt;
-            var SERVICE_URL = 'http://angularjs.org/generatePassword.php?callback=JSON_CALLBACK';
+            
+            // url of the service
+            var SERVICE_URL = 'http://angularjs.org/generatePassword.php' +
+                              '?callback=JSON_CALLBACK';
 
             // Dependency Injector injects $xhr service
             function PasswordController($xhr) {
@@ -165,10 +169,10 @@
             &lt;/script&gt;
 
             &lt;style&gt;
-             .strength  {padding: 1px 10px; border: 2px solid; color: white;}
-             .strong { background-color: #060; border-color: #0F0;}
-             .medium { background-color: #C60; border-color: #FC0; }
-             .weak { background-color: #900; border-color: #F00;}
+             .strength  { padding: 1px 10px; border: 2px solid; color: #FFF;}
+             .strong    { background-color: #060; border-color: #0F0;}
+             .medium    { background-color: #C60; border-color: #FC0;}
+             .weak      { background-color: #900; border-color: #F00;}
             &lt;/style&gt;
           </pre>
         </doc:example>
@@ -178,14 +182,25 @@
         <div ng:show="selectedExample == 'invoice'">
 		<doc:example>
 		<pre class="doc-source">
-		 &lt;table ng:init="invoice= {items:[{qty:10, description:'gadget', cost:9.95}]}"&gt;
-		   &lt;tr&gt;&lt;th&gt;Qty&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Cost&lt;/th&gt;&lt;th&gt;Total&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;
+		 &lt;table ng:init="invoice=
+		       {items:[{qty:10, description:'gadget', cost:9.95}]}"&gt;
+		   &lt;tr&gt;
+		     &lt;th&gt;Qty&lt;/th&gt;
+		     &lt;th&gt;Description&lt;/th&gt;
+		     &lt;th&gt;Cost&lt;/th&gt;
+		     &lt;th&gt;Total&lt;/th&gt;
+		     &lt;th&gt;&lt;/th&gt;
+		   &lt;/tr&gt;
 		   &lt;tr ng:repeat="item in invoice.items"&gt;
-		     &lt;td&gt;&lt;input name="item.qty" value="1" size="4" ng:required ng:validate="integer"&gt;&lt;/td&gt;
+		     &lt;td&gt;&lt;input name="item.qty" value="1" size="4" ng:required
+		                ng:validate="integer"&gt;&lt;/td&gt;
 		     &lt;td&gt;&lt;input name="item.description"&gt;&lt;/td&gt;
-		     &lt;td&gt;&lt;input name="item.cost" value="0.00" ng:required ng:validate="number" size="6"&gt;&lt;/td&gt;
+		     &lt;td&gt;&lt;input name="item.cost" value="0.00" ng:required
+		                ng:validate="number" size="6"&gt;&lt;/td&gt;
 		     &lt;td&gt;{{item.qty * item.cost | currency}}&lt;/td&gt;
-		     &lt;td&gt;[&lt;a href ng:click="invoice.items.$remove(item)"&gt;X&lt;/a&gt;]&lt;/td&gt;
+		     &lt;td&gt;
+		       [&lt;a href ng:click="invoice.items.$remove(item)"&gt;X&lt;/a&gt;]
+		     &lt;/td&gt;
 		   &lt;/tr&gt;
 		   &lt;tr&gt;
 		     &lt;td&gt;&lt;a href ng:click="invoice.items.$add()"&gt;add item&lt;/a&gt;&lt;/td&gt;
