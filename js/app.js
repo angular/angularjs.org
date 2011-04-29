@@ -4,15 +4,7 @@
  * @returns {TestimonialsCtrl}
  */
 function TestimonialsCtrl() {
-  // init - first opinion
   this.loadOpinion_(0);
-
-  // change opinion every 20 secs
-  var self = this;
-  setInterval(function() {
-    self.next();
-    self.$eval();
-  }, 20000);
 }
 
 TestimonialsCtrl.prototype = {
@@ -49,6 +41,22 @@ TestimonialsCtrl.prototype = {
       this.isOpen = true;
     }
     this.name = opinion.name;
+    this.resetTimer_();
+  },
+  
+  /**
+   * Reset timer = clear old timeout and set new one
+   */
+  resetTimer_: function() {
+    if (this.timer_) {
+      clearTimeout(this.timer_);
+    }
+
+    var self = this;
+    this.timer_ = setTimeout(function() {
+      self.next();
+      self.$eval();
+    }, 20000);
   },
 
   /**
