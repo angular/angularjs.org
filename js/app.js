@@ -5,7 +5,7 @@
  */
 function TestimonialsCtrl() {
   // init - first opinion
-  this.next(0);
+  this.loadOpinion_(0);
 
   // change opinion every 20 secs
   var self = this;
@@ -18,18 +18,29 @@ function TestimonialsCtrl() {
 TestimonialsCtrl.prototype = {
 
   /**
+   * Display the previous testimonial
+   */
+  previous: function() {
+    if (this.selected_ == 0)
+      this.loadOpinion_(this.TESTIMONIALS.length - 1);
+    else
+      this.loadOpinion_(this.selected_ - 1);
+  },
+
+  /**
    * Display the next testimonial
    */
-  next: function(index) {
-    this.selected_ = arguments.length ? index : this.getNextIndex_();
-    this.loadOpinion_(this.TESTIMONIALS[this.selected_]);
+  next: function() {
+    this.loadOpinion_((this.selected_ + 1) % this.TESTIMONIALS.length);
   },
-  
+
   /**
-   * Load given opinion and truncate the content if necesarry
-   * @param {Object} opinion
+   * Load opinion with given index and truncate the content if necessary
+   * @param {Number} index
    */
-  loadOpinion_: function(opinion) {
+  loadOpinion_: function(index) {
+    this.selected_ = index;
+    var opinion = this.TESTIMONIALS[index];
     if (opinion.content.length > 380) {
       this.content = opinion.content.substr(0, 356);
       this.isOpen = false;
@@ -38,14 +49,6 @@ TestimonialsCtrl.prototype = {
       this.isOpen = true;
     }
     this.name = opinion.name;
-  },
-
-  /**
-   * Count index of next opinion (testimonial)
-   * @returns {Number}
-   */
-  getNextIndex_: function() {
-    return (this.selected_ + 1) % this.TESTIMONIALS.length;
   },
 
   /**

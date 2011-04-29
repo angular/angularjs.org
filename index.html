@@ -94,7 +94,10 @@
       </div>
 
       <div id="testimonials" ng:controller="TestimonialsCtrl">
-        <span class="h1">Testimonials</span><a href="" ng:click="next()" id="testimonialsNav">next</a>
+        <span class="h1">Testimonials</span>
+        <div id="testimonialsNav">
+          <a href="" ng:click="previous()">prev</a> | <a href="" ng:click="next()">next</a>
+        </div>
         <div class="testimonialsText">
           "{{content}}
           <a href="" ng:click="open()" ng:show="!isOpen" title="More...">...</a>"
