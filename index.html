@@ -96,7 +96,7 @@
       <div id="testimonials" ng:controller="TestimonialsCtrl">
         <span class="h1">Testimonials</span>
         <div id="testimonialsNav">
-          <a href="" ng:click="previous()">prev</a> <img src="img/bullet.png" alt="|" /> <a href="" ng:click="next()">next</a>
+          <a href="" ng:click="previous()" class="navIcon prev">prev</a> <span class="navIcon separator">&nbsp;</span> <a href="" ng:click="next()" class="navIcon next">next</a>
         </div>
         <div class="testimonialsText">
           "{{content}}
@@ -111,7 +111,7 @@
       <div id="liveExText" ng:init="selected=0">
         <span class="h1">Angular in Action</span>
         <div id="liveExMenu">
-          <a href="" ng:click="selected=(selected+1)%2">prev</a> <img src="img/bullet.png" alt="|" /> <a href="" ng:click="selected=(selected+1)%2">next</a>
+          <a href="" ng:click="selected=(selected+1)%2" class="navIcon prev">prev</a> <span class="navIcon separator">&nbsp;</span> <a href="" ng:click="selected=(selected+1)%2" class="navIcon next">next</a>
 	    </div>
 
         <!-- Password Strength example -->

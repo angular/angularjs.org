@@ -712,6 +712,29 @@ li {
 
 
 
+/*-----navigation icons---*/
+
+.navIcon {
+    background: url('../img/navIcon.png') no-repeat;
+}
+
+.prev {
+    background-position: left -2px;
+    padding-left: 12px;
+}
+
+.separator {
+    background-position: 2px -22px;
+    padding: 0 5px;
+}
+
+.next {
+    background-position: right -42px;
+    padding-right: 12px;
+}
+
+
+
 /*-----scroll bars---*/
 
 div.syntaxhighlighter::-webkit-scrollbar {
