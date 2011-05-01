@@ -447,7 +447,7 @@ li {
     height: 500px;
     width: 110px;
     margin-left: 30px;
-    padding-top: 16px;
+    padding-top: 5px;
 }
 
 #templatesDescription {
@@ -461,7 +461,7 @@ li {
     float: left;
     height: 500px;
     width: 230px;
-    padding-top: 16px;
+    padding-top: 5px;
     font-size: 14px;
     line-height: 16px;
     margin-left: 5px;
@@ -475,10 +475,10 @@ li {
 }
 
 #two-wayDescription {
-    height: 85px;
+    height: 95px;
     width: 230px;
     margin-bottom: 10px;
-    padding-top: 20px;
+    padding-top: 15px;
 }
 
 #frameworkDescription {
