@@ -114,7 +114,7 @@ li {
 
 #navContainer {
     position: absolute;
-    top: 12px;
+    top: 6px;
     width: 1050px;
     font-size: 17px;
 }
@@ -124,35 +124,39 @@ li {
     list-style:none;
 }
 
-.navContainerStyle li{
-    display: inline;
+.navContainerStyle li {
+    display: inline-block;
     list-style-type: none;
-    padding-right:30px;
     font-size: 17px;
     color: #FFF;
     text-decoration: none;
-    padding-left: 35px;
 }
 
-.navContainerStyle li a:link, .navContainerStyle li a:visited{
-    display:inline;
+.navContainerStyle li a:link, .navContainerStyle li a:visited {
+    display: inline-block;
     font-size: 1em;
-    font-weight:300;
     color:#FFF;
     text-decoration:none;
-    padding: 8px 12px;
+    padding: 8px 0;
+    width: 190px;
+    text-align: center;
+    
 }
-.navContainerStyle li a:hover{
+.navContainerStyle li a:hover {
     color:#000
 }
 
 .navContainerStyle li a.current, .navContainerStyle li a.current:hover, .navContainerStyle a.current:active {
+	font-weight: bold;
     color: #FFF;
     cursor:auto;
-    background:#000;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-    -webkit-border-radius:15px;
+    background-color: #333;
+    border-radius: 10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius: 10px;
+    box-shadow: 4px 4px 6px #48577D;
+    -webkit-box-shadow: 4px 4px 6px #48577D;
+    -moz-box-shadow: 4px 4px 6px #48577D;
 }
 
 /*------ sidebar styles ------*/
