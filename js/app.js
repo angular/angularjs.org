@@ -83,6 +83,9 @@ TestimonialsCtrl.prototype = {
     name: 'Dobrica Pavlinusic',
     content: 'Thanks to great help I received at this list, I was basically able to accomplish my goal to write simple conference submission application within a week of first git clone of angular source from github.' +
       'I think it might be useful to summarize my experience here, especially for people who are still wondering if angular is worth a try. Executive summary is: yes it is !'
+  }, {
+    name: 'Tobias Bosch',
+    content: 'Angular is great work, thank you! I found it while I was writing an own client side templating system using custom html tags, but didn\'t know how to figure out a good way to implement data binding. I definitely think that this is a great way to go.'
   }]
 };
 
