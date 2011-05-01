@@ -108,17 +108,14 @@
 
     <div id="right">
       <div id="liveExTopGraphic"></div>
-      <div id="liveExText" ng:init="selectedExample='password'">
+      <div id="liveExText" ng:init="selected=0">
         <span class="h1">Angular in Action</span>
         <div id="liveExMenu">
-	      <input type="radio" name="selectedExample" value="password" id="examplePassword" />
-	      <label for="examplePassword">Password Strength</label>
-	      <input type="radio" name="selectedExample" value="invoice" id="exampleInvoice" />
-	      <label for="exampleInvoice">Invoice</label>
+          <a href="" ng:click="selected=(selected+1)%2">prev</a> <img src="img/bullet.png" alt="|" /> <a href="" ng:click="selected=(selected+1)%2">next</a>
 	    </div>
 
         <!-- Password Strength example -->
-        <div ng:show="selectedExample == 'password'">
+        <div ng:show="selected == 0">
         <doc:example>
           <pre class="doc-source">
             &lt;div ng:controller="PasswordController"&gt;
@@ -179,7 +176,7 @@
         </div>
 
         <!-- Invoice example -->
-        <div ng:show="selectedExample == 'invoice'">
+        <div ng:show="selected == 1">
 		<doc:example>
 		<pre class="doc-source">
 		 &lt;table ng:init="invoice=
