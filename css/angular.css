@@ -594,7 +594,7 @@ li {
 
 #testimonialsNav {
     float: right;
-    margin-top: 25px;
+    margin-top: 0;
     margin-right: 30px;
 }
 
@@ -686,11 +686,12 @@ li {
     width: 100%;
 }
 
-#liveExMenu {
+#liveExNav {
     float: right;
+    padding-top: 0;
 }
 
-#liveExMenu label {
+#liveExNav label {
     cursor: pointer;
     cursor: hand;
 }

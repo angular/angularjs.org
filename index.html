@@ -88,12 +88,12 @@
             <li>Pure JavaScript: one script tag to include</li>
             <li>Supports all Class A browsers</li>
             <li>Works great with jQuery</li>
-            <li>Works in existing we4 apps: <br />sprinkle in a little or pour it on, no need <br />for a big, scary commitment.</li>
+            <li>Works in existing web apps: <br />sprinkle in a little or pour it on, no need <br />for a big, scary commitment.</li>
           </ul>
         </div>
       </div>
 
-      <div id="testimonials" ng:controller="TestimonialsCtrl">
+      <div id="testimonials" ng:controller="TestimonialsCtrl" ng:show="true" style="display:none;">
         <span class="h1">Testimonials</span>
         <div id="testimonialsNav">
           <a href="" ng:click="previous()" class="navIcon prev">prev</a> <span class="navIcon separator">&nbsp;</span> <a href="" ng:click="next()" class="navIcon next">next</a>
@@ -108,9 +108,9 @@
 
     <div id="right">
       <div id="liveExTopGraphic"></div>
-      <div id="liveExText" ng:controller="ExamplesCtrl">
+      <div id="liveExText" ng:controller="ExamplesCtrl" ng:show="true" style="display:none;">
         <span class="h1">Angular in Action: {{title[selected]}}</span>
-        <div id="liveExMenu">
+        <div id="liveExNav">
           <a href="" ng:click="previous()" class="navIcon prev">prev</a> <span class="navIcon separator">&nbsp;</span> <a href="" ng:click="next()" class="navIcon next">next</a>
 	    </div>
 
