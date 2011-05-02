@@ -89,6 +89,25 @@ TestimonialsCtrl.prototype = {
   }]
 };
 
+/**
+ * Live Examples Controller
+ * 
+ * @returns {ExamplesCtrl}
+ */
+function ExamplesCtrl() {
+  this.selected = 0;
+}
+
+ExamplesCtrl.prototype = {
+  previous: function() {
+    this.next();
+  },
+  next: function() {
+    this.selected = (this.selected + 1) % 2;
+  },
+  title: ['Password', 'Invoice']
+};
+
 angular.element(document).ready(function() {
 
   // twitter widget
