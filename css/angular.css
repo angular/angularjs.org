@@ -593,7 +593,7 @@ li {
 
 #testimonialsNav {
     float: right;
-    margin-top: 0;
+    margin-top: 8px;
     margin-right: 30px;
 }
 
@@ -687,7 +687,7 @@ li {
 
 #liveExNav {
     float: right;
-    padding-top: 0;
+    padding-top: 8px;
 }
 
 #liveExNav label {
