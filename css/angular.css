@@ -49,14 +49,13 @@ p {
 }
 
 ul {
-
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
     list-style: url(../img/bullet.png) outside;
+    padding-left: 25px;
 }
 
 li {
-    font-size: 16px;
     line-height: 22px;
     list-style: url(../img/bullet.png) outside;
 }
