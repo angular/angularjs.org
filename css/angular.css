@@ -67,7 +67,7 @@ li {
     width: 1050px;
     text-align: left;
     margin: 0px auto;
-    background: #FC0 url(../img/yellow_bkgnd.jpg) no-repeat 0px;
+    background: #F8AC09 url(../img/yellow_bkgnd.jpg) no-repeat 0px;
     z-index: 1;
 }
 
@@ -75,7 +75,7 @@ li {
     width: 1050px;
     text-align: left;
     margin: 0px auto;
-    background: #FC0 url(../img/yellow_bkgnd.jpg) no-repeat;
+    background: #F8AC09 url(../img/yellow_bkgnd.jpg) no-repeat;
     top: 0px;
     height: 1650px;
 }
