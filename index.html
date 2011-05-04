@@ -140,11 +140,6 @@
             // Dependency Injector injects $xhr service
             function PasswordController($xhr) {
 
-              // reset the state of the model to defaults
-              this.password = '';
-              this.strength = null;
-              this.showPwd = true;
-
               // watch the password field and grade it.
               this.$watch('password', function() {
                 if (this.password.length &gt; 8) {
