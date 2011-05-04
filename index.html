@@ -109,10 +109,11 @@
     <div id="right">
       <div id="liveExTopGraphic"></div>
       <div id="liveExText" ng:controller="ExamplesCtrl" ng:show="true" style="display:none;">
-        <span class="h1">Angular in Action: {{title[selected]}}</span>
+        <span class="h1">Angular in Action: {{examples[selected].title}}</span>
         <div id="liveExNav">
           <a href="" ng:click="previous()" class="navIcon prev">prev</a> <span class="navIcon separator">&nbsp;</span> <a href="" ng:click="next()" class="navIcon next">next</a>
 	    </div>
+	    <p>{{examples[selected].description}}</p>
 
         <!-- Password Strength example -->
         <div ng:show="selected == 0">
@@ -130,8 +131,8 @@
              &lt;span ng:show="showPwd"&gt;{{password}}&lt;/span&gt;
             &lt;/div&gt;
 
+
             &lt;script&gt;
-            
             // url of the service
             var SERVICE_URL = 'http://angularjs.org/generatePassword.php' +
                               '?callback=JSON_CALLBACK';

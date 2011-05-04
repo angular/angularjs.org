@@ -105,7 +105,8 @@ ExamplesCtrl.prototype = {
   next: function() {
     this.selected = (this.selected + 1) % 2;
   },
-  title: ['Password', 'Invoice']
+  examples: [{title: 'Password', description: 'The following is a tiny password generator demo app, which demonstrates angular\'s rich declarative templates, data-binding, MVC, xhr service and depenency injection.'},
+             {title: 'Invoice', description: 'The following is an invocing demo app built purely with declarative templates, data-binding, filters and validators.'}]
 };
 
 angular.element(document).ready(function() {
