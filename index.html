@@ -119,54 +119,54 @@
         <div ng:show="selected == 0">
         <doc:example>
           <pre class="doc-source">
-            &lt;div ng:controller="PasswordController"&gt;
-             Password:
-             &lt;input type="password" name="password"
-                    placeholder="enter password" /&gt;
-             &lt;span class="strength" ng:class="strength"&gt;
-               This password is {{strength}} !
-             &lt;/span&gt;&lt;br /&gt;
-             &lt;button ng:click="generate()"&gt;Generate on server&lt;/button&gt;
-             &lt;input type="checkbox" name="showPwd"&gt;Show password:
-             &lt;span ng:show="showPwd"&gt;{{password}}&lt;/span&gt;
-            &lt;/div&gt;
+             &lt;div ng:controller="PasswordController"&gt;
+               Password:
+               &lt;input type="password" name="password"
+                      placeholder="enter password" /&gt;
+               &lt;span class="strength" ng:class="strength"&gt;
+                 This password is {{strength}} !
+               &lt;/span&gt;&lt;br /&gt;
+               &lt;button ng:click="generate()"&gt;Generate on server&lt;/button&gt;
+               &lt;input type="checkbox" name="showPwd"&gt;Show password:
+               &lt;span ng:show="showPwd"&gt;{{password}}&lt;/span&gt;
+             &lt;/div&gt;
 
 
-            &lt;script&gt;
-            // url of the service
-            var SERVICE_URL = 'http://angularjs.org/generatePassword.php' +
-                              '?callback=JSON_CALLBACK';
+             &lt;script&gt;
+             // url of the service
+             var SERVICE_URL = 'http://angularjs.org/generatePassword.php' +
+                               '?callback=JSON_CALLBACK';
 
-            // Dependency Injector injects $xhr service
-            function PasswordController($xhr) {
+             // Dependency Injector injects $xhr service
+             function PasswordController($xhr) {
 
-              // watch the password field and grade it.
-              this.$watch('password', function() {
-                if (this.password.length &gt; 8) {
-                  this.strength = 'strong';
-                } else if (this.password.length &gt; 3) {
-                  this.strength = 'medium';
-                } else {
-                  this.strength = 'weak';
-                }
-              });
+               // watch the password field and grade it.
+               this.$watch('password', function() {
+                 if (this.password.length &gt; 8) {
+                   this.strength = 'strong';
+                 } else if (this.password.length &gt; 3) {
+                   this.strength = 'medium';
+                 } else {
+                   this.strength = 'weak';
+                 }
+               });
 
-              // behavior
-              this.generate = function() {
-                var self = this;
-                $xhr('JSON', SERVICE_URL, function(code, response) {
-                  self.password = response.password;
-                });
-              }
-            }
-            &lt;/script&gt;
+               // behavior
+               this.generate = function() {
+                 var self = this;
+                 $xhr('JSON', SERVICE_URL, function(code, response) {
+                   self.password = response.password;
+                 });
+               }
+             }
+             &lt;/script&gt;
 
-            &lt;style&gt;
-             .strength  { padding: 1px 10px; border: 2px solid; color: #FFF;}
-             .strong    { background-color: #060; border-color: #0F0;}
-             .medium    { background-color: #C60; border-color: #FC0;}
-             .weak      { background-color: #900; border-color: #F00;}
-            &lt;/style&gt;
+             &lt;style&gt;
+               .strength  { padding: 1px 10px; border: 2px solid; color: #FFF;}
+               .strong    { background-color: #060; border-color: #0F0;}
+               .medium    { background-color: #C60; border-color: #FC0;}
+               .weak      { background-color: #900; border-color: #F00;}
+             &lt;/style&gt;
           </pre>
         </doc:example>
         </div>
