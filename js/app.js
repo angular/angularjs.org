@@ -95,6 +95,7 @@ TestimonialsCtrl.prototype = {
  * @returns {ExamplesCtrl}
  */
 function ExamplesCtrl() {
+  SyntaxHighlighter.highlight();
   this.selected = 0;
 }
 
@@ -146,6 +147,4 @@ angular.element(document).ready(function() {
   SyntaxHighlighter.defaults['html-script'] = true;
   SyntaxHighlighter.defaults['toolbar'] = false;
   SyntaxHighlighter.defaults['gutter'] = false;
-
-  SyntaxHighlighter.all();
 });
