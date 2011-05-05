@@ -1,4 +1,12 @@
 /**
+ * Application controller for the entire page
+ */
+function AppCtrl() {
+  this.angular = {version: '0.9.14', name: 'key-maker'}
+}
+
+
+/**
  * Testimonials controller
  * 
  * @returns {TestimonialsCtrl}

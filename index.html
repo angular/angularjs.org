@@ -10,7 +10,7 @@
   <link href="css/doc_widgets.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="home">
+<body class="home" ng:controller="AppCtrl">
   <!--[if lt IE 9]>
     <div id="oldIePrompt">
       You are using an old version of Internet Explorer.
@@ -42,16 +42,21 @@
     <div id="buttons">
       <div id="downloadButton">
         <div id="downloadText">
-          <span class="buttonHeadings">Download</span><br />
-          <span class="blueText">v0.9.14 jiggling-armfat</span><br />
-          <span class="smallLinks"><a href="http://www.google.com">tarball</a> | angular-seed | js | min </span>
+          <span class="buttonHeadings">Download</span>
+          <span class="blueText" ng:bind-template="v{{angular.version}} {{angular.name}}"></span>
+          <span class="smallLinks">
+            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.tgz">tgz</a> |
+            <a href="https://github.com/angular/angular-seed">angular-seed</a> |
+            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.js">js</a> |
+            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.min.js">min</a>
+          </span>
         </div>
       </div>
 
       <div id="communityButton">
        <div id="communityText">
-         <span class="buttonHeadings">Community</span><br />
-         <span class="blueText">Share with <br />other Developers</span>
+         <span class="buttonHeadings">Community</span>
+         <span class="blueText">Join the community</span>
        </div>
       </div>
     </div>

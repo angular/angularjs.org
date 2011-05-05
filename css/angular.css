@@ -426,10 +426,12 @@ li {
 .blueText {
     font-size: 13px;
     color: #7989D6;
+    display: block;
 }
 .buttonHeadings {
     font-size: 22px;
     font-weight: bold;
+    display: block;
 }
 
 
