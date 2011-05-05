@@ -150,7 +150,7 @@
 
                // watch the password field and grade it.
                this.$watch('password', function() {
-                 if (this.password) {
+                 if (this.password !== undefined) {
                    if (this.password.length &gt; 8) {
                      this.strength = 'strong';
                    } else if (this.password.length &gt; 3) {
