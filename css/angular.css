@@ -68,7 +68,7 @@ li {
     width: 1050px;
     text-align: left;
     margin: 0px auto;
-    background: #F8AC09 url(../img/yellow_bkgnd.jpg) no-repeat 0px;
+    background: #F8AC09 url(../img/yellow_bkgnd.jpg) no-repeat top left;
     z-index: 1;
 }
 
