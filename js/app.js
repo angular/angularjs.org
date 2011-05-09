@@ -17,7 +17,7 @@ function AppCtrl($route, $location) {
     }
   });
 
-  $location.hash = '/';
+  $location.hash = $location.hash || '/';
 }
 
 
