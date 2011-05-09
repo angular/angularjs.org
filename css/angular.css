@@ -676,6 +676,10 @@ li {
   font-size: 12px;
 }
 
+div.syntaxhighlighter {
+  overflow: hidden !important;
+}
+
 #liveExText h3 {
     background: #7989D6;
     padding-top: 1px;
@@ -743,33 +747,6 @@ li {
     padding-right: 12px;
 }
 
-
-
-/*-----scroll bars---*/
-
-div.syntaxhighlighter::-webkit-scrollbar {
-  width:0.8em;
-  margin: 0.2em 0em;
-}
-
-div.syntaxhighlighter::-webkit-scrollbar:hover {
-  background-color:#eee;
-}
-
-div.syntaxhighlighter::-webkit-scrollbar-thumb {
-  min-height:0.8em;
-  min-width:0.8em;
-  -webkit-border-radius:0.5em;
-  background-color: #ddd;
-}
-
-div.syntaxhighlighter::-webkit-scrollbar-thumb:hover {
-  background-color: #bbb;
-}
-
-div.syntaxhighlighter::-webkit-scrollbar-thumb:active {
-  background-color:#888;
-}
 
 /* subpages */
 
