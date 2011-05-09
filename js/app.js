@@ -87,7 +87,7 @@ TestimonialsCtrl.prototype = {
    */
   TESTIMONIALS: [{
     name: 'John Hardy',
-    content: 'Also I want to pass on my compliments to Misko and Igor for this fantastic project. I\'m currently rewriting a server-side web application to use this system. I am constantly astounded at how much simpler it is to do it this way and I still consider myself a learner.' +
+    content: 'I\'m currently rewriting a server-side web application to use this system. I am constantly astounded at how much simpler it is to do it this way and I still consider myself a learner.' +
       'This is without question the most productive approach to building webapps that I have seen. ' +
       'The last time I had a coding epiphany was discovering the power and simplicity of JQuery. This is way better than that.' +
       'I\'m interested in promoting this library as widely as possible. I understand that you are still developing it and I still have a long way to go before I really understand everything but I think you really have something here.'
