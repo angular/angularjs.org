@@ -79,11 +79,11 @@ li {
     top: 0px;
     height: 1650px;
 }
-#homeFooter {
+
+#footer {
     float: right;
-    height: 30px;
-    width: 275px;
-    margin-top: 80px;
+    text-align: right;
+    margin: 7em 4em;
     font-size: 12px;
 }
 
