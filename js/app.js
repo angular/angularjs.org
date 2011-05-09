@@ -1,23 +1,22 @@
 /**
  * Application controller for the entire page
  */
-function AppCtrl($route, $location) {
+function AppCtrl($location) {
   var scope = this;
 
   scope.angular = {version: '0.9.15', name: 'lethal-stutter'}
 
-  $route.when('/')
-  $route.when('/:subpage');
-  $route.onChange(function() {
-    if ($route.current) {
-      scope.subpage = $route.current.params.subpage;
+  //normalize hash, set subpage and track page view
+  scope.$watch(function() { return $location.hash }, function() {
+    var hash = $location.hash;
 
-      //normalize an track page view
-      _gaq.push(['_trackPageview', '/' + (scope.subpage || '')]);
+    if (hash == '/' || hash == '/downloads' || hash == '/community') {
+      scope.subpage = hash.substring(1);
+      _gaq.push(['_trackPageview', hash]);
+    } else {
+      $location.hash = '/';
     }
   });
-
-  $location.hash = $location.hash || '/';
 }
 
 
