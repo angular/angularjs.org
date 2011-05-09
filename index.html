@@ -42,8 +42,10 @@
     <div id="buttons">
       <div id="downloadButton">
         <div id="downloadText">
-          <span class="buttonHeadings">Download</span>
-          <span class="blueText" ng:bind-template="v{{angular.version}} {{angular.name}}"></span>
+          <a href="#/downloads">
+            <span class="buttonHeadings">Download</span>
+            <span class="blueText" ng:bind-template="v{{angular.version}} {{angular.name}}"></span>
+          </a>
           <span class="smallLinks">
             <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.tgz">tgz</a> |
             <a href="https://github.com/angular/angular-seed">angular-seed</a> |
@@ -54,10 +56,12 @@
       </div>
 
       <div id="communityButton">
-       <div id="communityText">
-         <span class="buttonHeadings">Community</span>
-         <span class="blueText">Join the community</span>
-       </div>
+        <div id="communityText">
+          <a href="#/community">
+            <span class="buttonHeadings">Community</span>
+            <span class="blueText">Join the community</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -227,9 +231,62 @@
         </div>
       </div>
 
-      <div id="homeFooter">© Copyright 2010-2011 - angular/BRAT Tech LLC</div>
+      <div id="homeFooter">Copyright © 2010-2011 angular</div>
 
     </div>
+  </div>
+  </div>
+
+  <div ng:show="true" style="display: none">
+  <div id="fader" ng:show="subpage"></div>
+  <ng:switch on="subpage" id="subpages">
+    <div ng:switch-when="downloads">
+      <h2>Angular Downloads</h2>
+      <a href="#/">&#9587;</a>
+      <div>
+        The latest angular release is {{angular.version}} {{angular.name}}.
+        To learn about what's new, check out the
+        <a href="https://github.com/angular/angular.js/blob/master/CHANGELOG.md#{{angular.version}}">release notes</a>.
+        <ul>
+          <li>
+            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.tgz">angular-{{angular.version}}.tgz</a>
+            (<a href="http://docs.angularjs.org/#!downloading">contents</a>)
+          </li>
+          <li>
+            <a href="https://github.com/angular/angular-seed">angular-seed</a>
+            (quickly bootstrap an angular web project)
+          </li>
+          <li>
+            <a href="https://github.com/angular/angular.js">angular GitHub project</a>
+          </li>
+        </ul>
+
+        Just hacking? <a href="http://docs.angularjs.org/#!downloading">Link to angular js file</a> hosted on our server:
+        <ul>
+          <li>
+            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.js">angular-{{angular.version}}.js</a>
+          </li>
+          <li>
+            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.min.js">angular-{{angular.version}}.min.js</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div ng:switch-when="community">
+      <h2>Angular Community</h2>
+      <a href="#/">&#9587;</a>
+      <div>
+        There are several ways how you can connect with the angular community:
+        <ul>
+          <li><a href="http://twitter.com/angularjs">Twitter</a></li>
+          <li><a href="https://github.com/angular/angular.js">GitHub</a></li>
+          <li><a href="http://groups.google.com/group/angular">Mailing List</a></li>
+          <li><a href="https://github.com/angular/angular.js/issues">Issue Tracker</a></li>
+          <li>IRC: freenode.net #angularjs</li>
+        </ul>
+      </div>
+    </div>
+  </ng:switch>
   </div>
 
 <script src="lib/jquery.min.js"></script>

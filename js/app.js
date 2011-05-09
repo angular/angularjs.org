@@ -1,14 +1,21 @@
 /**
  * Application controller for the entire page
  */
-function AppCtrl() {
-  this.angular = {version: '0.9.14', name: 'key-maker'}
+function AppCtrl($route) {
+  var scope = this;
+
+  scope.angular = {version: '0.9.14', name: 'key-maker'}
+
+  $route.when('/:subpage');
+  $route.onChange(function() {
+    scope.subpage = $route.current.params.subpage;
+  });
 }
 
 
 /**
  * Testimonials controller
- * 
+ *
  * @returns {TestimonialsCtrl}
  */
 function TestimonialsCtrl() {
@@ -51,7 +58,7 @@ TestimonialsCtrl.prototype = {
     this.name = opinion.name;
     this.resetTimer_();
   },
-  
+
   /**
    * Reset timer = clear old timeout and set new one
    */
@@ -99,7 +106,7 @@ TestimonialsCtrl.prototype = {
 
 /**
  * Live Examples Controller
- * 
+ *
  * @returns {ExamplesCtrl}
  */
 function ExamplesCtrl() {
@@ -155,4 +162,12 @@ angular.element(document).ready(function() {
   SyntaxHighlighter.defaults['html-script'] = true;
   SyntaxHighlighter.defaults['toolbar'] = false;
   SyntaxHighlighter.defaults['gutter'] = false;
+
+  // bind escape to hash reset callback
+  // hash is reset to '/' to prevent scrolling up which happens when hash is set to ''
+  angular.element(window).bind('keydown', function(e) {
+    if (e.keyCode === 27) {
+      window.location.hash = '/';
+    }
+  });
 });
