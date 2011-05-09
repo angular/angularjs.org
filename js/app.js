@@ -4,7 +4,7 @@
 function AppCtrl($route) {
   var scope = this;
 
-  scope.angular = {version: '0.9.14', name: 'key-maker'}
+  scope.angular = {version: '0.9.15', name: 'lethal-stutter'}
 
   $route.when('/:subpage');
   $route.onChange(function() {
