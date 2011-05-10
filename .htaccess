@@ -1,6 +1,10 @@
 RewriteEngine on
 rewritecond %{http_host} ^www.angularjs.org [nc]
 rewriterule ^(.*)$ http://angularjs.org/$1 [r=301,nc]
+
+rewritecond %{request_uri}  ^/index\.php$
+rewriterule ^(.*)$ http://angularjs.org/? [r=301,nc]
+
 redirect 301 /Main_Page http://angularjs.org/
 redirect 301 /Angular.attrMarkup http://docs.angularjs.org/#!angular.attrMarkup
 redirect 301 /Angular.bind() http://docs.angularjs.org/#!angular.bind
