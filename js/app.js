@@ -132,9 +132,21 @@ ExamplesCtrl.prototype = {
              {title: 'Invoice', description: 'The following is a demo invoicing app built only with angular\'s declarative templates, data-binding, filters, and validators.'}]
 };
 
-angular.element(document).ready(function() {
+// syntax highlighter defaults
+SyntaxHighlighter.defaults['html-script'] = true;
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
 
-  // twitter widget
+// bind escape to hash reset callback
+// hash is reset to '/' to prevent scrolling up which happens when hash is set to ''
+angular.element(window).bind('keydown', function(e) {
+  if (e.keyCode === 27) {
+    window.location.hash = '/';
+  }
+});
+
+// load twitter widget
+$script.ready('twitter', function() {
   new TWTR.Widget({
     id: 'twitterWidget',
     version: 2,
@@ -164,17 +176,4 @@ angular.element(document).ready(function() {
       behavior: 'all'
     }
   }).render().setUser('angularjs').start();
-
-  // syntax highlighter defaults
-  SyntaxHighlighter.defaults['html-script'] = true;
-  SyntaxHighlighter.defaults['toolbar'] = false;
-  SyntaxHighlighter.defaults['gutter'] = false;
-
-  // bind escape to hash reset callback
-  // hash is reset to '/' to prevent scrolling up which happens when hash is set to ''
-  angular.element(window).bind('keydown', function(e) {
-    if (e.keyCode === 27) {
-      window.location.hash = '/';
-    }
-  });
 });
