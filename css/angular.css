@@ -160,7 +160,7 @@ li {
 }
 
 .navContainerStyle li a.current, .navContainerStyle li a.current:hover, .navContainerStyle a.current:active {
-	font-weight: bold;
+    font-weight: bold;
     color: #FFF;
     cursor:auto;
     background-color: #333;
