@@ -4,7 +4,7 @@ var sys = require('sys'),
     url = require('url'),
     events = require('events');
 
-var DEFAULT_PORT = 8000;
+var DEFAULT_PORT = 8001;
 
 function main(argv) {
   new HttpServer({
@@ -79,7 +79,8 @@ StaticServlet.MimeMap = {
   'jpg': 'image/jpeg',
   'jpeg': 'image/jpeg',
   'gif': 'image/gif',
-  'png': 'image/png'
+  'png': 'image/png',
+  'manifest': 'text/cache-manifest'
 };
 
 StaticServlet.prototype.handleRequest = function(req, res) {
