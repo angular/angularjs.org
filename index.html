@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:ng="http://angularjs.org/"
-      xmlns:doc="http://docs.angularjs.org/">
+      xmlns:doc="http://docs.angularjs.org/"
+      manifest="appcache.manifest">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>&lt;angular/&gt;</title>
@@ -34,8 +35,16 @@
         });
       });
     });
-  </script>
 
+
+    // force page reload when new update is available
+    window.applicationCache && window.applicationCache.addEventListener('updateready', function(e) {
+      if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+        window.applicationCache.swapCache();
+        window.location.reload();
+      }
+    }, false);
+  </script>
 </head>
 
 <body class="home" ng:controller="AppCtrl">
