@@ -332,17 +332,16 @@ li {
 
 #tagline {
     height: 120px;
-    width: 600px;
+    width: 630px;
     margin-left: 93px;
     clear: both;
     float: left;
     margin-top: 10px;
-    font-size: 40px;
+    font-size: 38px;
     color: #FFF;
     font-weight: bold;
     text-shadow:1.5px 1.5px 1.5px #48577D;
     text-shadow:#48577D 1.5px 1.5px 1.5px;
-
 }
 
 
