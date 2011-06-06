@@ -1,31 +1,11 @@
 CACHE MANIFEST
-# Tue Jun 14 22:38:16 UTC 2011
+# %TIMESTAMP%
 
 
 # cache all of these
 CACHE:
 
-# auto-generated file list
-# js/*.js
-js/app.js
-js/doc_widgets.js
-
-# css/*.css
-css/angular.css
-css/doc_widgets.css
-
-# img/*
-img/bullet.png
-img/community_icon.png
-img/download_arrow.png
-img/framework_icon.png
-img/mvc_icon.png
-img/navIcon.png
-img/template_icon.png
-img/texture_1.png
-img/two-way_icon.png
-img/yellow_bkgnd.jpg
-# end of auto-generated file list
+%FILES%
 
 /favicon.ico
 
