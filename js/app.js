@@ -123,10 +123,13 @@ function ExamplesCtrl() {
 
 ExamplesCtrl.prototype = {
   previous: function() {
-    this.next();
+    if (this.selected == 0)
+      this.selected = this.examples.length - 1;
+    else
+      this.selected = this.selected - 1;
   },
   next: function() {
-    this.selected = (this.selected + 1) % 2;
+    this.selected = (this.selected + 1) % this.examples.length;
   },
   examples: [{title: 'Password', description: 'The following is a demo password generator app that showcases angular\'s rich declarative templates, data-binding, MVC, xhr service, and depenency injection.'},
              {title: 'Invoice', description: 'The following is a demo invoicing app built only with angular\'s declarative templates, data-binding, filters, and validators.'}]
