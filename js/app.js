@@ -93,11 +93,15 @@ TestimonialsCtrl.prototype = {
    * Array of testimonials
    */
   TESTIMONIALS: [{
+    name: 'Ray Camden', // http://www.coldfusionjedi.com/
+    content: 'I am simply blown away. ... the tutorials themselves are doing a great job ' +
+             'introducing new concepts and - frankly - making me excited about using the ' +
+             'platform. I haven\'t been this excited since I got into jQuery.'
+  }, {
     name: 'John Hardy',
     content: 'I\'m currently rewriting a server-side web application to use this system. I am constantly astounded at how much simpler it is to do it this way and I still consider myself a learner.' +
       'This is without question the most productive approach to building webapps that I have seen. ' +
-      'The last time I had a coding epiphany was discovering the power and simplicity of JQuery. This is way better than that.' +
-      'I\'m interested in promoting this library as widely as possible. I understand that you are still developing it and I still have a long way to go before I really understand everything but I think you really have something here.'
+      'The last time I had a coding epiphany was discovering the power and simplicity of JQuery. This is way better than that.'
   }, {
     name: 'Jerry Jeremiah',
     content: 'Angular is the best thing I have used in a long time. I am having so much fun, even thought it is probably obvious that dynamic web sites are new to me (my experience is more in the back end embedded world...)'
