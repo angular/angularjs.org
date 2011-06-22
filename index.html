@@ -50,91 +50,86 @@
 </head>
 
 <body class="home" ng:controller="AppCtrl">
-  <!--[if lt IE 9]>
-    <div id="oldIePrompt">
-      You are using an old version of Internet Explorer.
-      For better and safer browsing experience please <a href="http://www.microsoft.com/IE9">upgrade IE</a>
-      or install <a href="http://google.com/chrome">Google Chrome browser</a>.
-    </div>
-  <![endif]-->
+	
+  <div id="container">
+	  <!--[if lt IE 9]>
+	    <div id="oldIePrompt">
+	      You are using an old version of Internet Explorer.
+	      For better and safer browsing experience please <a href="http://www.microsoft.com/IE9">upgrade IE</a>
+	      or install <a href="http://google.com/chrome">Google Chrome browser</a>.
+	    </div>
+	  <![endif]-->
+    <ul id="navbar">
+      <li><a href="index.html" class="current">&lt;angular/&gt;</a></li>
+      <li><a href="http://docs.angularjs.org/#!/guide">Developer Guide</a></li>
+      <li><a href="http://docs.angularjs.org/#!/api/">API Reference</a></li>
+      <li><a href="http://docs.angularjs.org/#!/cookbook">Examples</a></li>
+      <li><a href="http://docs.angularjs.org/#!/misc/started">Getting Started</a></li>
+      <li><a href="http://docs.angularjs.org/#!/tutorial">Tutorial</a></li>
+    </ul>
 
-  <div class="home" id="container">
-  <div id="navigationHome">
-    <div id="navContainer">
-      <ul class="navContainerStyle">
-        <li><a href="index.html" class="current">&lt;angular/&gt;</a></li>
-        <li><a href="http://docs.angularjs.org/#!/guide">Developer Guide</a></li>
-        <li><a href="http://docs.angularjs.org/#!/api/">API Reference</a></li>
-        <li><a href="http://docs.angularjs.org/#!/cookbook">Examples</a></li>
-        <li><a href="http://docs.angularjs.org/#!/misc/started">Getting Started</a></li>
-        <li><a href="http://docs.angularjs.org/#!/tutorial">Tutorial</a></li>
-      </ul>
-    </div>
-  </div>
+<!-------- top part -------->
 
-  <div id="top">
     <div id="logo">&lt;angular/&gt;</div>
-
+    <div id="twitterWidget"></div>    
     <div id="tagline">
       What HTML would have been<br>
       had it been designed for web apps
     </div>
 
-    <div id="buttons">
-      <div id="downloadButton">
-        <div id="downloadText">
-          <a href="#/downloads">
-            <span class="buttonHeadings">Download</span>
-            <span class="blueText" ng:bind-template="v{{angular.version}} {{angular.name}}"></span>
-          </a>
-          <span class="smallLinks">
-            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.tgz">tgz</a> |
-            <a href="https://github.com/angular/angular-seed">angular-seed</a> |
-            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.js">js</a> |
-            <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.min.js">min</a>
-          </span>
-        </div>
-      </div>
+<!--------  smallTabs part -------->
 
-      <div id="communityButton">
-        <div id="communityText">
-          <a href="#/community">
-            <span class="buttonHeadings">Community</span>
-            <span class="blueText">Join the community</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div id="smallTabs">
+	  <div id="downloadButton">
+	    <div id="downloadText">
+	      <a href="#/downloads">
+	        <span class="buttonHeadings">Download</span>
+	        <span class="blueText" ng:bind-template="v{{angular.version}} {{angular.name}}"></span>
+	      </a>
+	      <span class="smallLinks">
+	        <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.tgz">tgz</a> |
+	        <a href="https://github.com/angular/angular-seed">angular-seed</a> |
+	        <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.js">js</a> |
+	        <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.min.js">min</a>
+	      </span>
+	    </div>
+	  </div>
+	  <div id="communityButton">
+	    <div id="communityText">
+	      <a href="#/community">
+	        <span class="buttonHeadings">Community</span>
+	        <span class="blueText">Join the community</span>
+	      </a>
+	    </div>
+	  </div>
+	</div>
 
-  <div id="twitterWidget"></div>
-
-  <div class="home" id="sidebar">
+<!-------- left column -------->
     <div id="left">
-      <div id="icons">
-        <div id="iconWrap">
-          <div id="templatesIcon">
-            <img src="img/template_icon.png" width="92" height="89" alt="UI templates">
+        <div id="icons">
+          <div id="iconWrap">
+            <div class="iconImage">
+              <img src="img/template_icon.png" width="92" height="89" alt="UI templates">
+            </div>
+            <div class="iconSubTitle">Declarative<br>UI Templates</div>
+            <div class="iconImage">
+              <img src="img/two-way_icon.png" width="92" height="89" alt="two-way binding">
           </div>
-          <div class="smallLinks" id="templatesLink">Declarative<br>UI Templates</div>
-          <div id="two-wayIcon">
-            <img src="img/two-way_icon.png" width="92" height="89" alt="two-way binding">
-          </div>
-          <div class="smallLinks" id="two-wayLink">Two-way<br>Binding</div>
-          <div id="frameworkIcon">
+          <div class="iconSubTitle">Two-way<br>Binding</div>
+          <div class="iconImage">
             <img src="img/framework_icon.png" width="92" height="89" alt="framework">
           </div>
-          <div class="smallLinks" id="frameworkLink">Framework</div>
-          <div id="mvcIcon">
+          <div class="iconSubTitle">Framework</div>
+          <div class="iconImage">
             <img src="img/mvc_icon.png" width="92" height="89" alt="MVC with Dependency">
           </div>
-          <div class="smallLinks" id="mvcLink">MVC with<br>Dependency Injection</div>
+          <div class="iconSubTitle">MVC with<br>Dependency Injection</div>
         </div>
         <div id="descriptions">
-          <div id="UItemplatesDescription"><strong>Declarative UI Templates</strong><br>HTML is already a good templating language; angular makes it better. Preview your UI in your favorite HTML editor.</div>
-          <div id="two-wayDescription"><strong>Two-Way Data Binding</strong><br>With angular, the view and data model are always in sync — there is no need for manual DOM manipulation.</div>
-          <div id="frameworkDescription"><strong>Framework</strong><br>Angular supports the entire development process, provides structure for your web apps, and works with the best JS libraries.</div>
-          <div id="mvcDescription"><strong>MVC with Dependency Injection</strong><br>Separation of concerns, loose coupling, and inversion of control — all the good stuff for testable and maintainable code.</div>
+          <div class="eachDescriptions"><strong>Declarative UI Templates</strong><br>HTML is already a good templating language; angular makes it better. Preview your UI in your favorite HTML editor.</div>
+          <div class="eachDescriptions"><strong>Two-Way Data Binding</strong><br>With angular, the view and data model are always in sync — there is no need for manual DOM manipulation.</div>
+          <div class="eachDescriptions"><strong>Framework</strong><br>Angular supports the entire development process, provides structure for your web apps, and works with the best JS libraries.</div>
+          <div class="eachDescriptions"><strong>MVC with Dependency Injection</strong><br>Separation of concerns, loose coupling, and inversion of control — all the good stuff for testable and maintainable code.</div>
         </div>
       </div>
 
@@ -166,6 +161,7 @@
       </div>
     </div>
 
+<!-------- right column -------->
     <div id="right">
       <div id="liveExTopGraphic"></div>
       <div id="liveExText" ng:controller="ExamplesCtrl" ng:show="true" style="display:none;">
@@ -272,13 +268,14 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="footer">© 2010-2011 angular</div>
-  </div>
+    
+    <div id="footer">© 2010-2011 angular</div>
+    </div>
 
-  <div ng:show="true" style="display: none">
-  <div id="fader" ng:show="subpage"></div>
-  <ng:switch on="subpage" id="subpages">
+<!-------- sub pages -------->
+    <div ng:show="true" style="display: none">
+    <div id="fader" ng:show="subpage"></div>
+    <ng:switch on="subpage" id="subpages">
     <div ng:switch-when="downloads">
       <h2>Angular Downloads</h2>
       <a href="#/">&#10005;</a>
@@ -312,20 +309,20 @@
       </div>
     </div>
     <div ng:switch-when="community">
-      <h2>Angular Community</h2>
-      <a href="#/">&#10005;</a>
-      <div>
-        There are several ways to connect with the angular community:
-        <ul>
-          <li><a href="http://twitter.com/angularjs">Twitter</a></li>
-          <li><a href="https://github.com/angular/angular.js">GitHub</a></li>
-          <li><a href="http://groups.google.com/group/angular">Mailing List</a></li>
-          <li><a href="https://github.com/angular/angular.js/issues">Issue Tracker</a></li>
-          <li>IRC: freenode.net #angularjs</li>
-        </ul>
+        <h2>Angular Community</h2>
+        <a href="#/">&#10005;</a>
+        <div>
+          There are several ways to connect with the angular community:
+          <ul>
+             <li><a href="http://twitter.com/angularjs">Twitter</a></li>
+            <li><a href="https://github.com/angular/angular.js">GitHub</a></li>
+            <li><a href="http://groups.google.com/group/angular">Mailing List</a></li>
+            <li><a href="https://github.com/angular/angular.js/issues">Issue Tracker</a></li>
+            <li>IRC: freenode.net #angularjs</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </ng:switch>
+    </ng:switch>
   </div>
 </body>
 </html>
