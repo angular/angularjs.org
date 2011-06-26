@@ -179,8 +179,62 @@
         <p>{{examples[selected].description}}</p>
         <p>Fiddle with this example at <a ng:href="http://jsfiddle.net/{{examples[selected].fiddle}}">jsfiddle</a> or build a new one from <a href="http://jsfiddle.net/vojtajina/CHVbb/">scratch</a>.</p>
 
-        <!-- Password Strength example -->
+        <!-- ToDo example -->
         <div ng:show="selected == 0">
+          <doc:example>
+            <pre class="doc-source">
+              &lt;div ng:controller="TodoCtrl"&gt;
+                &lt;input type="text" name="todoText" size="35"
+                       placeholder="enter your todo here"/&gt;
+                &lt;button ng:click="addTodo()"&gt;add&lt;/button&gt; &lt;br/&gt;
+                &lt;label&gt;{{remaining}} remaining&lt;/label&gt;
+                &lt;button ng:click="removeDone()"&gt;remove done&lt;/button&gt;&lt;br/&gt;
+                &lt;ul ng:repeat="todo in todos"&gt;
+                  &lt;li&gt;
+                   &lt;input type="checkbox" name="todo.done" ng:click="recalc()"&gt;
+                   &lt;span ng:class="'done-' + todo.done"&gt;{{todo.text}}&lt;/span&gt;&lt;br/&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+
+              &lt;script&gt;
+                function TodoCtrl() {
+                  var scope = this;
+                  scope.todos = [{text:'learn angular', done:true},
+                                 {text:'build an angular app', done:false}];
+                  scope.remaining = scope.todos.length;
+
+                  scope.addTodo = function() {
+                    scope.todos.push({text:scope.todoText, done:false});
+                    scope.remaining++;
+                    scope.todoText = '';
+                  }
+
+                  scope.recalc = function() {
+                    scope.remaining = scope.todos.length;
+                    angular.forEach(scope.todos, function(todo){
+                      if (todo.done) scope.remaining--;
+                    });
+                  }
+                  scope.recalc();
+
+                  scope.removeDone = function() {
+                    for (var i = 0; i < scope.todos.length; i++) {
+                      if (scope.todos[i].done) scope.todos.splice(i--, 1);
+                    }
+                  };
+                }
+              &lt;/script&gt;
+
+              &lt;style&gt;
+                .done-true {text-decoration: line-through; color: gray;}
+              &lt;/style&gt;
+            </pre>
+          </doc:example>
+        </div>
+
+        <!-- Password Strength example -->
+        <div ng:show="selected == 1">
           <doc:example>
             <pre class="doc-source">
                &lt;div ng:controller="PasswordController"&gt;
@@ -238,7 +292,7 @@
         </div>
 
         <!-- Invoice example -->
-        <div ng:show="selected == 1">
+        <div ng:show="selected == 2">
           <doc:example>
             <pre class="doc-source">
              &lt;table ng:init="invoice=

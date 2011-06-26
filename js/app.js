@@ -136,6 +136,10 @@ ExamplesCtrl.prototype = {
     this.selected = (this.selected + 1) % this.examples.length;
   },
   examples: [{
+               title: 'Todo List',
+               fiddle: 'Codier/frWfN/',
+               description: 'The following is a todo app that allows you to add tasks and remove tasks that are done. This app showcases angular\'s rich declarative templates, data-binding, MVC.'
+             }, {
                title: 'Password',
                fiddle: 'vojtajina/76E4S/',
                description: 'The following is a demo password generator app that showcases angular\'s rich declarative templates, data-binding, MVC, xhr service, and depenency injection.'
