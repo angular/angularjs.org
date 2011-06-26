@@ -133,6 +133,7 @@ ExamplesCtrl.prototype = {
       this.selected = this.selected - 1;
   },
   next: function() {
+
     this.selected = (this.selected + 1) % this.examples.length;
   },
   examples: [{
