@@ -136,14 +136,19 @@ ExamplesCtrl.prototype = {
 
     this.selected = (this.selected + 1) % this.examples.length;
   },
+
   examples: [{
+               title: 'Todo',
+               fiddle: 'Codier/frWfN/',
+               description: 'The following is a todo app that allows you to add tasks and remove tasks that are done. This app showcases angular\'s rich declarative templates, data-binding, MVC.'
+             }, {
                title: 'Password',
                fiddle: 'vojtajina/76E4S/',
-               description: 'The following is a demo password generator app that showcases angular\'s rich declarative templates, data-binding, MVC, xhr service, and depenency injection.'
+               description: 'This is a password generator app that allows you to enter a password or obtain a password from server via xhr service, and determine its strength on the fly. This app showcases angular\'s rich declarative templates, data-binding, MVC, xhr service, and depenency injection.'
              }, {
                title: 'Invoice',
                fiddle: 'vojtajina/pfqKY/',
-               description: 'The following is a demo invoicing app built only with angular\'s declarative templates, data-binding, filters, and validators.'
+               description:'The following is a invoicing app written purely in angular\'s declarative templates that allows you to add or remove items, fill in quantity, description and cost, and compute total costs on the fly. This app showcases angular\'s declarative templates, data-binding, filters, and validators.'
             }]
 };
 
