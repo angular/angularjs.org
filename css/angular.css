@@ -361,7 +361,7 @@ li {
     clear: both;
     float: left;
     height: 72px;
-    width: 230px;
+    width: 240px;
     background: #FFF url(../img/download_arrow.png) no-repeat 15px 5px;
     -moz-box-shadow: 4px 4px 6px #48577D;
     -moz-border-radius: 10px;
@@ -374,7 +374,7 @@ li {
 #downloadText {
     padding-top: 7px;
     padding-left: 58px;
-    width: 170px;
+    width: 175px;
 }
 
 #communityButton {
