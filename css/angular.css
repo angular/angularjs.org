@@ -83,8 +83,9 @@ li {
 #footer {
     float: right;
     text-align: right;
-    margin: 7em 4em;
+    margin: 5.5em 4em;
     font-size: 12px;
+    white-space: pre-line;
 }
 
 #twoColFooter {
