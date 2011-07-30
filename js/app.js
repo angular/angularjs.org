@@ -4,7 +4,7 @@
 function AppCtrl($location) {
   var scope = this;
 
-  scope.angular = {version: '0.9.17', name: 'vegetable-reanimation'};
+  scope.angular = {version: '0.9.18', name: 'jiggling-armfat'};
 
   //normalize hash, set subpage and track page view
   scope.$watch(function() { return $location.hash; }, function() {

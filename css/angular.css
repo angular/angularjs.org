@@ -149,6 +149,7 @@ li {
 .navContainerStyle li a:link, .navContainerStyle li a:visited {
     display: inline-block;
     font-size: 1em;
+    font-weight: bold;
     color:#FFF;
     text-decoration:none;
     padding: 8px 0;
