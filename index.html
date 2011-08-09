@@ -190,10 +190,12 @@
             <pre class="doc-source">
               &lt;div ng:controller="TodoCtrl"&gt;
                 &lt;input type="text" name="todoText" size="35"
+
                        placeholder="enter your todo here"&gt;
                 &lt;button ng:click="addTodo()"&gt;add&lt;/button&gt;&lt;br&gt;
                 &lt;span&gt;{{remaining}} remaining&lt;/span&gt;
                 &lt;button ng:click="removeDone()"&gt;clean up&lt;/button&gt;
+
                 &lt;ul&gt;
                   &lt;li ng:repeat="todo in todos"&gt;
                    &lt;input type="checkbox" name="todo.done" ng:click="recalc()"&gt;
