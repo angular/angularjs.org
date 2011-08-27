@@ -192,11 +192,11 @@
                 &lt;input type="text" name="todoText" size="35"
                        placeholder="enter your todo here"&gt;
                 &lt;button ng:click="addTodo()"&gt;add&lt;/button&gt;&lt;br&gt;
-                &lt;span&gt;{{remaining}} remaining&lt;/span&gt;
+                &lt;span&gt;{{remaining()}} remaining&lt;/span&gt;
                 &lt;button ng:click="removeDone()"&gt;clean up&lt;/button&gt;
                 &lt;ul&gt;
                   &lt;li ng:repeat="todo in todos"&gt;
-                   &lt;input type="checkbox" name="todo.done" ng:click="recalc()"&gt;
+                   &lt;input type="checkbox" name="todo.done"&gt;
                    &lt;span ng:class="'done-' + todo.done"&gt;{{todo.text}}&lt;/span&gt;
                   &lt;/li&gt;
                 &lt;/ul&gt;
@@ -210,16 +210,14 @@
 
                   scope.addTodo = function() {
                     scope.todos.push({text:scope.todoText, done:false});
-                    scope.remaining++;
                     scope.todoText = '';
-                  }
-
-                  scope.recalc = function() {
-                    scope.remaining = scope.todos.length;
-                    angular.forEach(scope.todos, function(todo){
-                      if (todo.done) scope.remaining--;
+                  };
+                  
+                  scope.remaining = function(){
+                    return angular.Array.count(scope.todos, function(todo){
+                      return !todo.done;
                     });
-                  }
+                  };
 
                   scope.removeDone = function() {
                     var oldTodos = scope.todos;
@@ -229,7 +227,6 @@
                     });
                   };
 
-                  scope.recalc();
                 }
               &lt;/script&gt;
 
