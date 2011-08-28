@@ -189,11 +189,14 @@
           <doc:example>
             <pre class="doc-source">
               &lt;div ng:controller="TodoCtrl"&gt;
-                &lt;input type="text" name="todoText" size="35"
-                       placeholder="enter your todo here"&gt;
-                &lt;button ng:click="addTodo()"&gt;add&lt;/button&gt;&lt;br&gt;
-                &lt;span&gt;{{remaining()}} remaining&lt;/span&gt;
-                &lt;button ng:click="removeDone()"&gt;clean up&lt;/button&gt;
+                &lt;form ng:submit="addTodo()"&gt;
+                  &lt;input type="text" name="todoText" size="35"
+                         placeholder="enter your todo here"&gt;
+                  &lt;input type="submit" value="add"&gt;&lt;br&gt;
+                  &lt;span&gt;{{remaining()}} remaining&lt;/span&gt;
+                  &lt;input type="button" ng:click="removeDone()" value="clean up"&gt;
+                &lt;/form&gt;
+
                 &lt;ul&gt;
                   &lt;li ng:repeat="todo in todos"&gt;
                    &lt;input type="checkbox" name="todo.done"&gt;
@@ -226,7 +229,6 @@
                       if (!todo.done) scope.todos.push(todo);
                     });
                   };
-
                 }
               &lt;/script&gt;
 

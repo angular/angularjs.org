@@ -138,7 +138,7 @@ ExamplesCtrl.prototype = {
 
   examples: [{
                title: 'Todo List',
-               fiddle: 'Codier/Bzj9w/',
+               fiddle: 'IgorMinar/M8YnR/',
                description: 'The following is a todo app that allows you to add tasks and remove tasks that are done. This app showcases angular\'s rich declarative templates, data-binding, MVC.'
              }, {
                title: 'Password',
