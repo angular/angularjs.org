@@ -112,6 +112,9 @@ TestimonialsCtrl.prototype = {
   }, {
     name: 'Tobias Bosch',
     content: 'Angular is great work, thank you! I found it while I was writing an own client side templating system using custom html tags, but didn\'t know how to figure out a good way to implement data binding. I definitely think that this is a great way to go.'
+  }, {
+    name: 'Johan Steenkamp',
+    content: 'For me, Angular these days is to web development, what jQuery was to JavaScript.'
   }]
 };
 
