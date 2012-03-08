@@ -61,6 +61,13 @@ li {
     list-style: url(../img/bullet.png) outside;
 }
 
+iframe {
+	margin: 40px 25px;
+	border: none;
+	width: 1000px;
+	height: 600px;
+}
+
 
 /*----- Global Layout -----*/
 
@@ -77,7 +84,8 @@ li {
     margin: 0px auto;
     background: #F8AC09 url(../img/yellow_bkgnd.jpg) no-repeat;
     top: 0px;
-    height: 1650px;
+	overflow: hidden;
+	zoom: 1;
 }
 
 #footer {
@@ -144,6 +152,7 @@ li {
     font-size: 17px;
     color: #FFF;
     text-decoration: none;
+	position: relative;
 }
 
 .navContainerStyle li a:link, .navContainerStyle li a:visited {
@@ -153,7 +162,7 @@ li {
     color:#FFF;
     text-decoration:none;
     padding: 8px 0;
-    width: 160px;
+    width: 143px;
     text-align: center;
 
 }
@@ -172,6 +181,22 @@ li {
     box-shadow: 4px 4px 6px #48577D;
     -webkit-box-shadow: 4px 4px 6px #48577D;
     -moz-box-shadow: 4px 4px 6px #48577D;
+}
+.navContainerStyle li:hover ul {
+	display: block;
+}
+.navContainerStyle ul {
+	position: absolute;
+	display: none;
+	top: 0;
+	left: 0;
+	padding: 0;
+	background: rgb(121, 137, 214);
+}
+.navContainerStyle ul a:link, .navContainerStyle ul a:visited {
+	font-size: 75%;
+	padding: 6px;
+	line-height: 1.1em;
 }
 
 /*------ sidebar styles ------*/
