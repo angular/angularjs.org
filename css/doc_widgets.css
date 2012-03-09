@@ -1,6 +1,6 @@
 @namespace doc url("http://docs.angularjs.org/");
 
-doc\:example {
+.ng-cloak {
   display: none;
 }
 

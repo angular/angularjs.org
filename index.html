@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:ng="http://angularjs.org/"
       xmlns:doc="http://docs.angularjs.org/"
-      manifest="appcache.manifest">
+      QQQmanifest="appcache.manifest.e">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="Description"
@@ -11,7 +11,7 @@
   <title>AngularJS — Superheroic JavaScript MVC Framework</title>
 
   <link href="css/angular.css" rel="stylesheet" type="text/css" />
-  <link href="http://code.angularjs.org/0.9.19/docs-0.9.19/syntaxhighlighter/syntaxhighlighter-combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://code.angularjs.org/0.10.6/docs-0.10.6/syntaxhighlighter/syntaxhighlighter-combined.css" rel="stylesheet" type="text/css" />
   <link href="css/doc_widgets.css" rel="stylesheet" type="text/css" />
 
   <script>
@@ -29,14 +29,12 @@
      */
     !function(a,b,c){function t(a,c){var e=b.createElement("script"),f=j;e.onload=e.onerror=e[o]=function(){e[m]&&!/^c|loade/.test(e[m])||f||(e.onload=e[o]=null,f=1,c())},e.async=1,e.src=a,d.insertBefore(e,d.firstChild)}function q(a,b){p(a,function(a){return!b(a)})}var d=b.getElementsByTagName("head")[0],e={},f={},g={},h={},i="string",j=!1,k="push",l="DOMContentLoaded",m="readyState",n="addEventListener",o="onreadystatechange",p=function(a,b){for(var c=0,d=a.length;c<d;++c)if(!b(a[c]))return j;return 1};!b[m]&&b[n]&&(b[n](l,function r(){b.removeEventListener(l,r,j),b[m]="complete"},j),b[m]="loading");var s=function(a,b,d){function o(){if(!--m){e[l]=1,j&&j();for(var a in g)p(a.split("|"),n)&&!q(g[a],n)&&(g[a]=[])}}function n(a){return a.call?a():e[a]}a=a[k]?a:[a];var i=b&&b.call,j=i?b:d,l=i?a.join(""):b,m=a.length;c(function(){q(a,function(a){h[a]?(l&&(f[l]=1),o()):(h[a]=1,l&&(f[l]=1),t(s.path?s.path+a+".js":a,o))})},0);return s};s.get=t,s.ready=function(a,b,c){a=a[k]?a:[a];var d=[];!q(a,function(a){e[a]||d[k](a)})&&p(a,function(a){return e[a]})?b():!function(a){g[a]=g[a]||[],g[a][k](b),c&&c(d)}(a.join("|"));return s};var u=a.$script;s.noConflict=function(){a.$script=u;return this},typeof module!="undefined"&&module.exports?module.exports=s:a.$script=s}(this,document,setTimeout)
 
-    $script('http://code.angularjs.org/0.9.19/docs-0.9.19/jquery.min.js', function() {
-      $script(['http://code.angularjs.org/0.9.19/angular-0.9.19.min.js',
-               'http://code.angularjs.org/0.9.19/docs-0.9.19/syntaxhighlighter/syntaxhighlighter-combined.js'], function() {
-        $script(['js/doc_widgets.js', 'js/app.js'], function() {
-          angular.compile(document)();
-          $script(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js');
-          $script('http://widgets.twimg.com/j/2/widget.js', 'twitter');
-        });
+    $script(['http://ci.angularjs.org/job/angular.js-angular-master/239/artifact/build/pkg/0.10.7-dd7b0f56/angular-0.10.7-dd7b0f56.min.js',
+      'http://ci.angularjs.org/job/angular.js-angular-master/239/artifact/build/pkg/0.10.7-dd7b0f56/docs-0.10.7-dd7b0f56/syntaxhighlighter/syntaxhighlighter-combined.js'], function() {
+      $script(['js/doc_widgets.js', 'js/app.js'], function() {
+        angular.bootstrap(document, ['homepage']);
+        $script(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js');
+        $script('http://widgets.twimg.com/j/2/widget.js', 'twitter');
       });
     });
 
@@ -51,7 +49,7 @@
   </script>
 </head>
 
-<body class="home" ng:controller="AppCtrl">
+<body class="home" ng-controller="AppCtrl">
   <!--[if lt IE 9]>
     <div id="oldIePrompt">
       You are using an old version of Internet Explorer.
@@ -87,7 +85,7 @@
         <div id="downloadText">
           <a href="#/downloads">
             <span class="buttonHeadings">Download</span>
-            <span class="blueText" ng:bind-template="v{{angular.version}} {{angular.name}}"></span>
+            <span class="blueText" ng-bind-template="v{{angular.version}} {{angular.name}}"></span>
           </a>
           <span class="smallLinks">
             <a href="http://code.angularjs.org/{{angular.version}}/angular-{{angular.version}}.tgz">tgz</a> |
@@ -153,16 +151,16 @@
         </div>
       </div>
 
-      <div id="testimonials" ng:controller="TestimonialsCtrl" ng:show="true" style="display:none;">
+      <div id="testimonials" ng-controller="TestimonialsCtrl" ng-show="true" style="display:none;">
         <span class="h1">Testimonials</span>
         <div id="testimonialsNav">
-          <a href ng:click="previous()" class="navIcon prev">prev</a>
+          <a href ng-click="previous()" class="navIcon prev">prev</a>
           <span class="navIcon separator">&nbsp;</span>
-          <a href ng:click="next()" class="navIcon next">next</a>
+          <a href ng-click="next()" class="navIcon next">next</a>
         </div>
         <div class="testimonialsText">
           "{{content}}
-          <a href="" ng:click="open()" ng:show="!isOpen" title="More...">...</a>"
+          <a href="" ng-click="open()" ng-show="!isOpen" title="More...">...</a>"
         </div>
         <div class="sigName"><strong>{{name}}</strong></div>
       </div>
@@ -170,177 +168,118 @@
 
     <div id="right">
       <div id="liveExTopGraphic"></div>
-      <div id="liveExText" ng:controller="ExamplesCtrl" ng:show="true" style="display:none;">
+      <div id="liveExText" ng-controller="ExamplesCtrl" class="ng-cloak">
         <span class="h1">Angular in Action: {{examples[selected].title}}</span>
         <div id="liveExNav">
-          <a href ng:click="previous()" class="navIcon prev">prev</a>
+          <a href ng-click="previous()" class="navIcon prev">prev</a>
           <span class="navIcon separator">&nbsp;</span>
-          <a href ng:click="next()" class="navIcon next">next</a>
+          <a href ng-click="next()" class="navIcon next">next</a>
         </div>
 
         <p>{{examples[selected].description}}</p>
         <p>Fiddle with this example at <a ng:href="http://jsfiddle.net/{{examples[selected].fiddle}}">jsfiddle</a> or build a new one from <a href="http://jsfiddle.net/vojtajina/CHVbb/">scratch</a>.</p>
 
-        <!-- ToDo example -->
-        <div ng:show="selected == 0">
-          <doc:example>
-            <pre class="doc-source">
-              &lt;div ng:controller="TodoCtrl"&gt;
-                &lt;form ng:submit="addTodo()"&gt;
-                  &lt;input type="text" name="todoText" size="35"
-                         placeholder="enter your todo here"&gt;
-                  &lt;input type="submit" value="add"&gt;&lt;br&gt;
-                  &lt;span&gt;{{remaining()}} remaining&lt;/span&gt;
-                  &lt;input type="button" ng:click="removeDone()" value="clean up"&gt;
-                &lt;/form&gt;
-
-                &lt;ul&gt;
-                  &lt;li ng:repeat="todo in todos"&gt;
-                   &lt;input type="checkbox" name="todo.done"&gt;
-                   &lt;span ng:class="'done-' + todo.done"&gt;{{todo.text}}&lt;/span&gt;
-                  &lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/div&gt;
-
-              &lt;script&gt;
-                function TodoCtrl() {
-                  var scope = this;
-                  scope.todos = [{text:'learn angular', done:true},
-                                 {text:'build an angular app', done:false}];
-
-                  scope.addTodo = function() {
-                    scope.todos.push({text:scope.todoText, done:false});
-                    scope.todoText = '';
-                  };
-
-                  scope.remaining = function(){
-                    return angular.Array.count(scope.todos, function(todo){
-                      return !todo.done;
-                    });
-                  };
-
-                  scope.removeDone = function() {
-                    var oldTodos = scope.todos;
-                    scope.todos = [];
-                    angular.forEach(oldTodos, function(todo) {
-                      if (!todo.done) scope.todos.push(todo);
-                    });
-                  };
-                }
-              &lt;/script&gt;
-
-              &lt;style&gt;
-                .done-true {text-decoration: line-through; color: gray;}
-              &lt;/style&gt;
-            </pre>
-          </doc:example>
-        </div>
-
         <!-- Password Strength example -->
-        <div ng:show="selected == 1">
-          <doc:example>
-            <pre class="doc-source">
-               &lt;div ng:controller="PasswordController"&gt;
-                 Password:
-                 &lt;input type="password" name="password"
-                        placeholder="enter password" /&gt;
-                 &lt;span class="strength" ng:class="strength"&gt;
-                   This password is {{strength}} !
-                 &lt;/span&gt;
-                 &lt;button ng:click="generate()"&gt;Generate on server&lt;/button&gt;
-                 &lt;input type="checkbox" name="showPwd"&gt;Show password:
-                 &lt;span ng:show="showPwd"&gt;{{password}}&lt;/span&gt;
-               &lt;/div&gt;
+        <div ng-show="selected == 0">
+          <pre class="doc-example">
+             &lt;div ng-controller="PasswordController"&gt;
+               Password:
+               &lt;input type="password" ng-model="password"
+                      ng-model-instant placeholder="enter password" /&gt;
+               &lt;span class="strength" ng-class="strength"&gt;
+                 This password is {{strength}} !
+               &lt;/span&gt;
+               &lt;button ng-click="generate()"&gt;Generate on server&lt;/button&gt;
+               &lt;input type="checkbox" ng-model="showPwd"&gt;Show password:
+               &lt;span ng-show="showPwd"&gt;{{password}}&lt;/span&gt;
+             &lt;/div&gt;
 
 
-               &lt;script&gt;
-               // url of the service
-               var SERVICE_URL = 'http://angularjs.org/generatePassword.php' +
-                                 '?callback=JSON_CALLBACK';
+             &lt;script&gt;
+             // url of the service
+             var SERVICE_URL = 'http://angularjs.org/generatePassword.php' +
+                               '?callback=JSON_CALLBACK';
 
-               // Dependency Injector injects $xhr service
-               function PasswordController($xhr) {
+             // Dependency Injector injects $http service
+             function PasswordController($scope, $http) {
 
-                 // watch the password field and grade it.
-                 this.$watch('password', function() {
-                   if (this.password !== undefined) {
-                     if (this.password.length &gt; 8) {
-                       this.strength = 'strong';
-                     } else if (this.password.length &gt; 3) {
-                       this.strength = 'medium';
-                     } else {
-                       this.strength = 'weak';
-                     }
+               // watch the password field and grade it.
+               $scope.$watch('password', function() {
+                 if (this.password !== undefined) {
+                   if (this.password.length &gt; 8) {
+                     this.strength = 'strong';
+                   } else if (this.password.length &gt; 3) {
+                     this.strength = 'medium';
+                   } else {
+                     this.strength = 'weak';
                    }
-                 });
-
-                 // behavior
-                 this.generate = function() {
-                   var self = this;
-                   $xhr('JSON', SERVICE_URL, function(code, response) {
-                     self.password = response.password;
-                   });
                  }
-               }
-               &lt;/script&gt;
+               });
 
-               &lt;style&gt;
-                 .strong   { background-color: #060; border-color: #0F0;}
-                 .medium   { background-color: #C60; border-color: #FC0;}
-                 .weak     { background-color: #900; border-color: #F00;}
-                 .strength { padding: 1px 10px; border: 2px solid; color: #FFF;}
-               &lt;/style&gt;
-            </pre>
-          </doc:example>
+               // behavior
+               $scope.generate = function() {
+                 $http({method: 'JSON', url: SERVICE_URL}).
+                   then(function(code, response) {
+                     $scope.password = response.password;
+                   });
+               }
+             }
+             &lt;/script&gt;
+
+             &lt;style&gt;
+               .strong   { background-color: #060; border-color: #0F0;}
+               .medium   { background-color: #C60; border-color: #FC0;}
+               .weak     { background-color: #900; border-color: #F00;}
+               .strength { padding- 1px 10px; border: 2px solid; color: #FFF;}
+             &lt;/style&gt;
+          </pre>
         </div>
 
         <!-- Invoice example -->
-        <div ng:show="selected == 2">
-          <doc:example>
-            <pre class="doc-source">
-             &lt;table ng:init="invoice=
-                   {items:[{qty:10, description:'gadget', cost:9.95}]}"&gt;
-               &lt;tr&gt;
-                 &lt;th&gt;Qty&lt;/th&gt;
-                 &lt;th&gt;Description&lt;/th&gt;
-                 &lt;th&gt;Cost&lt;/th&gt;
-                 &lt;th&gt;Total&lt;/th&gt;
-                 &lt;th&gt;&lt;/th&gt;
-               &lt;/tr&gt;
-               &lt;tr ng:repeat="item in invoice.items"&gt;
-                 &lt;td&gt;&lt;input name="item.qty" value="1" size="4" ng:required
-                            ng:validate="integer"&gt;&lt;/td&gt;
-                 &lt;td&gt;&lt;input name="item.description"&gt;&lt;/td&gt;
-                 &lt;td&gt;&lt;input name="item.cost" value="0.00" ng:required
-                            ng:validate="number" size="6"&gt;&lt;/td&gt;
-                 &lt;td&gt;{{item.qty * item.cost | currency}}&lt;/td&gt;
-                 &lt;td&gt;
-                   [&lt;a href ng:click="invoice.items.$remove(item)"&gt;X&lt;/a&gt;]
-                 &lt;/td&gt;
-               &lt;/tr&gt;
-               &lt;tr&gt;
-                 &lt;td&gt;&lt;a href ng:click="invoice.items.$add()"&gt;add item&lt;/a&gt;&lt;/td&gt;
-                 &lt;td&gt;&lt;/td&gt;
-                 &lt;td&gt;Total:&lt;/td&gt;
-                 &lt;td&gt;{{invoice.items.$sum('qty*cost') | currency}}&lt;/td&gt;
-               &lt;/tr&gt;
-             &lt;/table&gt;
-            </pre>
-          </doc:example>
+        <div ng-show="selected == 1">
+          <pre class="doc-example">
+           &lt;table ng-init="invoice=
+                 {items:[{qty:10, description:'gadget', cost:9.95}]}"&gt;
+             &lt;tr&gt;
+               &lt;th&gt;Qty&lt;/th&gt;
+               &lt;th&gt;Description&lt;/th&gt;
+               &lt;th&gt;Cost&lt;/th&gt;
+               &lt;th&gt;Total&lt;/th&gt;
+               &lt;th&gt;&lt;/th&gt;
+             &lt;/tr&gt;
+             &lt;tr ng-repeat="item in invoice.items"&gt;
+               &lt;td&gt;&lt;input name="item.qty" value="1" size="4" ng-required
+                          ng-validate="integer"&gt;&lt;/td&gt;
+               &lt;td&gt;&lt;input name="item.description"&gt;&lt;/td&gt;
+               &lt;td&gt;&lt;input name="item.cost" value="0.00" ng-required
+                          ng-validate="number" size="6"&gt;&lt;/td&gt;
+               &lt;td&gt;{{item.qty * item.cost | currency}}&lt;/td&gt;
+               &lt;td&gt;
+                 [&lt;a href ng-click="invoice.items.$remove(item)"&gt;X&lt;/a&gt;]
+               &lt;/td&gt;
+             &lt;/tr&gt;
+             &lt;tr&gt;
+               &lt;td&gt;&lt;a href ng-click="invoice.items.$add()"&gt;add item&lt;/a&gt;&lt;/td&gt;
+               &lt;td&gt;&lt;/td&gt;
+               &lt;td&gt;Total:&lt;/td&gt;
+               &lt;td&gt;{{invoice.items.$sum('qty*cost') | currency}}&lt;/td&gt;
+             &lt;/tr&gt;
+           &lt;/table&gt;
+          </pre>
         </div>
       </div>
     </div>
   </div>
   <div id="footer">
-    © 2010-2011 AngularJS
+    © 2010-2012 AngularJS
     Super-powered by Google
   </div>
   </div>
 
-  <div ng:show="true" style="display: none">
-  <div id="fader" ng:show="subpage"></div>
-  <ng:switch on="subpage" id="subpages">
-    <div ng:switch-when="downloads">
+  <div ng-show="true" style="display: none">
+  <div id="fader" ng-show="subpage"></div>
+  <ng-switch on="subpage" id="subpages">
+    <div ng-switch-when="downloads">
       <h2>Angular Downloads</h2>
       <a href="#/">&#10005;</a>
       <div>
@@ -372,23 +311,38 @@
         </ul>
       </div>
     </div>
-    <div ng:switch-when="community">
+    <div ng-switch-when="community">
       <h2>AngularJS Community</h2>
       <a href="#/">&#10005;</a>
       <div>
         There are several ways to connect with the angular community:
         <ul>
-          <li><a href="http://twitter.com/angularjs">Twitter</a></li>
-          <li><a href="https://github.com/angular/angular.js">GitHub</a></li>
-          <li><a href="http://groups.google.com/group/angular">Mailing List</a></li>
-          <li><a href="https://github.com/angular/angular.js/issues">Issue Tracker</a></li>
-          <li>IRC: freenode.net #angularjs</li>
+          <li>
+            Source code:
+            <a href="https://github.com/angular/angular.js">GitHub</a>
+            (<a href="https://github.com/angular/angular.js/issues">Issue Tracker</a>)
+          </li>
+          <li>
+            Follow us:
+            <a href="http://twitter.com/angularjs">Twitter</a>,
+            <a href="https://plus.google.com/u/0/110323587230527980117">Google+</a>
+          </li>
+          <li>
+            Ask a question:
+            <a href="http://groups.google.com/group/angular">angular@googlegroups.com</a>,
+            <a href="http://stackoverflow.com/questions/tagged/angularjs">StackOverflow</a>
+          </li>
+          <li>
+            Hangout:
+            <a href="http://webchat.freenode.net/?channels=angularjs&uio=d4">IRC: freenode.net #angularjs</a>,
+            <a href="http://chat.stackoverflow.com/rooms/8618/angularjs">StackOverflow: AngularJS</a>
+          </li>
         </ul>
         Any brave ones wanting to hack on the AngularJS code should check out the
         <a href="http://docs.angularjs.org/#!/misc/contribute">building and contributing instructions</a>.
       </div>
     </div>
-  </ng:switch>
+  </ng-switch>
   </div>
 </body>
 </html>
