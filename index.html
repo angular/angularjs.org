@@ -45,8 +45,9 @@
             <li><a href="#"><i class="icon-info-sign icon-white"></i> About</a></li>
             <li class="divider-vertical"></li>
           </ul>
-          <form class="navbar-search pull-right">
-            <input type="text" class="search-query" placeholder="Search">
+          <form class="navbar-search pull-right" method="GET" action="https://www.google.com/search">
+            <input type="text" name="as_q" class="search-query" placeholder="Search">
+            <input type="hidden" name="as_sitesearch" value="angularjs.org">
           </form>
         </div>
       </div>
@@ -55,6 +56,7 @@
   <div role="main" class="container">
     <div class="row">
       <div class="span12"><br><br><br><br><br></div>
+      <div id="cse" style="width: 100%;"></div>
     </div>
     
     <div class="row">
@@ -112,7 +114,7 @@
     </div>
     
     <hr>
-    
+
     <div class="row">
       <div class="span12">
         <h1>Basics</h1>
@@ -133,7 +135,7 @@
             <h3>Controller</h3>
             <p>
               Controller is the code behind the DOM. It is pure application behavior in an
-              unpolluted imperative way. Define your behavior here, update the model on server 
+              unpolluted imperative way. Define your behavior here, update the model on server
               or user interaction and you are done. No need to register callbacks, or manipulate
               the DOM, just watch the data-binding magic do the work.
             </p>
@@ -152,7 +154,7 @@
         <div class="row">
           <div class="span8">
             <div class="pull-right">
-              <em>Hint:</em> hover over <span class="nocode atn" rel="popover" title="Hover" data-content="For explanation.">me</span>.
+              <span hint></span>
               <span js-fiddle="todo"></span>
             </div>
             <h3>Code</h3>
@@ -165,8 +167,86 @@
         </div>
       </div>
     </div>
-    
+
     <hr>
+
+    <div class="row">
+      <div class="span12">
+        <h1>Intermediate</h1>
+        <div class="row">
+          <div class="span4">
+            <h3>Deep Linking</h3>
+            <p>
+            </p>
+          </div>
+          <div class="span4">
+            <h3>Incremental Template Loading</h3>
+            <p>
+            </p>
+          </div>
+          <div class="span4">
+            <h3>Dependency Injection</h3>
+            <p>
+            </p>
+          </div>
+        </div>
+        <h2>Example</h2>
+        <div class="row">
+          <div class="span8">
+            <div class="pull-right">
+              <span hint></span>
+              <span js-fiddle="xtodo"></span>
+            </div>
+            <h3>Code</h3>
+            <div app-source="xtodo"></div>
+          </div>
+          <div class="span4">
+            <h3>Running App</h3>
+            <div app-run="xtodo" class="well"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="span12">
+        <h1>Advanced</h1>
+        <div class="row">
+          <div class="span4">
+            <h3>Directives</h3>
+            <p>
+            </p>
+          </div>
+          <div class="span4">
+            <h3>Reusable Components</h3>
+            <p>
+            </p>
+          </div>
+          <div class="span4">
+            <h3>Localization</h3>
+            <p>
+            </p>
+          </div>
+        </div>
+        <h2>Example</h2>
+        <div class="row">
+          <div class="span8">
+            <div class="pull-right">
+              <span hint></span>
+              <span js-fiddle="xtodo"></span>
+            </div>
+            <h3>Code</h3>
+            <div app-source="xtodo"></div>
+          </div>
+          <div class="span4">
+            <h3>Running App</h3>
+            <div app-run="xtodo" class="well"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer class="footer">
       <p class="pull-right"><a href="#">Back to top</a></p>
@@ -235,19 +315,22 @@
     'ng-app': 'Designates AngularJS application boundary.',
     'script': 'Load AngularJS magic',
     'TodoCtrl': 'The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.',
-    '$scope': '$scope is the glue between your behavior and the view.',
+    '$scope': '$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability.',
     'todos': 'A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.',
     'addTodo': 'We can assign behavior to $scope. This is how the view interacts with the code-behind.',
-    'push': 'Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see ng&ndash;repeat bellow)',
-    'todoText': 'Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using fromawork dependent API.',
+    'push': 'Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see <code>ng&ndash;repeat</code> bellow)',
+    'todoText': 'Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API.',
     '':'Writing to the form controls is just as easy. The data-binding will clear the control for us.',
     'remaining': 'This is a computed property. No need to define its dependencies or worry about when it needs to be updated.',
     '[]': 'You can replace the model with new instance at any time, without doing any special model listeners unregistered.',
     'ng-controller': 'Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page.',
-    'body': 'Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a &lt;script&gt; tag.',
-    '{{remaining()}}': 'If you need to activate data-binding, just use the doubly-curly {{ }} in text or in attributes as you see fit.',
-    'ng-click': 'Instead of registering event-handlers you call methods published on the scope. Unlike the browser onclick the ng-click executes against the controller/scope not against global window.',
-    'ng-repeat': "For every object in 'todos' create new copy of the 'li' element. Think spreadsheet-like instant update behavior. When objects are added to 'todos' the ng-repeat automatically adds new 'li' into the DOM. Similarly the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular."
+    'body': 'Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a <code>&lt;script&gt;</code> tag.',
+    '{{remaining()}}': 'If you need to activate data-binding, just use the doubly-curly <code>{{ }}</code> in text or in attributes as you see fit.',
+    'ng-click': 'Instead of registering event-handlers you call methods published on the scope. Unlike the browser <code>onclick</code> the <code>ng-click</code> executes against the controller/scope not against global window, which means that <code>ng-click</code> does not suffer frome the same issues as <code>onclick</code> suffers from.',
+    'ng-repeat': "For every object in <code>todos</code> create new copy of the <code>li</code> element. Think spreadsheet-like instant update behavior. When objects are added to <code>todos</code> the <code>ng-repeat</code> automatically adds new <code>li</code> into the DOM. Similarly when the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular.",
+    'ng-model': 'Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)',
+    '{{todo.done}}': 'The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through.',
+    'ng-submit': 'Intercepts form submission and lets the <code>addTodo()</code> method handle it.'
     }
   </script>
   <script src="google-code-prettify/prettify.js"></script>

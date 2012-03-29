@@ -80,12 +80,12 @@ angular.module('homepage', [])
 
         html = html.replace(/\</g, '&lt;').replace(/\>/g, '&gt;');
         angular.forEach(annotate, function(text, key) {
-          var regexp = new RegExp('(\\W)(' + key.replace(/(\W)/, '\\$1') + ')(\\W)');
+          var regexp = new RegExp('(\\W)(' + key.replace(/(\W)/g, '\\$1') + ')(\\W)');
 
           html = html.replace(regexp, function(_, before, token, after) {
             return before +
-              '<span class="nocode atn" rel="popover" title="' + attrEscape(key) +
-                '" data-content="' + attrEscape(text) + '">' + key + '</span>' + after;
+              '<code class="nocode" rel="popover" title="' + attrEscape('<code>' + key + '</code>') +
+                '" data-content="' + attrEscape(text) + '">' + key + '</code>' + after;
           });
         });
 
@@ -120,10 +120,18 @@ angular.module('homepage', [])
     }
   })
 
+  .directive('hint', function() {
+    return {
+      template: '<em>Hint:</em> hover over ' +
+          '<code class="nocode" rel="popover" title="Hover" ' +
+          'data-content="Hover over code for explanation.">me</code>.'
+    }
+  })
+
   .run(function($rootScope){
     $rootScope.$evalAsync(function(){
       prettyPrint();
       $('[rel=tooltip]').tooltip();
       $('[rel=popover]').popover();
     });
-  });
+  })

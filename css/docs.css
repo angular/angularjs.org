@@ -6,11 +6,17 @@ form.jsfiddle {
   display: inline;
 }
 
-.nocode.atn {
+code.nocode {
   display: inline-block;
-  background-color: #c6ecf5;
-  border: 1px solid #add8e6;
+  background-color: #e6f0ff;
+  border: 1px solid #99c2ff;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+  color: #223f7a;
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #e1e1e8;
 }
