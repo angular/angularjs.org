@@ -4,7 +4,7 @@
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en" ng-app='homepage'> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,8 +16,14 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/docs.css">
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <style id="todo-style">
+    .done-true {
+      text-decoration: line-through;
+      color: grey;
+    }
+  </style>
 </head>
-<body onload="prettyPrint()">
+<body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -114,10 +120,10 @@
           <div class="span4">
             <h3>Data Binding</h3>
             <p>
-              HTML is an excellent templating language. AngularJS <a href="#" rel="tooltip"
-              title="AngularJS extends the HTML vacabulary (elements/attributes) which the
-              browsers understand, in an extensible way">adds</a> data-binding <a href="#"
-              rel="tooltip" title="Other frameworks concatinate HTML string
+              HTML is an excellent templating language. AngularJS <a href="" rel="popover"
+              data-content="AngularJS extends the HTML vocabulary (elements/attributes) which the
+              browsers understand, in an extensible way">adds</a> data-binding <a href=""
+              rel="popover" data-content="Other frameworks concatenate HTML string
               templates">directly</a> into HTML using the <code>{{ expression }}</code> notation.
               Form controls are bound bi-directionally and validated. This makes the model the
               single source of truth in your application.
@@ -136,7 +142,7 @@
             <h3>Plain JavaScript</h3>
             <p>
               AngularJS wants to be unobtrusive. Unlike other frameworks, there is no need to
-              inherit from proprietary types; to wrap the model in accessor methods; or to use
+              inherit from proprietary types; to wrap the model in assessor methods; or to use
               proprietary collections and object hashes. Just plain old JavaScript here. This
               makes your code easy to test, maintain, reuse, and free from boilerplate.
             </p>
@@ -145,17 +151,16 @@
         <h2>Example</h2>
         <div class="row">
           <div class="span8">
+            <div class="pull-right">
+              <em>Hint:</em> hover over <span class="nocode atn" rel="popover" title="Hover" data-content="For explanation.">me</span>.
+              <span js-fiddle="todo"></span>
+            </div>
             <h3>Code</h3>
-<pre class="prettyprint linenums">
-  &lt;p&gt;
-    Sample text here...
-  &lt;/p&gt;
-</pre>          </div>
+            <div app-source="todo"></div>
+          </div>
           <div class="span4">
             <h3>Running App</h3>
-            <div ng-app class="ng-app">
-              {{ 1 + 2 }}
-            </div>
+            <div app-run="todo" class="well"></div>
           </div>
         </div>
       </div>
@@ -178,10 +183,73 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script>
-    $('a[rel=tooltip]').tooltip();
+  <script id="angularJS" src="http://code.angularjs.org/angular-1.0.0rc2.min.js"></script>
+  <script src="js/homepage.js"></script>
+  <script id="todo-script">
+    function TodoCtrl($scope) {
+      $scope.todos = [
+        {text:'learn angular', done:true},
+        {text:'build an angular app', done:false}];
+
+      $scope.addTodo = function() {
+        $scope.todos.push({text:$scope.todoText, done:false});
+        $scope.todoText = '';
+      };
+
+      $scope.remaining = function() {
+        var count = 0;
+        angular.forEach($scope.todos, function(todo) {
+          count += todo.done ? 1 : 0;
+        });
+        return count;
+      };
+
+      $scope.archive = function() {
+        var oldTodos = $scope.todos;
+        $scope.todos = [];
+        angular.forEach(oldTodos, function(todo) {
+          if (!todo.done) $scope.todos.push(todo);
+        });
+      };
+    }
   </script>
-  <script src="http://code.angularjs.org/angular-1.0.0rc2.min.js"></script>
+  <script type='template/html' id="todo-html">
+    <div ng-controller="TodoCtrl">
+      <span>{{remaining()}} of {{todos.length}} remaining</span>
+      [ <a href="" ng-click="archive()">archive</a> ]
+      <ul class="unstyled">
+        <li ng-repeat="todo in todos">
+          <input type="checkbox" ng-model="todo.done">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText"  ng-model-instant size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+  </script>
+  <script type='template/annotate' id="todo-annotate">
+    {
+    'ng-app': 'Designates AngularJS application boundary.',
+    'script': 'Load AngularJS magic',
+    'TodoCtrl': 'The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.',
+    '$scope': '$scope is the glue between your behavior and the view.',
+    'todos': 'A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.',
+    'addTodo': 'We can assign behavior to $scope. This is how the view interacts with the code-behind.',
+    'push': 'Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see ng&ndash;repeat bellow)',
+    'todoText': 'Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using fromawork dependent API.',
+    '':'Writing to the form controls is just as easy. The data-binding will clear the control for us.',
+    'remaining': 'This is a computed property. No need to define its dependencies or worry about when it needs to be updated.',
+    '[]': 'You can replace the model with new instance at any time, without doing any special model listeners unregistered.',
+    'ng-controller': 'Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page.',
+    'body': 'Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a &lt;script&gt; tag.',
+    '{{remaining()}}': 'If you need to activate data-binding, just use the doubly-curly {{ }} in text or in attributes as you see fit.',
+    'ng-click': 'Instead of registering event-handlers you call methods published on the scope. Unlike the browser onclick the ng-click executes against the controller/scope not against global window.',
+    'ng-repeat': "For every object in 'todos' create new copy of the 'li' element. Think spreadsheet-like instant update behavior. When objects are added to 'todos' the ng-repeat automatically adds new 'li' into the DOM. Similarly the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular."
+    }
+  </script>
   <script src="google-code-prettify/prettify.js"></script>
   <script>
     var _gaq=[

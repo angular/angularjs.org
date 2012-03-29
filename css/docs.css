@@ -1,3 +1,16 @@
 .footer p {
   margin: 0;
 }
+
+form.jsfiddle {
+  display: inline;
+}
+
+.nocode.atn {
+  display: inline-block;
+  background-color: #c6ecf5;
+  border: 1px solid #add8e6;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
