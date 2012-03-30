@@ -26,7 +26,7 @@ angular.module('homepage', [])
     return lines.join('\n');
   })
 
-  .value('attrEscape', function(text) {
+  .value('escape', function(text) {
     return text.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/"/g, '&quot;');
   })
 
@@ -44,7 +44,7 @@ angular.module('homepage', [])
     return {
       terminal: true,
       link: function(scope, element, attrs) {
-        element.html(fetchCode(attrs.appRun + '-html'));
+        element.html(fetchCode(attrs.appRun));
         element.bind('click', function(event) {
           if (event.target.attributes.getNamedItem('ng-click')) {
             event.preventDefault();
@@ -55,46 +55,109 @@ angular.module('homepage', [])
     };
   })
 
-  .directive('appSource', function(fetchCode, attrEscape) {
+  .directive('appSource', function(fetchCode, escape) {
+    var TEMPLATE = {
+          'index.html':
+            '<!doctype html>\n' +
+              '<html ng-app>\n' +
+              '  <head>\n' +
+              '    <script src="' + document.getElementById('angularJS').src + '"></script>\n' +
+              '__HEAD__' +
+              '  </head>\n' +
+              '  <body>\n' +
+              '__BODY__' +
+              '  </body>\n' +
+              '</html>'
+        };
     return {
       terminal: true,
       link: function(scope, element, attrs) {
-        var id = attrs.appSource,
-            html =
-              '<!doctype html>\n' +
-              '<html ng-app>\n' +
-              '  <head>\n' +
-              '    <script src="' + window.angularJS.src + '"></script>\n' +
-              '    <script>\n' +
-                     fetchCode(id + '-script', 6) +
-              '    </script>\n' +
-              '    <style>\n' +
-                     fetchCode(id + '-style', 6) +
-              '    </style>\n' +
-              '  </head>\n' +
-              '  <body>\n' +
-                    fetchCode(id + '-html', 4) +
-              '  </body>\n' +
-              '</html>',
-            annotate = angular.fromJson(fetchCode(id + '-annotate'))
+        var tabs = [],
+            panes = [],
+            annotation = attrs.annotate && angular.fromJson(fetchCode(attrs.annotate)) || {};
 
-        html = html.replace(/\</g, '&lt;').replace(/\>/g, '&gt;');
-        angular.forEach(annotate, function(text, key) {
-          var regexp = new RegExp('(\\W)(' + key.replace(/(\W)/g, '\\$1') + ')(\\W)');
+        angular.forEach(attrs.appSource.split(' '), function(tab, index) {
+          var parts = tab.split(':'),
+              filename = parts[0],
+              fileType = filename.split(/\./)[1],
+              id = parts[1],
+              content = TEMPLATE[filename] || '__BODY__',
+              lines = [];
 
-          html = html.replace(regexp, function(_, before, token, after) {
-            return before +
-              '<code class="nocode" rel="popover" title="' + attrEscape('<code>' + key + '</code>') +
-                '" data-content="' + attrEscape(text) + '">' + key + '</code>' + after;
+          tabs.push(
+            '<li class="' + (!index ? ' active' : '') + '">' +
+              '<a href="#pane-' + id + '" data-toggle="tab">' + filename + '</a>' +
+            '</li>');
+
+          if (filename == 'index.html') {
+            var head = [];
+
+            angular.forEach(attrs.appSource.split(' '), function(tab, index) {
+              var filename = tab.split(':')[0],
+                  fileType = filename.split(/\./)[1];
+
+              if (filename == 'index.html') return;
+              if (fileType == 'js') {
+                head.push('    <script src="' + filename + '"></script>\n');
+              } else if (fileType == 'css') {
+                head.push('    <link rel="stylesheet" href="' + filename + '">\n');
+              }
+            });
+            content = TEMPLATE[filename];
+            content = content.
+              replace('__HEAD__', head.join('')).
+              replace('__BODY__', fetchCode(id, 4));
+          } else {
+            content = fetchCode(id);
+          }
+
+          content = colourCode(content);
+
+          angular.forEach(annotation[filename], function(text, key) {
+            var regexp = new RegExp('(\\W)(' + key.replace(/(\W)/g, '\\$1') + ')(\\W)');
+
+            content = content.replace(regexp, function(_, before, token, after) {
+              return before +
+                '<code class="nocode" rel="popover" title="' + escape('<code>' + key + '</code>') +
+                '" data-content="' + escape(text) + '">' + key + '</code>' + after;
+            });
           });
+
+          panes.push(
+            '<div class="tab-pane' + (!index ? ' active' : '') + '" id="pane-' + id + '">' +
+              '<pre class="prettyprint linenums nocode">' + content +'</pre>' +
+            '</div>');
         });
 
-        element.html('<pre class="prettyprint linenums">' + html +'</pre>');
+        scope.$evalAsync(function() {
+          // must be delayed boucase of colourCode();
+          element.html(
+            '<div class="tabbable">' +
+              '<ul class="nav nav-tabs">' +
+              tabs.join('') +
+              '</ul>' +
+              '<div class="tab-content">' +
+              panes.join('') +
+              '</div>' +
+              '</div>');
+          element.find('[rel=popover]').popover();
+        });
+
+        function colourCode(html) {
+          // This function is here because the prettyPrint() has no API to color code a chunk of code without
+          // adding it to DOM.
+          var pre = $('<pre class="prettyprint linenums">');
+          pre.text(html);
+          $('body').append(pre);
+          prettyPrint();
+          pre.remove();
+          return pre.html();
+        }
       }
     }
   })
 
-  .directive('jsFiddle', function(fetchCode, attrEscape) {
+  .directive('jsFiddle', function(fetchCode, escape) {
     return {
       terminal: true,
       link: function(scope, element, attr) {
@@ -105,16 +168,16 @@ angular.module('homepage', [])
           '<form class="jsfiddle" method="post" action="http://jsfiddle.net/api/post/library/pure/" target="_blank">' +
             hiddenField('title', 'AngularJS Example: ' + id) +
             hiddenField('css', fetchCode(id + '-style')) +
-            hiddenField('html', script + '<div ng-app>\n' + fetchCode(id + '-html', 2) + '</div>') +
+            hiddenField('html', script + '<div ng-app>\n' + fetchCode(id + '-template', 2) + '</div>') +
             hiddenField('js', fetchCode(id + '-script')) +
             '<button class="btn btn-primary">' +
             '<i class="icon-white icon-pencil"></i> ' +
-            'jsFiddle' +
+            'Edit Me' +
             '</button>' +
           '</form>');
 
         function hiddenField(name, value) {
-          return '<input type="hidden" name="' +  name + '" value="' + attrEscape(value) + '">';
+          return '<input type="hidden" name="' +  name + '" value="' + escape(value) + '">';
         }
       }
     }
@@ -130,7 +193,6 @@ angular.module('homepage', [])
 
   .run(function($rootScope){
     $rootScope.$evalAsync(function(){
-      prettyPrint();
       $('[rel=tooltip]').tooltip();
       $('[rel=popover]').popover();
     });

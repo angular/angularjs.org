@@ -1,9 +1,7 @@
 <!doctype html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
 <!--[if gt IE 8]><!--><html class="no-js" lang="en" ng-app='homepage'> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
@@ -74,7 +72,7 @@
               </ul>
             </div>
             <hr class="black">
-            <p>What HTML would have been had it been designed for web apps</p>
+            <p>HTML redesigned for web apps!</p>
           </div>
         </div>
       </div>
@@ -158,11 +156,11 @@
               <span js-fiddle="todo"></span>
             </div>
             <h3>Code</h3>
-            <div app-source="todo"></div>
+            <div app-source="index.html:todo-template todo.js:todo-script todo.css:todo-style" annotate="todo-annotation"></div>
           </div>
           <div class="span4">
             <h3>Running App</h3>
-            <div app-run="todo" class="well"></div>
+            <div app-run="todo-template" class="well"></div>
           </div>
         </div>
       </div>
@@ -177,15 +175,17 @@
           <div class="span4">
             <h3>Deep Linking</h3>
             <p>
+              Think about pages, run like ajax,
+
             </p>
           </div>
           <div class="span4">
-            <h3>Incremental Template Loading</h3>
+            <h3>Form Validation</h3>
             <p>
             </p>
           </div>
           <div class="span4">
-            <h3>Dependency Injection</h3>
+            <h3>Incremental Template Loading</h3>
             <p>
             </p>
           </div>
@@ -293,7 +293,7 @@
       };
     }
   </script>
-  <script type='template/html' id="todo-html">
+  <script type='template/html' id="todo-template">
     <div ng-controller="TodoCtrl">
       <span>{{remaining()}} of {{todos.length}} remaining</span>
       [ <a href="" ng-click="archive()">archive</a> ]
@@ -310,30 +310,38 @@
       </form>
     </div>
   </script>
-  <script type='template/annotate' id="todo-annotate">
+  <script type='template/annotate' id="todo-annotation">
     {
-    'ng-app': 'Designates AngularJS application boundary.',
-    'script': 'Load AngularJS magic',
-    'TodoCtrl': 'The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.',
-    '$scope': '$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability.',
-    'todos': 'A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.',
-    'addTodo': 'We can assign behavior to $scope. This is how the view interacts with the code-behind.',
-    'push': 'Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see <code>ng&ndash;repeat</code> bellow)',
-    'todoText': 'Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API.',
-    '':'Writing to the form controls is just as easy. The data-binding will clear the control for us.',
-    'remaining': 'This is a computed property. No need to define its dependencies or worry about when it needs to be updated.',
-    '[]': 'You can replace the model with new instance at any time, without doing any special model listeners unregistered.',
-    'ng-controller': 'Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page.',
-    'body': 'Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a <code>&lt;script&gt;</code> tag.',
-    '{{remaining()}}': 'If you need to activate data-binding, just use the doubly-curly <code>{{ }}</code> in text or in attributes as you see fit.',
-    'ng-click': 'Instead of registering event-handlers you call methods published on the scope. Unlike the browser <code>onclick</code> the <code>ng-click</code> executes against the controller/scope not against global window, which means that <code>ng-click</code> does not suffer frome the same issues as <code>onclick</code> suffers from.',
-    'ng-repeat': "For every object in <code>todos</code> create new copy of the <code>li</code> element. Think spreadsheet-like instant update behavior. When objects are added to <code>todos</code> the <code>ng-repeat</code> automatically adds new <code>li</code> into the DOM. Similarly when the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular.",
-    'ng-model': 'Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)',
-    '{{todo.done}}': 'The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through.',
-    'ng-submit': 'Intercepts form submission and lets the <code>addTodo()</code> method handle it.'
+      'index.html': {
+        'ng-app': 'Designates AngularJS application boundary.',
+        'script': 'Load AngularJS magic',
+        'ng-controller': 'Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page.',
+        'body': 'Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a <code>&lt;script&gt;</code> tag.',
+        '{{remaining()}}': 'If you need to activate data-binding, just use the doubly-curly <code>{{ }}</code> in text or in attributes as you see fit.',
+        'ng-click': 'Instead of registering event-handlers you call methods published on the scope. Unlike the browser <code>onclick</code> the <code>ng-click</code> executes against the controller/scope not against global window, which means that <code>ng-click</code> does not suffer frome the same issues as <code>onclick</code> suffers from.',
+        'ng-repeat': "For every object in <code>todos</code> create new copy of the <code>li</code> element. Think spreadsheet-like instant update behavior. When objects are added to <code>todos</code> the <code>ng-repeat</code> automatically adds new <code>li</code> into the DOM. Similarly when the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular.",
+        'ng-model': 'Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)',
+        '{{todo.done}}': 'The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through.',
+        'ng-submit': 'Intercepts form submission and lets the <code>addTodo()</code> method handle it.'
+      },
+
+      'todo.css': {
+      },
+
+      'todo.js': {
+        'TodoCtrl': 'The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.',
+        '$scope': '$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability.',
+        'todos': 'A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.',
+        'addTodo': 'We can assign behavior to $scope. This is how the view interacts with the code-behind.',
+        'push': 'Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see <code>ng&ndash;repeat</code> bellow)',
+        'todoText': 'Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API.',
+        '':'Writing to the form controls is just as easy. The data-binding will clear the control for us.',
+        'remaining': 'This is a computed property. No need to define its dependencies or worry about when it needs to be updated.',
+        '[]': 'You can replace the model with new instance at any time, without doing any special model listeners unregistered.'
+      }
     }
   </script>
-  <script src="google-code-prettify/prettify.js"></script>
+  <script src="google-code-prettify/prettify.min.js"></script>
   <script>
     var _gaq=[
       ['_setAccount','UA-8594346-3'],
