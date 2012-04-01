@@ -7,9 +7,9 @@ angular.module('homepage', [])
     var i;
 
     // remove any leading blank lines
-    while (lines[0].match(/^\s*$/)) lines.shift();
+    while (lines.length && lines[0].match(/^\s*$/)) lines.shift();
     // remove any trailing blank lines
-    while (lines[lines.length - 1].match(/^\s*$/)) lines.pop();
+    while (lines.length && lines[lines.length - 1].match(/^\s*$/)) lines.pop();
     var minIndent = 999;
     for (i = 0; i < lines.length; i++) {
       var line = lines[0];
@@ -40,17 +40,27 @@ angular.module('homepage', [])
     return {restrict: 'E', terminal: true};
   })
 
-  .directive('appRun', function(fetchCode) {
+  .directive('appRun', function(fetchCode, $templateCache) {
     return {
       terminal: true,
       link: function(scope, element, attrs) {
+        var modules = [];
+
+        modules.push(function($provide) {
+          $provide.value('$templateCache', $templateCache);
+          $provide.value('$anchorScroll', angular.noop)
+        });
+        if (attrs.module) {
+          modules.push(attrs.module);
+        }
+
         element.html(fetchCode(attrs.appRun));
         element.bind('click', function(event) {
           if (event.target.attributes.getNamedItem('ng-click')) {
             event.preventDefault();
           }
         });
-        angular.bootstrap(element);
+        angular.bootstrap(element, modules);
       }
     };
   })
@@ -59,7 +69,7 @@ angular.module('homepage', [])
     var TEMPLATE = {
           'index.html':
             '<!doctype html>\n' +
-              '<html ng-app>\n' +
+              '<html ng-app__MODULE__>\n' +
               '  <head>\n' +
               '    <script src="' + document.getElementById('angularJS').src + '"></script>\n' +
               '__HEAD__' +
@@ -76,39 +86,37 @@ angular.module('homepage', [])
             panes = [],
             annotation = attrs.annotate && angular.fromJson(fetchCode(attrs.annotate)) || {};
 
-        angular.forEach(attrs.appSource.split(' '), function(tab, index) {
-          var parts = tab.split(':'),
-              filename = parts[0],
-              fileType = filename.split(/\./)[1],
-              id = parts[1],
-              content = TEMPLATE[filename] || '__BODY__',
-              lines = [];
+        element.css('clear', 'both');
+
+        angular.forEach(attrs.appSource.split(' '), function(filename, index) {
+          var content;
 
           tabs.push(
             '<li class="' + (!index ? ' active' : '') + '">' +
-              '<a href="#pane-' + id + '" data-toggle="tab">' + filename + '</a>' +
+              '<a href="#' + id(filename) + '" data-toggle="tab">' + (index ? filename : 'index.html') + '</a>' +
             '</li>');
 
-          if (filename == 'index.html') {
+          if (index == 0) {
             var head = [];
 
             angular.forEach(attrs.appSource.split(' '), function(tab, index) {
               var filename = tab.split(':')[0],
                   fileType = filename.split(/\./)[1];
 
-              if (filename == 'index.html') return;
+              if (index == 0) return;
               if (fileType == 'js') {
                 head.push('    <script src="' + filename + '"></script>\n');
               } else if (fileType == 'css') {
                 head.push('    <link rel="stylesheet" href="' + filename + '">\n');
               }
             });
-            content = TEMPLATE[filename];
+            content = TEMPLATE['index.html'];
             content = content.
+              replace('__MODULE__', attrs.module ? '="' + attrs.module + '"' : '').
               replace('__HEAD__', head.join('')).
-              replace('__BODY__', fetchCode(id, 4));
+              replace('__BODY__', fetchCode(filename, 4));
           } else {
-            content = fetchCode(id);
+            content = fetchCode(filename);
           }
 
           content = colourCode(content);
@@ -119,12 +127,12 @@ angular.module('homepage', [])
             content = content.replace(regexp, function(_, before, token, after) {
               return before +
                 '<code class="nocode" rel="popover" title="' + escape('<code>' + key + '</code>') +
-                '" data-content="' + escape(text) + '">' + key + '</code>' + after;
+                '" data-content="' + escape(text) + '">' + escape(key) + '</code>' + after;
             });
           });
 
           panes.push(
-            '<div class="tab-pane' + (!index ? ' active' : '') + '" id="pane-' + id + '">' +
+            '<div class="tab-pane' + (!index ? ' active' : '') + '" id="' + id(filename) + '">' +
               '<pre class="prettyprint linenums nocode">' + content +'</pre>' +
             '</div>');
         });
@@ -134,10 +142,10 @@ angular.module('homepage', [])
           element.html(
             '<div class="tabbable">' +
               '<ul class="nav nav-tabs">' +
-              tabs.join('') +
+                tabs.join('') +
               '</ul>' +
               '<div class="tab-content">' +
-              panes.join('') +
+                panes.join('') +
               '</div>' +
               '</div>');
           element.find('[rel=popover]').popover();
@@ -153,6 +161,10 @@ angular.module('homepage', [])
           pre.remove();
           return pre.html();
         }
+
+        function id(id) {
+          return id.replace(/\W/g, '-');
+        }
       }
     }
   })
@@ -161,18 +173,49 @@ angular.module('homepage', [])
     return {
       terminal: true,
       link: function(scope, element, attr) {
-        var id = attr.jsFiddle,
-            script = '<script src="' + window.angularJS.src + '"></script>\n';
+        var name = '',
+            stylesheet = '<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">\n',
+            script = '<script src="' + window.angularJS.src + '"></script>\n',
+            fields = {
+              html: '',
+              css: '',
+              js: ''
+            };
+
+        angular.forEach(attr.jsFiddle.split(' '), function(file, index) {
+          var fileType = file.split('.')[1];
+
+          if (fileType == 'html') {
+            if (index == 0) {
+              fields[fileType] +=
+                  '<div ng-app' + (attr.module ? '="' + attr.module + '"' : '') + '>\n' +
+                    fetchCode(file, 2);
+            } else {
+              fields[fileType] += '\n\n\n  <!-- CACHE FILE: ' + file + ' -->\n' +
+                  '  <script type="text/ng-template" id="' + file + '">\n' +
+                      fetchCode(file, 4) +
+                  '  </script>\n';
+            }
+          } else {
+            fields[fileType] += fetchCode(file) + '\n';
+          }
+        });
+
+        fields.html += '</div>\n';
 
         element.html(
           '<form class="jsfiddle" method="post" action="http://jsfiddle.net/api/post/library/pure/" target="_blank">' +
-            hiddenField('title', 'AngularJS Example: ' + id) +
-            hiddenField('css', fetchCode(id + '-style')) +
-            hiddenField('html', script + '<div ng-app>\n' + fetchCode(id + '-template', 2) + '</div>') +
-            hiddenField('js', fetchCode(id + '-script')) +
+            hiddenField('title', 'AngularJS Example: ' + name) +
+            hiddenField('css', '</style> <!-- Ugly Hack due to jsFiddle issue: http://goo.gl/BUfGZ --> \n' +
+               stylesheet +
+               script +
+               '<style>\n' +
+               fields.css) +
+            hiddenField('html', fields.html) +
+            hiddenField('js', fields.js) +
             '<button class="btn btn-primary">' +
-            '<i class="icon-white icon-pencil"></i> ' +
-            'Edit Me' +
+              '<i class="icon-white icon-pencil"></i> ' +
+              'Edit Me' +
             '</button>' +
           '</form>');
 

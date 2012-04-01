@@ -14,11 +14,13 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/docs.css">
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
-  <style id="todo-style">
+  <style id="todo.css">
     .done-true {
       text-decoration: line-through;
       color: grey;
     }
+  </style>
+  <style id="project.css">
   </style>
 </head>
 <body>
@@ -85,20 +87,19 @@
         <h3><a href="#">5 Minute Tryout</a></h3>
         <h3><a href="#">Watch</a></h3>
         <h3><a href="http://docs.angularjs.org/guide/">Tutorial</a></h3>
-        <h3><a href="#">Case Studies</a></h3>
+        <h3><a href="https://github.com/angular/angular.js/wiki/Projects-using-AngularJS">Case Studies</a></h3>
       </div>
       <div class="span4">
         <h1>Develop</h1>
         <h3><a href="http://docs.angularjs.org/api/">API Reference</a></h3>
         <h3><a href="http://docs.angularjs.org/guide/">Concepts</a></h3>
-        <h3><a href="#">Download</a></h3>
+        <h3><a href="http://code.angularjs.org">Download</a></h3>
         <h3><a href="http://docs.angularjs.org/examples/">Examples</a></h3>
         <h3><a href="http://stackoverflow.com/questions/tagged/angularjs">FAQ</a></h3>
       </div>
       <div class="span4">
         <h1>Discuss</h1>
-        <h3><a href="#">Latest News</a></h3>
-        <h3>Forums: 
+        <h3>Forums:
             <a href="http://groups.google.com/group/angular" target="_blank">Mail</a>,
             <a href="http://chat.stackoverflow.com/rooms/8618/angularjs" target="_blank">Chat</a>  
         </h3>
@@ -153,14 +154,14 @@
           <div class="span8">
             <div class="pull-right">
               <span hint></span>
-              <span js-fiddle="todo"></span>
+              <span js-fiddle="todo.html todo.js todo.css"></span>
             </div>
             <h3>Code</h3>
-            <div app-source="index.html:todo-template todo.js:todo-script todo.css:todo-style" annotate="todo-annotation"></div>
+            <div app-source="todo.html todo.js todo.css" annotate="todo.annotation"></div>
           </div>
           <div class="span4">
             <h3>Running App</h3>
-            <div app-run="todo-template" class="well"></div>
+            <div app-run="todo.html" class="well"></div>
           </div>
         </div>
       </div>
@@ -175,18 +176,30 @@
           <div class="span4">
             <h3>Deep Linking</h3>
             <p>
-              Think about pages, run like ajax,
-
+              Angular apps are structured like classical round-trip apps with URLs, but unlike round-trip apps, Angular
+              apps  execute in the browser for instant navigation. The URL based focus means that deep linking works
+              out of the box, and that there is no need to register click listeners on URLs. This is a development
+              model which the web-developers are familiar with. An added benefit is that the application is composed
+              from separate pages, which are loaded on as needed basis, resulting in smaller download and faster
+              startup.
             </p>
           </div>
           <div class="span4">
             <h3>Form Validation</h3>
             <p>
+              Form validation is an important part of great user experience. Angular provides declarative primitives
+              to make it easy to build validation into your application in a declarative way. The validation declaration
+              follows the spirit of HTML, and the result of validation is available for data-binding, giving you full
+              control over the way user feedback is rendered.
             </p>
           </div>
           <div class="span4">
-            <h3>Incremental Template Loading</h3>
+            <h3>Server Communication</h3>
             <p>
+              XHR is great, but too low level. AngularJS wraps XHR to give you higher level features: data-binding
+              integration, promises, central exception management. Even higher level abstraction called Resources
+              is also available to hide all of the underlying details, and provide JavaScript objects for your
+              server based resources.
             </p>
           </div>
         </div>
@@ -195,14 +208,14 @@
           <div class="span8">
             <div class="pull-right">
               <span hint></span>
-              <span js-fiddle="xtodo"></span>
+              <span js-fiddle="project.html project-list.html project-edit.html project.js parse.js" module="project"></span>
             </div>
             <h3>Code</h3>
-            <div app-source="xtodo"></div>
+            <div app-source="project.html project-list.html project-edit.html project.js parse.js" annotate="project.annotation" module="project"></div>
           </div>
           <div class="span4">
             <h3>Running App</h3>
-            <div app-run="xtodo" class="well"></div>
+            <div app-run="project.html" module="project" class="well"></div>
           </div>
         </div>
       </div>
@@ -217,16 +230,23 @@
           <div class="span4">
             <h3>Directives</h3>
             <p>
+              Directives is the most unique and powerful feature available only in Angular. Directives allow you
+              to teach the browser new tricks! Directives let you add behavior to existing HTML constructs or to
+              create brand new HTML constructs, such as tabs dialogs, etc... With directives you can turn HTML into
+              declarative language which fits your needs.
             </p>
           </div>
           <div class="span4">
             <h3>Reusable Components</h3>
             <p>
+              Turn often used HTML fragments into reusable directives to simplify your application layout.
             </p>
           </div>
           <div class="span4">
             <h3>Localization</h3>
             <p>
+              Important part of serious apps is localization. Angular's local aware filters and stemming directives
+              give you bulding blocks to make your application available in all languages.
             </p>
           </div>
         </div>
@@ -242,7 +262,7 @@
           </div>
           <div class="span4">
             <h3>Running App</h3>
-            <div app-run="xtodo" class="well"></div>
+            <div app-run="project" class="well"></div>
           </div>
         </div>
       </div>
@@ -263,9 +283,11 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script id="angularJS" src="http://code.angularjs.org/angular-1.0.0rc2.min.js"></script>
+  <script id="angularJS" src="http://code.angularjs.org/angular-1.0.0rc3.js"></script>
   <script src="js/homepage.js"></script>
-  <script id="todo-script">
+  <!-- ============== TODO ============== -->
+
+  <script id="todo.js">
     function TodoCtrl($scope) {
       $scope.todos = [
         {text:'learn angular', done:true},
@@ -293,7 +315,8 @@
       };
     }
   </script>
-  <script type='template/html' id="todo-template">
+  <script type="text/ng-template" id="todo.html">
+    <h2>Todo</h2>
     <div ng-controller="TodoCtrl">
       <span>{{remaining()}} of {{todos.length}} remaining</span>
       [ <a href="" ng-click="archive()">archive</a> ]
@@ -310,37 +333,274 @@
       </form>
     </div>
   </script>
-  <script type='template/annotate' id="todo-annotation">
+  <script type="text/ng-template" id="todo.annotation">
     {
-      'index.html': {
-        'ng-app': 'Designates AngularJS application boundary.',
-        'script': 'Load AngularJS magic',
-        'ng-controller': 'Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page.',
-        'body': 'Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a <code>&lt;script&gt;</code> tag.',
-        '{{remaining()}}': 'If you need to activate data-binding, just use the doubly-curly <code>{{ }}</code> in text or in attributes as you see fit.',
-        'ng-click': 'Instead of registering event-handlers you call methods published on the scope. Unlike the browser <code>onclick</code> the <code>ng-click</code> executes against the controller/scope not against global window, which means that <code>ng-click</code> does not suffer frome the same issues as <code>onclick</code> suffers from.',
-        'ng-repeat': "For every object in <code>todos</code> create new copy of the <code>li</code> element. Think spreadsheet-like instant update behavior. When objects are added to <code>todos</code> the <code>ng-repeat</code> automatically adds new <code>li</code> into the DOM. Similarly when the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular.",
-        'ng-model': 'Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)',
-        '{{todo.done}}': 'The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through.',
-        'ng-submit': 'Intercepts form submission and lets the <code>addTodo()</code> method handle it.'
+      "index.html": {
+        "ng-app": "Designates AngularJS application boundary.",
+        "script": "Load AngularJS magic",
+        "ng-controller": "Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page.",
+        "body": "Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a <code>&lt;script&gt;</code> tag.",
+        "{{remaining()}}": "If you need to activate data-binding, just use the doubly-curly <code>{{ }}</code> in text or in attributes as you see fit.",
+        "ng-click": "Instead of registering event-handlers you call methods published on the scope. Unlike the browser <code>onclick</code> the <code>ng-click</code> executes against the controller/scope not against global window, which means that <code>ng-click</code> does not suffer frome the same issues as <code>onclick</code> suffers from.",
+        "ng-repeat": "For every object in <code>todos</code> create new copy of the <code>li</code> element. Think spreadsheet-like instant update behavior. When objects are added to <code>todos</code> the <code>ng-repeat</code> automatically adds new <code>li</code> into the DOM. Similarly when the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular.",
+        "ng-model": "Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)",
+        "{{todo.done}}": "The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through.",
+        "ng-submit": "Intercepts form submission and lets the <code>addTodo()</code> method handle it."
       },
 
-      'todo.css': {
+      "todo.css": {
       },
 
-      'todo.js': {
-        'TodoCtrl': 'The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.',
-        '$scope': '$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability.',
-        'todos': 'A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.',
-        'addTodo': 'We can assign behavior to $scope. This is how the view interacts with the code-behind.',
-        'push': 'Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see <code>ng&ndash;repeat</code> bellow)',
-        'todoText': 'Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API.',
-        '':'Writing to the form controls is just as easy. The data-binding will clear the control for us.',
-        'remaining': 'This is a computed property. No need to define its dependencies or worry about when it needs to be updated.',
-        '[]': 'You can replace the model with new instance at any time, without doing any special model listeners unregistered.'
+      "todo.js": {
+        "TodoCtrl": "The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.",
+        "$scope": "$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability.",
+        "todos": "A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.",
+        "addTodo": "We can assign behavior to $scope. This is how the view interacts with the code-behind.",
+        "push": "Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see <code>ng&ndash;repeat</code> bellow)",
+        "todoText": "Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API.",
+        "''": "Writing to the form controls is just as easy. The data-binding will clear the control for us.",
+        "remaining": "This is a computed property. No need to define its dependencies or worry about when it needs to be updated.",
+        "[]": "You can replace the model with new instance at any time, without doing any special model listeners unregistered."
       }
     }
   </script>
+
+  <!-- ============== Projects ============== -->
+
+  <script id="parse.js">
+    // This is a module for http://parse.com data persistence
+    angular.module('parse', []).
+      service('parse', ParseFactory);
+
+    function ParseFactory($http) {
+      var self = this,
+          config = {
+            headers: {
+              'X-Parse-Application-Id': 'iNMdOD7ijDce9udhcDoinc6vNaqY2olmtI4PMjxF',
+              'X-Parse-REST-API-Key': 'xLtbY0V0Bhcy6XYLv6zNug0SxZqJWPnCRwm7kxPb',
+              'X-Requested-With': undefined
+            }
+          };
+
+      self.forClassName = function(className) {
+        var Class = function(data) {
+              angular.extend(this, data);
+            },
+            url = 'https://api.parse.com/1/classes/' + className;
+
+
+        Class.create = function(data) {
+          var self = this;
+
+          return $http.
+              post(url, data, config).
+              then(function(response) {
+                return angular.extend(new Class(), data, response.data);
+              });
+        };
+
+        Class.get = function(id) {
+          return $http.
+              get(url + '/' + id  + '/', config).
+              then(function(response) {
+                return new Class(response.data);
+              });
+        };
+
+        Class.query = function() {
+          return $http.
+              get(url, config).
+              then(function(response) {
+                var objs = [];
+
+                angular.forEach(response.data.results, function(obj) {
+                  objs.push(new Class(obj));
+                });
+                return objs;
+              });
+        };
+
+        Class.prototype.save = function(changes) {
+          var self = this,
+              data = angular.extend({}, self, changes, {
+                objectId: undefined,
+                createdAt: undefined,
+                updatedAt: undefined});
+
+          return $http.
+            put(url + '/' + self.objectId, data, config).
+            then(function(response) {
+              angular.extend(self, changes, response.data);
+              return self;
+            });
+        };
+
+        Class.prototype.destroy = function() {
+          return $http['delete'](url + '/' + self.objectId, config)
+        };
+        return Class;
+      }
+    }
+  </script>
+  <script id="project.js">
+    angular.module('project', ['parse']).
+
+      config(function($routeProvider) {
+        $routeProvider.when('/list', {
+          controller: ProjectListCntl,
+          template: 'project-list.html' });
+        $routeProvider.when('/edit/:projectId', {
+          controller: ProjectEditCntl,
+          template: 'project-edit.html' });
+        $routeProvider.when('/new', {
+          controller: ProjectCreateCntl,
+          template: 'project-edit.html' });
+          $routeProvider.otherwise({ redirectTo: '/list'});
+      }).
+
+      factory('Project', function(parse) {
+        return parse.forClassName('project');
+      });
+
+
+
+    function ProjectListCntl($scope, Project) {
+      $scope.projects = Project.query();
+    }
+
+
+
+    function ProjectCreateCntl($scope, $location, Project) {
+      $scope.project = {
+        name: '',
+        site: '',
+        description: ''
+      };
+
+      $scope.isDirty = function() {
+        return true;
+      }
+
+      $scope.cancel = function() {
+        $location.path('/list');
+      }
+
+      $scope.save = function() {
+        Project.create($scope.project).then(function(project) {
+          $location.path('/edit/' + project.objectId);
+        });
+      }
+    }
+
+
+
+    function ProjectEditCntl($scope, $routeParams, Project, $location) {
+      var self = this;
+
+      Project.get($routeParams.projectId).then(function(project) {
+        self.project = project;
+        self.revert();
+      });
+
+      $scope.isDirty = function() {
+        return !angular.equals(self.project, $scope.project);
+      }
+
+      $scope.cancel = function() {
+        $location.path('/list');
+      }
+
+      self.revert = $scope.revert = function() {
+        $scope.project = angular.copy(self.project);
+      }
+
+      $scope.destroy = function() {
+        self.project.destroy().then(function() {
+          $location.path('/list');
+        });
+      };
+
+      $scope.save = function() {
+        self.project.save($scope.project).then(self.cancel);
+      };
+    }
+  </script>
+  <script type="text/ng-template" id="project.html">
+    <h2>JavaScript Projects</h2>
+    <div ng-view></div>
+  </script>
+
+  <script type="text/ng-template" id="project-list.html">
+    <input type="text" ng-model="predicate" class="search-query"
+           placeholder="Search" ng-model-instant>
+    <table>
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Description</th>
+          <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="project in projects | filter:predicate | orderBy:'name'">
+          <td>{{project.name}}</td>
+          <td>{{project.desc}}</td>
+          <td>
+            <a href="#/edit/{{project.objectId}}"><i class="icon-pencil"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </script>
+
+  <script type="text/ng-template" id="project-edit.html">
+    <form name="myForm">
+      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <label>Name</label>
+        <input type="text" name="name" ng-model="project.name" required
+               class="span2" ng-model-instant>
+        <span ng-show="myForm.name.$error.required" class="help-inline">
+            Required</span>
+      </div>
+
+      <div class="control-group" ng-class="{error: myForm.site.$invalid}">
+        <label>Website</label>
+        <input type="url" name="site" ng-model="project.site" required
+               class="span2" ng-model-instant>
+        <span ng-show="myForm.site.$error.required" class="help-inline">
+            Required</span>
+        <span ng-show="myForm.site.$error.url" class="help-inline">
+            Not a URL</span>
+      </div>
+
+      <label>Description</label>
+      <textarea name="description" ng-model="project.description"
+                ng-model-instant></textarea>
+
+      <label>Created</label>
+      <input type="text" name="site" disabled value="{{project.createdAt}}">
+
+      <label>Updated</label>
+      <input type="text" name="site" disabled value="{{project.updatedAt}}">
+
+      <br>
+      <button ng-click="cancel()" class="btn">Cancel</button>
+      <button ng-click="revert()" ng-disabled="!isDirty()"
+              ng-show="project.objectId" class="btn">Revert</button>
+      <button ng-click="save()" ng-disabled="!isDirty() || myForm.$invalid"
+              class="btn btn-primary">Save</button>
+      <button ng-click="destroy()" ng-disabled="isDirty()"
+              ng-show="project.objectId" class="btn btn-danger">Delete</button>
+    </form>
+  </script>
+
+  <script type="text/ng-template" id="project.annotation">
+    {
+    }
+  </script>
+
+
+
   <script src="google-code-prettify/prettify.min.js"></script>
   <script>
     var _gaq=[
