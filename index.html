@@ -22,7 +22,26 @@
   </style>
   <style id="project.css">
   </style>
-</head>
+  <style id="zippy.css">
+    .zippy {
+      border: 1px solid black;
+      display: inline-block;
+      width: 250px;
+    }
+    .zippy.opened > .title:before { content: '▼ '; }
+    .zippy.opened > .body { display: block; }
+    .zippy.closed > .title:before { content: '► '; }
+    .zippy.closed > .body { display: none; }
+    .zippy > .title {
+      background-color: black;
+      color: white;
+      padding: .1em .3em;
+      cursor: pointer;
+    }
+    .zippy > .body {
+      padding: .1em .3em;
+    }
+  </style></head>
 <body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
@@ -257,15 +276,19 @@
           <div class="span8">
             <div class="pull-right">
               <span hint></span>
-              <span js-fiddle="tabs.html tabs.js"></span>
+              <span js-fiddle="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" module="advanced"></span>
             </div>
             <h3>Code</h3>
-            <div app-source="tabs.html tabs.js" annotate="tabs.annotation" module="tabs"></div>
+            <div app-source="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" annotate="tabs.annotation" module="advanced"></div>
           </div>
           <div class="span4">
             <h3>Running App</h3>
             <br> <br> <br>
-            <div app-run="tabs.html" module="tabs" class="well"></div>
+            <h4>Locale: US</h4>
+            <div app-run="tabs.html" module="advanced" class="well"></div>
+            <br> <br> <br>
+            <h4>Locale: SK</h4>
+            <div app-run="tabs.html" module="advanced-sk" class="well"></div>
           </div>
         </div>
       </div>
@@ -289,6 +312,9 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script id="angularJS" src="http://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
+  <script src="http://code.angularjs.org/1.0.0rc3/i18n-1.0.0rc3/angular-locale_sk.js"></script>
+  <script>window.locale_sk = angular.module('ngLocale'); </script>
+  <script src="http://code.angularjs.org/1.0.0rc3/i18n-1.0.0rc3/angular-locale_en-us.js"></script>
   <script src="js/homepage.js"></script>
   <!-- ============== TODO ============== -->
 
@@ -579,6 +605,9 @@
 
   <!-- ============== Tabs ============== -->
 
+  <script id="advanced.js">
+    angular.module('advanced', ['zippy', 'tabs']);
+  </script>
   <script id="tabs.js">
     angular.module('tabs', []).
       directive('tabs', function() {
@@ -630,16 +659,83 @@
         };
       })
   </script>
+  <script id="zippy.js">
+    angular.module('zippy', []).
+      directive('zippy', function(){
+        return {
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          scope: { title:'bind' },
+          template:
+              '<div class="zippy">' +
+                '<div class="title">{{title}}</div>' +
+                '<div class="body" ng-transclude></div>' +
+              '</div>',
+          // The linking function will add behavior to the template
+          link: function(scope, element, attrs) {
+            // Title element
+            var title = angular.element(element.children()[0]),
+            // Opened / closed state
+                opened = true;
+
+            // Clicking on title should open/close the zippy
+            title.bind('click', toggle);
+
+            // Toggle the closed/opened state
+            function toggle() {
+              opened = !opened;
+              element.removeClass(opened ? 'closed' : 'opened');
+              element.addClass(opened ? 'opened' : 'closed');
+            }
+
+            // initialize the zippy
+            toggle();
+          }
+        }
+      });
+  </script>
+  <script>
+    angular.module('advanced-sk', ['advanced'])._invokeQueue.push(window.locale_sk._invokeQueue[0]);
+  </script>
+  <script id="beers.js">
+    function BeerCounter($scope, $locale) {
+      $scope.beers = 0;
+      if ($locale.id == 'en-us') {
+        $scope.beerCounts = {
+          0: 'no beers',
+          one: '{} beer',
+          other: '{} beers'
+        };
+      } else {
+        $scope.beerCounts = {
+          0: 'žjadne pivo',
+          one: '{} pivo',
+          few: '{} pivá',
+          other: '{} pív'
+        };
+      }
+    }
+  </script>
   <script type="text/ng-template" id="tabs.html">
+    <zippy title="Zippy Component Demo">
+      This is an example of reusable component.
+    </zippy>
+
+    <hr>
+
     <tabs>
-      <pane title="English">
-        some english pluralization
+      <pane title="Formating">
+        Date: {{ '2012-04-01' | date:'fullDate' }} <br>
+        Currency: {{ 123456 | currency }} <br>
+        Number: {{ 98765.4321 | number }} <br>
       </pane>
-      <pane title="French">
-        some french pluralization
-      </pane>
-      <pane title="German">
-        some german pluralization
+      <pane title="Pluralization">
+        <div ng-controller="BeerCounter">
+          <i class="icon-plus" ng-click="beers = beers + 1"></i>
+          <i class="icon-minus" ng-click="beers = beers - 1"></i>
+          <ng-pluralize count="beers" when="beerCounts"></ng-pluralize>
+        </div>
       </pane>
     </tabs>
   </script>
