@@ -6,6 +6,10 @@ form.jsfiddle {
   display: inline;
 }
 
+footer {
+  margin-bottom: 500px;
+}
+
 code.nocode {
   display: inline-block;
   background-color: #e6f0ff;

@@ -147,7 +147,7 @@ angular.module('homepage', [])
               '<div class="tab-content">' +
                 panes.join('') +
               '</div>' +
-              '</div>');
+            '</div>');
           element.find('[rel=popover]').popover();
         });
 

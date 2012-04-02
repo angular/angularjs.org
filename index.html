@@ -108,7 +108,7 @@
             <a href="https://plus.google.com/110323587230527980117" target="_blank">+AngularJS</a>
         </h3>
         <h3><a href="https://github.com/angular/angular.js">GitHub</a></h3>
-        <h3><a href="https://github.com/angular/angular.js/issues">Issue Trackr</a></h3>
+        <h3><a href="https://github.com/angular/angular.js/issues">Issue Tracker</a></h3>
       </div>
     </div>
     
@@ -161,6 +161,7 @@
           </div>
           <div class="span4">
             <h3>Running App</h3>
+            <br> <br> <br>
             <div app-run="todo.html" class="well"></div>
           </div>
         </div>
@@ -215,6 +216,7 @@
           </div>
           <div class="span4">
             <h3>Running App</h3>
+            <br> <br> <br>
             <div app-run="project.html" module="project" class="well"></div>
           </div>
         </div>
@@ -255,18 +257,21 @@
           <div class="span8">
             <div class="pull-right">
               <span hint></span>
-              <span js-fiddle="xtodo"></span>
+              <span js-fiddle="tabs.html tabs.js"></span>
             </div>
             <h3>Code</h3>
-            <div app-source="xtodo"></div>
+            <div app-source="tabs.html tabs.js" annotate="tabs.annotation" module="tabs"></div>
           </div>
           <div class="span4">
             <h3>Running App</h3>
-            <div app-run="project" class="well"></div>
+            <br> <br> <br>
+            <div app-run="tabs.html" module="tabs" class="well"></div>
           </div>
         </div>
       </div>
     </div>
+
+    <hr/>
 
     <footer class="footer">
       <p class="pull-right"><a href="#">Back to top</a></p>
@@ -283,7 +288,7 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script id="angularJS" src="http://code.angularjs.org/angular-1.0.0rc3.js"></script>
+  <script id="angularJS" src="http://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
   <script src="js/homepage.js"></script>
   <!-- ============== TODO ============== -->
 
@@ -335,7 +340,7 @@
   </script>
   <script type="text/ng-template" id="todo.annotation">
     {
-      "index.html": {
+      "todo.html": {
         "ng-app": "Designates AngularJS application boundary.",
         "script": "Load AngularJS magic",
         "ng-controller": "Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page.",
@@ -436,7 +441,7 @@
         };
 
         Class.prototype.destroy = function() {
-          return $http['delete'](url + '/' + self.objectId, config)
+          return $http['delete'](url + '/' + this.objectId, config)
         };
         return Class;
       }
@@ -446,16 +451,14 @@
     angular.module('project', ['parse']).
 
       config(function($routeProvider) {
-        $routeProvider.when('/list', {
-          controller: ProjectListCntl,
-          template: 'project-list.html' });
-        $routeProvider.when('/edit/:projectId', {
-          controller: ProjectEditCntl,
-          template: 'project-edit.html' });
-        $routeProvider.when('/new', {
-          controller: ProjectCreateCntl,
-          template: 'project-edit.html' });
-          $routeProvider.otherwise({ redirectTo: '/list'});
+        $routeProvider.when('/list',
+          { controller: ProjectListCntl, template: 'project-list.html' });
+        $routeProvider.when('/edit/:projectId',
+          { controller: ProjectEditCntl, template: 'project-edit.html' });
+        $routeProvider.when('/new',
+          { controller: ProjectCreateCntl, template: 'project-edit.html' });
+
+        $routeProvider.otherwise({ redirectTo: '/list'});
       }).
 
       factory('Project', function(parse) {
@@ -471,19 +474,7 @@
 
 
     function ProjectCreateCntl($scope, $location, Project) {
-      $scope.project = {
-        name: '',
-        site: '',
-        description: ''
-      };
-
-      $scope.isDirty = function() {
-        return true;
-      }
-
-      $scope.cancel = function() {
-        $location.path('/list');
-      }
+      $scope.project = {name: '', site: '', description: ''};
 
       $scope.save = function() {
         Project.create($scope.project).then(function(project) {
@@ -494,24 +485,16 @@
 
 
 
-    function ProjectEditCntl($scope, $routeParams, Project, $location) {
+    function ProjectEditCntl($scope, $location, $routeParams, Project) {
       var self = this;
 
       Project.get($routeParams.projectId).then(function(project) {
         self.project = project;
-        self.revert();
+        $scope.project = angular.copy(self.project);
       });
 
-      $scope.isDirty = function() {
-        return !angular.equals(self.project, $scope.project);
-      }
-
-      $scope.cancel = function() {
-        $location.path('/list');
-      }
-
-      self.revert = $scope.revert = function() {
-        $scope.project = angular.copy(self.project);
+      $scope.isClean = function() {
+        return angular.equals(self.project, $scope.project);
       }
 
       $scope.destroy = function() {
@@ -529,7 +512,6 @@
     <h2>JavaScript Projects</h2>
     <div ng-view></div>
   </script>
-
   <script type="text/ng-template" id="project-list.html">
     <input type="text" ng-model="predicate" class="search-query"
            placeholder="Search" ng-model-instant>
@@ -544,7 +526,7 @@
       <tbody>
         <tr ng-repeat="project in projects | filter:predicate | orderBy:'name'">
           <td>{{project.name}}</td>
-          <td>{{project.desc}}</td>
+          <td>{{project.description}}</td>
           <td>
             <a href="#/edit/{{project.objectId}}"><i class="icon-pencil"></i></a>
           </td>
@@ -552,7 +534,6 @@
       </tbody>
     </table>
   </script>
-
   <script type="text/ng-template" id="project-edit.html">
     <form name="myForm">
       <div class="control-group" ng-class="{error: myForm.name.$invalid}">
@@ -584,22 +565,90 @@
       <input type="text" name="site" disabled value="{{project.updatedAt}}">
 
       <br>
-      <button ng-click="cancel()" class="btn">Cancel</button>
-      <button ng-click="revert()" ng-disabled="!isDirty()"
-              ng-show="project.objectId" class="btn">Revert</button>
-      <button ng-click="save()" ng-disabled="!isDirty() || myForm.$invalid"
+      <a href="#/list" class="btn">Cancel</a>
+      <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
               class="btn btn-primary">Save</button>
-      <button ng-click="destroy()" ng-disabled="isDirty()"
+      <button ng-click="destroy()"
               ng-show="project.objectId" class="btn btn-danger">Delete</button>
     </form>
   </script>
-
   <script type="text/ng-template" id="project.annotation">
     {
     }
   </script>
 
+  <!-- ============== Tabs ============== -->
 
+  <script id="tabs.js">
+    angular.module('tabs', []).
+      directive('tabs', function() {
+        return {
+          restrict: 'E',
+          transclude: true,
+          scope: {},
+          template:
+            '<div class="tabbable">' +
+              '<ul class="nav nav-tabs">' +
+                '<li ng-repeat="tab in tabs" ng-class="{active: tab.selected}">' +
+                  '<a href="" ng-click="select(tab)">{{tab.title}}</a>' +
+                '</li>' +
+              '</ul>' +
+              '<div class="tab-content" ng-transclude></div>' +
+            '</div>',
+          replace: true,
+          controller: function($scope, $element) {
+            var tabs = $scope.tabs = [];
+
+            this.addPane = function(pane) {
+              if (tabs.length == 0) $scope.select(pane);
+              tabs.push(pane);
+            }
+
+            $scope.select = function(pane) {
+              angular.forEach(tabs, function(pane) {
+                pane.selected = false;
+              });
+              pane.selected = true;
+            }
+          }
+        };
+      }).
+      directive('pane', function() {
+        return {
+          restrict: 'E',
+          transclude: true,
+          scope: {
+            title: 'bind'
+          },
+          template: '<div class="tab-pane" ng-class="{active: selected}" ' +
+                         'ng-transclude></div>',
+          replace: true,
+          require: '^tabs',
+          link: function(scope, element, attrs, tabsCntl) {
+            tabsCntl.addPane(scope);
+          }
+        };
+      })
+  </script>
+  <script type="text/ng-template" id="tabs.html">
+    <tabs>
+      <pane title="English">
+        some english pluralization
+      </pane>
+      <pane title="French">
+        some french pluralization
+      </pane>
+      <pane title="German">
+        some german pluralization
+      </pane>
+    </tabs>
+  </script>
+  <script id="tabs.annotation">
+    {
+    }
+  </script>
+
+  <!-- ============== Analytics ============== -->
 
   <script src="google-code-prettify/prettify.min.js"></script>
   <script>
