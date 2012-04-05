@@ -77,12 +77,8 @@
     </div>
   </header>
   <div role="main" class="container">
-    <div class="row">
-      <div class="span12"><br><br><br><br><br></div>
-      <div id="cse" style="width: 100%;"></div>
-    </div>
-    
-    <div class="row">
+
+    <div class="row" style="padding-top: 80px;">
       <div class="span12">
         <div class="hero-unit">
           <div>
@@ -135,18 +131,12 @@
     
     <hr>
 
-    <div class="row">
-      <div class="span12">
-        <div class="pull-right">
-          <span hint></span>
-          <span js-fiddle="hello.html hello.js"></span>
-        </div>
-        <h1>HTML redesigned for web apps!</h1>
-      </div>
-    </div>
+    <h1>HTML redesigned for web apps!</h1>
     <div class="row">
       <div class="span8" app-source="hello.html hello.js" annotate="hello.annotation"></div>
       <div class="span4">
+        <span hint></span>
+        <span class="pull-right" js-fiddle="hello.html hello.js"></span>
         <br> <br> <br>
         <div app-run="hello.html" class="well"></div>
       </div>
@@ -162,166 +152,166 @@
 
     <hr>
 
+    <h1>Basics</h1>
     <div class="row">
-      <div class="span12">
-        <h1>Basics</h1>
-        <div class="row">
-          <div class="span4">
-            <h3>Data Binding</h3>
-            <p>
-              HTML is an excellent templating language. AngularJS <a href="" rel="popover"
-              data-content="AngularJS extends the HTML vocabulary (elements/attributes) which the
+      <div class="span4">
+        <h3>Data Binding</h3>
+        <p>
+          HTML is an excellent templating language. AngularJS <a href="" rel="popover"
+                                                                 data-content="AngularJS extends the HTML vocabulary (elements/attributes) which the
               browsers understand, in an extensible way">adds</a> data-binding <a href=""
-              rel="popover" data-content="Other frameworks concatenate HTML string
+                                                                                  rel="popover" data-content="Other frameworks concatenate HTML string
               templates">directly</a> into HTML using the <code>{{ expression }}</code> notation.
-              Form controls are bound bi-directionally and validated. This makes the model the
-              single source of truth in your application.
-            </p>
-          </div>
-          <div class="span4">
-            <h3>Controller</h3>
-            <p>
-              Controller is the code behind the DOM. It is pure application behavior in an
-              unpolluted imperative way. Define your behavior here, update the model on server
-              or user interaction and you are done. No need to register callbacks, or manipulate
-              the DOM, just watch the data-binding magic do the work.
-            </p>
-          </div>
-          <div class="span4">
-            <h3>Plain JavaScript</h3>
-            <p>
-              AngularJS wants to be unobtrusive. Unlike other frameworks, there is no need to
-              inherit from proprietary types; to wrap the model in assessor methods; or to use
-              proprietary collections and object hashes. Just plain old JavaScript here. This
-              makes your code easy to test, maintain, reuse, and free from boilerplate.
-            </p>
-          </div>
-        </div>
-        <h2>Example</h2>
-        <div class="row">
-          <div class="span8">
-            <div class="pull-right">
-              <span hint></span>
-              <span js-fiddle="todo.html todo.js todo.css"></span>
-            </div>
-            <h3>Code</h3>
-            <div app-source="todo.html todo.js todo.css" annotate="todo.annotation"></div>
-          </div>
-          <div class="span4">
-            <h3>Running App</h3>
-            <br> <br> <br>
-            <div app-run="todo.html" class="well"></div>
-          </div>
-        </div>
+          Form controls are bound bi-directionally and validated. This makes the model the
+          single source of truth in your application.
+        </p>
+      </div>
+      <div class="span4">
+        <h3>Controller</h3>
+        <p>
+          Controller is the code behind the DOM. It is pure application behavior in an
+          unpolluted imperative way. Define your behavior here, update the model on server
+          or user interaction and you are done. No need to register callbacks, or manipulate
+          the DOM, just watch the data-binding magic do the work.
+        </p>
+      </div>
+      <div class="span4">
+        <h3>Plain JavaScript</h3>
+        <p>
+          AngularJS wants to be unobtrusive. Unlike other frameworks, there is no need to
+          inherit from proprietary types; to wrap the model in assessor methods; or to use
+          proprietary collections and object hashes. Just plain old JavaScript here. This
+          makes your code easy to test, maintain, reuse, and free from boilerplate.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8" app-source="todo.html todo.js todo.css" annotate="todo.annotation"></div>
+      <div class="span4">
+        <span hint></span>
+        <span class="pull-right" js-fiddle="todo.html todo.js todo.css"></span>
+        <br> <br> <br>
+        <div app-run="todo.html" class="well"></div>
       </div>
     </div>
 
     <hr>
 
+    <h1>Intermediate</h1>
     <div class="row">
-      <div class="span12">
-        <h1>Intermediate</h1>
-        <div class="row">
-          <div class="span4">
-            <h3>Deep Linking</h3>
-            <p>
-              Angular apps are structured like classical round-trip apps with URLs, but unlike round-trip apps, Angular
-              apps  execute in the browser for instant navigation. The URL based focus means that deep linking works
-              out of the box, and that there is no need to register click listeners on URLs. This is a development
-              model which the web-developers are familiar with. An added benefit is that the application is composed
-              from separate pages, which are loaded on as needed basis, resulting in smaller download and faster
-              startup.
-            </p>
-          </div>
-          <div class="span4">
-            <h3>Form Validation</h3>
-            <p>
-              Form validation is an important part of great user experience. Angular provides declarative primitives
-              to make it easy to build validation into your application in a declarative way. The validation declaration
-              follows the spirit of HTML, and the result of validation is available for data-binding, giving you full
-              control over the way user feedback is rendered.
-            </p>
-          </div>
-          <div class="span4">
-            <h3>Server Communication</h3>
-            <p>
-              XHR is great, but too low level. AngularJS wraps XHR to give you higher level features: data-binding
-              integration, promises, central exception management. Even higher level abstraction called Resources
-              is also available to hide all of the underlying details, and provide JavaScript objects for your
-              server based resources.
-            </p>
-          </div>
-        </div>
-        <h2>Example</h2>
-        <div class="row">
-          <div class="span8">
-            <div class="pull-right">
-              <span hint></span>
-              <span js-fiddle="project.html project-list.html project-edit.html project.js parse.js" module="project"></span>
-            </div>
-            <h3>Code</h3>
-            <div app-source="project.html project-list.html project-edit.html project.js parse.js" annotate="project.annotation" module="project"></div>
-          </div>
-          <div class="span4">
-            <h3>Running App</h3>
-            <br> <br> <br>
-            <div app-run="project.html" module="project" class="well"></div>
-          </div>
-        </div>
+      <div class="span4">
+        <h3>Deep Linking</h3>
+        <p>
+          Angular apps are structured like classical round-trip apps with URLs, but unlike round-trip apps, Angular
+          apps  execute in the browser for instant navigation. The URL based focus means that deep linking works
+          out of the box, and that there is no need to register click listeners on URLs. This is a development
+          model which the web-developers are familiar with. An added benefit is that the application is composed
+          from separate pages, which are loaded on as needed basis, resulting in smaller download and faster
+          startup.
+        </p>
+      </div>
+      <div class="span4">
+        <h3>Form Validation</h3>
+        <p>
+          Form validation is an important part of great user experience. Angular provides declarative primitives
+          to make it easy to build validation into your application in a declarative way. The validation declaration
+          follows the spirit of HTML, and the result of validation is available for data-binding, giving you full
+          control over the way user feedback is rendered.
+        </p>
+      </div>
+      <div class="span4">
+        <h3>Server Communication</h3>
+        <p>
+          XHR is great, but too low level. AngularJS wraps XHR to give you higher level features: data-binding
+          integration, promises, central exception management. Even higher level abstraction called Resources
+          is also available to hide all of the underlying details, and provide JavaScript objects for your
+          server based resources.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8" app-source="project.html project-list.html project-edit.html project.js parse.js" annotate="project.annotation" module="project"></div>
+      <div class="span4">
+        <span hint></span>
+        <span class="pull-right" js-fiddle="project.html project-list.html project-edit.html project.js parse.js" module="project"></span>
+        <br> <br> <br>
+        <div app-run="project.html" module="project" class="well"></div>
       </div>
     </div>
 
     <hr>
 
+    <h1>Advanced</h1>
     <div class="row">
-      <div class="span12">
-        <h1>Advanced</h1>
-        <div class="row">
-          <div class="span4">
-            <h3>Directives</h3>
-            <p>
-              Directives is the most unique and powerful feature available only in Angular. Directives allow you
-              to teach the browser new tricks! Directives let you add behavior to existing HTML constructs or to
-              create brand new HTML constructs, such as tabs dialogs, etc... With directives you can turn HTML into
-              declarative language which fits your needs.
-            </p>
-          </div>
-          <div class="span4">
-            <h3>Reusable Components</h3>
-            <p>
-              Turn often used HTML fragments into reusable directives to simplify your application layout.
-            </p>
-          </div>
-          <div class="span4">
-            <h3>Localization</h3>
-            <p>
-              Important part of serious apps is localization. Angular's local aware filters and stemming directives
-              give you bulding blocks to make your application available in all languages.
-            </p>
-          </div>
-        </div>
-        <h2>Example</h2>
-        <div class="row">
-          <div class="span8">
-            <div class="pull-right">
-              <span hint></span>
-              <span js-fiddle="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" module="advanced"></span>
-            </div>
-            <h3>Code</h3>
-            <div app-source="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" annotate="tabs.annotation" module="advanced"></div>
-          </div>
-          <div class="span4">
-            <h3>Running App</h3>
-            <br> <br> <br>
-            <h4>Locale: US</h4>
-            <div app-run="tabs.html" module="advanced" class="well"></div>
-            <br> <br> <br>
-            <h4>Locale: SK</h4>
-            <div app-run="tabs.html" module="advanced-sk" class="well"></div>
-          </div>
-        </div>
+      <div class="span4">
+        <h3>Directives</h3>
+        <p>
+          Directives is the most unique and powerful feature available only in Angular. Directives allow you
+          to teach the browser new tricks! Directives let you add behavior to existing HTML constructs or to
+          create brand new HTML constructs, such as tabs dialogs, etc... With directives you can turn HTML into
+          declarative language which fits your needs.
+        </p>
+      </div>
+      <div class="span4">
+        <h3>Reusable Components</h3>
+        <p>
+          Turn often used HTML fragments into reusable directives to simplify your application layout.
+        </p>
+      </div>
+      <div class="span4">
+        <h3>Localization</h3>
+        <p>
+          Important part of serious apps is localization. Angular's local aware filters and stemming directives
+          give you bulding blocks to make your application available in all languages.
+        </p>
       </div>
     </div>
+    <div class="row">
+      <div class="span8" app-source="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" annotate="tabs.annotation" module="advanced"></div>
+      <div class="span4">
+        <span hint></span>
+        <span class="pull-right" js-fiddle="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" module="advanced"></span>
+        <br> <br> <br>
+        <h4>Locale: US</h4>
+        <div app-run="tabs.html" module="advanced" class="well"></div>
+        <br> <br> <br>
+        <h4>Locale: SK</h4>
+        <div app-run="tabs.html" module="advanced-sk" class="well"></div>
+      </div>
+    </div>
+
+    <hr/>
+
+    <h1>Expert</h1>
+    <div class="row">
+      <div class="span4">
+        <h3>Embeddable</h3>
+        <p>
+          Add as much or as little of AngularJS to an existing page, unlike many other frameworks which require full
+          commitment. As an example this  page is an AngularJS application, and there are other AngularJS application
+          examples embedded in it. Because AngularJS is allergic to global state, the examples on this page can be
+          embedded without the use of <code>iframe</code>s.
+        </p>
+      </div>
+      <div class="span4">
+        <h3>Injectable</h3>
+        <p>
+          AngularJS comes with a dependency injection framework built in, which means that any component which
+          does not fit your needs can be easily replaced. The dependency injection allows you to describe
+          your application dependencies, and as a result AngularJS applications have no <code>main()</code> methods.
+        </p>
+      </div>
+      <div class="span4">
+        <h3>Testable</h3>
+          AngularJS was designed from ground up to be testable. It encourages behavior-view separation, comes
+          pre-bundled with mocks, and takes full advantage of dependency injection. It also comes with end-to-end
+          scenario runner which understands the AngularJS inner workings and thus removes any need for wait statements
+          in your scenarios, which are the main cause of flakyness.
+        <p>
+        </p>
+      </div>
+    </div>
+
 
     <hr/>
 
