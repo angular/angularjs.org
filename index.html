@@ -11,6 +11,8 @@
                  Declarative templates with data-binding, MVC, dependency injection and great
                  testability story all implemented with pure client-side JavaScript!">
   <title>AngularJS — Superheroic JavaScript MVC Framework</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/docs.css">
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
@@ -50,7 +52,9 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="http://angularjs.org">AngularJS</a>
+          <a class="brand" href="http://angularjs.org" style="padding-top: 6px; padding-bottom: 0px;">
+            <img src="img/AngularJS-small.png" width="95" height="25">
+          </a>
           <ul class="nav">
             <li class="divider-vertical"></li>
             <li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
@@ -83,23 +87,21 @@
         <div class="hero-unit">
           <div>
             <div class="pull-left">
-              <h1>AngularJS &nbsp;|&nbsp;</h1>
+              <img src="img/AngularJS-large.png" width="385" height="100" style="padding-right: 70px;">
             </div>
             <div>
-              <ul class="unstyled">
+              <ul class="unstyled" style="padding-top: 21px">
                 <li>Stop writing boilerplate</li>
                 <li>Write awesome apps instead of wrestling with browsers.</li>
                 <li>Write instantly testable code.</li>
               </ul>
             </div>
-            <hr class="black">
-            <p>HTML redesigned for web apps!</p>
           </div>
         </div>
       </div>
     </div>
-    
-    <div class="row">
+
+    <div class="row switchboard">
       <div class="span4">
         <h1>Learn</h1>
         <h3><a href="#">Why AngularJS?</a></h3>
@@ -131,6 +133,33 @@
       </div>
     </div>
     
+    <hr>
+
+    <div class="row">
+      <div class="span12">
+        <div class="pull-right">
+          <span hint></span>
+          <span js-fiddle="hello.html hello.js"></span>
+        </div>
+        <h1>HTML redesigned for web apps!</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8" app-source="hello.html hello.js" annotate="hello.annotation"></div>
+      <div class="span4">
+        <br> <br> <br>
+        <div app-run="hello.html" class="well"></div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="span12">
+        <iframe width="940" height="556" src="http://www.youtube.com/embed/WuiHuZq_cg4?hd=1" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
     <hr>
 
     <div class="row">
@@ -316,240 +345,269 @@
   <script>window.locale_sk = angular.module('ngLocale'); </script>
   <script src="http://code.angularjs.org/1.0.0rc3/i18n-1.0.0rc3/angular-locale_en-us.js"></script>
   <script src="js/homepage.js"></script>
-  <!-- ============== TODO ============== -->
 
-  <script id="todo.js">
-    function TodoCtrl($scope) {
-      $scope.todos = [
-        {text:'learn angular', done:true},
-        {text:'build an angular app', done:false}];
+  <div class="hello-code">
+    <!-- ============== Hello ============== -->
 
-      $scope.addTodo = function() {
-        $scope.todos.push({text:$scope.todoText, done:false});
-        $scope.todoText = '';
-      };
-
-      $scope.remaining = function() {
-        var count = 0;
-        angular.forEach($scope.todos, function(todo) {
-          count += todo.done ? 1 : 0;
-        });
-        return count;
-      };
-
-      $scope.archive = function() {
-        var oldTodos = $scope.todos;
-        $scope.todos = [];
-        angular.forEach(oldTodos, function(todo) {
-          if (!todo.done) $scope.todos.push(todo);
-        });
-      };
-    }
-  </script>
-  <script type="text/ng-template" id="todo.html">
-    <h2>Todo</h2>
-    <div ng-controller="TodoCtrl">
-      <span>{{remaining()}} of {{todos.length}} remaining</span>
-      [ <a href="" ng-click="archive()">archive</a> ]
-      <ul class="unstyled">
-        <li ng-repeat="todo in todos">
-          <input type="checkbox" ng-model="todo.done">
-          <span class="done-{{todo.done}}">{{todo.text}}</span>
-        </li>
-      </ul>
-      <form ng-submit="addTodo()">
-        <input type="text" ng-model="todoText"  ng-model-instant size="30"
-               placeholder="add new todo here">
-        <input class="btn-primary" type="submit" value="add">
-      </form>
-    </div>
-  </script>
-  <script type="text/ng-template" id="todo.annotation">
-    {
-      "todo.html": {
-        "ng-app": "Designates AngularJS application boundary.",
-        "script": "Load AngularJS magic",
-        "ng-controller": "Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page.",
-        "body": "Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a <code>&lt;script&gt;</code> tag.",
-        "{{remaining()}}": "If you need to activate data-binding, just use the doubly-curly <code>{{ }}</code> in text or in attributes as you see fit.",
-        "ng-click": "Instead of registering event-handlers you call methods published on the scope. Unlike the browser <code>onclick</code> the <code>ng-click</code> executes against the controller/scope not against global window, which means that <code>ng-click</code> does not suffer frome the same issues as <code>onclick</code> suffers from.",
-        "ng-repeat": "For every object in <code>todos</code> create new copy of the <code>li</code> element. Think spreadsheet-like instant update behavior. When objects are added to <code>todos</code> the <code>ng-repeat</code> automatically adds new <code>li</code> into the DOM. Similarly when the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular.",
-        "ng-model": "Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)",
-        "{{todo.done}}": "The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through.",
-        "ng-submit": "Intercepts form submission and lets the <code>addTodo()</code> method handle it."
-      },
-
-      "todo.css": {
-      },
-
-      "todo.js": {
-        "TodoCtrl": "The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.",
-        "$scope": "$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability.",
-        "todos": "A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.",
-        "addTodo": "We can assign behavior to $scope. This is how the view interacts with the code-behind.",
-        "push": "Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see <code>ng&ndash;repeat</code> bellow)",
-        "todoText": "Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API.",
-        "''": "Writing to the form controls is just as easy. The data-binding will clear the control for us.",
-        "remaining": "This is a computed property. No need to define its dependencies or worry about when it needs to be updated.",
-        "[]": "You can replace the model with new instance at any time, without doing any special model listeners unregistered."
+    <script id="hello.js">
+      function HelloCtrl($scope) {
+        $scope.yourName = 'World';
       }
-    }
-  </script>
+    </script>
+    <script type="text/ng-template" id="hello.html">
+      <div ng-controller="HelloCtrl">
+        <label>Name:</label>
+        <input type="text" ng-model="yourName" value="World" ng-model-instant>
+        <hr>
+        <h1>Hello {{yourName}}!</h1>
+      </div>
+    </script>
+    <script type="text/ng-template" id="hello.annotation">
+      { "hello.html":
+          { "ng-app": "Designates AngularJS application boundary."
+          , "script": "Load AngularJS magic"
+          , "ng-controller": "Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page."
+          , "body": "Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a <code>&lt;script&gt;</code> tag."
+          , "ng-model": "Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)"
+          , "{{yourName}}": "The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through."
+          }
+      , "hello.js:":
+          { "HelloCtrl": "The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate."
+          , "$scope": "$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability."
+          }
+      }
+    </script>
+  </div>
+  <div class="todo-code">
+    <!-- ============== TODO ============== -->
+    <script id="todo.js">
+      function TodoCtrl($scope) {
+        $scope.todos = [
+          {text:'learn angular', done:true},
+          {text:'build an angular app', done:false}];
 
-  <!-- ============== Projects ============== -->
+        $scope.addTodo = function() {
+          $scope.todos.push({text:$scope.todoText, done:false});
+          $scope.todoText = '';
+        };
 
-  <script id="parse.js">
-    // This is a module for http://parse.com data persistence
-    angular.module('parse', []).
-      service('parse', ParseFactory);
+        $scope.remaining = function() {
+          var count = 0;
+          angular.forEach($scope.todos, function(todo) {
+            count += todo.done ? 1 : 0;
+          });
+          return count;
+        };
 
-    function ParseFactory($http) {
-      var self = this,
-          config = {
-            headers: {
-              'X-Parse-Application-Id': 'iNMdOD7ijDce9udhcDoinc6vNaqY2olmtI4PMjxF',
-              'X-Parse-REST-API-Key': 'xLtbY0V0Bhcy6XYLv6zNug0SxZqJWPnCRwm7kxPb',
-              'X-Requested-With': undefined
-            }
+        $scope.archive = function() {
+          var oldTodos = $scope.todos;
+          $scope.todos = [];
+          angular.forEach(oldTodos, function(todo) {
+            if (!todo.done) $scope.todos.push(todo);
+          });
+        };
+      }
+    </script>
+    <script type="text/ng-template" id="todo.html">
+      <h2>Todo</h2>
+      <div ng-controller="TodoCtrl">
+        <span>{{remaining()}} of {{todos.length}} remaining</span>
+        [ <a href="" ng-click="archive()">archive</a> ]
+        <ul class="unstyled">
+          <li ng-repeat="todo in todos">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+          </li>
+        </ul>
+        <form ng-submit="addTodo()">
+          <input type="text" ng-model="todoText"  ng-model-instant size="30"
+                 placeholder="add new todo here">
+          <input class="btn-primary" type="submit" value="add">
+        </form>
+      </div>
+    </script>
+    <script type="text/ng-template" id="todo.annotation">
+      {
+        "todo.html": {
+          "{{remaining()}}": "If you need to activate data-binding, just use the doubly-curly <code>{{ }}</code> in text or in attributes as you see fit.",
+          "ng-click": "Instead of registering event-handlers you call methods published on the scope. Unlike the browser <code>onclick</code> the <code>ng-click</code> executes against the controller/scope not against global window, which means that <code>ng-click</code> does not suffer frome the same issues as <code>onclick</code> suffers from.",
+          "ng-repeat": "For every object in <code>todos</code> create new copy of the <code>li</code> element. Think spreadsheet-like instant update behavior. When objects are added to <code>todos</code> the <code>ng-repeat</code> automatically adds new <code>li</code> into the DOM. Similarly when the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular.",
+          "ng-model": "Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)",
+          "{{todo.done}}": "The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through.",
+          "ng-submit": "Intercepts form submission and lets the <code>addTodo()</code> method handle it."
+        },
+
+        "todo.css": {
+        },
+
+        "todo.js": {
+          "TodoCtrl": "The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.",
+          "$scope": "$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability.",
+          "todos": "A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.",
+          "addTodo": "We can assign behavior to $scope. This is how the view interacts with the code-behind.",
+          "push": "Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see <code>ng&ndash;repeat</code> bellow)",
+          "todoText": "Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API.",
+          "''": "Writing to the form controls is just as easy. The data-binding will clear the control for us.",
+          "remaining": "This is a computed property. No need to define its dependencies or worry about when it needs to be updated.",
+          "[]": "You can replace the model with new instance at any time, without doing any special model listeners unregistered."
+        }
+      }
+    </script>
+  </div>
+  <div class="project-code">
+    <!-- ============== Projects ============== -->
+    <script id="parse.js">
+      // This is a module for http://parse.com data persistence
+      angular.module('parse', []).
+          service('parse', ParseFactory);
+
+      function ParseFactory($http) {
+        var self = this,
+            config = {
+              headers: {
+                'X-Parse-Application-Id': 'iNMdOD7ijDce9udhcDoinc6vNaqY2olmtI4PMjxF',
+                'X-Parse-REST-API-Key': 'xLtbY0V0Bhcy6XYLv6zNug0SxZqJWPnCRwm7kxPb',
+                'X-Requested-With': undefined
+              }
+            };
+
+        self.forClassName = function(className) {
+          var Class = function(data) {
+                angular.extend(this, data);
+              },
+              url = 'https://api.parse.com/1/classes/' + className;
+
+
+          Class.create = function(data) {
+            var self = this;
+
+            return $http.
+                post(url, data, config).
+                then(function(response) {
+                  return angular.extend(new Class(), data, response.data);
+                });
           };
 
-      self.forClassName = function(className) {
-        var Class = function(data) {
-              angular.extend(this, data);
-            },
-            url = 'https://api.parse.com/1/classes/' + className;
-
-
-        Class.create = function(data) {
-          var self = this;
-
-          return $http.
-              post(url, data, config).
-              then(function(response) {
-                return angular.extend(new Class(), data, response.data);
-              });
-        };
-
-        Class.get = function(id) {
-          return $http.
-              get(url + '/' + id  + '/', config).
-              then(function(response) {
-                return new Class(response.data);
-              });
-        };
-
-        Class.query = function() {
-          return $http.
-              get(url, config).
-              then(function(response) {
-                var objs = [];
-
-                angular.forEach(response.data.results, function(obj) {
-                  objs.push(new Class(obj));
+          Class.get = function(id) {
+            return $http.
+                get(url + '/' + id  + '/', config).
+                then(function(response) {
+                  return new Class(response.data);
                 });
-                return objs;
-              });
-        };
+          };
 
-        Class.prototype.save = function(changes) {
-          var self = this,
-              data = angular.extend({}, self, changes, {
-                objectId: undefined,
-                createdAt: undefined,
-                updatedAt: undefined});
+          Class.query = function() {
+            return $http.
+                get(url, config).
+                then(function(response) {
+                  var objs = [];
 
-          return $http.
-            put(url + '/' + self.objectId, data, config).
-            then(function(response) {
-              angular.extend(self, changes, response.data);
-              return self;
-            });
-        };
+                  angular.forEach(response.data.results, function(obj) {
+                    objs.push(new Class(obj));
+                  });
+                  return objs;
+                });
+          };
 
-        Class.prototype.destroy = function() {
-          return $http['delete'](url + '/' + this.objectId, config)
-        };
-        return Class;
+          Class.prototype.save = function(changes) {
+            var self = this,
+                data = angular.extend({}, self, changes, {
+                  objectId: undefined,
+                  createdAt: undefined,
+                  updatedAt: undefined});
+
+            return $http.
+                put(url + '/' + self.objectId, data, config).
+                then(function(response) {
+                  angular.extend(self, changes, response.data);
+                  return self;
+                });
+          };
+
+          Class.prototype.destroy = function() {
+            return $http['delete'](url + '/' + this.objectId, config)
+          };
+          return Class;
+        }
       }
-    }
-  </script>
-  <script id="project.js">
-    angular.module('project', ['parse']).
+    </script>
+    <script id="project.js">
+      angular.module('project', ['parse']).
 
-      config(function($routeProvider) {
-        $routeProvider.when('/list',
-          { controller: ProjectListCntl, template: 'project-list.html' });
-        $routeProvider.when('/edit/:projectId',
-          { controller: ProjectEditCntl, template: 'project-edit.html' });
-        $routeProvider.when('/new',
-          { controller: ProjectCreateCntl, template: 'project-edit.html' });
+          config(function($routeProvider) {
+            $routeProvider.when('/list',
+                { controller: ProjectListCntl, template: 'project-list.html' });
+            $routeProvider.when('/edit/:projectId',
+                { controller: ProjectEditCntl, template: 'project-edit.html' });
+            $routeProvider.when('/new',
+                { controller: ProjectCreateCntl, template: 'project-edit.html' });
 
-        $routeProvider.otherwise({ redirectTo: '/list'});
-      }).
+            $routeProvider.otherwise({ redirectTo: '/list'});
+          }).
 
-      factory('Project', function(parse) {
-        return parse.forClassName('project');
-      });
-
-
-
-    function ProjectListCntl($scope, Project) {
-      $scope.projects = Project.query();
-    }
+          factory('Project', function(parse) {
+            return parse.forClassName('project');
+          });
 
 
 
-    function ProjectCreateCntl($scope, $location, Project) {
-      $scope.project = {name: '', site: '', description: ''};
+      function ProjectListCntl($scope, Project) {
+        $scope.projects = Project.query();
+      }
 
-      $scope.save = function() {
-        Project.create($scope.project).then(function(project) {
-          $location.path('/edit/' + project.objectId);
+
+
+      function ProjectCreateCntl($scope, $location, Project) {
+        $scope.project = {name: '', site: '', description: ''};
+
+        $scope.save = function() {
+          Project.create($scope.project).then(function(project) {
+            $location.path('/edit/' + project.objectId);
+          });
+        }
+      }
+
+
+
+      function ProjectEditCntl($scope, $location, $routeParams, Project) {
+        var self = this;
+
+        Project.get($routeParams.projectId).then(function(project) {
+          self.project = project;
+          $scope.project = angular.copy(self.project);
         });
+
+        $scope.isClean = function() {
+          return angular.equals(self.project, $scope.project);
+        }
+
+        $scope.destroy = function() {
+          self.project.destroy().then(function() {
+            $location.path('/list');
+          });
+        };
+
+        $scope.save = function() {
+          self.project.save($scope.project).then(self.cancel);
+        };
       }
-    }
-
-
-
-    function ProjectEditCntl($scope, $location, $routeParams, Project) {
-      var self = this;
-
-      Project.get($routeParams.projectId).then(function(project) {
-        self.project = project;
-        $scope.project = angular.copy(self.project);
-      });
-
-      $scope.isClean = function() {
-        return angular.equals(self.project, $scope.project);
-      }
-
-      $scope.destroy = function() {
-        self.project.destroy().then(function() {
-          $location.path('/list');
-        });
-      };
-
-      $scope.save = function() {
-        self.project.save($scope.project).then(self.cancel);
-      };
-    }
-  </script>
-  <script type="text/ng-template" id="project.html">
-    <h2>JavaScript Projects</h2>
-    <div ng-view></div>
-  </script>
-  <script type="text/ng-template" id="project-list.html">
-    <input type="text" ng-model="predicate" class="search-query"
-           placeholder="Search" ng-model-instant>
-    <table>
-      <thead>
+    </script>
+    <script type="text/ng-template" id="project.html">
+      <h2>JavaScript Projects</h2>
+      <div ng-view></div>
+    </script>
+    <script type="text/ng-template" id="project-list.html">
+      <input type="text" ng-model="predicate" class="search-query"
+             placeholder="Search" ng-model-instant>
+      <table>
+        <thead>
         <tr>
           <th>Project</th>
           <th>Description</th>
           <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <tr ng-repeat="project in projects | filter:predicate | orderBy:'name'">
           <td>{{project.name}}</td>
           <td>{{project.description}}</td>
@@ -557,192 +615,193 @@
             <a href="#/edit/{{project.objectId}}"><i class="icon-pencil"></i></a>
           </td>
         </tr>
-      </tbody>
-    </table>
-  </script>
-  <script type="text/ng-template" id="project-edit.html">
-    <form name="myForm">
-      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
-        <label>Name</label>
-        <input type="text" name="name" ng-model="project.name" required
-               class="span2" ng-model-instant>
-        <span ng-show="myForm.name.$error.required" class="help-inline">
-            Required</span>
-      </div>
-
-      <div class="control-group" ng-class="{error: myForm.site.$invalid}">
-        <label>Website</label>
-        <input type="url" name="site" ng-model="project.site" required
-               class="span2" ng-model-instant>
-        <span ng-show="myForm.site.$error.required" class="help-inline">
-            Required</span>
-        <span ng-show="myForm.site.$error.url" class="help-inline">
-            Not a URL</span>
-      </div>
-
-      <label>Description</label>
-      <textarea name="description" ng-model="project.description"
-                ng-model-instant></textarea>
-
-      <label>Created</label>
-      <input type="text" name="site" disabled value="{{project.createdAt}}">
-
-      <label>Updated</label>
-      <input type="text" name="site" disabled value="{{project.updatedAt}}">
-
-      <br>
-      <a href="#/list" class="btn">Cancel</a>
-      <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
-              class="btn btn-primary">Save</button>
-      <button ng-click="destroy()"
-              ng-show="project.objectId" class="btn btn-danger">Delete</button>
-    </form>
-  </script>
-  <script type="text/ng-template" id="project.annotation">
-    {
-    }
-  </script>
-
-  <!-- ============== Tabs ============== -->
-
-  <script id="advanced.js">
-    angular.module('advanced', ['zippy', 'tabs']);
-  </script>
-  <script id="tabs.js">
-    angular.module('tabs', []).
-      directive('tabs', function() {
-        return {
-          restrict: 'E',
-          transclude: true,
-          scope: {},
-          template:
-            '<div class="tabbable">' +
-              '<ul class="nav nav-tabs">' +
-                '<li ng-repeat="tab in tabs" ng-class="{active: tab.selected}">' +
-                  '<a href="" ng-click="select(tab)">{{tab.title}}</a>' +
-                '</li>' +
-              '</ul>' +
-              '<div class="tab-content" ng-transclude></div>' +
-            '</div>',
-          replace: true,
-          controller: function($scope, $element) {
-            var tabs = $scope.tabs = [];
-
-            this.addPane = function(pane) {
-              if (tabs.length == 0) $scope.select(pane);
-              tabs.push(pane);
-            }
-
-            $scope.select = function(pane) {
-              angular.forEach(tabs, function(pane) {
-                pane.selected = false;
-              });
-              pane.selected = true;
-            }
-          }
-        };
-      }).
-      directive('pane', function() {
-        return {
-          restrict: 'E',
-          transclude: true,
-          scope: {
-            title: 'bind'
-          },
-          template: '<div class="tab-pane" ng-class="{active: selected}" ' +
-                         'ng-transclude></div>',
-          replace: true,
-          require: '^tabs',
-          link: function(scope, element, attrs, tabsCntl) {
-            tabsCntl.addPane(scope);
-          }
-        };
-      })
-  </script>
-  <script id="zippy.js">
-    angular.module('zippy', []).
-      directive('zippy', function(){
-        return {
-          restrict: 'E',
-          replace: true,
-          transclude: true,
-          scope: { title:'bind' },
-          template:
-              '<div class="zippy">' +
-                '<div class="title">{{title}}</div>' +
-                '<div class="body" ng-transclude></div>' +
-              '</div>',
-          // The linking function will add behavior to the template
-          link: function(scope, element, attrs) {
-            // Title element
-            var title = angular.element(element.children()[0]),
-            // Opened / closed state
-                opened = true;
-
-            // Clicking on title should open/close the zippy
-            title.bind('click', toggle);
-
-            // Toggle the closed/opened state
-            function toggle() {
-              opened = !opened;
-              element.removeClass(opened ? 'closed' : 'opened');
-              element.addClass(opened ? 'opened' : 'closed');
-            }
-
-            // initialize the zippy
-            toggle();
-          }
-        }
-      });
-  </script>
-  <script>
-    angular.module('advanced-sk', ['advanced'])._invokeQueue.push(window.locale_sk._invokeQueue[0]);
-  </script>
-  <script id="beers.js">
-    function BeerCounter($scope, $locale) {
-      $scope.beers = 0;
-      if ($locale.id == 'en-us') {
-        $scope.beerCounts = {
-          0: 'no beers',
-          one: '{} beer',
-          other: '{} beers'
-        };
-      } else {
-        $scope.beerCounts = {
-          0: 'žjadne pivo',
-          one: '{} pivo',
-          few: '{} pivá',
-          other: '{} pív'
-        };
-      }
-    }
-  </script>
-  <script type="text/ng-template" id="tabs.html">
-    <zippy title="Zippy Component Demo">
-      This is an example of reusable component.
-    </zippy>
-
-    <hr>
-
-    <tabs>
-      <pane title="Formating">
-        Date: {{ '2012-04-01' | date:'fullDate' }} <br>
-        Currency: {{ 123456 | currency }} <br>
-        Number: {{ 98765.4321 | number }} <br>
-      </pane>
-      <pane title="Pluralization">
-        <div ng-controller="BeerCounter">
-          <i class="icon-plus" ng-click="beers = beers + 1"></i>
-          <i class="icon-minus" ng-click="beers = beers - 1"></i>
-          <ng-pluralize count="beers" when="beerCounts"></ng-pluralize>
+        </tbody>
+      </table>
+    </script>
+    <script type="text/ng-template" id="project-edit.html">
+      <form name="myForm">
+        <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+          <label>Name</label>
+          <input type="text" name="name" ng-model="project.name" required
+                 class="span2" ng-model-instant>
+          <span ng-show="myForm.name.$error.required" class="help-inline">
+              Required</span>
         </div>
-      </pane>
-    </tabs>
-  </script>
-  <script id="tabs.annotation">
-    {
-    }
-  </script>
+
+        <div class="control-group" ng-class="{error: myForm.site.$invalid}">
+          <label>Website</label>
+          <input type="url" name="site" ng-model="project.site" required
+                 class="span2" ng-model-instant>
+          <span ng-show="myForm.site.$error.required" class="help-inline">
+              Required</span>
+          <span ng-show="myForm.site.$error.url" class="help-inline">
+              Not a URL</span>
+        </div>
+
+        <label>Description</label>
+        <textarea name="description" ng-model="project.description"
+                  ng-model-instant></textarea>
+
+        <label>Created</label>
+        <input type="text" name="site" disabled value="{{project.createdAt}}">
+
+        <label>Updated</label>
+        <input type="text" name="site" disabled value="{{project.updatedAt}}">
+
+        <br>
+        <a href="#/list" class="btn">Cancel</a>
+        <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
+                class="btn btn-primary">Save</button>
+        <button ng-click="destroy()"
+                ng-show="project.objectId" class="btn btn-danger">Delete</button>
+      </form>
+    </script>
+    <script type="text/ng-template" id="project.annotation">
+      {
+      }
+    </script>
+  </div>
+  <div class="tabs-code">
+    <!-- ============== Tabs ============== -->
+    <script id="advanced.js">
+      angular.module('advanced', ['zippy', 'tabs']);
+    </script>
+    <script id="tabs.js">
+      angular.module('tabs', []).
+          directive('tabs', function() {
+            return {
+              restrict: 'E',
+              transclude: true,
+              scope: {},
+              template:
+                  '<div class="tabbable">' +
+                      '<ul class="nav nav-tabs">' +
+                      '<li ng-repeat="tab in tabs" ng-class="{active: tab.selected}">' +
+                      '<a href="" ng-click="select(tab)">{{tab.title}}</a>' +
+                      '</li>' +
+                      '</ul>' +
+                      '<div class="tab-content" ng-transclude></div>' +
+                      '</div>',
+              replace: true,
+              controller: function($scope, $element) {
+                var tabs = $scope.tabs = [];
+
+                this.addPane = function(pane) {
+                  if (tabs.length == 0) $scope.select(pane);
+                  tabs.push(pane);
+                }
+
+                $scope.select = function(pane) {
+                  angular.forEach(tabs, function(pane) {
+                    pane.selected = false;
+                  });
+                  pane.selected = true;
+                }
+              }
+            };
+          }).
+          directive('pane', function() {
+            return {
+              restrict: 'E',
+              transclude: true,
+              scope: {
+                title: 'bind'
+              },
+              template: '<div class="tab-pane" ng-class="{active: selected}" ' +
+                  'ng-transclude></div>',
+              replace: true,
+              require: '^tabs',
+              link: function(scope, element, attrs, tabsCntl) {
+                tabsCntl.addPane(scope);
+              }
+            };
+          })
+    </script>
+    <script id="zippy.js">
+      angular.module('zippy', []).
+          directive('zippy', function(){
+            return {
+              restrict: 'E',
+              replace: true,
+              transclude: true,
+              scope: { title:'bind' },
+              template:
+                  '<div class="zippy">' +
+                      '<div class="title">{{title}}</div>' +
+                      '<div class="body" ng-transclude></div>' +
+                      '</div>',
+              // The linking function will add behavior to the template
+              link: function(scope, element, attrs) {
+                // Title element
+                var title = angular.element(element.children()[0]),
+                // Opened / closed state
+                    opened = true;
+
+                // Clicking on title should open/close the zippy
+                title.bind('click', toggle);
+
+                // Toggle the closed/opened state
+                function toggle() {
+                  opened = !opened;
+                  element.removeClass(opened ? 'closed' : 'opened');
+                  element.addClass(opened ? 'opened' : 'closed');
+                }
+
+                // initialize the zippy
+                toggle();
+              }
+            }
+          });
+    </script>
+    <script>
+      angular.module('advanced-sk', ['advanced'])._invokeQueue.push(window.locale_sk._invokeQueue[0]);
+    </script>
+    <script id="beers.js">
+      function BeerCounter($scope, $locale) {
+        $scope.beers = 0;
+        if ($locale.id == 'en-us') {
+          $scope.beerCounts = {
+            0: 'no beers',
+            one: '{} beer',
+            other: '{} beers'
+          };
+        } else {
+          $scope.beerCounts = {
+            0: 'žjadne pivo',
+            one: '{} pivo',
+            few: '{} pivá',
+            other: '{} pív'
+          };
+        }
+      }
+    </script>
+    <script type="text/ng-template" id="tabs.html">
+      <zippy title="Zippy Component Demo">
+        This is an example of reusable component.
+      </zippy>
+
+      <hr>
+
+      <tabs>
+        <pane title="Formating">
+          Date: {{ '2012-04-01' | date:'fullDate' }} <br>
+          Currency: {{ 123456 | currency }} <br>
+          Number: {{ 98765.4321 | number }} <br>
+        </pane>
+        <pane title="Pluralization">
+          <div ng-controller="BeerCounter">
+            <i class="icon-plus" ng-click="beers = beers + 1"></i>
+            <i class="icon-minus" ng-click="beers = beers - 1"></i>
+            <ng-pluralize count="beers" when="beerCounts"></ng-pluralize>
+          </div>
+        </pane>
+      </tabs>
+    </script>
+    <script id="tabs.annotation">
+      {
+      }
+    </script>
+  </div>
 
   <!-- ============== Analytics ============== -->
 

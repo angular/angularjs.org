@@ -24,3 +24,14 @@ code.nocode {
   border-radius: 3px;
   border: 1px solid #e1e1e8;
 }
+
+.row h1,
+.row h2,
+.row h3,
+.row h4 {
+  margin-bottom: .5em;
+}
+
+.switchboard h3{
+  margin: 0;
+}
