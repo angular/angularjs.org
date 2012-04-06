@@ -73,6 +73,33 @@ img.AngularJS-small {
   height: 25px;
 }
 
+.video-img {
+  width: 300px;
+  height: 200px;
+  background:url("../img/video-over.png")
+}
+
+.video-img:hover img{
+  position:absolute; left:-999px; top:-999px;
+}
+
 .app-source {
   min-height: 375px;
+}
+
+img.cache {
+  width: 0;
+  height: 0;
+}
+
+#videoModal {
+  display: block;
+  width: 1000px;
+  height: 705px;
+  margin-left: -500px;
+  margin-top: -337px;
+}
+#videoModal .modal-body {
+  max-height: 611px;
+  height: 611px;
 }

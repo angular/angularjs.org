@@ -244,6 +244,17 @@ angular.module('homepage', [])
 
   .run(function($rootScope){
     $rootScope.$evalAsync(function(){
+      var videoModal = $('#videoModal');
+
+      videoModal.modal({show:false});
+      videoModal.on('shown', function() {
+        videoModal.find('.modal-body').
+          html('<iframe width="970" height="576" src="http://www.youtube.com/embed/WuiHuZq_cg4?hd=1&autoplay=1" frameborder="0" allowfullscreen></iframe>')
+      });
+      videoModal.on('hidden', function() {
+        videoModal.find('.modal-body').html('');
+      });
+
       $('[rel=tooltip]').tooltip();
       $('[rel=popover]').popover();
     });
