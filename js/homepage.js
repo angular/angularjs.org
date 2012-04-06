@@ -31,6 +31,7 @@ angular.module('homepage', [])
   })
 
   .factory('angularSrc', function() {
+
     return 'http://code.angularjs.org/angular-' + angular.version.full + '.js';
   })
 
@@ -243,6 +244,7 @@ angular.module('homepage', [])
   })
 
   .run(function($rootScope){
+    $rootScope.version = angular.version;
     $rootScope.$evalAsync(function(){
       var videoModal = $('#videoModal');
 

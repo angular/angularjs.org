@@ -52,6 +52,34 @@ code.nocode {
 .navbar .divider-vertical {margin: 0}
 .navbar .nav > li > a {padding: 10px 23px 11px 20px;}
 
+.center {
+  text-align: center;
+}
+
+.hero-unit h1 {
+  padding: 1em;
+  margin: 0;
+  font-size: 48px;
+  color: #535353;
+  font-family: 'helvetica neue', Helvetica, Arial;
+  font-weight: lighter;
+}
+
+hero-unit h1 {
+  display: inline;
+}
+
+.hero-unit .btn-large {
+  font-size: 22px;
+  font-family: Helvetica;
+  font-weight: lighter;
+  margin: 1em;
+}
+
+.hero-unit .btn-large .version {
+  font-size: 12px;
+  color: gray;
+}
 
 img.AngularJS-large {
   width: 382px;
