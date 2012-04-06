@@ -61,3 +61,18 @@ code.nocode {
 
 .navbar .divider-vertical {margin: 0}
 .navbar .nav > li > a {padding: 10px 23px 11px 20px;}
+
+
+img.AngularJS-large {
+  width: 385px;
+  height: 100px;
+}
+
+img.AngularJS-small {
+  width: 95px;
+  height: 25px;
+}
+
+.app-source {
+  min-height: 375px;
+}

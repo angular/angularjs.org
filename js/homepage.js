@@ -30,6 +30,10 @@ angular.module('homepage', [])
     return text.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/"/g, '&quot;');
   })
 
+  .factory('angularSrc', function() {
+    return 'http://code.angularjs.org/angular-' + angular.version.full + '.js';
+  })
+
   .factory('fetchCode', function(indent) {
     return function get(id, spaces) {
       return indent(angular.element(document.getElementById(id)).text(), spaces);
@@ -65,13 +69,13 @@ angular.module('homepage', [])
     };
   })
 
-  .directive('appSource', function(fetchCode, escape) {
+  .directive('appSource', function(fetchCode, escape, angularSrc) {
     var TEMPLATE = {
           'index.html':
             '<!doctype html>\n' +
               '<html ng-app__MODULE__>\n' +
               '  <head>\n' +
-              '    <script src="' + document.getElementById('angularJS').src + '"></script>\n' +
+              '    <script src="' + angularSrc + '"></script>\n' +
               '__HEAD__' +
               '  </head>\n' +
               '  <body>\n' +
@@ -127,8 +131,6 @@ angular.module('homepage', [])
 
           angular.forEach(annotation[filename], function(text, key) {
             var regexp = new RegExp('(\\W|^)(' + key.replace(/([\W\-])/g, '\\$1') + ')(\\W|$)');
-            if (key == '.done-true')
-              console.log(window.r = regexp, window.c = content)
 
             content = content.replace(regexp, function(_, before, token, after) {
               return before +
@@ -175,13 +177,13 @@ angular.module('homepage', [])
     }
   })
 
-  .directive('jsFiddle', function(fetchCode, escape) {
+  .directive('jsFiddle', function(fetchCode, escape, angularSrc) {
     return {
       terminal: true,
       link: function(scope, element, attr) {
         var name = '',
             stylesheet = '<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">\n',
-            script = '<script src="' + window.angularJS.src + '"></script>\n',
+            script = '<script src="' + angularSrc + '"></script>\n',
             fields = {
               html: '',
               css: '',
