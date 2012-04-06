@@ -119,7 +119,11 @@ angular.module('homepage', [])
             content = fetchCode(filename);
           }
 
+          // hack around incorrect tokenization
+          content = content.replace('.done-true', 'doneTrue');
           content = colourCode(content);
+          // hack around incorrect tokenization
+          content = content.replace('doneTrue', '.done-true');
 
           angular.forEach(annotation[filename], function(text, key) {
             var regexp = new RegExp('(\\W|^)(' + key.replace(/([\W\-])/g, '\\$1') + ')(\\W|$)');
