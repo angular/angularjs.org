@@ -122,7 +122,9 @@ angular.module('homepage', [])
           content = colourCode(content);
 
           angular.forEach(annotation[filename], function(text, key) {
-            var regexp = new RegExp('(\\W)(' + key.replace(/(\W)/g, '\\$1') + ')(\\W)');
+            var regexp = new RegExp('(\\W|^)(' + key.replace(/([\W\-])/g, '\\$1') + ')(\\W|$)');
+            if (key == '.done-true')
+              console.log(window.r = regexp, window.c = content)
 
             content = content.replace(regexp, function(_, before, token, after) {
               return before +
@@ -230,7 +232,7 @@ angular.module('homepage', [])
     return {
       template: '<em>Hint:</em> hover over ' +
           '<code class="nocode" rel="popover" title="Hover" ' +
-          'data-content="Hover over code for explanation.">me</code>.'
+          'data-content="Place your mouse over highlited areas in the code for explanations.">me</code>.'
     }
   })
 

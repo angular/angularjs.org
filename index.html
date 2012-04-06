@@ -10,40 +10,13 @@
         content="AngularJS is what HTML would have been, had it been designed for building web-apps.
                  Declarative templates with data-binding, MVC, dependency injection and great
                  testability story all implemented with pure client-side JavaScript!">
-  <title>AngularJS — Superheroic JavaScript MVC Framework</title>
+  <title ng-bind="'NGULARJS — Superheroic JavaScript MVC Framework'">AngularJS — Superheroic JavaScript MVC Framework</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/docs.css">
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
-  <style id="todo.css">
-    .done-true {
-      text-decoration: line-through;
-      color: grey;
-    }
-  </style>
-  <style id="project.css">
-  </style>
-  <style id="zippy.css">
-    .zippy {
-      border: 1px solid black;
-      display: inline-block;
-      width: 250px;
-    }
-    .zippy.opened > .title:before { content: '▼ '; }
-    .zippy.opened > .body { display: block; }
-    .zippy.closed > .title:before { content: '► '; }
-    .zippy.closed > .body { display: none; }
-    .zippy > .title {
-      background-color: black;
-      color: white;
-      padding: .1em .3em;
-      cursor: pointer;
-    }
-    .zippy > .body {
-      padding: .1em .3em;
-    }
-  </style></head>
+</head>
 <body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
@@ -59,13 +32,13 @@
             <li class="divider-vertical"></li>
             <li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
             <li class="divider-vertical"></li>
-            <li><a href="#"><i class="icon-book icon-white"></i> Learn</a></li>
+            <li><a href="#"><i class="icon-eye-open icon-white"></i> Learn</a></li>
             <li class="divider-vertical"></li>
-            <li><a href="#"><i class="icon-pencil icon-white"></i> Develop</a></li>
+            <li><a href="#"><i class="icon-book icon-white"></i> Develop</a></li>
             <li class="divider-vertical"></li>
-            <li><a href="#"><i class="icon-comment icon-white"></i> Discuss</a></li>
+            <li><a href="http://groups.google.com/group/angular"><i class="icon-comment icon-white"></i> Discuss</a></li>
             <li class="divider-vertical"></li>
-            <li><a href="#"><i class="icon-info-sign icon-white"></i> About</a></li>
+            <li><a href="http://docs-next.angularjs.org/misc/contribute"><i class="icon-pencil icon-white"></i> Contribute</a></li>
             <li class="divider-vertical"></li>
           </ul>
           <form class="navbar-search pull-right" method="GET" action="https://www.google.com/search">
@@ -88,8 +61,8 @@
             <div>
               <ul class="unstyled" style="padding-top: 21px">
                 <li>Stop writing boilerplate</li>
-                <li>Write awesome apps instead of wrestling with browsers.</li>
-                <li>Write instantly testable code.</li>
+                <li>Free yourself from DOM complexities.</li>
+                <li>Write <sup>1</sup>/<sub>10</sub>th the code.</li>
               </ul>
             </div>
           </div>
@@ -101,7 +74,6 @@
       <div class="span4">
         <h1>Learn</h1>
         <h3><a href="#">Why AngularJS?</a></h3>
-        <h3><a href="#">5 Minute Tryout</a></h3>
         <h3><a href="#">Watch</a></h3>
         <h3><a href="http://docs.angularjs.org/guide/">Tutorial</a></h3>
         <h3><a href="https://github.com/angular/angular.js/wiki/Projects-using-AngularJS">Case Studies</a></h3>
@@ -110,7 +82,6 @@
         <h1>Develop</h1>
         <h3><a href="http://docs.angularjs.org/api/">API Reference</a></h3>
         <h3><a href="http://docs.angularjs.org/guide/">Concepts</a></h3>
-        <h3><a href="http://code.angularjs.org">Download</a></h3>
         <h3><a href="http://docs.angularjs.org/examples/">Examples</a></h3>
         <h3><a href="http://stackoverflow.com/questions/tagged/angularjs">FAQ</a></h3>
       </div>
@@ -129,10 +100,10 @@
       </div>
     </div>
     
-    <hr>
 
-    <h1>HTML redesigned for web apps!</h1>
-    <div class="row">
+
+    <h1>HTML Enhanced for Web Apps!</h1>
+    <div class="row example">
       <div class="span8" app-source="hello.html hello.js" annotate="hello.annotation"></div>
       <div class="span4">
         <span hint></span>
@@ -142,185 +113,175 @@
       </div>
     </div>
 
-    <hr>
 
-    <div class="row">
-      <div class="span12">
-        <iframe width="940" height="556" src="http://www.youtube.com/embed/WuiHuZq_cg4?hd=1" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <hr>
 
     <h1>Basics</h1>
     <div class="row">
       <div class="span4">
         <h3>Data Binding</h3>
         <p>
-          HTML is an excellent templating language. AngularJS <a href="" rel="popover"
-                                                                 data-content="AngularJS extends the HTML vocabulary (elements/attributes) which the
-              browsers understand, in an extensible way">adds</a> data-binding <a href=""
-                                                                                  rel="popover" data-content="Other frameworks concatenate HTML string
-              templates">directly</a> into HTML using the <code>{{ expression }}</code> notation.
-          Form controls are bound bi-directionally and validated. This makes the model the
-          single source of truth in your application.
+          Data-binding is an automatic way of updating the view whenever the model changes, as
+          well as updating the model whenever the view changes. This is awesome because it
+          eliminates DOM manipulation from the list of things you have to worry about.
         </p>
       </div>
       <div class="span4">
         <h3>Controller</h3>
         <p>
-          Controller is the code behind the DOM. It is pure application behavior in an
-          unpolluted imperative way. Define your behavior here, update the model on server
-          or user interaction and you are done. No need to register callbacks, or manipulate
-          the DOM, just watch the data-binding magic do the work.
+          Controllers are the behavior behind the DOM elements. AngularJS lets you express the
+          behavior in a clean readable form without usual boilerplate of updating the DOM,
+          registering callbacks or watching model changes.
         </p>
       </div>
       <div class="span4">
         <h3>Plain JavaScript</h3>
         <p>
-          AngularJS wants to be unobtrusive. Unlike other frameworks, there is no need to
-          inherit from proprietary types; to wrap the model in assessor methods; or to use
-          proprietary collections and object hashes. Just plain old JavaScript here. This
-          makes your code easy to test, maintain, reuse, and free from boilerplate.
+          Unlike other frameworks, there is no need to inherit from proprietary types; to wrap the
+          model in accessors methods. Just plain old JavaScript here. This makes your code easy to
+          test, maintain, reuse, and again free from boilerplate.
         </p>
       </div>
     </div>
-    <div class="row">
+    <div class=" row example">
       <div class="span8" app-source="todo.html todo.js todo.css" annotate="todo.annotation"></div>
       <div class="span4">
         <span hint></span>
         <span class="pull-right" js-fiddle="todo.html todo.js todo.css"></span>
         <br> <br> <br>
         <div app-run="todo.html" class="well"></div>
+        <h3>Watch as we build this app</h3>
+        <iframe width="300" height="200" src="http://www.youtube.com/embed/WuiHuZq_cg4?hd=1" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
-    <hr>
+
 
     <h1>Intermediate</h1>
     <div class="row">
       <div class="span4">
         <h3>Deep Linking</h3>
         <p>
-          Angular apps are structured like classical round-trip apps with URLs, but unlike round-trip apps, Angular
-          apps  execute in the browser for instant navigation. The URL based focus means that deep linking works
-          out of the box, and that there is no need to register click listeners on URLs. This is a development
-          model which the web-developers are familiar with. An added benefit is that the application is composed
-          from separate pages, which are loaded on as needed basis, resulting in smaller download and faster
-          startup.
+          A deep link reflects where the user is in the app, this is useful so users can bookmark
+          and email links to locations within apps. Round trip apps get this automatically, but
+          AJAX apps by their nature do not. AngularJS combines the benefits of deep link with
+          desktop app-like behavior.
         </p>
       </div>
       <div class="span4">
         <h3>Form Validation</h3>
         <p>
-          Form validation is an important part of great user experience. Angular provides declarative primitives
-          to make it easy to build validation into your application in a declarative way. The validation declaration
-          follows the spirit of HTML, and the result of validation is available for data-binding, giving you full
-          control over the way user feedback is rendered.
+          Client-side form validation is an important part of great user experience. 
+          AngularJS lets you declare the validation rules of the form without having to write
+          JavaScript code. Write less code, go have beer sooner.
         </p>
       </div>
       <div class="span4">
         <h3>Server Communication</h3>
         <p>
-          XHR is great, but too low level. AngularJS wraps XHR to give you higher level features: data-binding
-          integration, promises, central exception management. Even higher level abstraction called Resources
-          is also available to hide all of the underlying details, and provide JavaScript objects for your
-          server based resources.
+          AngularJS provides services on top of XHR, that dramatically simplify your code. We wrap
+          XHR to give you exception management and promises. Promises further simplify your code
+          by handling asynchronous return of data. This lets you assign properties synchronously
+          when the return is actually asynchronous.
         </p>
       </div>
     </div>
-    <div class="row">
-      <div class="span8" app-source="project.html project-list.html project-edit.html project.js parse.js" annotate="project.annotation" module="project"></div>
+    <div class=" row example">
+      <div class="span8" app-source="project.html project.js list.html detail.html parse.js" annotate="project.annotation" module="project"></div>
       <div class="span4">
         <span hint></span>
-        <span class="pull-right" js-fiddle="project.html project-list.html project-edit.html project.js parse.js" module="project"></span>
+        <span class="pull-right" js-fiddle="project.html list.html detail.html project.js parse.js" module="project"></span>
         <br> <br> <br>
         <div app-run="project.html" module="project" class="well"></div>
       </div>
     </div>
 
-    <hr>
+
 
     <h1>Advanced</h1>
     <div class="row">
       <div class="span4">
         <h3>Directives</h3>
         <p>
-          Directives is the most unique and powerful feature available only in Angular. Directives allow you
-          to teach the browser new tricks! Directives let you add behavior to existing HTML constructs or to
-          create brand new HTML constructs, such as tabs dialogs, etc... With directives you can turn HTML into
-          declarative language which fits your needs.
+          Directives is a unique and powerful feature available only in Angular. Directives let
+          you invent new HTML syntax, specific to your application.
         </p>
       </div>
       <div class="span4">
         <h3>Reusable Components</h3>
         <p>
-          Turn often used HTML fragments into reusable directives to simplify your application layout.
+          We use directives to create reusable components. A component allows you to hide complex
+          DOM structure, CSS, and behavior. This lets you focus either on what the application
+          does or how the application looks separately.
         </p>
       </div>
       <div class="span4">
         <h3>Localization</h3>
         <p>
-          Important part of serious apps is localization. Angular's local aware filters and stemming directives
-          give you bulding blocks to make your application available in all languages.
+          An important part of serious apps is localization. Angular's local aware filters and
+          stemming directives give you building blocks to make your application available in all
+          locales.
         </p>
       </div>
     </div>
-    <div class="row">
-      <div class="span8" app-source="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" annotate="tabs.annotation" module="advanced"></div>
+    <div class=" row example">
+      <div class="span8" app-source="tabs.html tabs.js beers.js" annotate="tabs.annotation" module="tabs"></div>
       <div class="span4">
         <span hint></span>
-        <span class="pull-right" js-fiddle="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" module="advanced"></span>
+        <span class="pull-right" js-fiddle="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" module="tabs"></span>
         <br> <br> <br>
         <h4>Locale: US</h4>
-        <div app-run="tabs.html" module="advanced" class="well"></div>
+        <div app-run="tabs.html" module="tabs" class="well"></div>
         <br> <br> <br>
         <h4>Locale: SK</h4>
-        <div app-run="tabs.html" module="advanced-sk" class="well"></div>
+        <div app-run="tabs.html" module="tabs-sk" class="well"></div>
       </div>
     </div>
 
-    <hr/>
+
 
     <h1>Expert</h1>
     <div class="row">
       <div class="span4">
         <h3>Embeddable</h3>
         <p>
-          Add as much or as little of AngularJS to an existing page, unlike many other frameworks which require full
-          commitment. As an example this  page is an AngularJS application, and there are other AngularJS application
-          examples embedded in it. Because AngularJS is allergic to global state, the examples on this page can be
-          embedded without the use of <code>iframe</code>s.
+          AngularJS works great with other technologies. Add as much or as little of AngularJS to
+          an existing page as you like. Many other frameworks require full commitment. This page
+          has multiple AngularJS applications embedded in it. Because AngularJS has no global
+          state multiple apps can run on a single page without the use of <code>iframe</code>s. We
+          encourage you to view-source and look around.
         </p>
       </div>
       <div class="span4">
         <h3>Injectable</h3>
         <p>
-          AngularJS comes with a dependency injection framework built in, which means that any component which
-          does not fit your needs can be easily replaced. The dependency injection allows you to describe
-          your application dependencies, and as a result AngularJS applications have no <code>main()</code> methods.
+          The dependency injection in AngularJS allows you to declaratively describe how your
+          application is wired. This means that your your application needs no <code>main()</code>
+          method which is a usual unmaintainable mess. Dependency injection is also a core to
+          AngularJS. This means that any component which does not fit your needs can easily be
+          replaced.
         </p>
       </div>
       <div class="span4">
         <h3>Testable</h3>
-          AngularJS was designed from ground up to be testable. It encourages behavior-view separation, comes
-          pre-bundled with mocks, and takes full advantage of dependency injection. It also comes with end-to-end
-          scenario runner which understands the AngularJS inner workings and thus removes any need for wait statements
-          in your scenarios, which are the main cause of flakyness.
+          AngularJS was designed from ground up to be testable. It encourages behavior-view
+          separation, comes pre-bundled with mocks, and takes full advantage of dependency
+          injection. It also comes with end-to-end scenario runner which eliminates test flakiness
+          by understanding the inner workings of AngularJS.
         <p>
         </p>
       </div>
     </div>
 
 
-    <hr/>
+    <hr>
 
     <footer class="footer">
       <p class="pull-right"><a href="#">Back to top</a></p>
       <p>Super-powered by Google  ©2010-2012</p>
       <p>Code licensed under the 
-         <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The MIT License</a>. 
-         Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+         <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
+         MIT License</a>. Documentation licensed under <a
+         href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
       </p>
     </footer>
   </div>
@@ -330,10 +291,10 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script id="angularJS" src="http://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
-  <script src="http://code.angularjs.org/1.0.0rc3/i18n-1.0.0rc3/angular-locale_sk.js"></script>
+  <script id="angularJS" src="http://code.angularjs.org/angular-1.0.0rc4.min.js"></script>
+  <script src="http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_sk.js"></script>
   <script>window.locale_sk = angular.module('ngLocale'); </script>
-  <script src="http://code.angularjs.org/1.0.0rc3/i18n-1.0.0rc3/angular-locale_en-us.js"></script>
+  <script src="http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_en-us.js"></script>
   <script src="js/homepage.js"></script>
 
   <div class="hello-code">
@@ -347,29 +308,36 @@
     <script type="text/ng-template" id="hello.html">
       <div ng-controller="HelloCtrl">
         <label>Name:</label>
-        <input type="text" ng-model="yourName" value="World" ng-model-instant>
+        <input type="text" ng-model="yourName">
         <hr>
         <h1>Hello {{yourName}}!</h1>
       </div>
     </script>
     <script type="text/ng-template" id="hello.annotation">
       { "hello.html":
-          { "ng-app": "Designates AngularJS application boundary."
-          , "script": "Load AngularJS magic"
-          , "ng-controller": "Everything under this element will be controlled using the TodoCtrl class defined above. You can have multiple controllers per page."
-          , "body": "Notice that this is real HTML which is processed in the browser, not an HTML fragment which is stored elsewhere such as in a <code>&lt;script&gt;</code> tag."
-          , "ng-model": "Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)"
-          , "{{yourName}}": "The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through."
+          { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
+          , "angular-1.0.0rc4.min.js": "Load AngularJS."
+          , "hello.js": "Your behavior lives in JavaScript controllers."
+          , "ng-controller": "The behavior of content under this element will be managed using the <code>HelloCtrl</code> class defined in <code>hello.js</code>."
+          , "ng-model": "This links the form and the model. This means that any changes to the control update the data in your model, and when you change the model it updates the control. Try it! Type in the control and see it update below."
+          , "{{yourName}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the <code>yourName</code> property changes."
           }
-      , "hello.js:":
-          { "HelloCtrl": "The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate."
-          , "$scope": "$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability."
+      , "hello.js":
+          { "HelloCtrl": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
+          , "$scope": "<code>$scope</code> contains your model data. It is the glue between the controller and the view."
+          , "yourName": "In controllers you update the model, and the view automatically reflects these changes. Notice there is no special API for model update, just a property assignment."
           }
       }
     </script>
   </div>
   <div class="todo-code">
     <!-- ============== TODO ============== -->
+    <style id="todo.css">
+      .done-true {
+        text-decoration: line-through;
+        color: grey;
+      }
+    </style>
     <script id="todo.js">
       function TodoCtrl($scope) {
         $scope.todos = [
@@ -410,42 +378,52 @@
           </li>
         </ul>
         <form ng-submit="addTodo()">
-          <input type="text" ng-model="todoText"  ng-model-instant size="30"
+          <input type="text" ng-model="todoText"  size="30"
                  placeholder="add new todo here">
           <input class="btn-primary" type="submit" value="add">
         </form>
       </div>
     </script>
     <script type="text/ng-template" id="todo.annotation">
-      {
-        "todo.html": {
-          "{{remaining()}}": "If you need to activate data-binding, just use the doubly-curly <code>{{ }}</code> in text or in attributes as you see fit.",
-          "ng-click": "Instead of registering event-handlers you call methods published on the scope. Unlike the browser <code>onclick</code> the <code>ng-click</code> executes against the controller/scope not against global window, which means that <code>ng-click</code> does not suffer frome the same issues as <code>onclick</code> suffers from.",
-          "ng-repeat": "For every object in <code>todos</code> create new copy of the <code>li</code> element. Think spreadsheet-like instant update behavior. When objects are added to <code>todos</code> the <code>ng-repeat</code> automatically adds new <code>li</code> into the DOM. Similarly when the elements are removed when the corresponding objects are removed. This is one of the most versatile directives in angular.",
-          "ng-model": "Creates two-way data-binding between the form control and the model. Any user interactions are reflected in the scope, and any writes to the scope are reflected in the view. (<code>ng-model</code> can also perform form validation)",
-          "{{todo.done}}": "The <code>todo.done</code> is <code>false</code> or <code>true</code> which creates class selector <code>done-false</code> and <code>done-true</code> which then adds strike-through.",
-          "ng-submit": "Intercepts form submission and lets the <code>addTodo()</code> method handle it."
-        },
+      { "todo.html":
+        { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
+        , "angular-1.0.0rc4.min.js": "Load AngularJS."
+        , "todo.js": "Your behavior lives in JavaScript controllers."
+        , "{{remaining()}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the <code>remaining()</code> function return value changes."
+        , "ng-click": "Instead of registering event-handlers, you declare which method on the controller to call. Here clicking the link will call <code>archive()</code> method."
+        , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every object in <code>todos</code>, AngularJS will create new copy of the <code>&lt;li&gt;</code> element. When objects are added to the <code>todos</code> collection the <code>ng-repeat</code> automatically adds new <code>&lt;li&gt;</code> elements into the DOM. Similarly when the objects are removed from <code>todos</code> then the corresponding <code>&lt;li&gt;</code> element is removed as well. This is one of the most versatile directives in AngularJS."
+        , "ng-model": "This links the form and the model. This means that any changes to the control update the data in your model, and when you change the model it updates the control. AngularJS automatically copies the state of the checkbox into <code>todo.done</code>. Conversely, if you update <code>todo.done</code> you will see the checkbox respond accordingly."
+        , "{{todo.done}}": "To show strikethroughs for completed tasks we have created a CSS class <code>done-true</code>. When the <code>todo.done</code> is <code>true</code> the resulting CSS selector is <code>done-true</code> which then applies the strikethrough."
+        , "ng-submit": "Intercepts form submission and instead calls <code>addTodo()</code>. Inside this method we read the <code>todoText</code> property and insert it into the <code>todos</code> collection."
+        }
 
-        "todo.css": {
-        },
+      , "todo.css":
+        { ".done-true": "Add strikethrough decoration when the task is done."
+        }
 
-        "todo.js": {
-          "TodoCtrl": "The code-behind behavior. Notice the complete lack of any special framework dependent boilerplate.",
-          "$scope": "$scope is the glue between your behavior and the view. It is the only framework API which the controller comes into contact, but it behaves just like plain-old-JavaSript-object, and therefore it does not hinder re-usability.",
-          "todos": "A simple assignment of model to the $scope is all its needed the data-binding does the rest. The data is plain-old-JavaScript-object no need to wrap the data in proxy objects.",
-          "addTodo": "We can assign behavior to $scope. This is how the view interacts with the code-behind.",
-          "push": "Adding data to an array, will cause ng&ndash;repeat to automatically unroll the array and add new elements into the view. (see <code>ng&ndash;repeat</code> bellow)",
-          "todoText": "Because of the bi-directional data-binding, we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API.",
-          "''": "Writing to the form controls is just as easy. The data-binding will clear the control for us.",
-          "remaining": "This is a computed property. No need to define its dependencies or worry about when it needs to be updated.",
-          "[]": "You can replace the model with new instance at any time, without doing any special model listeners unregistered."
+      , "todo.js":
+        { "TodoCtrl": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
+        , "$scope": "<code>$scope</code> contains your model data. It is the glue between the controller and the view. The <code>$scope</code> is just one of the services that can be injected into the controller."
+        , "todos": "We are creating the model with two initial todo items. Notice that a you simply assign your model to the <code>$scope</code> and AngularJS reflects the state in the UI automatically. The model data is a Plain-Old-JavaScript-Object no need to wrap it in proxy or accesses the property through special setter methods."
+        , "addTodo": "We are assigning the behavior into the <code>$scope</code> so that the <code>ng-click</code> can invoke it."
+        , "push": "This is unmodified <code>Array.push</code> method. Calling it updates the model, which then updates the view through data-binding. The <code>ng&ndash;repeat</code> is bound to this array. It automatically unrolls the array and adds the new DOM element into the view. (see <code>ng&ndash;repeat</code> in <code>index.html</code> tab.)"
+        , "todoText": "Because of  bi-directional data-binding, the model is always up to date. This means that we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API."
+        , "''": "Writing to the form controls is just as easy. The data-binding will clear the control for us."
+        , "remaining": "This is a computed property. No need to define its dependencies or worry about when it needs to be updated."
+        , "[]": "You can replace the model with new instance at any time, without doing any special model listeners re-registration."
         }
       }
     </script>
   </div>
   <div class="project-code">
     <!-- ============== Projects ============== -->
+    <style id="project.css">
+      table { text-align: left; }
+      table td, table th {
+        vertical-align: top;
+        padding: 0 .25em;
+      }
+    </style>
     <script id="parse.js">
       // This is a module for http://parse.com data persistence
       angular.module('parse', []).
@@ -523,33 +501,24 @@
     </script>
     <script id="project.js">
       angular.module('project', ['parse']).
-
-          config(function($routeProvider) {
-            $routeProvider.when('/list',
-                { controller: ProjectListCntl, template: 'project-list.html' });
-            $routeProvider.when('/edit/:projectId',
-                { controller: ProjectEditCntl, template: 'project-edit.html' });
-            $routeProvider.when('/new',
-                { controller: ProjectCreateCntl, template: 'project-edit.html' });
-
-            $routeProvider.otherwise({ redirectTo: '/list'});
-          }).
-
-          factory('Project', function(parse) {
-            return parse.forClassName('project');
-          });
+        config(function($routeProvider) {
+          $routeProvider.
+            when('/list', {controller:ListCntl, template:'list.html'}).
+            when('/edit/:projectId', {controller:EditCntl, template:'detail.html'}).
+            when('/new', {controller:CreateCntl, template:'detail.html'}).
+            otherwise({redirectTo:'/list'});
+        }).
+        factory('Project', function(parse) {
+          return parse.forClassName('project');
+        });
 
 
-
-      function ProjectListCntl($scope, Project) {
+      function ListCntl($scope, Project) {
         $scope.projects = Project.query();
       }
 
 
-
-      function ProjectCreateCntl($scope, $location, Project) {
-        $scope.project = {name: '', site: '', description: ''};
-
+      function CreateCntl($scope, $location, Project) {
         $scope.save = function() {
           Project.create($scope.project).then(function(project) {
             $location.path('/edit/' + project.objectId);
@@ -558,8 +527,7 @@
       }
 
 
-
-      function ProjectEditCntl($scope, $location, $routeParams, Project) {
+      function EditCntl($scope, $location, $routeParams, Project) {
         var self = this;
 
         Project.get($routeParams.projectId).then(function(project) {
@@ -578,7 +546,9 @@
         };
 
         $scope.save = function() {
-          self.project.save($scope.project).then(self.cancel);
+          self.project.save($scope.project).then(function() {
+            $location.path('/list');
+          });
         };
       }
     </script>
@@ -586,9 +556,9 @@
       <h2>JavaScript Projects</h2>
       <div ng-view></div>
     </script>
-    <script type="text/ng-template" id="project-list.html">
+    <script type="text/ng-template" id="list.html">
       <input type="text" ng-model="predicate" class="search-query"
-             placeholder="Search" ng-model-instant>
+             placeholder="Search">
       <table>
         <thead>
         <tr>
@@ -608,20 +578,18 @@
         </tbody>
       </table>
     </script>
-    <script type="text/ng-template" id="project-edit.html">
+    <script type="text/ng-template" id="detail.html">
       <form name="myForm">
         <div class="control-group" ng-class="{error: myForm.name.$invalid}">
           <label>Name</label>
-          <input type="text" name="name" ng-model="project.name" required
-                 class="span2" ng-model-instant>
+          <input type="text" name="name" ng-model="project.name" required>
           <span ng-show="myForm.name.$error.required" class="help-inline">
               Required</span>
         </div>
 
         <div class="control-group" ng-class="{error: myForm.site.$invalid}">
           <label>Website</label>
-          <input type="url" name="site" ng-model="project.site" required
-                 class="span2" ng-model-instant>
+          <input type="url" name="site" ng-model="project.site" required>
           <span ng-show="myForm.site.$error.required" class="help-inline">
               Required</span>
           <span ng-show="myForm.site.$error.url" class="help-inline">
@@ -629,14 +597,7 @@
         </div>
 
         <label>Description</label>
-        <textarea name="description" ng-model="project.description"
-                  ng-model-instant></textarea>
-
-        <label>Created</label>
-        <input type="text" name="site" disabled value="{{project.createdAt}}">
-
-        <label>Updated</label>
-        <input type="text" name="site" disabled value="{{project.updatedAt}}">
+        <textarea name="description" ng-model="project.description"></textarea>
 
         <br>
         <a href="#/list" class="btn">Cancel</a>
@@ -647,104 +608,78 @@
       </form>
     </script>
     <script type="text/ng-template" id="project.annotation">
-      {
+      { "project.html":
+        { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
+        , "project": "The <code>ng-app</code> needs to load the <code>project</code> module. Modules are a way to configure AngularJS applications."
+        , "angular-1.0.0rc4.min.js": "Load AngularJS."
+        , "project.js": "Your behavior lives in JavaScript controllers."
+        , "parse.js": "An AngularJS module definition to connect to <code>http://parse.com</code> for data storage."
+        , "ng-view": "Location where the routes will load their templates into. See <code>$routeProvider</code>."
+        }
+      , "project.js":
+        { "project": "Declare a <code>project</code> module which is loaded by the <code>ng-app</code> directive. This module is used to define the routes."
+        , "parse": "The modules can depend on each other. In this case the <code>project</code> module depends on <code>parse</code> module."
+        , "config": "AngularJS defines a configuration phase and run phase. The distinction exists"
+        }
       }
     </script>
   </div>
   <div class="tabs-code">
     <!-- ============== Tabs ============== -->
-    <script id="advanced.js">
-      angular.module('advanced', ['zippy', 'tabs']);
-    </script>
     <script id="tabs.js">
       angular.module('tabs', []).
-          directive('tabs', function() {
-            return {
-              restrict: 'E',
-              transclude: true,
-              scope: {},
-              template:
-                  '<div class="tabbable">' +
-                      '<ul class="nav nav-tabs">' +
-                      '<li ng-repeat="tab in tabs" ng-class="{active: tab.selected}">' +
-                      '<a href="" ng-click="select(tab)">{{tab.title}}</a>' +
-                      '</li>' +
-                      '</ul>' +
-                      '<div class="tab-content" ng-transclude></div>' +
-                      '</div>',
-              replace: true,
-              controller: function($scope, $element) {
-                var tabs = $scope.tabs = [];
+        directive('tabs', function() {
+          return {
+            restrict: 'E',
+            transclude: true,
+            scope: {},
+            template:
+              '<div class="tabbable">' +
+                '<ul class="nav nav-tabs">' +
+                  '<li ng-repeat="tab in tabs" ng-class="{active: tab.selected}">' +
+                    '<a href="" ng-click="select(tab)">{{tab.title}}</a>' +
+                  '</li>' +
+                '</ul>' +
+                '<div class="tab-content" ng-transclude></div>' +
+              '</div>',
+            replace: true,
+            controller: function($scope, $element) {
+              var tabs = $scope.tabs = [];
 
-                this.addPane = function(pane) {
-                  if (tabs.length == 0) $scope.select(pane);
-                  tabs.push(pane);
-                }
-
-                $scope.select = function(pane) {
-                  angular.forEach(tabs, function(pane) {
-                    pane.selected = false;
-                  });
-                  pane.selected = true;
-                }
+              this.addPane = function(pane) {
+                if (tabs.length == 0) $scope.select(pane);
+                tabs.push(pane);
               }
-            };
-          }).
-          directive('pane', function() {
-            return {
-              restrict: 'E',
-              transclude: true,
-              scope: {
-                title: 'bind'
-              },
-              template: '<div class="tab-pane" ng-class="{active: selected}" ' +
-                  'ng-transclude></div>',
-              replace: true,
-              require: '^tabs',
-              link: function(scope, element, attrs, tabsCntl) {
-                tabsCntl.addPane(scope);
-              }
-            };
-          })
-    </script>
-    <script id="zippy.js">
-      angular.module('zippy', []).
-          directive('zippy', function(){
-            return {
-              restrict: 'E',
-              replace: true,
-              transclude: true,
-              scope: { title:'bind' },
-              template:
-                  '<div class="zippy">' +
-                      '<div class="title">{{title}}</div>' +
-                      '<div class="body" ng-transclude></div>' +
-                      '</div>',
-              // The linking function will add behavior to the template
-              link: function(scope, element, attrs) {
-                // Title element
-                var title = angular.element(element.children()[0]),
-                // Opened / closed state
-                    opened = true;
 
-                // Clicking on title should open/close the zippy
-                title.bind('click', toggle);
-
-                // Toggle the closed/opened state
-                function toggle() {
-                  opened = !opened;
-                  element.removeClass(opened ? 'closed' : 'opened');
-                  element.addClass(opened ? 'opened' : 'closed');
-                }
-
-                // initialize the zippy
-                toggle();
+              $scope.select = function(pane) {
+                angular.forEach(tabs, function(pane) {
+                  pane.selected = false;
+                });
+                pane.selected = true;
               }
             }
-          });
+          };
+        }).
+        directive('pane', function() {
+          return {
+            restrict: 'E',
+            transclude: true,
+            scope: {
+              title: 'bind'
+            },
+            template:
+              '<div class="tab-pane" ng-class="{active: selected}" ng-transclude>' +
+              '</div>',
+            replace: true,
+            require: '^tabs',
+            link: function(scope, element, attrs, tabsCntl) {
+              tabsCntl.addPane(scope);
+            }
+          };
+        })
     </script>
     <script>
-      angular.module('advanced-sk', ['advanced'])._invokeQueue.push(window.locale_sk._invokeQueue[0]);
+      angular.module('tabs-sk', ['tabs'])._invokeQueue.push(window.locale_sk._invokeQueue[0]);
     </script>
     <script id="beers.js">
       function BeerCounter($scope, $locale) {
@@ -766,12 +701,6 @@
       }
     </script>
     <script type="text/ng-template" id="tabs.html">
-      <zippy title="Zippy Component Demo">
-        This is an example of reusable component.
-      </zippy>
-
-      <hr>
-
       <tabs>
         <pane title="Formating">
           Date: {{ '2012-04-01' | date:'fullDate' }} <br>

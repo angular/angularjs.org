@@ -25,13 +25,36 @@ code.nocode {
   border: 1px solid #e1e1e8;
 }
 
-.row h1,
-.row h2,
-.row h3,
-.row h4 {
+.example {
+  margin-top: 1em;
+}
+
+.container h1,
+.container h2,
+.container h3,
+.container h4 {
   margin-bottom: .5em;
 }
 
-.switchboard h3{
+.container h1 {
+  margin-top: 3.5em;
+}
+
+.container h2 {
+  margin-top: 1em;
+}
+
+.container h3 {
+  margin-top: .5em;
+}
+
+
+.switchboard h1, 
+.well h1 {
+  margin-top: 1.5em;
+}
+
+.switchboard h3 {
   margin: 0;
 }
+
