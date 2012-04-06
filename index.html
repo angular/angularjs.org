@@ -29,7 +29,7 @@
 
     $script('google-code-prettify/prettify.min.js', bootstrap);
     $script('js/homepage.js', bootstrap);
-    $script('http://code.angularjs.org/angular-1.0.0rc4.js', bootstrap);
+    $script('http://code.angularjs.org/angular-1.0.0rc4.min.js', bootstrap);
     $script('http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_sk.js', function() {
       angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
       bootstrap();
@@ -62,6 +62,7 @@
     (function(i){'use strict';function d(c,b,e){return c[b]||(c[b]=e())}return d(d(i,"angular",Object),"module",function(){var c={};return function(b,e,f){e&&c.hasOwnProperty(b)&&(c[b]=null);return d(c,b,function(){function a(a,b,d){return function(){c[d||"push"]([a,b,arguments]);return g}}if(!e)throw Error("No module: "+b);var c=[],d=[],h=a("$injector","invoke"),g={_invokeQueue:c,_runBlocks:d,requires:e,name:b,provider:a("$provide","provider"),factory:a("$provide","factory"),service:a("$provide","service"),
       value:a("$provide","value"),constant:a("$provide","constant","unshift"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:h,run:function(a){d.push(a);return this}};f&&h(f);return g})}})})(window);
   </script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   <script>
     var _gaq=[
       ['_setAccount','UA-8594346-3'],
@@ -171,6 +172,28 @@
               Download AngularJS<span class="version"> (<span ng-bind="version.full">1.0.0rc4</span>)</span>
             </a>
           </div>
+          <ul class='quick-links'>
+            <li><a href="https://github.com/angular/angular.js/blob/master/CHANGELOG.md#v1.0.0rc4">Changelog</a></li>
+            <li><a href="https://github.com/angular/angular.js/issues">Submit issue</a></li>
+            <li><a href="http://groups.google.com/group/angular">Ask a question</a></li>
+          </ul>
+          <ul class='quick-links'>
+            <li>
+              <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=angular&repo=angular.js&type=watch&count=true"
+                      allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
+            </li>
+            <li>
+              <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=angular&repo=angular.js&type=fork&count=true"
+                      allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe>
+            </li>
+            <li>
+              <a href="https://twitter.com/angularjs" class="twitter-follow-button" data-show-count="true">Follow @angularjs</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/share" class="twitter-share-button"
+                 data-url="http://angularjs.org" data-text="AngularJS - HTML Enhanced for Web Apps" data-via="angularjs">Tweet</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
