@@ -255,7 +255,6 @@ angular.module('homepage', [])
         videoModal.find('.modal-body').html('');
       });
 
-      $('[rel=tooltip]').tooltip();
       $('[rel=popover]').popover();
     });
   })
