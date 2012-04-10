@@ -10,7 +10,7 @@
         content="AngularJS is what HTML would have been, had it been designed for building web-apps.
                  Declarative templates with data-binding, MVC, dependency injection and great
                  testability story all implemented with pure client-side JavaScript!">
-  <title ng-bind="'NGULARJS — Superheroic JavaScript MVC Framework'">AngularJS — Superheroic JavaScript MVC Framework</title>
+  <title>AngularJS — Superheroic JavaScript MVC Framework</title>
   <script>
     /*!
       * $script.js Async loader & dependency manager
@@ -41,6 +41,7 @@
     $script('google-code-prettify/prettify.min.js', bootstrap);
     $script('js/homepage.js', bootstrap);
     $script('http://code.angularjs.org/angular-1.0.0rc4.min.js', bootstrap);
+    $script('http://code.angularjs.org/angular-resource-1.0.0rc4.min.js', bootstrap);
     $script('http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_sk.js', function() {
       angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
       bootstrap();
@@ -51,7 +52,8 @@
     });
 
     function bootstrap() {
-      if (window.prettyPrint && window.$ && $.fn.popover && angular.bootstrap && hasModule('ngLocal.sk') && hasModule('ngLocal.us') && hasModule('homepage')) {
+      if (window.prettyPrint && window.$ && $.fn.popover && angular.bootstrap &&
+          hasModule('ngLocal.sk') && hasModule('ngLocal.us') && hasModule('homepage') && hasModule('ngResource')) {
         angular.bootstrap(document, ['homepage', 'ngLocal.us']);
       }
     }
@@ -296,10 +298,10 @@
       </div>
     </div>
     <div class=" row example">
-      <div class="span8 app-source" app-source="project.html project.js list.html detail.html parse.js" annotate="project.annotation" module="project"></div>
+      <div class="span8 app-source" app-source="project.html project.js list.html detail.html mongolab.js" annotate="project.annotation" module="project"></div>
       <div class="span4">
         <span hint></span>
-        <span class="pull-right" js-fiddle="project.html list.html detail.html project.js parse.js" module="project"></span>
+        <span class="pull-right" js-fiddle="project.html list.html detail.html project.js mongolab.js" resource module="project"></span>
         <div class="tabs-spacer"></div>
         <div app-run="project.html" module="project" class="well"></div>
       </div>
@@ -515,92 +517,37 @@
         padding: 0 .25em;
       }
     </style>
-    <script id="parse.js">
-      // This is a module for http://parse.com data persistence
-      angular.module('parse', []).
-          service('parse', ParseFactory);
+    <script id="mongolab.js">
+      // This is a module for cloud persistance in mongolab - https://mongolab.com
+      angular.module('mongolab', ['ngResource']).
+          factory('Project', function($resource) {
+            var Project = $resource('https://api.mongolab.com/api/1/databases' +
+                '/angularjs/collections/projects/:id',
+                { apiKey: '4f847ad3e4b08a2eed5f3b54' }, {
+                  update: { method: 'PUT' }
+                }
+            );
 
-      function ParseFactory($http) {
-        var self = this,
-            config = {
-              headers: {
-                'X-Parse-Application-Id': 'iNMdOD7ijDce9udhcDoinc6vNaqY2olmtI4PMjxF',
-                'X-Parse-REST-API-Key': 'xLtbY0V0Bhcy6XYLv6zNug0SxZqJWPnCRwm7kxPb',
-                'X-Requested-With': undefined
-              }
+            Project.prototype.update = function(cb) {
+              return Project.update({id: this._id.$oid},
+                  angular.extend({}, this, {_id:undefined}), cb);
             };
 
-        self.forClassName = function(className) {
-          var Class = function(data) {
-                angular.extend(this, data);
-              },
-              url = 'https://api.parse.com/1/classes/' + className;
+            Project.prototype.destroy = function(cb) {
+              return Project.remove({id: this._id.$oid}, cb);
+            };
 
-
-          Class.create = function(data) {
-            var self = this;
-
-            return $http.
-                post(url, data, config).
-                then(function(response) {
-                  return angular.extend(new Class(), data, response.data);
-                });
-          };
-
-          Class.get = function(id) {
-            return $http.
-                get(url + '/' + id  + '/', config).
-                then(function(response) {
-                  return new Class(response.data);
-                });
-          };
-
-          Class.query = function() {
-            return $http.
-                get(url, config).
-                then(function(response) {
-                  var objs = [];
-
-                  angular.forEach(response.data.results, function(obj) {
-                    objs.push(new Class(obj));
-                  });
-                  return objs;
-                });
-          };
-
-          Class.prototype.save = function(changes) {
-            var self = this,
-                data = angular.extend({}, self, changes, {
-                  objectId: undefined,
-                  createdAt: undefined,
-                  updatedAt: undefined});
-
-            return $http.
-                put(url + '/' + self.objectId, data, config).
-                then(function(response) {
-                  angular.extend(self, changes, response.data);
-                  return self;
-                });
-          };
-
-          Class.prototype.destroy = function() {
-            return $http['delete'](url + '/' + this.objectId, config)
-          };
-          return Class;
-        }
-      }
+            return Project;
+          });
     </script>
     <script id="project.js">
-      angular.module('project', ['parse']).
+      angular.module('project', ['mongolab']).
         config(function($routeProvider) {
           $routeProvider.
             when('/list', {controller:ListCntl, template:'list.html'}).
             when('/edit/:projectId', {controller:EditCntl, template:'detail.html'}).
             when('/new', {controller:CreateCntl, template:'detail.html'}).
             otherwise({redirectTo:'/list'});
-        }).
-        factory('Project', function(parse) {
-          return parse.forClassName('project');
         });
 
 
@@ -704,7 +651,7 @@
         , "project": "The <code>ng-app</code> needs to load the <code>project</code> module. Modules are a way to configure AngularJS applications."
         , "angular-1.0.0rc4.min.js": "Load AngularJS."
         , "project.js": "Your behavior lives in JavaScript controllers."
-        , "parse.js": "An AngularJS module definition to connect to <code>http://parse.com</code> for data storage."
+        , "mongolab.js": "An AngularJS module definition to connect to <code>http://parse.com</code> for data storage."
         , "ng-view": "Location where the routes will load their templates into. See <code>$routeProvider</code>."
         }
       , "project.js":
@@ -794,6 +741,7 @@
     </script>
     <script type="text/ng-template" id="tabs.html">
       <tabs>
+        <pane title="Localization">
           Date: {{ '2012-04-01' | date:'fullDate' }} <br>
           Currency: {{ 123456 | currency }} <br>
           Number: {{ 98765.4321 | number }} <br>
