@@ -12,8 +12,8 @@ footer {
 
 code.nocode {
   display: inline-block;
-  background-color: #e6f0ff;
-  border: 1px solid #99c2ff;
+  background-color: #99c2ff;
+  border: 1px solid #7699d1;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
@@ -84,8 +84,8 @@ code.nocode {
 }
 
 .quick-links li {
-  display: inline;
-  margin: 4em 1em;
+  display: inline-block;
+  margin: 0 .5em;
 }
 
 img.AngularJS-large {
@@ -127,4 +127,8 @@ img.cache {
 #videoModal .modal-body {
   max-height: 611px;
   height: 611px;
+}
+
+.tabs-spacer {
+  height: 30px;
 }

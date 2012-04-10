@@ -1,5 +1,51 @@
 angular.module('homepage', [])
 
+  .config(function($provide) {
+    var pulseElements = $(),
+        pulseColor = {r:0xE6, g:0xF0, b: 0xFF},
+        baseColor = {r:0x99, g:0xc2, b: 0xFF},
+        pulseDuration = 1000,
+        pulseDelay = 15000;
+
+    function hex(number) {
+      return ('0' + Number(number).toString(16)).slice(-2);
+    }
+
+    jQuery.fn.pulse = function () {
+      pulseElements = pulseElements.add(this);
+    };
+    var lastPulse;
+
+    function tick() {
+      var duration = new Date().getTime() - lastPulse,
+          index = duration * Math.PI / pulseDuration ,
+          level = Math.pow(Math.sin(index), 10),
+          color = {
+            r: Math.round(pulseColor.r * level + baseColor.r * (1 - level)),
+            g: Math.round(pulseColor.g * level + baseColor.g * (1 - level)),
+            b: Math.round(pulseColor.b * level + baseColor.b * (1 - level))
+          },
+          style = '#' + hex(color.r) + hex(color.g) + hex(color.b);
+
+      pulseElements.css('backgroundColor', style);
+      if (duration > pulseDuration) {
+        setTimeout(function() {
+          lastPulse = new Date().getTime();
+          tick();
+        }, pulseDelay);
+      } else {
+        setTimeout(tick, 50);
+      }
+    }
+
+    $provide.value('startPulse', function() {
+       setTimeout(function() {
+         lastPulse = new Date().getTime();
+         tick();
+       }, 2000);
+    });
+  })
+
   .value('indent', function(text, spaces) {
     if (!text) return text;
     var lines = text.split(/\r?\n/);
@@ -157,7 +203,7 @@ angular.module('homepage', [])
                 panes.join('') +
               '</div>' +
             '</div>');
-          element.find('[rel=popover]').popover();
+          element.find('[rel=popover]').popover().pulse();
         });
 
         function colourCode(html) {
@@ -243,7 +289,7 @@ angular.module('homepage', [])
     }
   })
 
-  .run(function($rootScope){
+  .run(function($rootScope, startPulse){
     $rootScope.version = angular.version;
     $rootScope.$evalAsync(function(){
       var videoModal = $('#videoModal');
@@ -257,6 +303,19 @@ angular.module('homepage', [])
         videoModal.find('.modal-body').html('');
       });
 
-      $('[rel=popover]').popover();
+      $('[rel=popover]').popover().pulse();
+      startPulse();
     });
   })
+
+angular.module('Group', ['ngResource']);
+
+function GroupCtrl($scope, $resource)
+{
+  $scope.featuredGroups = $resource('groups/index/getfeatured');
+  $scope.featuredGroups.get();
+
+  $scope.recommendedGroups = $resource('groups/index/getrecommended');
+  $scope.recommendedGroups.get();
+
+}

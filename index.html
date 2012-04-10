@@ -20,6 +20,17 @@
       */
     (function(a,b){typeof module!="undefined"?module.exports=b():typeof define=="function"&&define.amd?define(a,b):this[a]=b()})("$script",function(){function q(a,b,c){for(c=0,j=a.length;c<j;++c)if(!b(a[c]))return k;return 1}function r(a,b){q(a,function(a){return!b(a)})}function s(a,b,i){function o(a){return a.call?a():d[a]}function p(){if(!--n){d[m]=1,k&&k();for(var a in f)q(a.split("|"),o)&&!r(f[a],o)&&(f[a]=[])}}a=a[l]?a:[a];var j=b&&b.call,k=j?b:i,m=j?a.join(""):b,n=a.length;return setTimeout(function(){r(a,function(a){if(h[a])return m&&(e[m]=1),h[a]==2&&p();h[a]=1,m&&(e[m]=1),t(!c.test(a)&&g?g+a+".js":a,p)})},0),s}function t(c,d){var e=a.createElement("script"),f=k;e.onload=e.onerror=e[p]=function(){if(e[n]&&!/^c|loade/.test(e[n])||f)return;e.onload=e[p]=null,f=1,h[c]=2,d()},e.async=1,e.src=c,b.insertBefore(e,b.firstChild)}var a=document,b=a.getElementsByTagName("head")[0],c=/^https?:\/\//,d={},e={},f={},g,h={},i="string",k=!1,l="push",m="DOMContentLoaded",n="readyState",o="addEventListener",p="onreadystatechange";return!a[n]&&a[o]&&(a[o](m,function u(){a.removeEventListener(m,u,k),a[n]="complete"},k),a[n]="loading"),s.get=t,s.order=function(a,b,c){(function d(e){e=a.shift(),a.length?s(e,d):s(e,b,c)})()},s.path=function(a){g=a},s.ready=function(a,b,c){a=a[l]?a:[a];var e=[];return!r(a,function(a){d[a]||e[l](a)})&&q(a,function(a){return d[a]})?b():!function(a){f[a]=f[a]||[],f[a][l](b),c&&c(e)}(a.join("|")),s},s})
 
+
+    var _gaq=[
+      ['_setAccount','UA-8594346-3'],
+      ['_setDomainName', '.angularjs.org'],
+      ['_trackPageview'],['_trackPageLoadTime']
+    ];
+
+    $script('https://apis.google.com/js/plusone.js');
+    $script(('https:'==location.protocol?'//ssl':'http://www')+'.google-analytics.com/ga.js');
+    $script("//platform.twitter.com/widgets.js");
+
     $script('http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', function() {
       $script('js/bootstrap.min.js', function() {
         $().dropdown();
@@ -62,18 +73,7 @@
     (function(i){'use strict';function d(c,b,e){return c[b]||(c[b]=e())}return d(d(i,"angular",Object),"module",function(){var c={};return function(b,e,f){e&&c.hasOwnProperty(b)&&(c[b]=null);return d(c,b,function(){function a(a,b,d){return function(){c[d||"push"]([a,b,arguments]);return g}}if(!e)throw Error("No module: "+b);var c=[],d=[],h=a("$injector","invoke"),g={_invokeQueue:c,_runBlocks:d,requires:e,name:b,provider:a("$provide","provider"),factory:a("$provide","factory"),service:a("$provide","service"),
       value:a("$provide","value"),constant:a("$provide","constant","unshift"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:h,run:function(a){d.push(a);return this}};f&&h(f);return g})}})})(window);
   </script>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-  <script>
-    var _gaq=[
-      ['_setAccount','UA-8594346-3'],
-      ['_setDomainName', '.angularjs.org'],
-      ['_trackPageview'],['_trackPageLoadTime']
-    ];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'http://www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
-  
+
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -146,6 +146,7 @@
       </div>
     </div>
   </header>
+
   <div role="main" class="container">
 
     <div class="row" style="padding-top: 80px;">
@@ -178,18 +179,21 @@
             <li><a href="http://groups.google.com/group/angular">Ask a question</a></li>
           </ul>
           <ul class='quick-links'>
-            <li>
+            <li style="width: 110px; height: 25px;">
               <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=angular&repo=angular.js&type=watch&count=true"
                       allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
             </li>
-            <li>
+            <li style="width: 95px; height: 25px;">
               <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=angular&repo=angular.js&type=fork&count=true"
                       allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe>
             </li>
-            <li>
+            <li style="width: 120px; height: 25px;">
+              <g:plusone size="small" annotation="inline" width="120" href="http://angularjs.org"></g:plusone>
+            </li>
+            <li style="width: 220px; height: 25px;">
               <a href="https://twitter.com/angularjs" class="twitter-follow-button" data-show-count="true">Follow @angularjs</a>
             </li>
-            <li>
+            <li style="width: 107px; height: 25px;">
               <a href="https://twitter.com/share" class="twitter-share-button"
                  data-url="http://angularjs.org" data-text="AngularJS - HTML Enhanced for Web Apps" data-via="angularjs">Tweet</a>
             </li>
@@ -198,20 +202,20 @@
       </div>
     </div>
 
-
+    <h1>Basics Binding</h1>
     <div class="row example">
-      <div class="span8 app-source" app-source="hello.html hello.js" annotate="hello.annotation"></div>
+      <div class="span8 app-source" app-source="hello.html" annotate="hello.annotation"></div>
       <div class="span4">
         <span hint></span>
-        <span class="pull-right" js-fiddle="hello.html hello.js"></span>
-        <br> <br> <br>
+        <span class="pull-right" js-fiddle="hello.html"></span>
+        <div class="tabs-spacer"></div>
         <div app-run="hello.html" class="well"></div>
       </div>
     </div>
 
 
 
-    <h1>Basics</h1>
+    <h1>Add Some Control</h1>
     <div class="row">
       <div class="span4">
         <h3>Data Binding</h3>
@@ -243,7 +247,7 @@
       <div class="span4">
         <span hint></span>
         <span class="pull-right" js-fiddle="todo.html todo.js todo.css"></span>
-        <br> <br> <br>
+        <div class="tabs-spacer"></div>
         <div app-run="todo.html" class="well"></div>
         <h3>Watch as we build this app</h3>
         <div class="video-img" data-toggle="modal" href="#videoModal">
@@ -262,7 +266,7 @@
     </div>
 
 
-    <h1>Intermediate</h1>
+    <h1>Wire up a Backend</h1>
     <div class="row">
       <div class="span4">
         <h3>Deep Linking</h3>
@@ -276,7 +280,7 @@
       <div class="span4">
         <h3>Form Validation</h3>
         <p>
-          Client-side form validation is an important part of great user experience. 
+          Client-side form validation is an important part of great user experience.
           AngularJS lets you declare the validation rules of the form without having to write
           JavaScript code. Write less code, go have beer sooner.
         </p>
@@ -296,14 +300,14 @@
       <div class="span4">
         <span hint></span>
         <span class="pull-right" js-fiddle="project.html list.html detail.html project.js parse.js" module="project"></span>
-        <br> <br> <br>
+        <div class="tabs-spacer"></div>
         <div app-run="project.html" module="project" class="well"></div>
       </div>
     </div>
 
 
 
-    <h1>Advanced</h1>
+    <h1>Create Components</h1>
     <div class="row">
       <div class="span4">
         <h3>Directives</h3>
@@ -334,10 +338,10 @@
       <div class="span4">
         <span hint></span>
         <span class="pull-right" js-fiddle="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" module="tabs"></span>
-        <br> <br> <br>
+        <div class="tabs-spacer"></div>
         <h4>Locale: US</h4>
-        <div app-run="tabs.html" module="tabs" class="well"></div>
-        <br> <br> <br>
+        <div app-run="tabs.html" module="tabs-us" class="well"></div>
+        <div class="tabs-spacer"></div>
         <h4>Locale: SK</h4>
         <div app-run="tabs.html" module="tabs-sk" class="well"></div>
       </div>
@@ -345,7 +349,7 @@
 
 
 
-    <h1>Expert</h1>
+    <h1>Embed and Inject</h1>
     <div class="row">
       <div class="span4">
         <h3>Embeddable</h3>
@@ -398,15 +402,10 @@
   <div class="hello-code">
     <!-- ============== Hello ============== -->
 
-    <script id="hello.js">
-      function HelloCtrl($scope) {
-        $scope.yourName = 'World';
-      }
-    </script>
     <script type="text/ng-template" id="hello.html">
-      <div ng-controller="HelloCtrl">
+      <div>
         <label>Name:</label>
-        <input type="text" ng-model="yourName">
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
         <hr>
         <h1>Hello {{yourName}}!</h1>
       </div>
@@ -415,15 +414,8 @@
       { "hello.html":
           { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
           , "angular-1.0.0rc4.min.js": "Load AngularJS."
-          , "hello.js": "Your behavior lives in JavaScript controllers."
-          , "ng-controller": "The behavior of content under this element will be managed using the <code>HelloCtrl</code> class defined in <code>hello.js</code>."
           , "ng-model": "This links the form and the model. This means that any changes to the control update the data in your model, and when you change the model it updates the control. Try it! Type in the control and see it update below."
           , "{{yourName}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the <code>yourName</code> property changes."
-          }
-      , "hello.js":
-          { "HelloCtrl": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
-          , "$scope": "<code>$scope</code> contains your model data. It is the glue between the controller and the view."
-          , "yourName": "In controllers you update the model, and the view automatically reflects these changes. Notice there is no special API for model update, just a property assignment."
           }
       }
     </script>
@@ -487,6 +479,7 @@
         { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
         , "angular-1.0.0rc4.min.js": "Load AngularJS."
         , "todo.js": "Your behavior lives in JavaScript controllers."
+        , "ng-controller": "The behavior of content under this element will be managed using the <code>TodoCtrl</code> class defined in <code>todo.js</code>."
         , "{{remaining()}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the <code>remaining()</code> function return value changes."
         , "ng-click": "Instead of registering event-handlers, you declare which method on the controller to call. Here clicking the link will call <code>archive()</code> method."
         , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every object in <code>todos</code>, AngularJS will create new copy of the <code>&lt;li&gt;</code> element. When objects are added to the <code>todos</code> collection the <code>ng-repeat</code> automatically adds new <code>&lt;li&gt;</code> elements into the DOM. Similarly when the objects are removed from <code>todos</code> then the corresponding <code>&lt;li&gt;</code> element is removed as well. This is one of the most versatile directives in AngularJS."
@@ -777,6 +770,7 @@
         })
     </script>
     <script>
+      angular.module('tabs-us', ['tabs', 'ngLocal.us']);
       angular.module('tabs-sk', ['tabs', 'ngLocal.sk']);
     </script>
     <script id="beers.js">
@@ -790,7 +784,7 @@
           };
         } else {
           $scope.beerCounts = {
-            0: 'žjadne pivo',
+            0: 'žiadne pivo',
             one: '{} pivo',
             few: '{} pivá',
             other: '{} pív'
@@ -800,7 +794,6 @@
     </script>
     <script type="text/ng-template" id="tabs.html">
       <tabs>
-        <pane title="Formating">
           Date: {{ '2012-04-01' | date:'fullDate' }} <br>
           Currency: {{ 123456 | currency }} <br>
           Number: {{ 98765.4321 | number }} <br>
