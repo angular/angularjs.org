@@ -127,8 +127,14 @@ img.cache {
 #videoModal .modal-body {
   max-height: 611px;
   height: 611px;
+  overflow: hidden;
 }
 
 .tabs-spacer {
   height: 30px;
+}
+
+.hero-unit .tag-bullets {
+  padding-top: 21px;
+  font-family: Arial;
 }

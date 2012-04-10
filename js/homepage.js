@@ -300,8 +300,17 @@ angular.module('homepage', [])
 
       videoModal.modal({show:false});
       videoModal.on('shown', function() {
-        videoModal.find('.modal-body').
-          html('<iframe width="970" height="576" src="http://www.youtube.com/embed/WuiHuZq_cg4?hd=1&autoplay=1" frameborder="0" allowfullscreen></iframe>')
+        var iframe = videoModal.find('.modal-body').append('<iframe>').find('iframe');
+
+        iframe.attr({
+          width: 1280, height: 720, allowfullscreen: true,
+          src: 'http://www.youtube.com/embed/WuiHuZq_cg4?&autoplay=1'
+        });
+
+        // HACK: The only way I know of tricking YouTube to play HD is to show big and then resize.
+        setTimeout(function() {
+          iframe.attr({ width: 970, height: 556 });
+        }, 2500);
       });
       videoModal.on('hidden', function() {
         videoModal.find('.modal-body').html('');
