@@ -54,7 +54,7 @@
     function bootstrap() {
       if (window.prettyPrint && window.$ && $.fn.popover && angular.bootstrap &&
           hasModule('ngLocal.sk') && hasModule('ngLocal.us') && hasModule('homepage') && hasModule('ngResource')) {
-        angular.bootstrap(document, ['homepage', 'ngLocal.us']);
+            angular.bootstrap(document, ['homepage', 'ngLocal.us']);
       }
     }
 
@@ -206,33 +206,29 @@
 
     <div class="row first">
       <div class="span4">
-        <h1>Why?</h1>
+        <h1>Why AngularJS?</h1>
         <p>
-          Building web applications is hard because of impedance mismatch between what HTML is,
-          and what we are trying to use it for. The vocabulary of HTML is great for declaring
-          static documents, but fails when we try to use it for declaring dynamic views for
-          web-applications.
+          HTML is great for declaring static documents, but it fails when we try to use it for
+          declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary
+          for your application. The resulting environment is extraordinarily expressive, readable,
+          and quick to develop.
         </p>
       </div>
       <div class="span4">
-        <h1>Others</h1>
+        <h1>Alternatives</h1>
         <p>
-          Most frameworks deal with this impedance mismatch by one of the following:
-          <ol>
-            <li>abstracting away HTML, CSS, and/or JavaScript</li>
-            <li>provide imperative way for manipulating the DOM.</li>
-          </ol>
-          Neither of which solves the root cause: <em>HTML was not meant for dynamic views.</em>
+          Other frameworks deal with HTML’s shortcomings by either abstracting away HTML, CSS,
+          and/or JavaScript or by providing an imperative way for manipulating the DOM. Neither of
+          these address the root problem that HTML was not designed for dynamic views.
         </p>
       </div>
       <div class="span4">
-        <h1>AngularJS</h1>
+        <h1>Extensibility</h1>
         <p>
-          AngularJS allows you to extend HTML vocabulary in a way which fit your application
-          needs. This solves the impedance mismatch between the dynamic needs of web application
-          development and the static nature of HTML. The extensibility means that any glass
-          ceiling encountered in development can be overcome with creation of new HTML vocabulary
-          which fits that need.
+          AngularJS is a toolset for building the framework most suited to your application
+          development. It is fully extensible and works well with other libraries. Every feature
+          can be modified or replaced to suit your unique development workflow and feature needs.
+          Read on to find out how.
         </p>
       </div>
     </div>
@@ -684,13 +680,15 @@
         , "project": "The <code>ng-app</code> needs to load the <code>project</code> module. Modules are a way to configure AngularJS applications."
         , "angular-1.0.0rc4.min.js": "Load AngularJS."
         , "project.js": "Your behavior lives in JavaScript controllers."
-        , "mongolab.js": "An AngularJS module definition to connect to <code>http://parse.com</code> for data storage."
-        , "ng-view": "Location where the routes will load their templates into. See <code>$routeProvider</code>."
+        , "mongolab.js": "An AngularJS module definition to connect to <code>http://mongolab.com</code> for cloud data storage."
+        , "ng-view": "Individual application views will be loaded here. This is achieved by configuring the <code>$routeProvider</code> with route, controller and template information."
         }
       , "project.js":
-        { "project": "Declare a <code>project</code> module which is loaded by the <code>ng-app</code> directive. This module is used to define the routes."
-        , "parse": "The modules can depend on each other. In this case the <code>project</code> module depends on <code>parse</code> module."
-        , "config": "AngularJS defines a configuration phase and run phase. The distinction exists"
+        { "project": "Declare a <code>project</code> module which is loaded by the <code>ng-app</code> directive. Modules are used to configure existing services, and define new services, directives, filters, and so on."
+        , "mongolab": "The modules can depend on other modules other. In this case the <code>project</code> module depends on <code>mongolab</code> module which abstracts the cloud storage from the application."
+        , "config": "Here the <code>project</code> module is configured. AngularJS defines a configuration phase and run phase. These phase eliminate the need for <code>main()</code> method in your application. AngularJS wires the application for you automatically."
+        , "$routeProvider": "Inject <code>$routeProvider</code> so that we can configure tho application routes. The routes allow us to build application in round-trip manner and it is what enables deep-linking in your application."
+        , "when": "Define a route definition. The route definitions give the application developer instant overview over the application. It is defined in central location, rather the spread across the application."
         }
       }
     </script>

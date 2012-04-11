@@ -78,7 +78,7 @@ angular.module('homepage', [])
 
   .factory('angularSrc', function() {
 
-    return 'http://code.angularjs.org/angular-' + angular.version.full + '.js';
+    return 'http://code.angularjs.org/angular-' + angular.version.full + '.min.js';
   })
 
   .factory('fetchCode', function(indent) {
