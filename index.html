@@ -726,7 +726,7 @@
        , "$resource": "A <code>$resource</code> is a service used to create resource classes. The resource class comes preconfigured with <code>query()</code>, <code>get()</code>, <code>save()</code>, and <code>remove()</code>, methods which hide the complexity of server communictaion. In addition the class can be extended with behavior specific to your application."
        , "apiKey": "URL query parameter which needs to be sent with all requests to the <code>mongolab</code> data storage."
        , "update": "We are defining <code>update()</code> method on the resource. It will use HTTP <code>PUT</code> method for the request."
-       , "prototype": "We extend the "
+       , "prototype": "We can extend the resource class with application specific methods."
        }
      }
     </script>
@@ -743,23 +743,23 @@
             template:
               '<div class="tabbable">' +
                 '<ul class="nav nav-tabs">' +
-                  '<li ng-repeat="tab in tabs" ng-class="{active: tab.selected}">' +
-                    '<a href="" ng-click="select(tab)">{{tab.title}}</a>' +
+                  '<li ng-repeat="pane in panes" ng-class="{active:pane.selected}">'+
+                    '<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
                   '</li>' +
                 '</ul>' +
                 '<div class="tab-content" ng-transclude></div>' +
               '</div>',
             replace: true,
             controller: function($scope, $element) {
-              var tabs = $scope.tabs = [];
+              var panes = $scope.panes = [];
 
               this.addPane = function(pane) {
-                if (tabs.length == 0) $scope.select(pane);
-                tabs.push(pane);
+                if (panes.length == 0) $scope.select(pane);
+                panes.push(pane);
               }
 
               $scope.select = function(pane) {
-                angular.forEach(tabs, function(pane) {
+                angular.forEach(panes, function(pane) {
                   pane.selected = false;
                 });
                 pane.selected = true;
@@ -824,8 +824,36 @@
         </pane>
       </tabs>
     </script>
-    <script id="tabs.annotation">
-      {
+    <script type="text/ng-template" id="tabs.annotation">
+      { "tabs.html": 
+        { "tabs": ""
+        , "pane": ""
+        , "title": ""
+        , "BeerCounter": ""
+        , "ng-pluralize": ""
+        , "count": ""
+        , "when": ""
+        }
+      , "tabs.js": 
+        { "directive": ""
+        , "restrict": ""
+        , "transclude": ""
+        , "scope": ""
+        , "template": ""
+        , "replace": ""
+        , "controller": ""
+        , "$element": ""
+        , "addPane": ""
+        , "select": ""
+        , "active": ""
+        , "require": ""
+        , "tabsCtrl": ""
+        }
+      , "beers.js": 
+        { "beers": ""
+        , "id": ""
+        , "beerCounts": ""
+        }
       }
     </script>
   </div>
