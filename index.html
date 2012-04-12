@@ -682,7 +682,6 @@
       </form>
     </script>
     <script type="text/ng-template" id="project.annotation">
-<<<<<<< HEAD
     { "project.html":
        { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
        , "project": "The <code>ng-app</code> activates the <code>project</code> module for this page region. This lets you have modules that run in different parts of the page."
@@ -737,22 +736,6 @@
        , "prototype": "Here we're extending the resource class with methods specific to our application's persistence engine."
        }
      }
-=======
-      { "project.html":
-        { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
-        , "project": "The <code>ng-app</code> directive can take a list of modules to load.  Modules are collections of directives, filters, services and other configuration information in AngularJS.  Here, we load the <code>project</code> module containing configuration needed to communicate with our REST service."
-        , "angular-1.0.0rc4.min.js": "Load AngularJS."
-        , "project.js": "Your behavior lives in JavaScript controllers.  For this example, the <code>project.js</code> contains several controllers to manage the behaviors of the list, creating, and editing projects."
-        , "parse.js": "An AngularJS module definition to connect to <code>http://parse.com</code> for data storage."
-        , "ng-view": "Location where the routes will load their templates into. See <code>$routeProvider</code>."
-        }
-      , "project.js":
-        { "project": "Declare a <code>project</code> module which is loaded by the <code>ng-app</code> directive. This module is used to define the routes."
-        , "parse": "The modules can depend on each other. In this case the <code>project</code> module depends on <code>parse</code> module."
-        , "config": "The module's <code>config()</code> method lets you specify configuration information that is needed prior to loading.  We're defining the RESTful data paths here so AngularJS can manage the server communication for us."
-        }
-      }
->>>>>>> Popover description updates on the homepage
     </script>
   </div>
   <div class="tabs-code">
