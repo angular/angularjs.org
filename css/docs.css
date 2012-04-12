@@ -34,6 +34,7 @@ code.nocode {
 .container h3,
 .container h4 {
   margin-bottom: .5em;
+  font-family: 'Bree Serif',serif;
 }
 
 .container h1 {
@@ -141,4 +142,8 @@ img.cache {
 .hero-unit .tag-bullets {
   padding-top: 21px;
   font-family: Arial;
+}
+
+.icon-github {
+  background: url(http://markdotto.github.com/github-buttons/github-icons.png) no-repeat 0 0;
 }
