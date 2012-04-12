@@ -624,7 +624,7 @@
       <div ng-view></div>
     </script>
     <script type="text/ng-template" id="list.html">
-      <input type="text" ng-model="predicate" class="search-query"
+      <input type="text" ng-model="search" class="search-query"
              placeholder="Search">
       <table>
         <thead>
@@ -635,7 +635,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="project in projects | filter:predicate | orderBy:'name'">
+        <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
           <td>{{project.name}}</td>
           <td>{{project.description}}</td>
           <td>
@@ -703,12 +703,12 @@
        , "save": "Called when the user clicks the save button in the view."
        }
      , "list.html": 
-       { "ng-model": "Data-bind the input field to the <code>predicate</code> property. The <code>predicate</code> is then used to filter for only the projects which contain the <code>predicate</code> text as they user types."
-       , "#/new": "This is a link to the <code>/new</code> route defined in <code>projects.js</code>.  When a user clicks it, this will update the DOM to display the view defined in the route mapping.  There is no need to register callbacks on links, we are simply navigating to a new URL. AngularJS watches the URL and does the content swapping for us. Unlike in server-round-trip applications, this navigation event gets rendered instantly in the browser."
+       { "ng-model": "Bind the input field to the <code>predicate</code> property. The <code>predicate</code> is then used to filter for only the projects which contain the <code>predicate</code> text."
+       , "#/new": "A link to a <code>/new</code> route defined in <code>projects.js</code>. Note that we follow the spirit of the web. There is no need to register callbacks on links, we are simply navigating to a new URL. This automatically updates the browser history, and enables deep-linking. But unlike a server round trip application, this navigation event gets rendered instantly in the browser."
        , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
-       , "filter": "The <code>filter</code> uses the <code>predicate</code> to return a subset of items in the <code>projects</code> array that match. As you type into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
-       , "orderBy": "Returns the <code>project</code> list ordered by the <code>name</code> property's value."
-       , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id creates a deep-link URL for each project which supports bookmarking, using the back button, and creates a way to communicate to <code>EditCtrl</code> which project should be edited."
+       , "filter": "The <code>filter</code> uses the <code>predicate</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
+       , "orderBy": "Returns the <code>project</code> list ordered by <code>name</code> property."
+       , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id serves the purpose of deep-linking, back button, as well as a way to communicate to <code>EditCtrl</code> which project should be edited."
        }
      , "detail.html": 
        { "myForm": "Create a form named <code>myForm</code>. We will declare form validation rules here which we'll use to show input errors and disable buttons."
