@@ -40,8 +40,8 @@
 
     $script('google-code-prettify/prettify.min.js', bootstrap);
     $script('js/homepage.js', bootstrap);
-    $script('http://code.angularjs.org/angular-1.0.0rc4.min.js', bootstrap);
-    $script('http://code.angularjs.org/angular-resource-1.0.0rc4.min.js', bootstrap);
+    $script('http://code.angularjs.org/angular-1.0.0rc4.js', bootstrap);
+    $script('http://code.angularjs.org/angular-resource-1.0.0rc4.js', bootstrap);
     $script('http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_sk.js', function() {
       angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
       bootstrap();
@@ -327,10 +327,10 @@
       </div>
     </div>
     <div class=" row example">
-      <div class="span8 app-source" app-source="project.html project.js list.html detail.html mongolab.js" annotate="project.annotation" module="project"></div>
+      <div class="span8 app-source" app-source="project.html project.js list.html detail.html mongolab.js" resource="resource" annotate="project.annotation" module="project"></div>
       <div class="span4">
         <span hint></span>
-        <span class="pull-right" js-fiddle="project.html list.html detail.html project.js mongolab.js" resource module="project"></span>
+        <span class="pull-right" js-fiddle="project.html list.html detail.html project.js mongolab.js" resource="resource" module="project"></span>
         <div class="tabs-spacer"></div>
         <div app-run="project.html" module="project" class="well"></div>
       </div>
@@ -573,47 +573,47 @@
       angular.module('project', ['mongolab']).
         config(function($routeProvider) {
           $routeProvider.
-            when('/list', {controller:ListCntl, template:'list.html'}).
-            when('/edit/:projectId', {controller:EditCntl, template:'detail.html'}).
-            when('/new', {controller:CreateCntl, template:'detail.html'}).
+            when('/list', {controller:ListCtrl, template:'list.html'}).
+            when('/edit/:projectId', {controller:EditCtrl, template:'detail.html'}).
+            when('/new', {controller:CreateCtrl, template:'detail.html'}).
             otherwise({redirectTo:'/list'});
         });
 
 
-      function ListCntl($scope, Project) {
+      function ListCtrl($scope, Project) {
         $scope.projects = Project.query();
       }
 
 
-      function CreateCntl($scope, $location, Project) {
+      function CreateCtrl($scope, $location, Project) {
         $scope.save = function() {
-          Project.create($scope.project).then(function(project) {
-            $location.path('/edit/' + project.objectId);
+          Project.save($scope.project, function(project) {
+            $location.path('/edit/' + project._id.$oid);
           });
         }
       }
 
 
-      function EditCntl($scope, $location, $routeParams, Project) {
+      function EditCtrl($scope, $location, $routeParams, Project) {
         var self = this;
 
-        Project.get($routeParams.projectId).then(function(project) {
-          self.project = project;
-          $scope.project = angular.copy(self.project);
+        Project.get({id: $routeParams.projectId}, function(project) {
+          self.original = project;
+          $scope.project = new Project(self.original);
         });
 
         $scope.isClean = function() {
-          return angular.equals(self.project, $scope.project);
+          return angular.equals(self.original, $scope.project);
         }
 
         $scope.destroy = function() {
-          self.project.destroy().then(function() {
+          self.original.destroy(function() {
             $location.path('/list');
           });
         };
 
         $scope.save = function() {
-          self.project.save($scope.project).then(function() {
+          $scope.project.update(function() {
             $location.path('/list');
           });
         };
@@ -639,7 +639,7 @@
           <td>{{project.name}}</td>
           <td>{{project.description}}</td>
           <td>
-            <a href="#/edit/{{project.objectId}}"><i class="icon-pencil"></i></a>
+            <a href="#/edit/{{project._id.$oid}}"><i class="icon-pencil"></i></a>
           </td>
         </tr>
         </tbody>
@@ -671,26 +671,64 @@
         <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
                 class="btn btn-primary">Save</button>
         <button ng-click="destroy()"
-                ng-show="project.objectId" class="btn btn-danger">Delete</button>
+                ng-show="project._id" class="btn btn-danger">Delete</button>
       </form>
     </script>
     <script type="text/ng-template" id="project.annotation">
-      { "project.html":
-        { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
-        , "project": "The <code>ng-app</code> needs to load the <code>project</code> module. Modules are a way to configure AngularJS applications."
-        , "angular-1.0.0rc4.min.js": "Load AngularJS."
-        , "project.js": "Your behavior lives in JavaScript controllers."
-        , "mongolab.js": "An AngularJS module definition to connect to <code>http://mongolab.com</code> for cloud data storage."
-        , "ng-view": "Individual application views will be loaded here. This is achieved by configuring the <code>$routeProvider</code> with route, controller and template information."
-        }
-      , "project.js":
-        { "project": "Declare a <code>project</code> module which is loaded by the <code>ng-app</code> directive. Modules are used to configure existing services, and define new services, directives, filters, and so on."
-        , "mongolab": "The modules can depend on other modules other. In this case the <code>project</code> module depends on <code>mongolab</code> module which abstracts the cloud storage from the application."
-        , "config": "Here the <code>project</code> module is configured. AngularJS defines a configuration phase and run phase. These phase eliminate the need for <code>main()</code> method in your application. AngularJS wires the application for you automatically."
-        , "$routeProvider": "Inject <code>$routeProvider</code> so that we can configure tho application routes. The routes allow us to build application in round-trip manner and it is what enables deep-linking in your application."
-        , "when": "Define a route definition. The route definitions give the application developer instant overview over the application. It is defined in central location, rather the spread across the application."
-        }
-      }
+    { "project.html":
+       { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
+       , "project": "The <code>ng-app</code> activates the <code>project</code> module for this page region. This lets you have modules that run in different parts of the page."
+       , "angular-1.0.0rc4.min.js": "Load AngularJS."
+       , "angular-resource-1.0.0rc4.min.js": "Load AngularJS resource module."
+       , "project.js": "The <code>project.js</code> file contains the controllers which specify your application’s behavior."
+       , "mongolab.js": "An AngularJS module definition to connect this application to <code>http://mongolab.com</code> for its data storage."
+       , "ng-view": "We’re marking this <code>&lt;div&gt;</code> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section. In this case, we’ll be switching between a list of “projects” and the form to add new or edit existing “projects”."
+       }
+     , "project.js":
+       { "project": "Define the <code>project</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up ‘routes’ that map URLs to partials. AngularJS watches the browser location and automatically updates the partial when the URL changes."
+       , "mongolab": "Modules can depend on other modules. Here, <code>project</code> needs <code>mongolab</code> which handles the persistence for the application."
+       , "config": "You use <code>config()</code> to configure existing services. Here, we’re configuring the <code>$routeProvider</code> responsible for mapping URL paths to partials."
+       , "when": "When the URL is <code>/list</code> it will load <code>list.html</code> into the view and attach the <code>ListCtrl</code> controller. You can instantly get an overview of app structure by reading the route definitions."
+       , "/edit/:projectId": "This route definition has a colon ':' in it. You use colons to make this component of the URL available to your controller. So now, <code>EditCtrl</code> can refer to the <code>projectId</code> that tells it which project to edit."
+       , "otherwise": "The <code>otherwise</code> route specifies which view to display when the URL doesn’t match any of the explicit routes. It’s the default."
+       , "Project": "<code>Project</code> is a class for persisting and accessing the application data. It is defined in <code>mongolab.js</code> module and it is automatically injected into the controller. Its purpose is to abstract the server communication. This lets the controller focus on the behavior rather than the complexities of server access."
+       , "query": "The <code>query</code> method requests a list of <code>Project</code>s from the server. It returns a promise, which will be resolved when server returns data. The return of a promise often times removes the need to specify callback functions on asynchronous operations as in this case. The data binding will render the data once the promise is resolved."
+       , "$location": "The <code>$location</code> service is used to access the browser location."
+       , "path": "Use the <code>path</code> method to change the application deep-linking location from the controller. Changing the URL will automatically activate the new route, and transition the application to that view."
+       , "$routeParams": "The <code>$routeParams</code> service is used to access the parameters extracted from the route path definitions."
+       , "projectId": "The <code>projectId</code> is extracted from the URL. This allows the controller to use deep-linking information for processing."
+       , "original": "We save the original copy of the <code>Project</code> so that we can determine if the user has modified the form."
+       , "isClean": "Determines wether the user has modified the form. We use this information to enable the save button in the view."
+       , "destroy": "Called when the user clicks the delete button in the view."
+       , "save": "Called when the user clicks the save button in the view."
+       }
+     , "list.html": 
+       { "ng-model": "Bind the input field to the <code>predicate</code> property. The <code>predicate</code> is then used to filter for only the projects which contain the <code>predicate</code> text."
+       , "#/new": "A link to a <code>/new</code> route defined in <code>projects.js</code>. Note that we follow the spirit of the web. There is no need to register callbacks on links, we are simply navigating to a new URL. This automatically updates the browser history, and enables deep-linking. But unlike a server round trip application, this navigation event gets rendered instantly in the browser."
+       , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
+       , "filter": "The <code>filter</code> uses the <code>predicate</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
+       , "orderBy": "Returns the <code>project</code> list ordered by <code>name</code> property."
+       , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id serves the purpose of deep-linking, back button, as well as a way to communicate to <code>EditCtrl</code> which project should be edited."
+       }
+     , "detail.html": 
+       { "myForm": "Create a form named <code>myForm</code>. The form contains field validity information which can be used for data-binding errors or disabling action buttons."
+       , "ng-class": "Add <code>error</code> CSS class when the <code>myForm</code>'s input <code>name</code> is invalid."
+       , "required": "Invalidate the input control when no text is entered."
+       , "ng-show": "Show this error message when the <code>myForm</code>'s input <code>name</code> has <code>required</code> validation error."
+       , "url": "The URL type automatically adds URL validation."
+       , "ng-disabled": "The 'Save' button is disabled when the form has not been user edited or is invalid."
+       }
+     , "mongolab.js": 
+       { "'mongolab'": "Define the <code>mongolab</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up <code>Project</code> class to which abstracts server communication."
+       , "'ngResource'": "We depend on AngularJS <code>ngResource</code> module which "
+       , "factory": ""
+       , "Project": ""
+       , "$resource": ""
+       , "apiKey": ""
+       , "update": ""
+       , "prototype": ""
+       }
+     }
     </script>
   </div>
   <div class="tabs-code">
@@ -741,8 +779,8 @@
               '</div>',
             replace: true,
             require: '^tabs',
-            link: function(scope, element, attrs, tabsCntl) {
-              tabsCntl.addPane(scope);
+            link: function(scope, element, attrs, tabsCtrl) {
+              tabsCtrl.addPane(scope);
             }
           };
         })

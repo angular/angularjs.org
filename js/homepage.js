@@ -76,9 +76,12 @@ angular.module('homepage', [])
     return text.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/"/g, '&quot;');
   })
 
-  .factory('angularSrc', function() {
+  .factory('script', function() {
 
-    return 'http://code.angularjs.org/angular-' + angular.version.full + '.min.js';
+    return {
+      angular: '<script src="http://code.angularjs.org/angular-' + angular.version.full + '.min.js"></script>\n',
+      resource: '<script src="http://code.angularjs.org/angular-resource-' + angular.version.full + '.min.js"></script>\n'
+    };
   })
 
   .factory('fetchCode', function(indent) {
@@ -116,28 +119,29 @@ angular.module('homepage', [])
     };
   })
 
-  .directive('appSource', function(fetchCode, escape, angularSrc) {
-    var TEMPLATE = {
-          'index.html':
-            '<!doctype html>\n' +
-              '<html ng-app__MODULE__>\n' +
-              '  <head>\n' +
-              '    <script src="' + angularSrc + '"></script>\n' +
-              '__HEAD__' +
-              '  </head>\n' +
-              '  <body>\n' +
-              '__BODY__' +
-              '  </body>\n' +
-              '</html>'
-        };
+  .directive('appSource', function(fetchCode, escape, script) {
     return {
       terminal: true,
       link: function(scope, element, attrs) {
         var tabs = [],
             panes = [],
-            annotation = attrs.annotate && angular.fromJson(fetchCode(attrs.annotate)) || {};
+            annotation = attrs.annotate && angular.fromJson(fetchCode(attrs.annotate)) || {},
+            TEMPLATE = {
+              'index.html':
+                '<!doctype html>\n' +
+                '<html ng-app__MODULE__>\n' +
+                '  <head>\n' +
+                '    ' + script.angular +
+               (attrs.resource ? ('    ' + script.resource.replace('></', '>\n    </')) : '') +
+                '__HEAD__' +
+                '  </head>\n' +
+                '  <body>\n' +
+                '__BODY__' +
+                '  </body>\n' +
+                '</html>'
+          };
 
-        element.css('clear', 'both');
+    element.css('clear', 'both');
 
         angular.forEach(attrs.appSource.split(' '), function(filename, index) {
           var content;
@@ -176,14 +180,23 @@ angular.module('homepage', [])
           // hack around incorrect tokenization
           content = content.replace('doneTrue', '.done-true');
 
+          var popovers = {},
+              counter = 0;
+
           angular.forEach(annotation[filename], function(text, key) {
             var regexp = new RegExp('(\\W|^)(' + key.replace(/([\W\-])/g, '\\$1') + ')(\\W|$)');
 
             content = content.replace(regexp, function(_, before, token, after) {
-              return before +
+              var token = "__" + (counter++) + "__";
+              popovers[token] =
                 '<code class="nocode" rel="popover" title="' + escape('<code>' + key + '</code>') +
-                '" data-content="' + escape(text) + '">' + escape(key) + '</code>' + after;
+                '" data-content="' + escape(text) + '">' + escape(key) + '</code>';
+              return before + token + after;
             });
+          });
+
+          angular.forEach(popovers, function(text, token) {
+            content = content.replace(token, text);
           });
 
           panes.push(
@@ -224,15 +237,15 @@ angular.module('homepage', [])
     }
   })
 
-  .directive('jsFiddle', function(fetchCode, escape, angularSrc) {
+  .directive('jsFiddle', function(fetchCode, escape, script) {
     return {
       terminal: true,
       link: function(scope, element, attr) {
         var name = '',
             stylesheet = '<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">\n',
-            angularjs = '<script src="' + angularSrc + '"></script>\n',
+            angularjs = '<script src="' + script + '"></script>\n',
             resourcejs = attr.resource
-                ? ('<script src="' + angularSrc.replace('/angular-', '/angular-resource-') + '"></script>\n')
+                ? ('<script src="' + script.resource.replace('/angular-', '/angular-resource-') + '"></script>\n')
                 : '',
             fields = {
               html: '',
