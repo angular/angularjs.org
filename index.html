@@ -365,16 +365,16 @@
       </div>
     </div>
     <div class=" row example">
-      <div class="span8 app-source" app-source="tabs.html tabs.js beers.js" annotate="tabs.annotation" module="tabs"></div>
+      <div class="span8 app-source" app-source="tabs.html components.js beers.js" annotate="tabs.annotation" module="components"></div>
       <div class="span4">
         <span hint></span>
-        <span class="pull-right" js-fiddle="tabs.html zippy.js zippy.css tabs.js beers.js advanced.js" module="tabs"></span>
+        <span class="pull-right" js-fiddle="tabs.html zippy.js zippy.css components.js beers.js advanced.js" module="components"></span>
         <div class="tabs-spacer"></div>
         <h4>Locale: US</h4>
-        <div app-run="tabs.html" module="tabs-us" class="well"></div>
+        <div app-run="tabs.html" module="components-us" class="well"></div>
         <div class="tabs-spacer"></div>
         <h4>Locale: SK</h4>
-        <div app-run="tabs.html" module="tabs-sk" class="well"></div>
+        <div app-run="tabs.html" module="components-sk" class="well"></div>
       </div>
     </div>
 
@@ -385,7 +385,7 @@
       <div class="span4">
         <h3>Embeddable</h3>
         <p>
-          AngularJS works great with other technologies. Add as much or as little of AngularJS to
+          AngularJS works great with other technologies. Add as much or as little of AngularJSJS to
           an existing page as you like. Many other frameworks require full commitment. This page
           has multiple AngularJS applications embedded in it. Because AngularJS has no global
           state multiple apps can run on a single page without the use of <code>iframe</code>s. We
@@ -407,7 +407,7 @@
           AngularJS was designed from ground up to be testable. It encourages behavior-view
           separation, comes pre-bundled with mocks, and takes full advantage of dependency
           injection. It also comes with end-to-end scenario runner which eliminates test flakiness
-          by understanding the inner workings of AngularJS.
+          by understanding the inner workings of AngularJSJS.
         <p>
         </p>
       </div>
@@ -624,8 +624,7 @@
       <div ng-view></div>
     </script>
     <script type="text/ng-template" id="list.html">
-      <input type="text" ng-model="search" class="search-query"
-             placeholder="Search">
+      <input type="text" ng-model="search" class="search-query" placeholder="Search">
       <table>
         <thead>
         <tr>
@@ -703,10 +702,10 @@
        , "save": "Called when the user clicks the save button in the view."
        }
      , "list.html": 
-       { "ng-model": "Bind the input field to the <code>predicate</code> property. The <code>predicate</code> is then used to filter for only the projects which contain the <code>predicate</code> text."
+       { "ng-model": "Bind the input field to the <code>serach</code> property. The property is then used to filter for only the projects which contain the text entered by the user."
        , "#/new": "A link to a <code>/new</code> route defined in <code>projects.js</code>. Note that we follow the spirit of the web. There is no need to register callbacks on links, we are simply navigating to a new URL. This automatically updates the browser history, and enables deep-linking. But unlike a server round trip application, this navigation event gets rendered instantly in the browser."
        , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
-       , "filter": "The <code>filter</code> uses the <code>predicate</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
+       , "filter": "The <code>filter</code> uses the <code>serach</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
        , "orderBy": "Returns the <code>project</code> list ordered by <code>name</code> property."
        , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id serves the purpose of deep-linking, back button, as well as a way to communicate to <code>EditCtrl</code> which project should be edited."
        }
@@ -722,7 +721,7 @@
        { "'mongolab'": "Define the <code>mongolab</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up <code>Project</code> class to abstracts server communication."
        , "'ngResource'": "We depend on AngularJS <code>ngResource</code> module which provides <code>$resource</code> abstraction."
        , "factory": "Use the module's <code>factory</code> method to define new service. Any service defined here can the be injected throughout your application."
-       , "Project": "Here is a service definition for <code>Parse</code> resource class. The <code>Project</code> class will represent the data associated with each project. The class has methods for retrieving and storing the data."
+       , "Project": "Here is a service definition for <code>Project</code> resource class. The class will represent the data associated with each project. It has methods for retrieving and storing the data."
        , "$resource": "A <code>$resource</code> is a service used to create resource classes. The resource class comes preconfigured with <code>query()</code>, <code>get()</code>, <code>save()</code>, and <code>remove()</code>, methods which hide the complexity of server communictaion. In addition the class can be extended with behavior specific to your application."
        , "apiKey": "URL query parameter which needs to be sent with all requests to the <code>mongolab</code> data storage."
        , "update": "We are defining <code>update()</code> method on the resource. It will use HTTP <code>PUT</code> method for the request."
@@ -733,13 +732,28 @@
   </div>
   <div class="tabs-code">
     <!-- ============== Tabs ============== -->
-    <script id="tabs.js">
-      angular.module('tabs', []).
+    <script id="components.js">
+      angular.module('components', []).
         directive('tabs', function() {
           return {
             restrict: 'E',
             transclude: true,
             scope: {},
+            controller: function($scope, $element) {
+              var panes = $scope.panes = [];
+
+              $scope.select = function(pane) {
+                angular.forEach(panes, function(pane) {
+                  pane.selected = false;
+                });
+                pane.selected = true;
+              }
+
+              this.addPane = function(pane) {
+                if (panes.length == 0) $scope.select(pane);
+                panes.push(pane);
+              }
+            },
             template:
               '<div class="tabbable">' +
                 '<ul class="nav nav-tabs">' +
@@ -749,57 +763,40 @@
                 '</ul>' +
                 '<div class="tab-content" ng-transclude></div>' +
               '</div>',
-            replace: true,
-            controller: function($scope, $element) {
-              var panes = $scope.panes = [];
-
-              this.addPane = function(pane) {
-                if (panes.length == 0) $scope.select(pane);
-                panes.push(pane);
-              }
-
-              $scope.select = function(pane) {
-                angular.forEach(panes, function(pane) {
-                  pane.selected = false;
-                });
-                pane.selected = true;
-              }
-            }
+            replace: true
           };
         }).
         directive('pane', function() {
           return {
+            require: '^tabs',
             restrict: 'E',
             transclude: true,
-            scope: {
-              title: 'bind'
+            scope: { title: 'bind' },
+            link: function(scope, element, attrs, tabsCtrl) {
+              tabsCtrl.addPane(scope);
             },
             template:
               '<div class="tab-pane" ng-class="{active: selected}" ng-transclude>' +
               '</div>',
-            replace: true,
-            require: '^tabs',
-            link: function(scope, element, attrs, tabsCtrl) {
-              tabsCtrl.addPane(scope);
-            }
+            replace: true
           };
         })
     </script>
     <script>
-      angular.module('tabs-us', ['tabs', 'ngLocal.us']);
-      angular.module('tabs-sk', ['tabs', 'ngLocal.sk']);
+      angular.module('components-us', ['components', 'ngLocal.us']);
+      angular.module('components-sk', ['components', 'ngLocal.sk']);
     </script>
     <script id="beers.js">
       function BeerCounter($scope, $locale) {
-        $scope.beers = 0;
+        $scope.beers = [0, 1, 2, 3, 4, 5, 6];
         if ($locale.id == 'en-us') {
-          $scope.beerCounts = {
+          $scope.beerForms = {
             0: 'no beers',
             one: '{} beer',
             other: '{} beers'
           };
         } else {
-          $scope.beerCounts = {
+          $scope.beerForms = {
             0: 'žiadne pivo',
             one: '{} pivo',
             few: '{} pivá',
@@ -817,42 +814,51 @@
         </pane>
         <pane title="Pluralization">
           <div ng-controller="BeerCounter">
-            <i class="icon-plus" ng-click="beers = beers + 1"></i>
-            <i class="icon-minus" ng-click="beers = beers - 1"></i>
-            <ng-pluralize count="beers" when="beerCounts"></ng-pluralize>
+            <div ng-repeat="beerCount in beers">
+              <ng-pluralize count="beerCount" when="beerForms"></ng-pluralize>
+            </div>
           </div>
         </pane>
       </tabs>
     </script>
     <script type="text/ng-template" id="tabs.annotation">
       { "tabs.html": 
-        { "tabs": ""
-        , "pane": ""
-        , "title": ""
-        , "BeerCounter": ""
-        , "ng-pluralize": ""
-        , "count": ""
-        , "when": ""
+        { "components": "The <code>ng-app</code> activates the <code>component</code> module for this page region. The module contains HTML extension for <code>&lt;tabs&gt;</code> and <code>&lt;pane&gt;</code> components."
+        , "tabs": "We extend the HTML with custom <code>tabs</code> element. The <code>tabs</code> abstracts the complex HTML structure necessary for rendering of tabs. The result is a more readable view."
+        , "pane": "We extend the HTML with a custom <code>pane</code> element. The <code>pane</code> abstracts the complex HTML structure necessary for rendering the panes of each tab. The result is a more readable view."
+        , "title": "Components can take input parameters in the form of HTML attributes. In this case the <code>title</code> attribute specifies the tab's text."
+        , "Localization": "An example demonstrating localization features of AngularJS: date, number and currency formatting."
+        , "Pluralization": "An example demonstrating pluralization features of AngularJS. Notice that that the plural form of 'beer' changes in 'SK' locale at zero, one, two, and five beers."
+        , "BeerCounter": "We use the <code>BeerCounter</code> controller to set up counting rules depending on the locale."
+        , "ng-pluralize": "The <code>ng-pluralize</code> directive selects the right plural format for each locale. Unlike English, other languages often have complex plural rules depending on the number of items involved."
+        , "count": "Binds to the number property. The count becomes the selector for the plural form to chose."
+        , "when": "Binds to pluralization rules. The rules are unique for each locale and language combination."
         }
-      , "tabs.js": 
-        { "directive": ""
-        , "restrict": ""
-        , "transclude": ""
-        , "scope": ""
-        , "template": ""
-        , "replace": ""
-        , "controller": ""
-        , "$element": ""
-        , "addPane": ""
-        , "select": ""
-        , "active": ""
-        , "require": ""
-        , "tabsCtrl": ""
+      , "components.js": 
+        { "directive": "Use the module's <code>directive()</code> method to define new components. "
+        , "tabs": "Define the <code>&lt;tabs&gt;</code> component."
+        , "controller": "Just like application, the component can have controller. The advantage of controller is that it can export API which other components can consume."
+        , "$element": "Current DOM element of the component."
+        , "$scope": "Current scope of the component."
+        , "select": "Publish a <code>select()</code> which will be used by the view to select different tabs."
+        , "addPane": "Often times multiple components need to collaborate together as a unit. In our case the <code>&lt;pane&gt;</code> will use the <code>addPane()</code> method to be register itself with the  <code>&lt;tabs&gt;</code> container."
+        , "template": "The <code>template</code> is HTML markup which needs to be rendered by the browser instead of <code>&lt;tabs&gt;</code>. Notice that the markup can have other directives and components."
+        , "restrict": "The <code>restrict</code> specifies in what format must the component be declared in HTML. In this case the <code>&lt;tabs&gt;</code> must be an element."
+        , "ng-transclude": "Specifies the location where the transcluded content will be placed. Transcluded content is the original content of the <code>&lt;tabs&gt;</code>"
+        , "transclude": "Specifies that transclusion of content should take place. Transcluded content is the original content of the <code>&lt;tabs&gt;</code>."
+        , "scope": "Our component needs to have its own internal scope, so that its view properties are not accidentally exported outside the <code>&lt;tabs&gt;</code>. Optionally you can declare input/output attributes on your component here. See <code>&lt;pane&gt;</code> for an example."
+        , "replace": "Specifies that the original <code>&lt;tabs&gt;</code> element should be replaced with the <code>template</code>, or whether the template should simply be appended to it."
+        , "active": "We set the <code>active</code> CSS class to designate the currently active tab."
+        , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside the <code>&lt;tabs&gt;</code> component. This also allows the <code>&lt;pane&gt;</code> component to get access to the <code>&lt;tabs&gt;</code>' controller <code>addPane()</code> method."
+        , "tabsCtrl": "The <code>&lt;tabs&gt;</code>' controller instance."
+        , "ng-click": "Select the clicked tab."
+        , "bind": "Specifies how should the <code>title</code> attribute on the <code>&lt;pane&gt;</code> be available to the <code>&lt;pane&gt;</code> component. In this case we <code>bind</code> it, which means that we are interested in the interpolated value of the <code>title</code> attribute. This becomes available as the <code>title</code> property on the <code>&lt;pane&gt;</code>'s scope, and can be used in <code>template</code> for binding."
         }
       , "beers.js": 
-        { "beers": ""
-        , "id": ""
-        , "beerCounts": ""
+        { "$locale": "The <code>$locale</code> service contains meta-data for the current locale. There are AngularJS locale modules available for each language locale combination."
+        , "beers": "Set up beers counting array. We will iterate over this array and see how the 'beers' count gets rendered for each count."
+        , "id": "Create different pluralization rules based on locale. In an actual app, one would load a different module which would contain translation as well as localization rules for each language."
+        , "beerForms": "Pluralization rules for English."
         }
       }
     </script>
