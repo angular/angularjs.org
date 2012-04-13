@@ -402,7 +402,7 @@
         <p>
           The dependency injection in AngularJS allows you to declaratively describe how your
           application is wired. This means that your your application needs no <code>main()</code>
-          method which is a usual unmaintainable mess. Dependency injection is also a core to
+          method which is usually an unmaintainable mess. Dependency injection is also a core to
           AngularJS. This means that any component which does not fit your needs can easily be
           replaced.
         </p>
@@ -720,17 +720,17 @@
        , "required": "Invalidate the input control when no text is entered."
        , "ng-show": "Show this error message when the <code>myForm</code>'s input <code>name</code> has <code>required</code> validation error."
        , "url": "The URL type automatically adds URL validation."
-       , "ng-disabled": "Disable the 'Save' button when the form has not been user edited or is invalid."
+       , "ng-disabled": "Disable the 'Save' button when the form has not been filled in or is invalid."
        }
      , "mongolab.js": 
-       { "'mongolab'": "Define the <code>mongolab</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up <code>Project</code> class to abstracts server communication."
-       , "'ngResource'": "We depend on AngularJS <code>ngResource</code> module which provides <code>$resource</code> abstraction."
-       , "factory": "Use the module's <code>factory</code> method to define new service. Any service defined here can the be injected throughout your application."
-       , "Project": "Here is a service definition for <code>Project</code> resource class. The class will represent the data associated with each project. It has methods for retrieving and storing the data."
-       , "$resource": "A <code>$resource</code> is a service used to create resource classes. The resource class comes preconfigured with <code>query()</code>, <code>get()</code>, <code>save()</code>, and <code>remove()</code>, methods which hide the complexity of server communictaion. In addition the class can be extended with behavior specific to your application."
-       , "apiKey": "URL query parameter which needs to be sent with all requests to the <code>mongolab</code> data storage."
+       { "'mongolab'": "Declares the <code>mongolab</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up <code>Project</code> class to abstracts server communication."
+       , "'ngResource'": "We depend on AngularJS <code>ngResource</code> module which provides a generic interface to RESTful services."
+       , "factory": "Use the module's <code>factory</code> method to define new services. Any service defined here will then be automatically injected anywhere your application requests it."
+       , "Project": "Here is a service definition for the <code>Project</code> resource class. The class will represent the data associated with each 'project'. It has methods for retrieving and storing the data."
+       , "$resource": "A <code>$resource</code> is a service used to create resource classes. The resource class comes preconfigured with <code>query()</code>, <code>get()</code>, <code>save()</code>, and <code>remove()</code>, methods as an API to communicate with persistence servers. Additionally, the class can be extended with behavior specific to your application."
+       , "apiKey": "URL query parameter which needs to be sent with all requests to the <code>mongolab</code> data storage engine."
        , "update": "We are defining <code>update()</code> method on the resource. It will use HTTP <code>PUT</code> method for the request."
-       , "prototype": "We can extend the resource class with application specific methods."
+       , "prototype": "Here we're extending the resource class with methods specific to our application's persistence engine."
        }
      }
     </script>
@@ -829,8 +829,8 @@
     <script type="text/ng-template" id="tabs.annotation">
       { "tabs.html": 
         { "components": "The <code>ng-app</code> activates the <code>component</code> module for this page region. The module contains HTML extension for <code>&lt;tabs&gt;</code> and <code>&lt;pane&gt;</code> components."
-        , "tabs": "We extend the HTML with custom <code>tabs</code> element. The <code>tabs</code> abstracts the complex HTML structure necessary for rendering of tabs. The result is a more readable view."
-        , "pane": "We extend the HTML with a custom <code>pane</code> element. The <code>pane</code> abstracts the complex HTML structure necessary for rendering the panes of each tab. The result is a more readable view."
+        , "tabs": "We've extended HTML's vocabulary with a custom <code>tabs</code> element. The <code>tabs</code> abstracts the complex HTML structure and behavior necessary for rendering of tabs. The result is a more readable view and very easily reusable syntax."
+        , "pane": "Again, we've extended the HTML vocabulary with a custom <code>pane</code> element. The <code>pane</code> element renders the panes of each tab. The result is a more readable view."
         , "title": "Components can take input parameters in the form of HTML attributes. In this case the <code>title</code> attribute specifies the tab's text."
         , "Localization": "An example demonstrating localization features of AngularJS: date, number and currency formatting."
         , "Pluralization": "An example demonstrating pluralization features of AngularJS. Notice that that the plural form of 'beer' changes in 'SK' locale at zero, one, two, and five beers."
@@ -840,22 +840,22 @@
         , "when": "Binds to pluralization rules. The rules are unique for each locale and language combination."
         }
       , "components.js": 
-        { "directive": "Use the module's <code>directive()</code> method to define new components. "
+        { "directive": "Use the module's <code>directive()</code> method to define new HTML vocabulary for our components. "
         , "tabs": "Define the <code>&lt;tabs&gt;</code> component."
-        , "controller": "Just like application, the component can have controller. The advantage of controller is that it can export API which other components can consume."
+        , "controller": "Just like with the application, the component can have a controller that provides the component's behavior."
         , "$element": "Current DOM element of the component."
         , "$scope": "Current scope of the component."
-        , "select": "Publish a <code>select()</code> which will be used by the view to select different tabs."
-        , "addPane": "Often times multiple components need to collaborate together as a unit. In our case the <code>&lt;pane&gt;</code> will use the <code>addPane()</code> method to be register itself with the  <code>&lt;tabs&gt;</code> container."
-        , "template": "The <code>template</code> is HTML markup which needs to be rendered by the browser instead of <code>&lt;tabs&gt;</code>. Notice that the markup can have other directives and components."
-        , "restrict": "The <code>restrict</code> specifies in what format must the component be declared in HTML. In this case the <code>&lt;tabs&gt;</code> must be an element."
-        , "ng-transclude": "Specifies the location where the transcluded content will be placed. Transcluded content is the original content of the <code>&lt;tabs&gt;</code>"
-        , "transclude": "Specifies that transclusion of content should take place. Transcluded content is the original content of the <code>&lt;tabs&gt;</code>."
-        , "scope": "Our component needs to have its own internal scope, so that its view properties are not accidentally exported outside the <code>&lt;tabs&gt;</code>. Optionally you can declare input/output attributes on your component here. See <code>&lt;pane&gt;</code> for an example."
-        , "replace": "Specifies that the original <code>&lt;tabs&gt;</code> element should be replaced with the <code>template</code>, or whether the template should simply be appended to it."
-        , "active": "We set the <code>active</code> CSS class to designate the currently active tab."
-        , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside the <code>&lt;tabs&gt;</code> component. This also allows the <code>&lt;pane&gt;</code> component to get access to the <code>&lt;tabs&gt;</code>' controller <code>addPane()</code> method."
-        , "tabsCtrl": "The <code>&lt;tabs&gt;</code>' controller instance."
+        , "select": "Publish a <code>select()</code> method which will be used by the view to switch between tabs."
+        , "addPane": "Components often need to collaborate together as a unit. In our case the <code>&lt;pane&gt;</code> will use the <code>addPane()</code> method to be register itself with its <code>&lt;tabs&gt;</code> container."
+        , "template": "The <code>template</code> is the HTML which needs to be rendered by the browser instead of the <code>&lt;tabs&gt;</code> placeholder. Notice that the HTML in this template can have other directives within it."
+        , "restrict": "The <code>restrict</code> specifies the HTML format of the component. In this case the <code>&lt;tabs&gt;</code> must be an HTML element."
+        , "ng-transclude": "Marks the location where the contents of the <code>&lt;tabs&gt;</code> element will be placed."
+        , "transclude": "Specifies that when AngularJS replaces the <code>&lt;tabs&gt;</code> element with the expanded HTML that it should place the original content somewhere specified by an <code>ng-transclude</code> directive (see below)."
+        , "scope": "Our component needs to have a private scope so that its view properties are not accidentally modified outside the <code>&lt;tabs&gt;</code>. If you do need to expose attributes, you can declare input/output attributes. See the <code>&lt;pane&gt;</code> component below for an example."
+        , "replace": "Tells AngularJS to replace the original <code>&lt;tabs&gt;</code> element should be replaced with the <code>template</code> rather than appending to it."
+        , "active": "We set the <code>active</code> CSS class to show the currently active tab."
+        , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside a <code>&lt;tabs&gt;</code> component. This gives the <code>&lt;pane&gt;</code> component to access to the <code>&lt;tabs&gt;</code>' controller methods -- the <code>addPane()</code> method in this case."
+        , "tabsCtrl": "As we've specified we <code>require</code> the <code>&lt;tabs&gt;</code> as our container, we get passed its controller instance."
         , "ng-click": "Select the clicked tab."
         , "bind": "Specifies how should the <code>title</code> attribute on the <code>&lt;pane&gt;</code> be available to the <code>&lt;pane&gt;</code> component. In this case we <code>bind</code> it, which means that we are interested in the interpolated value of the <code>title</code> attribute. This becomes available as the <code>title</code> property on the <code>&lt;pane&gt;</code>'s scope, and can be used in <code>template</code> for binding."
         }
