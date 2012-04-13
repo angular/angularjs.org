@@ -6,10 +6,6 @@ form.jsfiddle {
   display: inline;
 }
 
-footer {
-  margin-bottom: 500px;
-}
-
 code.nocode {
   display: inline-block;
   background-color: #99c2ff;
@@ -146,4 +142,11 @@ img.cache {
 
 .icon-github {
   background: url(http://markdotto.github.com/github-buttons/github-icons.png) no-repeat 0 0;
+}
+
+.footer {
+  padding-top: 2em;
+  background-color: #333;
+  color: white;
+  padding-bottom: 2em;
 }

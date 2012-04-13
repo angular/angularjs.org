@@ -243,10 +243,6 @@ angular.module('homepage', [])
       link: function(scope, element, attr) {
         var name = '',
             stylesheet = '<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">\n',
-            angularjs = '<script src="' + script + '"></script>\n',
-            resourcejs = attr.resource
-                ? ('<script src="' + script.resource.replace('/angular-', '/angular-resource-') + '"></script>\n')
-                : '',
             fields = {
               html: '',
               css: '',
@@ -279,8 +275,8 @@ angular.module('homepage', [])
             hiddenField('title', 'AngularJS Example: ' + name) +
             hiddenField('css', '</style> <!-- Ugly Hack due to jsFiddle issue: http://goo.gl/BUfGZ --> \n' +
                stylesheet +
-               angularjs +
-               resourcejs +
+               script.angular +
+               (attr.resource ? script.resource : '') +
                '<style>\n' +
                fields.css) +
             hiddenField('html', fields.html) +

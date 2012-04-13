@@ -421,16 +421,19 @@
 
     <hr>
 
-    <footer class="footer">
+  </div>
+
+  <footer class="footer">
+    <div class="container">
       <p class="pull-right"><a href="#">Back to top</a></p>
       <p>Super-powered by Google  ©2010-2012</p>
-      <p>Code licensed under the 
-         <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
-         MIT License</a>. Documentation licensed under <a
-         href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+      <p>Code licensed under the
+        <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
+          MIT License</a>. Documentation licensed under <a
+            href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
       </p>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   <!-- JavaScript at the bottom for fast page loading -->
   <!-- end scripts -->
@@ -640,7 +643,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
-          <td>{{project.name}}</td>
+          <td><a href="{{project.site}}" target="_blank">{{project.name}}</a></td>
           <td>{{project.description}}</td>
           <td>
             <a href="#/edit/{{project._id.$oid}}"><i class="icon-pencil"></i></a>
@@ -857,7 +860,7 @@
         , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside a <code>&lt;tabs&gt;</code> component. This gives the <code>&lt;pane&gt;</code> component to access to the <code>&lt;tabs&gt;</code>' controller methods -- the <code>addPane()</code> method in this case."
         , "tabsCtrl": "As we've specified we <code>require</code> the <code>&lt;tabs&gt;</code> as our container, we get passed its controller instance."
         , "ng-click": "Select the clicked tab."
-        , "bind": "Specifies how should the <code>title</code> attribute on the <code>&lt;pane&gt;</code> be available to the <code>&lt;pane&gt;</code> component. In this case we <code>bind</code> it, which means that we are interested in the interpolated value of the <code>title</code> attribute. This becomes available as the <code>title</code> property on the <code>&lt;pane&gt;</code>'s scope, and can be used in <code>template</code> for binding."
+        , "bind": "Specifies how is the <code>title</code> attribute on the <code>&lt;pane&gt;</code> element interpreted. The <code>bind</code> strategy copies the interpolated value to <code>&lt;pane&gt;</code>'s scope. This makes <code>title</code> available for binding in <code>template</code>."
         }
       , "beers.js": 
         { "$locale": "The <code>$locale</code> service contains meta-data for the current locale. There are AngularJS locale modules available for each language locale combination."
