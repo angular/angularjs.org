@@ -82,7 +82,6 @@
   <link rel="stylesheet" href="css/docs.css">
   <link rel="stylesheet" href="css/font-awesome.css">
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'css>
 </head>
 <body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
@@ -156,41 +155,36 @@
     <div class="row" style="padding-top: 80px;">
       <div class="span12">
         <div class="hero-unit">
-          <div>
-            <div class="pull-left">
-              <img class="AngularJS-large" src="img/AngularJS-large.png" style="padding-right: 70px;">
-            </div>
-            <div>
-              <ul class="unstyled tag-bullets">
-                <li>Extend HTML's vocabulary</li>
-                <li>Stop writing boilerplate</li>
-                <li>Painless XHR and RESTful communication</li>
-              </ul>
-            </div>
+          <div class="center">
+            <img class="AngularJS-large" src="img/AngularJS-large.png">
           </div>
           <div class="center">
             <h1>HTML enhanced for web apps!</h1>
           </div>
           <div class="center">
-            <a class="btn btn-large btn-primary" href="https://github.com/angular/angular.js">
-              <i class="icon-github-sign"></i> View project on GitHub
+            <a class="btn btn-large" href="https://github.com/angular/angular.js">
+              <i class="icon-github-sign"></i> View on GitHub
             </a>
-            <a class="btn btn-large" href="http://code.angularjs.org/1.0.0rc4/">
-              <i class="icon-download"></i>
-              Download AngularJS<span class="version"> (<span ng-bind="version.full">1.0.0rc4</span>)</span>
-            </a>
+            <span class="spacer"></span>
+            <div class="dropdown" style="display: inline-block;">
+              <a class="btn btn-large dropdown-toggle btn-primary" data-toggle="dropdown" href="">
+                <i class="icon-download"></i>
+                Download<span class="version"> (<span ng-bind="version.full">1.0.0rc4</span>) </span>
+                <span class="caret"></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a href="http://code.angularjs.org/1.0.0rc4/">Latest (<span ng-bind="version.full">1.0.0rc4</span>)</a></li>
+                <li><a href="https://github.com/angular/angular.js/blob/master/CHANGELOG.md#v1.0.0rc4">Changelog</a></li>
+                <li class="divider"></li>
+                <li><a href="http://code.angularjs.org/">Older</a></li>
+                <li class="divider"></li>
+                <li><a href="https://github.com/angular/angular.js/issues">Submit issue</a></li>
+              </ul>
+            </div>
           </div>
           <ul class='quick-links'>
-            <li style="width: 110px; height: 25px;">
-              <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=angular&repo=angular.js&type=watch&count=true"
-                      allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
-            </li>
-            <li style="width: 95px; height: 25px;">
-              <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=angular&repo=angular.js&type=fork&count=true"
-                      allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe>
-            </li>
             <li style="width: 120px; height: 25px;">
-              <g:plusone size="small" annotation="inline" width="120" href="http://angularjs.org"></g:plusone>
+              <g:plusone size="medium" annotation="inline" width="120" href="http://angularjs.org"></g:plusone>
             </li>
             <li style="width: 220px; height: 25px;">
               <a href="https://twitter.com/angularjs" class="twitter-follow-button" data-show-count="true">Follow @angularjs</a>
@@ -199,11 +193,6 @@
               <a href="https://twitter.com/share" class="twitter-share-button"
                  data-url="http://angularjs.org" data-text="AngularJS - HTML Enhanced for Web Apps" data-via="angularjs">Tweet</a>
             </li>
-          </ul>
-          <ul class='quick-links'>
-            <li><a href="https://github.com/angular/angular.js/blob/master/CHANGELOG.md#v1.0.0rc4">Changelog</a></li>
-            <li><a href="https://github.com/angular/angular.js/issues">Submit issue</a></li>
-            <li><a href="http://groups.google.com/group/angular">Ask a question</a></li>
           </ul>
         </div>
       </div>
@@ -481,7 +470,7 @@
         $scope.remaining = function() {
           var count = 0;
           angular.forEach($scope.todos, function(todo) {
-            count += todo.done ? 1 : 0;
+            count += todo.done ? 0 : 1;
           });
           return count;
         };
