@@ -54,7 +54,9 @@
     function bootstrap() {
       if (window.prettyPrint && window.$ && $.fn.popover && angular.bootstrap &&
           hasModule('ngLocal.sk') && hasModule('ngLocal.us') && hasModule('homepage') && hasModule('ngResource')) {
-            angular.bootstrap(document, ['homepage', 'ngLocal.us']);
+            $(function(){
+              angular.bootstrap(document, ['homepage', 'ngLocal.us']);
+            });
       }
     }
 
