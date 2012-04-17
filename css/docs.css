@@ -63,7 +63,7 @@ code.nocode {
   font-size: 30px;
   color: #535353;
   font-family: 'helvetica neue', Helvetica, Arial;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 .hero-unit .btn-large {
@@ -74,7 +74,8 @@ code.nocode {
 
 .spacer {
   display: inline-block;
-  margin: 2em 4em;
+  width: 6em;
+  height: 3em;
 }
 
 .hero-unit .btn-large .version {
@@ -153,3 +154,4 @@ img.cache {
 .center .dropdown {
   text-align: left;
 }
+

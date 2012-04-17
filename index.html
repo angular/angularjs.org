@@ -2,7 +2,7 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,6 +11,13 @@
                  Declarative templates with data-binding, MVC, dependency injection and great
                  testability story all implemented with pure client-side JavaScript!">
   <title>AngularJS — Superheroic JavaScript MVC Framework</title>
+  ﻿<!--[if lte IE 8]>
+    <script>
+      document.createElement('tabs');
+      document.createElement('pane');
+      document.createElement('ng-pluralize');
+    </script>
+  <![endif]-->
   <script>
     /*!
       * $script.js Async loader & dependency manager
@@ -36,19 +43,18 @@
         $().dropdown();
         bootstrap();
       });
-    });
-
-    $script('google-code-prettify/prettify.min.js', bootstrap);
-    $script('js/homepage.js', bootstrap);
-    $script('http://code.angularjs.org/angular-1.0.0rc4.js', bootstrap);
-    $script('http://code.angularjs.org/angular-resource-1.0.0rc4.js', bootstrap);
-    $script('http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_sk.js', function() {
-      angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
-      bootstrap();
-    });
-    $script('http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_en-us.js', function() {
-      angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
-      bootstrap();
+      $script('google-code-prettify/prettify.min.js', bootstrap);
+      $script('js/homepage.js', bootstrap);
+      $script('http://ci.angularjs.org/job/angular.js-misko/490/artifact/build/pkg/1.0.0rc6-34a3892d/angular-1.0.0rc6-34a3892d.min.js', bootstrap);
+      $script('http://code.angularjs.org/angular-resource-1.0.0rc4.js', bootstrap);
+      $script('http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_sk.js', function() {
+        angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+        bootstrap();
+      });
+      $script('http://code.angularjs.org/1.0.0rc4/i18n-1.0.0rc4/angular-locale_en-us.js', function() {
+        angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+        bootstrap();
+      });
     });
 
     function bootstrap() {
@@ -328,6 +334,12 @@
         <span hint></span>
         <span class="pull-right" js-fiddle="project.html list.html detail.html project.js mongolab.js" resource="resource" module="project"></span>
         <div class="tabs-spacer"></div>
+        <!--[if lt IE 10]>
+          <div class="alert alert-error">
+            Your browser doesn't support <a href="http://www.w3.org/TR/cors/">CORS</a>, therefore
+            it can not fetch data from an external domain resulting in no projects shown in this example.
+          </div>
+        <![endif]-->
         <div app-run="project.html" module="project" class="well"></div>
       </div>
     </div>
@@ -364,7 +376,7 @@
       <div class="span8 app-source" app-source="tabs.html components.js beers.js" annotate="tabs.annotation" module="components"></div>
       <div class="span4">
         <span hint></span>
-        <span class="pull-right" js-fiddle="tabs.html zippy.js zippy.css components.js beers.js advanced.js" module="components"></span>
+        <span class="pull-right" js-fiddle="tabs.html components.js beers.js" module="components"></span>
         <div class="tabs-spacer"></div>
         <h4>Locale: US</h4>
         <div app-run="tabs.html" module="components-us" class="well"></div>
@@ -400,18 +412,15 @@
       </div>
       <div class="span4">
         <h3>Testable</h3>
+        <p>
           AngularJS was designed from ground up to be testable. It encourages behavior-view
           separation, comes pre-bundled with mocks, and takes full advantage of dependency
           injection. It also comes with end-to-end scenario runner which eliminates test flakiness
           by understanding the inner workings of AngularJS.
-        <p>
         </p>
       </div>
     </div>
-
-
-    <hr>
-
+    <div class="spacer"></div>
   </div>
 
   <footer class="footer">
@@ -452,7 +461,7 @@
   </div>
   <div class="todo-code">
     <!-- ============== TODO ============== -->
-    <style id="todo.css">
+    <style type="text/css" id="todo.css">
       .done-true {
         text-decoration: line-through;
         color: grey;
@@ -538,7 +547,7 @@
   </div>
   <div class="project-code">
     <!-- ============== Projects ============== -->
-    <style id="project.css">
+    <style type="text/css" id="project.css">
       table { text-align: left; }
       table td, table th {
         vertical-align: top;
