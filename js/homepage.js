@@ -86,11 +86,7 @@ angular.module('homepage', [])
 
   .factory('fetchCode', function(indent) {
     return function get(id, spaces) {
-      var element = document.getElementById(id),
-      // IE is not consistent, and sometimes we have to check .text (script) and sometimes .innerHTML (style)
-        text = element.text ||  element.innerHTML;
-
-      return indent(text, spaces);
+      return indent(angular.element(document.getElementById(id)).html(), spaces);
     }
   })
 
