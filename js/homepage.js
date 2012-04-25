@@ -176,7 +176,7 @@ angular.module('homepage', [])
 
           // hack around incorrect tokenization
           content = content.replace('.done-true', 'doneTrue');
-          content = colourCode(content);
+          content = prettyPrintOne(escape(content), 'html', true);
           // hack around incorrect tokenization
           content = content.replace('doneTrue', '.done-true');
 
@@ -205,30 +205,16 @@ angular.module('homepage', [])
             '</div>');
         });
 
-        scope.$evalAsync(function() {
-          // must be delayed boucase of colourCode();
-          element.html(
-            '<div class="tabbable">' +
-              '<ul class="nav nav-tabs">' +
-                tabs.join('') +
-              '</ul>' +
-              '<div class="tab-content">' +
-                panes.join('') +
-              '</div>' +
+        element.html(
+          '<div class="tabbable">' +
+            '<ul class="nav nav-tabs">' +
+            tabs.join('') +
+            '</ul>' +
+            '<div class="tab-content">' +
+            panes.join('') +
+            '</div>' +
             '</div>');
-          element.find('[rel=popover]').popover().pulse();
-        });
-
-        function colourCode(html) {
-          // This function is here because the prettyPrint() has no API to color code a chunk of code without
-          // adding it to DOM.
-          var pre = $('<pre class="prettyprint linenums">');
-          pre.text(html);
-          $('body').append(pre);
-          prettyPrint();
-          pre.remove();
-          return pre.html();
-        }
+        element.find('[rel=popover]').popover().pulse();
 
         function id(id) {
           return id.replace(/\W/g, '-');
