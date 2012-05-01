@@ -88,9 +88,16 @@ code.nocode {
   margin-top: 50px;
 }
 
-.quick-links li {
+.quick-links > li {
   display: inline-block;
-  margin: 0 .5em;
+  margin: 0 1em;
+  vertical-align: top;
+}
+
+.google-follow {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
 }
 
 img.AngularJS-large {
