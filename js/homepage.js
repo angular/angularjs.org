@@ -291,27 +291,35 @@ angular.module('homepage', [])
   .run(function($rootScope, startPulse){
     $rootScope.version = angular.version;
     $rootScope.$evalAsync(function(){
-      var videoModal = $('#videoModal');
+      var videoURL;
 
-      videoModal.modal({show:false});
-      videoModal.on('shown', function() {
-        var iframe = videoModal.find('.modal-body').append('<iframe>').find('iframe');
-
-        iframe.attr({
-          width: 1280, height: 720, allowfullscreen: true,
-          src: 'http://www.youtube.com/embed/WuiHuZq_cg4?&autoplay=1'
+      $('.video-img').
+        bind('click', function() {
+          videoURL = $(this).data('video');
         });
 
-        // HACK: The only way I know of tricking YouTube to play HD is to show big and then resize.
-        setTimeout(function() {
-          iframe.attr({ width: 970, height: 556 });
-        }, 2500);
-      });
-      videoModal.on('hidden', function() {
-        videoModal.find('.modal-body').html('');
-      });
+      $('#videoModal').
+        modal({show:false}).
+        on('shown', function(event, a, b, c) {
+          var iframe = $(this).find('.modal-body').append('<iframe>').find('iframe');
 
-      $('[rel=popover]').popover().pulse();
+          iframe.attr({
+            width: 1280, height: 720, allowfullscreen: true,
+            src: videoURL
+          });
+
+          // HACK: The only way I know of tricking YouTube to play HD is to show big and then resize.
+          setTimeout(function() {
+            iframe.attr({ width: 970, height: 556 });
+          }, 2500);
+        }).
+        on('hidden', function() {
+          $(this).find('.modal-body').html('');
+        });
+
+      $('[rel=popover]').
+        popover().
+        pulse();
       startPulse();
     });
   })
