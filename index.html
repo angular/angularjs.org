@@ -52,13 +52,13 @@
       });
       $script('google-code-prettify/prettify.min.js', bootstrap);
       $script('js/homepage.js', bootstrap);
-      $script('http://code.angularjs.org/angular-1.0.0rc10.js', bootstrap);
-      $script('http://code.angularjs.org/angular-resource-1.0.0rc10.js', bootstrap);
-      $script('http://code.angularjs.org/1.0.0rc10/i18n-1.0.0rc10/angular-locale_sk.js', function() {
+      $script('http://code.angularjs.org/angular-1.0.0rc11.js', bootstrap);
+      $script('http://code.angularjs.org/angular-resource-1.0.0rc11.js', bootstrap);
+      $script('http://code.angularjs.org/1.0.0rc11/i18n-1.0.0rc11/angular-locale_sk.js', function() {
         angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
         bootstrap();
       });
-      $script('http://code.angularjs.org/1.0.0rc10/i18n-1.0.0rc10/angular-locale_en-us.js', function() {
+      $script('http://code.angularjs.org/1.0.0rc11/i18n-1.0.0rc11/angular-locale_en-us.js', function() {
         angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
         bootstrap();
       });
@@ -179,11 +179,11 @@
             <div class="dropdown" style="display: inline-block;">
               <a class="btn btn-large dropdown-toggle btn-primary" data-toggle="dropdown" href="">
                 <i class="icon-download"></i>
-                Download<span class="version"> (<span ng-bind="version.full">1.0.0rc10</span>) </span>
+                Download<span class="version"> (<span ng-bind="version.full">1.0.0rc11</span>) </span>
                 <span class="caret"></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a href="http://code.angularjs.org/1.0.0rc10/">Latest (<span ng-bind="version.full">1.0.0rc10</span>)</a></li>
+                <li><a href="http://code.angularjs.org/1.0.0rc11/">Latest (<span ng-bind="version.full">1.0.0rc11</span>)</a></li>
                 <li><a href="https://github.com/angular/angular.js/blob/master/CHANGELOG.md">Changelog</a></li>
                 <li class="divider"></li>
                 <li><a href="http://code.angularjs.org/">Previous versions</a></li>
@@ -462,7 +462,7 @@
     <script type="text/ng-template" id="hello.annotation">
       { "hello.html":
           { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
-          , "angular-1.0.0rc10.min.js": "Load AngularJS."
+          , "angular-1.0.0rc11.min.js": "Load AngularJS."
           , "ng-model": "This links the form and the model. This means that any changes to the control update the data in your model, and when you change the model it updates the control. Try it! Type in the control and see it update below."
           , "{{yourName}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the <code>yourName</code> property changes."
           }
@@ -526,7 +526,7 @@
     <script type="text/ng-template" id="todo.annotation">
       { "todo.html":
         { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
-        , "angular-1.0.0rc10.min.js": "Load AngularJS."
+        , "angular-1.0.0rc11.min.js": "Load AngularJS."
         , "todo.js": "Your behavior lives in JavaScript controllers."
         , "ng-controller": "The behavior of content under this element will be managed using the <code>TodoCtrl</code> class defined in <code>todo.js</code>."
         , "{{remaining()}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the <code>remaining()</code> function return value changes."
@@ -591,9 +591,9 @@
       angular.module('project', ['mongolab']).
         config(function($routeProvider) {
           $routeProvider.
-            when('/list', {controller:ListCtrl, template:'list.html'}).
-            when('/edit/:projectId', {controller:EditCtrl, template:'detail.html'}).
-            when('/new', {controller:CreateCtrl, template:'detail.html'}).
+            when('/list', {controller:ListCtrl, templateUrl:'list.html'}).
+            when('/edit/:projectId', {controller:EditCtrl, templateUrl:'detail.html'}).
+            when('/new', {controller:CreateCtrl, templateUrl:'detail.html'}).
             otherwise({redirectTo:'/list'});
         });
 
@@ -695,8 +695,8 @@
     { "project.html":
        { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
        , "project": "The <code>ng-app</code> activates the <code>project</code> module for this page region. This lets you have modules that run in different parts of the page."
-       , "angular-1.0.0rc10.min.js": "Load AngularJS."
-       , "angular-resource-1.0.0rc10.min.js": "Load AngularJS resource module."
+       , "angular-1.0.0rc11.min.js": "Load AngularJS."
+       , "angular-resource-1.0.0rc11.min.js": "Load AngularJS resource module."
        , "project.js": "The <code>project.js</code> file contains the controllers which specify your application’s behavior."
        , "mongolab.js": "An AngularJS module definition to connect this application to <code>http://mongolab.com</code> for its data storage."
        , "ng-view": "We’re marking this <code>&lt;div&gt;</code> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section. In this case, we’ll be switching between a list of “projects” and the form to add new or edit existing “projects”."
@@ -789,7 +789,7 @@
             require: '^tabs',
             restrict: 'E',
             transclude: true,
-            scope: { title: 'bind' },
+            scope: { title: '@' },
             link: function(scope, element, attrs, tabsCtrl) {
               tabsCtrl.addPane(scope);
             },
