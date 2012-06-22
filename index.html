@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/docs.css">
   <link rel="stylesheet" href="css/font-awesome.css">
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+  <base href="/">
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -52,7 +53,7 @@
       });
       $script('google-code-prettify/prettify.min.js', bootstrap);
       $script('js/homepage.js', bootstrap);
-      $script('http://code.angularjs.org/angular-1.0.0.js', bootstrap);
+      $script('http://code.angularjs.org/1.0.1-ffb27013/angular-1.0.1-ffb27013.min.js', bootstrap);
       $script('http://code.angularjs.org/angular-resource-1.0.0.js', bootstrap);
       $script('http://code.angularjs.org/1.0.0/i18n-1.0.0/angular-locale_sk.js', function() {
         angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
@@ -591,10 +592,10 @@
       angular.module('project', ['mongolab']).
         config(function($routeProvider) {
           $routeProvider.
-            when('/list', {controller:ListCtrl, templateUrl:'list.html'}).
+            when('/', {controller:ListCtrl, templateUrl:'list.html'}).
             when('/edit/:projectId', {controller:EditCtrl, templateUrl:'detail.html'}).
             when('/new', {controller:CreateCtrl, templateUrl:'detail.html'}).
-            otherwise({redirectTo:'/list'});
+            otherwise({redirectTo:'/'});
         });
 
 
@@ -632,7 +633,7 @@
 
         $scope.save = function() {
           $scope.project.update(function() {
-            $location.path('/list');
+            $location.path('/');
           });
         };
       }
@@ -684,7 +685,7 @@
         <textarea name="description" ng-model="project.description"></textarea>
 
         <br>
-        <a href="#/list" class="btn">Cancel</a>
+        <a href="#/" class="btn">Cancel</a>
         <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
                 class="btn btn-primary">Save</button>
         <button ng-click="destroy()"
@@ -705,7 +706,7 @@
        { "project": "This defines the <code>project</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up ‘routes’ that map URLs to partials. AngularJS watches the browser location and automatically updates the partial when the URL changes."
        , "mongolab": "Modules can depend on other modules. Here, <code>project</code> needs <code>mongolab</code> which handles the persistence for this application."
        , "config": "You use <code>config()</code> to configure existing services. Here, we’re configuring the <code>$routeProvider</code> responsible for mapping URL paths to partials."
-       , "when": "When the URL is <code>/list</code> it will load <code>list.html</code> into the view and attach the <code>ListCtrl</code> controller. You can instantly get an overview of an app's structure by reading the route definitions."
+       , "when": "When the URL is <code>/</code> it will load <code>list.html</code> into the view and attach the <code>ListCtrl</code> controller. You can instantly get an overview of an app's structure by reading the route definitions."
        , "/edit/:projectId": "This route definition has a colon ':' in it. You use colons to make a component of the URL available to your controller. So now, <code>EditCtrl</code> can refer to the <code>projectId</code> property which tells it which project to edit."
        , "otherwise": "The <code>otherwise</code> route specifies which view to display when the URL doesn’t match any of the explicit routes. It’s the default."
        , "Project": "<code>Project</code> is a class for persisting and accessing the application data. It is defined in the <code>mongolab.js</code> module and it is automatically injected for us into the controller. Its purpose is to abstract the server communication. This lets the controller focus on the behavior rather than the complexities of server access."

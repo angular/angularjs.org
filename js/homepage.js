@@ -1,6 +1,6 @@
 angular.module('homepage', [])
 
-  .config(function($provide) {
+  .config(function($provide, $locationProvider) {
     var pulseElements = $(),
         pulseColor = {r:0xE6, g:0xF0, b: 0xFF},
         baseColor = {r:0x99, g:0xc2, b: 0xFF},
@@ -44,6 +44,9 @@ angular.module('homepage', [])
          tick();
        }, 2000);
     });
+
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('!');
   })
 
   .value('indent', function(text, spaces) {
@@ -94,15 +97,26 @@ angular.module('homepage', [])
     return {restrict: 'E', terminal: true};
   })
 
-  .directive('appRun', function(fetchCode, $templateCache) {
+  .directive('appRun', function(fetchCode, $templateCache, $browser) {
     return {
       terminal: true,
       link: function(scope, element, attrs) {
         var modules = [];
 
-        modules.push(function($provide) {
-          $provide.value('$templateCache', $templateCache);
-          $provide.value('$anchorScroll', angular.noop)
+        modules.push(function($provide, $locationProvider) {
+          $provide.value('$templateCache', {
+            get: function(key) {
+              var value = $templateCache.get(key);
+              if (value) {
+                value = value.replace(/\#\//mg, '/');
+              }
+              return value;
+            }
+          });
+          $provide.value('$anchorScroll', angular.noop);
+          $provide.value('$browser', $browser);
+          $locationProvider.html5Mode(true);
+          $locationProvider.hashPrefix('!');
         });
         if (attrs.module) {
           modules.push(attrs.module);
