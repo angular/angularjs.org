@@ -298,7 +298,7 @@ angular.module('homepage', [])
     return {
       template: '<em>Hint:</em> hover over ' +
           '<code class="nocode" rel="popover" title="Hover" ' +
-          'data-content="Place your mouse over highlited areas in the code for explanations.">me</code>.'
+          'data-content="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
     }
   })
 
