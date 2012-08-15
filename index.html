@@ -53,8 +53,8 @@
       });
       $script('google-code-prettify/prettify.min.js', bootstrap);
       $script('js/homepage.js', bootstrap);
-      $script('http://code.angularjs.org/1.0.1/angular-1.0.1.min.js', bootstrap);
-      $script('http://code.angularjs.org/angular-resource-1.0.1.js', bootstrap);
+      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js', bootstrap);
+      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular-resource.min.js', bootstrap);
       $script('http://code.angularjs.org/1.0.1/i18n-1.0.1/angular-locale_sk.js', function() {
         angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
         bootstrap();
