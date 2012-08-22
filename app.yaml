@@ -32,6 +32,9 @@ handlers:
 - url: /js
   static_dir: js
 
+- url: /(greet|generatePassword)(\.php)?
+  script: demos.app
+
 - url: /.*
   static_files: index.html
   upload: index.html
