@@ -82,8 +82,8 @@ angular.module('homepage', [])
   .factory('script', function() {
 
     return {
-      angular: '<script src="http://code.angularjs.org/angular-' + angular.version.full + '.min.js"></script>\n',
-      resource: '<script src="http://code.angularjs.org/angular-resource-' + angular.version.full + '.min.js"></script>\n'
+      angular: '<script src="//ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
+      resource: '<script src="//ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n'
     };
   })
 
