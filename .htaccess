@@ -1,3 +1,4 @@
+Options -Indexes
 RewriteEngine on
 rewritecond %{http_host} ^www.angularjs.org [nc]
 rewriterule ^(.*)$ http://angularjs.org/$1 [r=301,nc]
