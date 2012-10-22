@@ -302,6 +302,85 @@ angular.module('homepage', [])
     }
   })
 
+    .controller('DownloadCtrl', function($scope, $location) {
+      var CURRENT_STABLE_VERSION = '1.0.2';
+      var CURRENT_UNSTABLE_VERSION = '1.1.0';
+      var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
+      var BASE_CDN_URL = 'http://ajax.googleapis.com/ajax/libs/angularjs/';
+      var getRelativeUrl = function(branch, build) {
+        var version = $scope.getVersion(branch);
+        if (build === 'minified') {
+          return version + '/angular.min.js';
+        } else if (build === 'uncompressed') {
+          return version + '/angular.js';
+        } else {
+          return version + '/angular-' + version + '.zip';
+        }
+      };
+
+      var currentBranch = false;
+
+      $scope.currentBranch = 'stable';
+      $scope.currentBuild = 'minified';
+
+      $scope.selectType = function(type) {
+        if (type === false) {
+          return;
+        }
+        $scope.currentBranch = type || 'stable';
+        $scope.updateCdnLink();
+      };
+
+      $scope.getVersion = function(branch) {
+        return branch === 'stable' ? CURRENT_STABLE_VERSION : CURRENT_UNSTABLE_VERSION;
+      };
+
+      $scope.selectBuild = function(build) {
+        $scope.currentBuild = build;
+        $scope.updateCdnLink();
+      };
+      angular.forEach(['#extraInfoBranch', '#extraInfoBuild', '#extraInfoCDN'], function(id) {
+        $(id).popover({
+          placement: 'left',
+          trigger: 'hover',
+          delay: {hide: '300'}
+        });
+      });
+      $scope.getPillClass = function(pill, actual) {
+        return pill === actual ? 'active' : '';
+      };
+
+      window.onkeydown = function (ev) {
+        if (ev.keyCode === 27 && currentBranch) {
+          $scope.lightbox(false);
+          $scope.$apply();
+        }
+      }
+
+      $scope.lightbox = function(arg) {
+        if (typeof arg !== 'undefined') {
+          currentBranch = arg;
+          $scope.selectType(currentBranch);
+        }
+        return currentBranch;
+      };
+
+      $scope.downloadLink = function() {
+        if ($scope.cdnURL && $scope.cdnURL.indexOf('http://') == 0) {
+          return $scope.cdnURL;
+        } else {
+          return BASE_CODE_ANGULAR_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
+        }
+      };
+      $scope.updateCdnLink = function() {
+        if ($scope.currentBranch === 'unstable' || $scope.currentBuild === 'zipped') {
+          $scope.cdnURL = 'Unavailable for Unstable Branch & Zipped Builds';
+        } else {
+          $scope.cdnURL = BASE_CDN_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
+        }
+      };
+    })
+
   .run(function($rootScope, startPulse){
     $rootScope.version = angular.version;
     $rootScope.$evalAsync(function(){
