@@ -165,3 +165,77 @@ img.cache {
 .well h1.ng-binding {
   margin: 0;
 }
+
+
+.no-margins {
+  margin-top: 0px!important;
+  margin-bottom: 0px!important;
+}
+
+.modal.fade {
+    top: -150%;
+}
+.modal.fade.in {
+    top: 40%;
+}
+.modal-backdrop {
+    display: none;
+    z-index: -2000;
+}
+.modal-backdrop.fade.in {
+    display: block;
+    z-index: 1000;
+}
+
+.popover {
+  z-index: 1200;
+}
+
+.popover-inner {
+  width: 600px!important;
+}
+
+.modal-body .input-xxlarge {
+  width: 400px;
+}
+
+.modal-body > h3 {
+  text-align: center;
+}
+
+.modal-body > h3 > span {
+  display: inline-block;
+}
+
+.modal-body > dl > dt {
+  margin-top: 7px;
+  padding-bottom: 20px;
+}
+
+.modal-body > dl > dd {
+    margin-top: 7px;
+    padding-bottom: 20px;
+}
+
+.modal-footer > a {
+  float: left;
+  padding-right: 20px;
+  padding-top: 7px;
+}
+
+#bluePill {
+ color: #22AA22;
+}
+
+#redPill {
+  color: #BD362F;
+}
+
+#downloadModal {
+  width: 620px;
+}
+
+#extraInfoBranch, #extraInfoBuild, #extraInfoCDN {
+  background-color: #ffffff!important;
+}
+
