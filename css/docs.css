@@ -166,7 +166,6 @@ img.cache {
   margin: 0;
 }
 
-
 .no-margins {
   margin-top: 0px!important;
   margin-bottom: 0px!important;
@@ -178,13 +177,13 @@ img.cache {
 .modal.fade.in {
     top: 40%;
 }
-.modal-backdrop {
+#downloadModalBackdrop {
     display: none;
     z-index: -2000;
 }
-.modal-backdrop.fade.in {
+#downloadModalBackdrop.fade.in {
     display: block;
-    z-index: 1000;
+    z-index: 1040;
 }
 
 .popover {
