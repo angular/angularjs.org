@@ -177,14 +177,6 @@ img.cache {
 .modal.fade.in {
     top: 40%;
 }
-#downloadModalBackdrop {
-    display: none;
-    z-index: -2000;
-}
-#downloadModalBackdrop.fade.in {
-    display: block;
-    z-index: 1040;
-}
 
 .popover {
   z-index: 1200;
