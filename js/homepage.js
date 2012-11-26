@@ -302,6 +302,97 @@ angular.module('homepage', [])
     }
   })
 
+  .factory('createDialog', ["$document","$compile","$rootScope","$controller", "$timeout",
+  function ($document, $compile, $rootScope, $controller, $timeout) {
+    var defaults = {
+      id: null,
+      title: 'Default Title',
+      backdrop: true,
+      success: {label: 'OK', fn: null},
+      controller: null, //just like route controller declaration
+      backdropClass: "modal-backdrop",
+      footerTemplate: null,
+      modalClass: "modal"
+    };
+    var body = $document.find('body');
+
+    return function Dialog(template, options) {
+      options = angular.extend({}, defaults, options); //options defined in constructor
+
+      var idAttr = options.id ? ' id="' + options.id + '" ' : '';
+      var defaultFooter = '<button class="btn" ng-click="$modalCancel()">Close</button>' +
+          '<button class="btn btn-primary" ng-click="$modalSuccess()">{{$modalSuccessLabel}}</button>'
+      var footerTemplate = '<div class="modal-footer">' +
+          (options.footerTemplate || defaultFooter) +
+          '</div>';
+      //We don't have the scope we're gonna use yet, so just get a compile function for modal
+      var modalEl = angular.element(
+          '<div class="' + options.modalClass + ' fade"' + idAttr + '>' +
+              '  <div class="modal-header">' +
+              '    <button type="button" class="close" ng-click="$modalCancel()">x</button>' +
+              '    <h2>{{$title}}</h2>' +
+              '  </div>' +
+              '  <div class="modal-body" ng-include="\'' + template + '\'"></div>' +
+              footerTemplate +
+              '</div>');
+
+
+      var backdropEl = angular.element('<div ng-click="$modalCancel()">');
+      backdropEl.addClass(options.backdropClass);
+      backdropEl.addClass('fade in');
+
+      var handleEscPressed = function(event) {
+        if (event.keyCode === 27) {
+          scope.$modalCancel();
+        }
+      };
+
+      var closeFn = function() {
+        body.unbind('keydown', handleEscPressed);
+        modalEl.remove();
+        if (options.backdrop) {
+          backdropEl.remove();
+        }
+      };
+
+      body.bind('keydown', handleEscPressed);
+
+      var ctrl, locals,
+          scope = options.scope || $rootScope.$new();
+
+      scope.$title = options.title;
+      scope.$modalCancel = closeFn;
+      scope.$modalSuccess = options.success.fn || closeFn;
+      scope.$modalSuccessLabel = options.success.label;
+
+      if (options.controller) {
+        locals = angular.extend({$scope: scope});
+        ctrl = $controller(options.controller, locals);
+        modalEl.contents().data('$ngControllerController', ctrl);
+      }
+
+      $compile(modalEl)(scope);
+      $compile(backdropEl)(scope);
+      body.append(modalEl);
+      if (options.backdrop) body.append(backdropEl);
+
+      $timeout(function() {
+        modalEl.addClass('in');
+      }, 200);
+    };
+  }])
+
+ .directive('popover', function() {
+    return function(scope, element, attrs) {
+      $(element[0]).popover({
+        placement: 'left',
+        trigger: 'hover',
+        delay: {hide: '300'}
+      });
+
+    };
+  })
+
     .controller('DownloadCtrl', function($scope, $location) {
       var CURRENT_STABLE_VERSION = '1.0.2';
       var CURRENT_UNSTABLE_VERSION = '1.1.0';
@@ -318,15 +409,10 @@ angular.module('homepage', [])
         }
       };
 
-      var currentBranch = false;
-
       $scope.currentBranch = 'stable';
       $scope.currentBuild = 'minified';
 
       $scope.selectType = function(type) {
-        if (type === false) {
-          return;
-        }
         $scope.currentBranch = type || 'stable';
         $scope.updateCdnLink();
       };
@@ -339,34 +425,13 @@ angular.module('homepage', [])
         $scope.currentBuild = build;
         $scope.updateCdnLink();
       };
-      angular.forEach(['#extraInfoBranch', '#extraInfoBuild', '#extraInfoCDN'], function(id) {
-        $(id).popover({
-          placement: 'left',
-          trigger: 'hover',
-          delay: {hide: '300'}
-        });
-      });
+
       $scope.getPillClass = function(pill, actual) {
         return pill === actual ? 'active' : '';
       };
 
-      window.onkeydown = function (ev) {
-        if (ev.keyCode === 27 && currentBranch) {
-          $scope.lightbox(false);
-          $scope.$apply();
-        }
-      }
-
-      $scope.lightbox = function(arg) {
-        if (typeof arg !== 'undefined') {
-          currentBranch = arg;
-          $scope.selectType(currentBranch);
-        }
-        return currentBranch;
-      };
-
       $scope.downloadLink = function() {
-        if ($scope.cdnURL && $scope.cdnURL.indexOf('http://') == 0) {
+        if ($scope.cdnURL && $scope.cdnURL.indexOf('http://') === 0) {
           return $scope.cdnURL;
         } else {
           return BASE_CODE_ANGULAR_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
@@ -379,10 +444,22 @@ angular.module('homepage', [])
           $scope.cdnURL = BASE_CDN_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
         }
       };
+
+      $scope.updateCdnLink();
     })
 
-  .run(function($rootScope, startPulse){
+  .run(function($rootScope, startPulse, createDialog){
     $rootScope.version = angular.version;
+    $rootScope.showDownloadDialog = function() {
+      createDialog('partials/download-dialog-body.html', {
+        id: 'downloadModal',
+        title: 'AngularJS Downloads',
+        controller: 'DownloadCtrl',
+        footerTemplate: '<a ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>\n' +
+            '<a href="http://code.angularjs.org/">Previous Versions</a>\n' +
+            '<a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>'
+      });
+    };
     $rootScope.$evalAsync(function(){
       var videoURL;
 
