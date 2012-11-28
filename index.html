@@ -53,13 +53,13 @@
       });
       $script('google-code-prettify/prettify.min.js', bootstrap);
       $script('js/homepage.js', bootstrap);
-      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js', bootstrap);
-      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.min.js', bootstrap);
-      $script('http://code.angularjs.org/1.0.2/i18n/angular-locale_sk.js', function() {
+      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js', bootstrap);
+      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-resource.min.js', bootstrap);
+      $script('http://code.angularjs.org/1.0.3/i18n/angular-locale_sk.js', function() {
         angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
         bootstrap();
       });
-      $script('http://code.angularjs.org/1.0.2/i18n/angular-locale_en-us.js', function() {
+      $script('http://code.angularjs.org/1.0.3/i18n/angular-locale_en-us.js', function() {
         angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
         bootstrap();
       });
@@ -84,7 +84,7 @@
   </script>
   <script>
     /*
-    AngularJS v1.0.2
+    AngularJS v1.0.3
     (c) 2010-2012 Google, Inc. http://angularjs.org
     License: MIT
     */
@@ -187,7 +187,7 @@
 
             <a class="btn btn-large btn-primary" href="" ng-click="lightbox('stable')">
               <i class="icon-download-alt icon-large"></i> Download
-              <span class="version"> (<span>1.0.2/1.1.0</span>) </span>
+              <span class="version"> (<span>1.0.3/1.1.1</span>) </span>
             </a>
 
           </div>
