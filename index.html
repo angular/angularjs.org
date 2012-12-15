@@ -896,8 +896,9 @@
             <span class="btn-group" data-toggle="buttons-radio">
               <button id="bluePill" type="button" ng-class="getPillClass('stable', currentBranch)" class="btn bluePill" ng-click="selectType('stable')">Stable</button>
               <button id="redPill" type="button" ng-class="getPillClass('unstable', currentBranch)" class="btn redPill"  ng-click="selectType('unstable')">Unstable</button>
+              <a id="extraInfoBranch" href="" rel="popover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Stable</dt><dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd><dt>Unstable</dt><dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd></dl>"><i class="icon-question-sign"></i></a>
             </span>
-            <a id="extraInfoBranch" href="" rel="popover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Stable</dt><dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd><dt>Unstable</dt><dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd></dl>"><i class="icon-question-sign"></i></a>
+
           </span>
 
         </dd>
@@ -908,8 +909,9 @@
               <button type="button" class="btn" ng-class="getPillClass('minified', currentBuild)" ng-click="selectBuild('minified')" ng-class="get">Minified</button>
               <button type="button" class="btn" ng-class="getPillClass('uncompressed', currentBuild)" ng-click="selectBuild('uncompressed')">Uncompressed</button>
               <button type="button" class="btn" ng-class="getPillClass('zipped', currentBuild)" ng-click="selectBuild('zipped')">Zip</button>
+              <a id="extraInfoBuild" href="" rel="popover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Minified</dt><dd>Minified and obfuscated version of the AngularJS base code. Use this in your deployed application (but only if you can't use Google's CDN)</dd><dt>Uncompressed</dt><dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd><dt>Zipped</dt><dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd></dl>"><i class="icon-question-sign"></i></a>
             </span>
-            <a id="extraInfoBuild" href="" rel="popover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Minified</dt><dd>Minified and obfuscated version of the AngularJS base code. Use this in your deployed application (but only if you can't use Google's CDN)</dd><dt>Uncompressed</dt><dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd><dt>Zipped</dt><dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd></dl>"><i class="icon-question-sign"></i></a>
+
           </span>
 
         </dd>

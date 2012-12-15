@@ -236,5 +236,9 @@ img.cache {
 
 #extraInfoBranch, #extraInfoBuild, #extraInfoCDN {
   background-color: #ffffff!important;
+  padding-left: 5px;
 }
 
+div.modal-body button {
+  z-index: 1051;
+}
