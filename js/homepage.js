@@ -82,8 +82,8 @@ angular.module('homepage', [])
   .factory('script', function() {
 
     return {
-      angular: '<script src="http://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
-      resource: '<script src="http://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n'
+      angular: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
+      resource: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n'
     };
   })
 
@@ -303,10 +303,10 @@ angular.module('homepage', [])
   })
 
     .controller('DownloadCtrl', function($scope, $location) {
-      var CURRENT_STABLE_VERSION = '1.0.4';
-      var CURRENT_UNSTABLE_VERSION = '1.1.2';
+      var CURRENT_STABLE_VERSION = '1.0.5';
+      var CURRENT_UNSTABLE_VERSION = '1.1.3';
       var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
-      var BASE_CDN_URL = 'http://ajax.googleapis.com/ajax/libs/angularjs/';
+      var BASE_CDN_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/';
       var getRelativeUrl = function(branch, build) {
         var version = $scope.getVersion(branch);
         if (build === 'minified') {
@@ -373,8 +373,8 @@ angular.module('homepage', [])
         }
       };
       $scope.updateCdnLink = function() {
-        if ($scope.currentBranch === 'unstable' || $scope.currentBuild === 'zipped') {
-          $scope.cdnURL = 'Unavailable for Unstable Branch & Zipped Builds';
+        if ($scope.currentBuild === 'zipped') {
+          $scope.cdnURL = 'Unavailable for zip archives';
         } else {
           $scope.cdnURL = BASE_CDN_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
         }
