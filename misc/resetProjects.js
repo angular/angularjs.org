@@ -12,15 +12,7 @@ deleteAllProjects().
 
 
 function deleteAllProjects() {
-  var d = Q.defer();
-  request('GET').then(function(projects) {
-    var existingProjects = [];
-    projects.forEach(function(project) {
-      existingProjects.push(request('DELETE', project._id.$oid));
-    });
-    Q.all(existingProjects).then(d.resolve);
-  });
-  return d.promise;
+  return request('DELETE');
 }
 
 function createSampleProjects() {
@@ -39,7 +31,7 @@ function createSampleProjects() {
   ]);
 
   function createProject(name, site, description) {
-    return request('POST', null, {
+    return request('POST', {
       name: name,
       site: site,
       description: description
@@ -47,13 +39,13 @@ function createSampleProjects() {
   }
 }
 
-function request(method, id, data) {
+function request(method, data) {
   var d = Q.defer();
 
   var options = {
-    host: 'api.mongolab.com',
+    host: 'angularjs-projects.firebaseio.com',
     port: 443,
-    path: '/api/1/databases/angularjs/collections/projects/' + ( id || '' ) + '?apiKey=4f847ad3e4b08a2eed5f3b54',
+    path: '/.json',
     method: method || 'GET',
     headers: {
       'Content-Type': 'application/json'
