@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 $name = $_GET['name'];
 $callback = $_GET['callback'];
 $salutations = array(
