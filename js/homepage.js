@@ -83,7 +83,8 @@ angular.module('homepage', [])
 
     return {
       angular: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
-      resource: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n'
+      resource: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n',
+      firebase: '<script src="https://cdn.firebase.com/v0/firebase.js"></script>\n    <script src="http://firebase.github.io/angularFire/angularFire.js"></script>\n'
     };
   })
 
@@ -147,6 +148,7 @@ angular.module('homepage', [])
                 '  <head>\n' +
                 '    ' + script.angular +
                (attrs.resource ? ('    ' + script.resource.replace('></', '>\n    </')) : '') +
+               (attrs.firebase ? ('    ' + script.firebase) : '') +
                 '__HEAD__' +
                 '  </head>\n' +
                 '  <body>\n' +
