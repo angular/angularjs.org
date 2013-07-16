@@ -56,7 +56,7 @@
       $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js', bootstrap);
       $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js', bootstrap);
       $script('https://cdn.firebase.com/v0/firebase.js', function() {
-        $script('http://firebase.github.io/angularFire/angularFire.js', function() {
+        $script('https://cdnjs.cloudflare.com/ajax/libs/angularFire/0.2.0/angularfire.min.js', function() {
           $script('http://code.angularjs.org/1.0.7/i18n/angular-locale_sk.js', function() {
               angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
               bootstrap();
@@ -667,7 +667,7 @@
        , "angular.min.js": "Load AngularJS."
        , "angular-resource.min.js": "Load AngularJS resource module."
        , "v0/firebase.js": "Load the Firebase JavaScript SDK."
-       , "angularFire.js": "Load the Angular bindings for Firebase."
+       , "angularfire.min.js": "Load the Angular bindings for Firebase."
        , "project.js": "The <code>project.js</code> file contains the controllers which specify your application’s behavior."
        , "ng-view": "We’re marking this <code>&lt;div&gt;</code> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section. In this case, we’ll be switching between a list of “projects” and the form to add new or edit existing “projects”."
        }
