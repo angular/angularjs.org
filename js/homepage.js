@@ -305,8 +305,8 @@ angular.module('homepage', [])
   })
 
     .controller('DownloadCtrl', function($scope, $location) {
-      var CURRENT_STABLE_VERSION = '1.0.7';
-      var CURRENT_UNSTABLE_VERSION = '1.2.0rc1';
+      var CURRENT_STABLE_VERSION = '1.0.8';
+      var CURRENT_UNSTABLE_VERSION = '1.2.0-rc.2';
       var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
       var BASE_CDN_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/';
       var getRelativeUrl = function(branch, build) {

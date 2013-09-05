@@ -53,15 +53,15 @@
       });
       $script('google-code-prettify/prettify.min.js', bootstrap);
       $script('js/homepage.js', bootstrap);
-      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js', bootstrap);
-      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js', bootstrap);
+      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js', bootstrap);
+      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js', bootstrap);
       $script('https://cdn.firebase.com/v0/firebase.js', function() {
         $script('http://firebase.github.io/angularFire/angularFire.js', function() {
-          $script('http://code.angularjs.org/1.0.7/i18n/angular-locale_sk.js', function() {
+          $script('http://code.angularjs.org/1.0.8/i18n/angular-locale_sk.js', function() {
               angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
               bootstrap();
             });
-          $script('http://code.angularjs.org/1.0.7/i18n/angular-locale_en-us.js', function() {
+          $script('http://code.angularjs.org/1.0.8/i18n/angular-locale_en-us.js', function() {
             angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
             bootstrap();
           });
@@ -88,7 +88,7 @@
   </script>
   <script>
     /*
-    AngularJS v1.0.7
+    AngularJS v1.0.8
     (c) 2010-2012 Google, Inc. http://angularjs.org
     License: MIT
     */
@@ -185,7 +185,7 @@
 
             <a class="btn btn-large btn-primary" href="" ng-click="lightbox('stable')">
               <i class="icon-download-alt icon-large"></i> Download
-              <span class="version"> (<span>1.0.7/1.2.0rc1</span>) </span>
+              <span class="version"> (<span>1.0.8/1.2.0-rc.2</span>) </span>
             </a>
 
           </div>
