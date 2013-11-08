@@ -19,6 +19,8 @@
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
   <base href="/">
 
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+
   ﻿<!--[if lte IE 8]>
     <script>
       document.createElement('tabs');
@@ -26,75 +28,6 @@
       document.createElement('ng-pluralize');
     </script>
   <![endif]-->
-  <script>
-    /*!
-      * $script.js Async loader & dependency manager
-      * https://github.com/ded/script.js
-      * (c) Dustin Diaz, Jacob Thornton 2011
-      * License: MIT
-      */
-    (function(a,b){typeof module!="undefined"?module.exports=b():typeof define=="function"&&define.amd?define(a,b):this[a]=b()})("$script",function(){function q(a,b,c){for(c=0,j=a.length;c<j;++c)if(!b(a[c]))return k;return 1}function r(a,b){q(a,function(a){return!b(a)})}function s(a,b,i){function o(a){return a.call?a():d[a]}function p(){if(!--n){d[m]=1,k&&k();for(var a in f)q(a.split("|"),o)&&!r(f[a],o)&&(f[a]=[])}}a=a[l]?a:[a];var j=b&&b.call,k=j?b:i,m=j?a.join(""):b,n=a.length;return setTimeout(function(){r(a,function(a){if(h[a])return m&&(e[m]=1),h[a]==2&&p();h[a]=1,m&&(e[m]=1),t(!c.test(a)&&g?g+a+".js":a,p)})},0),s}function t(c,d){var e=a.createElement("script"),f=k;e.onload=e.onerror=e[p]=function(){if(e[n]&&!/^c|loade/.test(e[n])||f)return;e.onload=e[p]=null,f=1,h[c]=2,d()},e.async=1,e.src=c,b.insertBefore(e,b.firstChild)}var a=document,b=a.getElementsByTagName("head")[0],c=/^https?:\/\//,d={},e={},f={},g,h={},i="string",k=!1,l="push",m="DOMContentLoaded",n="readyState",o="addEventListener",p="onreadystatechange";return!a[n]&&a[o]&&(a[o](m,function u(){a.removeEventListener(m,u,k),a[n]="complete"},k),a[n]="loading"),s.get=t,s.order=function(a,b,c){(function d(e){e=a.shift(),a.length?s(e,d):s(e,b,c)})()},s.path=function(a){g=a},s.ready=function(a,b,c){a=a[l]?a:[a];var e=[];return!r(a,function(a){d[a]||e[l](a)})&&q(a,function(a){return d[a]})?b():!function(a){f[a]=f[a]||[],f[a][l](b),c&&c(e)}(a.join("|")),s},s})
-
-
-    var _gaq=[
-      ['_setAccount','UA-8594346-3'],
-      ['_setDomainName', '.angularjs.org'],
-      ['_trackPageview'],['_trackPageLoadTime']
-    ];
-
-    $script('https://apis.google.com/js/plusone.js');
-    $script(('https:'==location.protocol?'//ssl':'http://www')+'.google-analytics.com/ga.js');
-    $script("//platform.twitter.com/widgets.js");
-
-    $script('http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', function() {
-      $script('js/bootstrap.min.js', function() {
-        $().dropdown();
-        bootstrap();
-      });
-      $script('google-code-prettify/prettify.min.js', bootstrap);
-      $script('js/homepage.js', bootstrap);
-      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js', bootstrap);
-      $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js', bootstrap);
-      $script('https://cdn.firebase.com/v0/firebase.js', function() {
-        $script('http://firebase.github.io/angularFire/angularFire.js', function() {
-          $script('http://code.angularjs.org/1.0.8/i18n/angular-locale_sk.js', function() {
-              angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
-              bootstrap();
-            });
-          $script('http://code.angularjs.org/1.0.8/i18n/angular-locale_en-us.js', function() {
-            angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
-            bootstrap();
-          });
-        });
-      });
-    });
-
-    function bootstrap() {
-      if (window.prettyPrint && window.$ && $.fn.popover && angular.bootstrap &&
-          hasModule('ngLocal.sk') && hasModule('ngLocal.us') && hasModule('homepage') && hasModule('ngResource') && hasModule('firebase')) {
-            $(function(){
-              angular.bootstrap(document, ['homepage', 'ngLocal.us']);
-            });
-      }
-    }
-
-    function hasModule(moduleName) {
-      try {
-        return angular.module(moduleName);
-      } catch (e) {
-        return false;
-      }
-    }
-  </script>
-  <script>
-    /*
-    AngularJS v1.0.8
-    (c) 2010-2013 Google, Inc. http://angularjs.org
-    License: MIT
-    */
-    (function(i){'use strict';function d(c,b,e){return c[b]||(c[b]=e())}return d(d(i,"angular",Object),"module",function(){var c={};return function(b,e,f){e&&c.hasOwnProperty(b)&&(c[b]=null);return d(c,b,function(){function a(a,b,d){return function(){c[d||"push"]([a,b,arguments]);return g}}if(!e)throw Error("No module: "+b);var c=[],d=[],h=a("$injector","invoke"),g={_invokeQueue:c,_runBlocks:d,requires:e,name:b,provider:a("$provide","provider"),factory:a("$provide","factory"),service:a("$provide","service"),
-      value:a("$provide","value"),constant:a("$provide","constant","unshift"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:h,run:function(a){d.push(a);return this}};f&&h(f);return g})}})})(window);
-  </script>
 </head>
 <body  ng-controller="DownloadCtrl">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
@@ -563,7 +496,7 @@
       }
     </style>
     <script id="project.js">
-      angular.module('project', ['firebase']).
+      angular.module('project', ['ngRoute', 'firebase']).
         value('fbURL', 'https://angularjs-projects.firebaseio.com/').
         factory('Projects', function(angularFireCollection, fbURL) {
           return angularFireCollection(fbURL);
@@ -909,5 +842,42 @@
     </div>
   </div>
   <div id="downloadModalBackdrop" class="modal-backdrop fade" ng-class="{in: lightbox()}" ng-click='lightbox(false)'></div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+    $().dropdown();
+  </script>
+  <script src="google-code-prettify/prettify.min.js"></script>
+  <script src="js/homepage.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.min.js"></script>
+  <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+  <script src="http://firebase.github.io/angularFire/angularFire.js"></script>
+  <script src="http://code.angularjs.org/1.2.0/i18n/angular-locale_sk.js"></script>
+  <script>
+    angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+  </script>
+  <script src="http://code.angularjs.org/1.2.0/i18n/angular-locale_en-us.js"></script>
+  <script>
+    angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+    angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
+  </script>
+
+  <script src="https://apis.google.com/js/plusone.js"></script>
+  <script src="//platform.twitter.com/widgets.js"></script>
+  <script type="text/javascript">
+    var _gaq=[
+      ['_setAccount','UA-8594346-3'],
+      ['_setDomainName', '.angularjs.org'],
+      ['_trackPageview'],['_trackPageLoadTime']
+    ];
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </body>
 </html>

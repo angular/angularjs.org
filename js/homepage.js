@@ -129,6 +129,7 @@ angular.module('homepage', [])
             event.preventDefault();
           }
         });
+        element.data('$injector', null);
         angular.bootstrap(element, modules);
       }
     };
@@ -230,7 +231,7 @@ angular.module('homepage', [])
             panes.join('') +
             '</div>' +
             '</div>');
-        element.find('[rel=popover]').popover().pulse();
+        // element.find('[rel=popover]').popover().pulse();
 
         function id(id) {
           return id.replace(/\W/g, '-');
@@ -428,5 +429,4 @@ function GroupCtrl($scope, $resource)
 
   $scope.recommendedGroups = $resource('groups/index/getrecommended');
   $scope.recommendedGroups.get();
-
 }
