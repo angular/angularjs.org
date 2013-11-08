@@ -305,8 +305,8 @@ angular.module('homepage', [])
   })
 
     .controller('DownloadCtrl', function($scope, $location) {
-      var CURRENT_STABLE_VERSION = '1.0.8';
-      var CURRENT_UNSTABLE_VERSION = '1.2.0-rc.3';
+      $scope.CURRENT_STABLE_VERSION = '1.2.0';
+      $scope.CURRENT_UNSTABLE_VERSION = '1.2.0';
       var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
       var BASE_CDN_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/';
       var getRelativeUrl = function(branch, build) {
@@ -334,7 +334,7 @@ angular.module('homepage', [])
       };
 
       $scope.getVersion = function(branch) {
-        return branch === 'stable' ? CURRENT_STABLE_VERSION : CURRENT_UNSTABLE_VERSION;
+        return branch === 'stable' ? $scope.CURRENT_STABLE_VERSION : $scope.CURRENT_UNSTABLE_VERSION;
       };
 
       $scope.selectBuild = function(build) {
