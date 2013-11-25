@@ -24,7 +24,7 @@
 
   <pre><?php if($_GET['doNotPropagate'] != 'true') {
     echo 'Propagating to other intances';
-    echo `node gitFetchSite.js`;
+    echo `node propagateClusterUpdate.js`;
   } else {
     echo 'Not Propagating to other instances';
   }
