@@ -41,7 +41,7 @@ exec('gcutil gettargetpool '+ TARGET_POOL +' --project='+ PROJECT +' --region='+
         instance = JSON.parse(result);
         instance.networkInterfaces.forEach(function (netInt) {
           if (reqUrl) return;
-          if (netInt.networkIP) reqUrl = netInt.networkIP;
+          if (netInt.networkIP) reqUrl = 'http://'+ netInt.networkIP +':'+ PORT +'/gitFetchSite.php?doNotPropagate=true';
         });
       }
       catch (e) {
