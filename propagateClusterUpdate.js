@@ -21,7 +21,7 @@ exec('gcutil gettargetpool '+ TARGET_POOL +' --project='+ PROJECT +' --region='+
     instances = targetPool.instances;
   }
   catch (e) {
-    console.error('Could not parse target pool');
+    console.log('Could not parse target pool');
     return process.exit(1);
   }
 
@@ -33,28 +33,27 @@ exec('gcutil gettargetpool '+ TARGET_POOL +' --project='+ PROJECT +' --region='+
       var instance, reqUrl, exitCode = 0;
 
       if (err) {
-        console.error(err);
+        console.log(err);
         return process.exit(code);
       }
 
       try {
         instance = JSON.parse(result);
-        console.log('instance', instance);
         instance.networkInterfaces.forEach(function (netInt) {
           if (reqUrl) return;
 
-          console.log('netInt', netInt);
-
           netInt.accessConfigs.forEach(function (config) {
-            console.log('config', config, config.natIP);
             if (config.natIP) reqUrl = 'http://'+ config.natIP +':'+ PORT +'/gitFetchSite.php?doNotPropagate=true';
-            console.log('reqUrl', reqUrl);
           });
         });
       }
       catch (e) {
-        console.error(e);
+        console.log(e);
         return process.exit(1);
+      }
+
+      if (!reqUrl) {
+        return console.log('Could not find any URL for instance', instance);
       }
 
       console.log('Updating remote instance: ', reqUrl);
@@ -64,8 +63,8 @@ exec('gcutil gettargetpool '+ TARGET_POOL +' --project='+ PROJECT +' --region='+
         executed++;
         executed === instanceIPs.length && process.exit(exitCode);
       }).on('error', function (err) {
-        console.error('Failed to update', reqUrl);
-        console.error(err);
+        console.log('Failed to update', reqUrl);
+        console.log(err);
         executed++;
         exitCode = 1;
         executed === instanceIPs.length && process.exit(exitCode);
