@@ -8,8 +8,7 @@ var exec = require('child_process').exec,
 console.log('Beginning propagation to other instances');
 
 exec('gcutil gettargetpool '+ TARGET_POOL +' --project='+ PROJECT +' --region='+ REGION +' --format=json', function (err, result, code) {
-  var instanceIPs = [],
-      executed = 0,
+  var executed = 0,
       instances;
 
   if (err) {
@@ -58,13 +57,13 @@ exec('gcutil gettargetpool '+ TARGET_POOL +' --project='+ PROJECT +' --region='+
       http.get(reqUrl, function (res) {
         console.log('Finished executing', reqUrl);
         executed++;
-        executed === instanceIPs.length && process.exit(exitCode);
+        executed === instances.length && process.exit(exitCode);
       }).on('error', function (err) {
         console.log('Failed to update', reqUrl);
         console.log(err);
         executed++;
         exitCode = 1;
-        executed === instanceIPs.length && process.exit(exitCode);
+        executed === instances.length && process.exit(exitCode);
       });
     });
   });
