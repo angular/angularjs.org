@@ -314,16 +314,16 @@
       </div>
     </div>
     <div class=" row example">
-      <div class="span8 app-source" app-source="tabs.html components.js beers.js" annotate="tabs.annotation" module="components"></div>
+      <div class="span8 app-source" app-source="tabs.html components.js app.js" annotate="tabs.annotation" module="app"></div>
       <div class="span4">
         <span hint></span>
         <span class="pull-right" js-fiddle="tabs.html components.js beers.js" module="components"></span>
         <div class="tabs-spacer"></div>
         <h4>Locale: US</h4>
-        <div app-run="tabs.html" module="components-us" class="well"></div>
+        <div app-run="tabs.html" module="app-us" class="well"></div>
         <div class="tabs-spacer"></div>
         <h4>Locale: SK</h4>
-        <div app-run="tabs.html" module="components-sk" class="well"></div>
+        <div app-run="tabs.html" module="app-sk" class="well"></div>
       </div>
     </div>
 
@@ -496,49 +496,71 @@
       }
     </style>
     <script id="project.js">
-      angular.module('project', ['ngRoute', 'firebase']).
-        value('fbURL', 'https://angularjs-projects.firebaseio.com/').
-        factory('Projects', function(angularFireCollection, fbURL) {
-          return angularFireCollection(fbURL);
-        }).
-        config(function($routeProvider) {
-          $routeProvider.
-            when('/', {controller:ListCtrl, templateUrl:'list.html'}).
-            when('/edit/:projectId', {controller:EditCtrl, templateUrl:'detail.html'}).
-            when('/new', {controller:CreateCtrl, templateUrl:'detail.html'}).
-            otherwise({redirectTo:'/'});
-        });
+      angular.module('project', ['ngRoute', 'firebase'])
 
-      function ListCtrl($scope, Projects) {
+      .value('fbURL', 'https://angularjs-projects.firebaseio.com/')
+    
+      .factory('Projects', function(angularFireCollection, fbURL) {
+        return angularFireCollection(fbURL);
+      })
+    
+      .config(function($routeProvider) {
+        $routeProvider
+          .when('/', {
+            controller:'ListCtrl',
+            templateUrl:'list.html'
+          })
+          .when('/edit/:projectId', {
+            controller:'EditCtrl',
+            templateUrl:'detail.html'
+          })
+          .when('/new', {
+            controller:'CreateCtrl',
+            templateUrl:'detail.html'
+          })
+          .otherwise({
+            redirectTo:'/'
+          });
+      })
+    
+      .controller('ListCtrl', function($scope, Projects) {
         $scope.projects = Projects;
-      }
-
-      function CreateCtrl($scope, $location, $timeout, Projects) {
+      })
+    
+      .controller('CreateCtrl', function($scope, $location, $timeout, Projects) {
         $scope.save = function() {
           Projects.add($scope.project, function() {
             $timeout(function() { $location.path('/'); });
           });
-        }
-      }
+        };
+      })
+    
+      .controller('EditCtrl',
+        function($scope, $location, $routeParams, angularFire, fbURL) {
+        
+          var projectUrl = fbURL + $routeParams.projectId;
+          var bindToProject = angularFire(projectUrl, $scope, 'remote', {});
+        
+          bindToProject.then(function() {
 
-      function EditCtrl($scope, $location, $routeParams, angularFire, fbURL) {
-        angularFire(fbURL + $routeParams.projectId, $scope, 'remote', {}).
-        then(function() {
-          $scope.project = angular.copy($scope.remote);
-          $scope.project.$id = $routeParams.projectId;
-          $scope.isClean = function() {
-            return angular.equals($scope.remote, $scope.project);
-          }
-          $scope.destroy = function() {
-            $scope.remote = null;
-            $location.path('/');
-          };
-          $scope.save = function() {
-            $scope.remote = angular.copy($scope.project);
-            $location.path('/');
-          };
-        });
-      }
+            $scope.project = angular.copy($scope.remote);
+            $scope.project.$id = $routeParams.projectId;
+            
+            $scope.isClean = function() {
+              return angular.equals($scope.remote, $scope.project);
+            }
+            
+            $scope.destroy = function() {
+              $scope.remote = null;
+              $location.path('/');
+            };
+            
+            $scope.save = function() {
+              $scope.remote = angular.copy($scope.project);
+              $location.path('/');
+            };
+          });
+      });
     </script>
     <script type="text/ng-template" id="project.html">
       <h2>JavaScript Projects</h2>
@@ -608,7 +630,12 @@
      , "project.js":
        { "project": "This defines the <code>project</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up ‘routes’ that map URLs to partials. AngularJS watches the browser location and automatically updates the partial when the URL changes."
        , "firebase": "Modules can depend on other modules. Here, <code>project</code> needs <code>firebase</code> which handles the persistence for this application."
+       , "value": "Define a singleton object that can be injected into controllers and services."
+       , "fbURL": "The URL to the firebase collection to which we want to bind."
+       , "factory": "Define a factory that will return a singleton object that can be injected into controllers and services."
+       , "angularFireCollection": "A service provided by angularFire.js for binding to a Firebase collection."
        , "config": "You use <code>config()</code> to configure existing services. Here, we’re configuring the <code>$routeProvider</code> responsible for mapping URL paths to partials."
+       , "controller": "Define a controller function that can be attached to the DOM using <code>ng-controller</code> or to a view template by specifying it in the route configuration."
        , "when": "When the URL is <code>/</code> it will load <code>list.html</code> into the view and attach the <code>ListCtrl</code> controller. You can instantly get an overview of an app's structure by reading the route definitions."
        , "/edit/:projectId": "This route definition has a colon ':' in it. You use colons to make a component of the URL available to your controller. So now, <code>EditCtrl</code> can refer to the <code>projectId</code> property which tells it which project to edit."
        , "otherwise": "The <code>otherwise</code> route specifies which view to display when the URL doesn’t match any of the explicit routes. It’s the default."
@@ -647,8 +674,9 @@
   <div class="tabs-code">
     <!-- ============== Tabs ============== -->
     <script id="components.js">
-      angular.module('components', []).
-        directive('tabs', function() {
+      angular.module('components', [])
+        
+        .directive('tabs', function() {
           return {
             restrict: 'E',
             transclude: true,
@@ -679,8 +707,9 @@
               '</div>',
             replace: true
           };
-        }).
-        directive('pane', function() {
+        })
+        
+        .directive('pane', function() {
           return {
             require: '^tabs',
             restrict: 'E',
@@ -697,11 +726,13 @@
         })
     </script>
     <script>
-      angular.module('components-us', ['components', 'ngLocal.us']);
-      angular.module('components-sk', ['components', 'ngLocal.sk']);
+      angular.module('app-us', ['app', 'ngLocal.us']);
+      angular.module('app-sk', ['app', 'ngLocal.sk']);
     </script>
-    <script id="beers.js">
-      function BeerCounter($scope, $locale) {
+    <script id="app.js">
+      angular.module('app', ['components'])
+
+      .controller('BeerCounter', function($scope, $locale) {
         $scope.beers = [0, 1, 2, 3, 4, 5, 6];
         if ($locale.id == 'en-us') {
           $scope.beerForms = {
@@ -717,7 +748,7 @@
             other: '{} pív'
           };
         }
-      }
+      });
     </script>
     <script type="text/ng-template" id="tabs.html">
       <tabs>
@@ -737,7 +768,7 @@
     </script>
     <script type="text/ng-template" id="tabs.annotation">
       { "tabs.html":
-        { "components": "The <code>ng-app</code> activates the <code>component</code> module for this page region. The module contains HTML extension for <code>&lt;tabs&gt;</code> and <code>&lt;pane&gt;</code> components."
+        { "\"app\"": "The <code>ng-app</code> activates the <code>app</code> module for this page region. The module contains the BeerCounter controller and has a dependency on the <code>components</code> module, which contains the HTML extension (directives) for <code>&lt;tabs&gt;</code> and <code>&lt;pane&gt;</code> components."
         , "tabs": "We've extended HTML's vocabulary with a custom <code>tabs</code> element. The <code>tabs</code> abstracts the complex HTML structure and behavior necessary for rendering of tabs. The result is a more readable view and very easily reusable syntax."
         , "pane": "Again, we've extended the HTML vocabulary with a custom <code>pane</code> element. The <code>pane</code> element renders the panes of each tab. The result is a more readable view."
         , "title": "Components can take input parameters in the form of HTML attributes. In this case the <code>title</code> attribute specifies the tab's text."
@@ -768,11 +799,12 @@
         , "ng-click": "Select the clicked tab."
         , "bind": "Specifies how is the <code>title</code> attribute on the <code>&lt;pane&gt;</code> element interpreted. The <code>bind</code> strategy copies the interpolated value to <code>&lt;pane&gt;</code>'s scope. This makes <code>title</code> available for binding in <code>template</code>."
         }
-      , "beers.js":
+      , "app.js":
         { "$locale": "The <code>$locale</code> service contains meta-data for the current locale. There are AngularJS locale modules available for each language locale combination."
         , "beers": "Set up beers counting array. We will iterate over this array and see how the 'beers' count gets rendered for each count."
         , "id": "Create different pluralization rules based on locale. In an actual app, one would load a different module which would contain translation as well as localization rules for each language."
         , "beerForms": "Pluralization rules for English."
+        , "components": "The <code>app</code> module declares a dependency on the <code>components</code> module, which ensures that the directives in the <code>components</code> module are also loaded into the application."
         }
       }
     </script>
