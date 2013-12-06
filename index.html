@@ -19,7 +19,7 @@
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
   <base href="/">
 
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -118,7 +118,7 @@
 
             <a class="btn btn-large btn-primary" href="" ng-click="lightbox('stable')">
               <i class="icon-download-alt icon-large"></i> Download
-              <span class="version"> (<span>1.2.3</span>) </span>
+              <span class="version"> (<span>1.2.4</span>) </span>
 
             </a>
 
@@ -499,11 +499,11 @@
       angular.module('project', ['ngRoute', 'firebase'])
 
       .value('fbURL', 'https://angularjs-projects.firebaseio.com/')
-    
+
       .factory('Projects', function(angularFireCollection, fbURL) {
         return angularFireCollection(fbURL);
       })
-    
+
       .config(function($routeProvider) {
         $routeProvider
           .when('/', {
@@ -522,11 +522,11 @@
             redirectTo:'/'
           });
       })
-    
+
       .controller('ListCtrl', function($scope, Projects) {
         $scope.projects = Projects;
       })
-    
+
       .controller('CreateCtrl', function($scope, $location, $timeout, Projects) {
         $scope.save = function() {
           Projects.add($scope.project, function() {
@@ -534,27 +534,27 @@
           });
         };
       })
-    
+
       .controller('EditCtrl',
         function($scope, $location, $routeParams, angularFire, fbURL) {
-        
+
           var projectUrl = fbURL + $routeParams.projectId;
           var bindToProject = angularFire(projectUrl, $scope, 'remote', {});
-        
+
           bindToProject.then(function() {
 
             $scope.project = angular.copy($scope.remote);
             $scope.project.$id = $routeParams.projectId;
-            
+
             $scope.isClean = function() {
               return angular.equals($scope.remote, $scope.project);
             }
-            
+
             $scope.destroy = function() {
               $scope.remote = null;
               $location.path('/');
             };
-            
+
             $scope.save = function() {
               $scope.remote = angular.copy($scope.project);
               $location.path('/');
@@ -675,7 +675,7 @@
     <!-- ============== Tabs ============== -->
     <script id="components.js">
       angular.module('components', [])
-        
+
         .directive('tabs', function() {
           return {
             restrict: 'E',
@@ -708,7 +708,7 @@
             replace: true
           };
         })
-        
+
         .directive('pane', function() {
           return {
             require: '^tabs',
@@ -882,15 +882,15 @@
   </script>
   <script src="google-code-prettify/prettify.min.js"></script>
   <script src="js/homepage.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-resource.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-resource.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-route.min.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <script src="http://firebase.github.io/angularFire/angularFire.js"></script>
-  <script src="http://code.angularjs.org/1.2.3/i18n/angular-locale_sk.js"></script>
+  <script src="http://code.angularjs.org/1.2.4/i18n/angular-locale_sk.js"></script>
   <script>
     angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
   </script>
-  <script src="http://code.angularjs.org/1.2.3/i18n/angular-locale_en-us.js"></script>
+  <script src="http://code.angularjs.org/1.2.4/i18n/angular-locale_en-us.js"></script>
   <script>
     angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
     angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
