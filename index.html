@@ -210,8 +210,8 @@
       <div class="span4">
         <h3>Plain JavaScript</h3>
         <p>
-          Unlike other frameworks, there is no need to inherit from proprietary types; to wrap the
-          model in accessors methods. Just plain old JavaScript here. This makes your code easy to
+          Unlike other frameworks, there is no need to inherit from proprietary types in order to wrap the
+          model in accessors methods. Angular models are plain old JavaScript objects. This makes your code easy to
           test, maintain, reuse, and again free from boilerplate.
         </p>
       </div>
@@ -475,7 +475,7 @@
       , "todo.js":
         { "TodoCtrl": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
         , "$scope": "<code>$scope</code> contains your model data. It is the glue between the controller and the view. The <code>$scope</code> is just one of the services that can be injected into the controller."
-        , "todos": "We are creating the model with two initial todo items. Notice that a you simply assign your model to the <code>$scope</code> and AngularJS reflects the state in the UI automatically. The model data is a Plain-Old-JavaScript-Object no need to wrap it in proxy or accesses the property through special setter methods."
+        , "todos": "We are creating the model with two initial todo items. Notice that you simply assign your model to the <code>$scope</code> and AngularJS reflects the state in the UI automatically. The model data is a Plain-Old-JavaScript-Object no need to wrap it in proxy or accesses the property through special setter methods."
         , "addTodo": "We are assigning the behavior into the <code>$scope</code> so that the <code>ng-submit</code> can invoke it."
         , "push": "This is unmodified <code>Array.push</code> method. Calling it updates the model, which then updates the view through data-binding. The <code>ng&ndash;repeat</code> is bound to this array. It automatically unrolls the array and adds the new DOM element into the view. (see <code>ng&ndash;repeat</code> in <code>index.html</code> tab.)"
         , "todoText": "Because of  bi-directional data-binding, the model is always up to date. This means that we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API."
