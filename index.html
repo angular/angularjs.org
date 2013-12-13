@@ -262,10 +262,10 @@
       <div class="span4">
         <h3>Server Communication</h3>
         <p>
-          AngularJS provides services on top of XHR, that dramatically simplify your code. We wrap
-          XHR to give you exception management and promises. Promises further simplify your code
-          by handling asynchronous return of data. This lets you assign properties synchronously
-          when the return is actually asynchronous.
+          AngularJS provides built-in services on top of XHR as well as various other backends
+          using third party libraries. Promises further simplify your code
+          by handling asynchronous return of data. In this example, we use the AngularFire
+          library to wire up a <a href="https://www.firebase.com/">Firebase</a> backend to a simple Angular app.
         </p>
       </div>
     </div>
@@ -500,8 +500,8 @@
 
       .value('fbURL', 'https://angularjs-projects.firebaseio.com/')
 
-      .factory('Projects', function(angularFireCollection, fbURL) {
-        return angularFireCollection(fbURL);
+      .factory('Projects', function($firebase, fbURL) {
+        return $firebase(new Firebase(fbURL));
       })
 
       .config(function($routeProvider) {
@@ -529,37 +529,26 @@
 
       .controller('CreateCtrl', function($scope, $location, $timeout, Projects) {
         $scope.save = function() {
-          Projects.add($scope.project, function() {
+          Projects.$add($scope.project, function() {
             $timeout(function() { $location.path('/'); });
           });
         };
       })
 
       .controller('EditCtrl',
-        function($scope, $location, $routeParams, angularFire, fbURL) {
-
+        function($scope, $location, $routeParams, $firebase, fbURL) {
           var projectUrl = fbURL + $routeParams.projectId;
-          var bindToProject = angularFire(projectUrl, $scope, 'remote', {});
+          $scope.project = $firebase(new Firebase(projectUrl));
 
-          bindToProject.then(function() {
+          $scope.destroy = function() {
+            $scope.project.$remove();
+            $location.path('/');
+          };
 
-            $scope.project = angular.copy($scope.remote);
-            $scope.project.$id = $routeParams.projectId;
-
-            $scope.isClean = function() {
-              return angular.equals($scope.remote, $scope.project);
-            }
-
-            $scope.destroy = function() {
-              $scope.remote = null;
-              $location.path('/');
-            };
-
-            $scope.save = function() {
-              $scope.remote = angular.copy($scope.project);
-              $location.path('/');
-            };
-          });
+          $scope.save = function() {
+            $scope.project.$save();
+            $location.path('/');
+          };
       });
     </script>
     <script type="text/ng-template" id="project.html">
@@ -577,7 +566,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
+        <tr ng-repeat="project in projects | orderByPriority | filter:search | orderBy:'name'">
           <td><a href="{{project.site}}" target="_blank">{{project.name}}</a></td>
           <td>{{project.description}}</td>
           <td>
@@ -610,10 +599,10 @@
 
         <br>
         <a href="#/" class="btn">Cancel</a>
-        <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
+        <button ng-click="save()" ng-disabled="myForm.$invalid"
                 class="btn btn-primary">Save</button>
         <button ng-click="destroy()"
-                ng-show="project.$id" class="btn btn-danger">Delete</button>
+                ng-show="project.$remove" class="btn btn-danger">Delete</button>
       </form>
     </script>
     <script type="text/ng-template" id="project.annotation">
@@ -623,7 +612,7 @@
        , "angular.min.js": "Load AngularJS."
        , "angular-resource.min.js": "Load AngularJS resource module."
        , "v0/firebase.js": "Load the Firebase JavaScript SDK."
-       , "angularFire.js": "Load the Angular bindings for Firebase."
+       , "angularfire.min.js": "Load the Angular bindings for Firebase."
        , "project.js": "The <code>project.js</code> file contains the controllers which specify your application’s behavior."
        , "ng-view": "We’re marking this <code>&lt;div&gt;</code> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section. In this case, we’ll be switching between a list of “projects” and the form to add new or edit existing “projects”."
        }
@@ -631,19 +620,18 @@
        { "project": "This defines the <code>project</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up ‘routes’ that map URLs to partials. AngularJS watches the browser location and automatically updates the partial when the URL changes."
        , "firebase": "Modules can depend on other modules. Here, <code>project</code> needs <code>firebase</code> which handles the persistence for this application."
        , "value": "Define a singleton object that can be injected into controllers and services."
-       , "fbURL": "The URL to the firebase collection to which we want to bind."
+       , "fbURL": "The URL to the Firebase location from which we want to load data (and store changes)."
        , "factory": "Define a factory that will return a singleton object that can be injected into controllers and services."
-       , "angularFireCollection": "A service provided by angularFire.js for binding to a Firebase collection."
+       , "$firebase": "A service provided by AngularFire for binding data from Firebase to Angular models."
        , "config": "You use <code>config()</code> to configure existing services. Here, we’re configuring the <code>$routeProvider</code> responsible for mapping URL paths to partials."
        , "controller": "Define a controller function that can be attached to the DOM using <code>ng-controller</code> or to a view template by specifying it in the route configuration."
        , "when": "When the URL is <code>/</code> it will load <code>list.html</code> into the view and attach the <code>ListCtrl</code> controller. You can instantly get an overview of an app's structure by reading the route definitions."
        , "/edit/:projectId": "This route definition has a colon ':' in it. You use colons to make a component of the URL available to your controller. So now, <code>EditCtrl</code> can refer to the <code>projectId</code> property which tells it which project to edit."
        , "otherwise": "The <code>otherwise</code> route specifies which view to display when the URL doesn’t match any of the explicit routes. It’s the default."
-       , "Projects": "<code>Projects</code> is an instance of <code>angularFireCollection</code>, and is defined in the <code>projects</code> module. It exposes method to add, remove and update projects in the collection. Its purpose is to abstract the server communication. This lets the controller focus on the behavior rather than the complexities of server access."
+       , "Projects": "<code>Projects</code> is an instance of <code>$firebase</code>, and is defined in the <code>projects</code> module. It exposes method to add, remove and update projects in the collection. Its purpose is to abstract the server communication. This lets the controller focus on the behavior rather than the complexities of server access."
        , "$scope": "We can immediately assign the set of projects to our scope, and they will be displayed in the view."
-       , "$timeout": "The callback for Projects.add is called asynchronously, and we have to use $timeout to ensure $location has the right context when it executes."
+       , "$timeout": "The callback for Projects.$add is called asynchronously, and we have to use $timeout to ensure $location has the right context when it executes."
        , "$location": "You use the <code>$location</code> service to access the browser's location."
-       , "angularFire": "The <code>angularFire</code> method binds a <code>Project</code> from the server to a local <code>$scope</code> variable, in this case, <code>remote</code>."
        , "path": "Use the <code>path</code> method to change the application's 'deep-linking' location. Changing the URL will automatically activate the new route, and transition the application to display that view -- in this case, the <code>/edit/</code> view."
        , "$routeParams": "Here, we ask AngularJS to inject the <code>$routeParams</code> service.  We use it to access the parameters extracted from the route path definitions."
        , "projectId": "This extracts the <code>projectId</code> from the URL. This allows the controller to use deep-linking information for processing."
@@ -656,6 +644,7 @@
        { "ng-model": "Bind the input field to the <code>search</code> property. The property is then used to filter for only the projects which contain the text entered by the user."
        , "#/new": "A link to a <code>/new</code> route defined in <code>projects.js</code>. Note that we follow the spirit of the web. There is no need to register callbacks on links, we are simply navigating to a new URL. This automatically updates the browser history, and enables deep-linking. But unlike a server round trip application, this navigation event gets rendered instantly in the browser."
        , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
+       , "orderByPriority": "A special filter provided by AngularFire to convert an object into an ordered array as defined by Firebase."
        , "filter": "The <code>filter</code> uses the <code>search</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
        , "orderBy": "Returns the <code>project</code> list ordered by <code>name</code> property."
        , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id serves the purpose of deep-linking, back button, as well as a way to communicate to <code>EditCtrl</code> which project should be edited."
@@ -885,7 +874,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-resource.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-  <script src="http://firebase.github.io/angularFire/angularFire.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
   <script src="http://code.angularjs.org/1.2.5/i18n/angular-locale_sk.js"></script>
   <script>
     angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
