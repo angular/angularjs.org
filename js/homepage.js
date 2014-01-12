@@ -84,6 +84,7 @@ angular.module('homepage', ['ngAnimate'])
     return {
       angular: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
       resource: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n',
+      route: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-route.min.js"></script>\n',
       firebase: '<script src="https://cdn.firebase.com/v0/firebase.js"></script>\n    <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>\n'
     };
   })
@@ -149,6 +150,7 @@ angular.module('homepage', ['ngAnimate'])
                 '  <head>\n' +
                 '    ' + script.angular +
                (attrs.resource ? ('    ' + script.resource.replace('></', '>\n    </')) : '') +
+               (attrs.route ? ('    ' + script.route.replace('></', '>\n   </')) : '') +
                (attrs.firebase ? ('    ' + script.firebase) : '') +
                 '__HEAD__' +
                 '  </head>\n' +
