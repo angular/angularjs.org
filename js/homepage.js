@@ -305,6 +305,42 @@ angular.module('homepage', [])
     }
   })
 
+    .controller('JumbotronCtrl', ['$scope', function($scope) {
+      $scope.videos = [
+        { img: "https://i.ytimg.com/vi/r1A1VR0ibIQ/hqdefault.jpg",
+          title: "Misko Hevery and Brad Green - Keynote - NG-Conf 2014",
+          link: "http://www.youtube.com/watch?v=r1A1VR0ibIQ?autoplay=1" },
+
+        { img: "https://i.ytimg.com/vi/_OGGsf1ZXMs/hqdefault.jpg",
+          title: "Vojta Jina - Dependency Injection - NG-Conf",
+          link: "http://www.youtube.com/watch?v=_OGGsf1ZXMs?autoplay=1" },
+
+        { img: "https://i.ytimg.com/vi/hC0MpgUoui4/hqdefault.jpg",
+          title: "Lukas Rubbelke & Matias Niemela - Awesome Interfaces with AngularJS Animations - NG-Conf 2014",
+          link: "http://www.youtube.com/watch?v=hC0MpgUoui4?autoplay=1"},
+
+        { img:"https://i.ytimg.com/vi/0V8fQoqQLLA/hqdefault.jpg",
+          title: "Jeff Cross - Rapid Prototyping with Angular & Deployd - NGConf",
+          link: "http://www.youtube.com/watch?v=0V8fQoqQLLA?autoplay=1"},
+
+        { img:"https://i.ytimg.com/vi/L4FJ_kuO9Rc/hqdefault.jpg",
+          title: "Sharon DiOrio - Filters Beyond OrderBy and LimitTo - NG-Conf 2014",
+          link:"http://www.youtube.com/watch?v=L4FJ_kuO9Rc?autoplay=1"},
+
+        { img:"https://i.ytimg.com/vi/f62k7b753-Y/hqdefault.jpg",
+          title: "Tom Valletta and Gabe Dayley - Angular Weapon Defense - NG-Conf 2014",
+          link:"http://www.youtube.com/watch?v=f62k7b753-Y?autoplay=1"},
+
+        { img:"https://i.ytimg.com/vi/JLij19xbefI/hqdefault.jpg",
+          title: "John Papa - Progressive Saving - NG-Conf",
+          link:"http://www.youtube.com/watch?v=JLij19xbefI?autoplay=1"},
+
+        { img:"https://i.ytimg.com/vi/UMkd0nYmLzY/hqdefault.jpg",
+          title:"Dave Smith  - Deep Dive into Custom Directives - NG-Conf 2014",
+          link:"http://www.youtube.com/watch?v=UMkd0nYmLzY?autoplay=1"},
+      ];
+    }])
+
     .controller('DownloadCtrl', function($scope, $location) {
       $scope.CURRENT_STABLE_VERSION = '1.2.9';
       $scope.CURRENT_UNSTABLE_VERSION = '1.2.9';

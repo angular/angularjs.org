@@ -171,7 +171,31 @@
         </p>
       </div>
     </div>
+  </div>
+  <div class="jumbotron" ng-controller="JumbotronCtrl" ng-cloak>
+    <div class="jumbotron-header">
+      <h1>AngularJS @ ng-conf 2014</h1>
+    </div>
+    <div class="stretched-container">
+      <div class="gallery">
+        <a ng-href="{{ video.link }}" ng-repeat="video in videos" class="gallery-item video-item" target="_blank">
+          <img ng-src="{{ video.img }}" />
+          <h4 class="video-item-heading">{{ video.title }}</h4>
+        </a>
+      </div>
+      <nav class="jumbotron-actions">
+        <a class="btn btn-primary btn-large" href="https://www.youtube.com/user/ngconfvideos?feature=watch" target="_blank">
+          <i class="icon-play-circle"></i> View more videos
+        </a>
+        <span class="spacer"></span>
+        <a class="btn btn-default btn-large" href="http://www.ustream.tv/embed/16910407?wmode=direct" target="_blank">
+          <i class="icon-github-sign"></i> View the live-stream! 
+        </a>
+      </nav>
+    </div>
+  </div>
 
+  <div role="main" class="container">
     <h1 id="the-basics">The Basics</h1>
     <div class="row example">
       <div class="span8 app-source" app-source="hello.html" annotate="hello.annotation"></div>
