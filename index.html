@@ -338,7 +338,7 @@
       </div>
     </div>
     <div class=" row example">
-      <div class="span8 app-source" app-source="tabs.html components.js app.js" annotate="tabs.annotation" module="app"></div>
+      <div class="span8 app-source" app-source="tabs.html components.js app.js bootstrap.css" annotate="tabs.annotation" module="app"></div>
       <div class="span4">
         <span hint></span>
         <span class="pull-right" js-fiddle="tabs.html components.js app.js" module="app"></span>
@@ -763,6 +763,9 @@
         }
       });
     </script>
+    <style type="text/css" id="bootstrap.css">
+      @import '//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css';
+    </style>
     <script type="text/ng-template" id="tabs.html">
       <tabs>
         <pane title="Localization">
