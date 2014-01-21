@@ -245,7 +245,7 @@ angular.module('homepage', [])
       terminal: true,
       link: function(scope, element, attr) {
         var name = '',
-            stylesheet = '<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">\n',
+            stylesheet = '<link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">\n',
             fields = {
               html: '',
               css: '',
