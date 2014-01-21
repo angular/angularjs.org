@@ -20,6 +20,7 @@
   <base href="/">
 
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.js"></script>
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -174,22 +175,44 @@
   </div>
   <div class="jumbotron" ng-controller="JumbotronCtrl" ng-cloak>
     <div class="jumbotron-header">
-      <h1>AngularJS @ ng-conf 2014</h1>
+      <h1>ng-conf 2014</h1>
     </div>
     <div class="stretched-container">
-      <div class="gallery">
-        <a ng-href="{{ video.link }}" ng-repeat="video in videos" class="gallery-item video-item" target="_blank">
-          <img ng-src="{{ video.img }}" />
-          <h4 class="video-item-heading">{{ video.title }}</h4>
-        </a>
+      <nav class="jumbotron-tabs" ng-if="!loading">
+        <div class="jumbotron-tabs-container">
+          <a href="" ng-class="{'active':category=='basics'}" class="jumbotron-tab" ng-click="filterByCategory('basics')">Get to know Angular</a>
+          <a href="" ng-class="{'active':category=='advanced'}" class="jumbotron-tab" ng-click="filterByCategory('advanced')">Advanced Topics</a>
+          <a href="" ng-class="{'active':category=='beyond'}" class="jumbotron-tab" ng-click="filterByCategory('beyond')">Angular and Beyond</a>
+          <div class="jumbotron-tab search-tab" ng-class="{'active':searchFocus}">
+            <span class="icon-search search-icon"></span>
+            <input class="search-input" type="text" ng-model="search" placeholder="Search Videos..." ng-change="filterBySearch(search)" ng-focus="searchFocus=true; filterBySearch(search)" ng-blur="searchFocus=false" />
+          </div>
+        </div>
+      </nav>
+
+      <div ng-if="loading">
+        <h2 class="jumbotron-message"><strong>Loading...</strong></h2>
       </div>
+
+      <div ng-if="!loading">
+        <div ng-if="videos.length==0">
+          <h2 class="jumbotron-message"><strong>No videos</strong> were found by your search query</h2>
+        </div>
+        <div class="gallery jumbotron-body" ng-if="videos.length > 0">
+          <a ng-href="{{ video.url }}" ng-repeat="video in videos" class="gallery-item video-item animated-item" target="_blank">
+            <img ng-src="{{ video.imageUrl }}" />
+            <h4 class="video-item-heading">{{ video.title }}</h4>
+          </a>
+        </div>
+      </div>
+
       <nav class="jumbotron-actions">
         <a class="btn btn-primary btn-large" href="https://www.youtube.com/user/ngconfvideos?feature=watch" target="_blank">
-          <i class="icon-play-circle"></i> View more videos
+          <i class="icon-play-circle"></i> View All Videos
         </a>
         <span class="spacer"></span>
         <a class="btn btn-default btn-large" href="http://ng-conf.org/" target="_blank">
-          <i class="icon-github-sign"></i> Go to ng-conf.org
+          <i class="icon-external-link"></i> Go to ng-conf.org
         </a>
       </nav>
     </div>

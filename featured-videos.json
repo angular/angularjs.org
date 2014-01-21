@@ -1,0 +1,170 @@
+[
+  {
+    "category":"basics",
+    "imageUrl":"https://i.ytimg.com/vi/r1A1VR0ibIQ/hqdefault.jpg",
+    "title":"Miško Hevery and Brad Green - Keynote",
+    "url":"http://www.youtube.com/watch?v=r1A1VR0ibIQ"
+  },
+  {
+    "category":"basics",
+    "imageUrl":"https://i.ytimg.com/vi/tnXO-i7944M/hqdefault.jpg",
+    "title":"Dan Wahlin - AngularJS in 20ish Minutes",
+    "url":"http://www.youtube.com/watch?v=tnXO-i7944M"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/e4yUTkva_FM/hqdefault.jpg",
+    "title":"Anant Narayanan - Building Realtime Apps With Firebase and Angular",
+    "url":"http://www.youtube.com/watch?v=e4yUTkva_FM"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/TQoV0Jt3IJg/hqdefault.jpg",
+    "title":"Burke Holland - Angular Directives that Scale",
+    "url":"http://www.youtube.com/watch?v=TQoV0Jt3IJg"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/aQipuiTcn3U/hqdefault.jpg",
+    "title":"Julie Ralph - End to End Angular Testing with Protractor",
+    "url":"http://www.youtube.com/watch?v=aQipuiTcn3U"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/62RvRQuMVyg/hqdefault.jpg",
+    "title":"Writing a Massive Angular App at Google   NG Conf",
+    "url":"http://www.youtube.com/watch?v=62RvRQuMVyg"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/UMkd0nYmLzY/hqdefault.jpg",
+    "title":"Dave Smith  - Deep Dive into Custom Directives",
+    "url":"http://www.youtube.com/watch?v=UMkd0nYmLzY"
+  },
+  {
+    "category":"basics",
+    "imageUrl":"https://i.ytimg.com/vi/h-SQvre_6qU/hqdefault.jpg",
+    "title":"Igor Minar - Angular === Community (Keynote)",
+    "url":"http://www.youtube.com/watch?v=h-SQvre_6qU"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/wVntVkRLR3M/hqdefault.jpg",
+    "title":"Daniel Zen - Using AngularJS to create iPhone & Android applications with PhoneGap",
+    "url":"http://www.youtube.com/watch?v=wVntVkRLR3M"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/MhVgGE-pgEY/hqdefault.jpg",
+    "title":"Ari Lerner - Robotics powering interfaces with AngularJS to the Arduino",
+    "url":"http://www.youtube.com/watch?v=MhVgGE-pgEY"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/u6TeBM_SC8w/hqdefault.jpg",
+    "title":"Sean Hess - How to use Typescript on your Angular Application and Be Happy",
+    "url":"http://www.youtube.com/watch?v=u6TeBM_SC8w"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/f62k7b753-Y/hqdefault.jpg",
+    "title":"Tom Valletta and Gabe Dayley - Angular Weapon Defense",
+    "url":"http://www.youtube.com/watch?v=f62k7b753-Y"
+  },
+  {
+    "category":"basics",
+    "imageUrl":"https://i.ytimg.com/vi/srt3OBP2kGc/hqdefault.jpg",
+    "title":"Angular Team Panel",
+    "url":"http://www.youtube.com/watch?v=srt3OBP2kGc"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/JfykD-0tpjI/hqdefault.jpg",
+    "title":"Ben Teese - Rich Data Models & Angular",
+    "url":"http://www.youtube.com/watch?v=JfykD-0tpjI"
+  },
+  {
+    "category":"basics",
+    "imageUrl":"https://i.ytimg.com/vi/L4FJ_kuO9Rc/hqdefault.jpg",
+    "title":"Sharon DiOrio - Filters Beyond OrderBy and LimitTo",
+    "url":"http://www.youtube.com/watch?v=L4FJ_kuO9Rc"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/3IqtmUscE_U/hqdefault.jpg",
+    "title":"Brian Ford - Zones",
+    "url":"http://www.youtube.com/watch?v=3IqtmUscE_U"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/zyYpHIOrk_Y/hqdefault.jpg",
+    "title":"Karl Seamon - Angular Performance",
+    "url":"http://www.youtube.com/watch?v=zyYpHIOrk_Y"
+  },
+  {
+    "category":"basics",
+    "imageUrl":"https://i.ytimg.com/vi/hC0MpgUoui4/hqdefault.jpg",
+    "title":"Lukas Rubbelke & Matias Niemela - Awesome Interfaces with AngularJS Animations",
+    "url":"http://www.youtube.com/watch?v=hC0MpgUoui4"
+  },
+  {
+    "category":"basics",
+    "imageUrl":"https://i.ytimg.com/vi/_OGGsf1ZXMs/hqdefault.jpg",
+    "title":"Vojta Jina - Dependency Injection",
+    "url":"http://www.youtube.com/watch?v=_OGGsf1ZXMs"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/0V8fQoqQLLA/hqdefault.jpg",
+    "title":"Jeff Cross - Rapid Prototyping with Angular & Deployd - NGConf",
+    "url":"http://www.youtube.com/watch?v=0V8fQoqQLLA"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/4yulGISBF8w/hqdefault.jpg",
+    "title":"Thomas Burleson Angular and RequireJS",
+    "url":"http://www.youtube.com/watch?v=4yulGISBF8w"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/NTPutZ99XWY/hqdefault.jpg",
+    "title":"Ben Clinkinbeard - Angular with Browserify",
+    "url":"http://www.youtube.com/watch?v=NTPutZ99XWY"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/JLij19xbefI/hqdefault.jpg",
+    "title":"John Papa - Progressive Saving",
+    "url":"http://www.youtube.com/watch?v=JLij19xbefI"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/RqKUTGB-CxA/hqdefault.jpg",
+    "title":"James Deboer - Dart, it's Angular Too",
+    "url":"http://www.youtube.com/watch?v=RqKUTGB-CxA"
+  },
+  {
+    "category":"beyond",
+    "imageUrl":"https://i.ytimg.com/vi/Iw-3qgG_ipU/hqdefault.jpg",
+    "title":"Dean Sofer - AngularJS ORM",
+    "url":"http://www.youtube.com/watch?v=Iw-3qgG_ipU"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/I-TvWfXVR08/hqdefault.jpg",
+    "title":"Silvano Luciani - PhotoHunt",
+    "url":"http://www.youtube.com/watch?v=I-TvWfXVR08"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/XcRdO5QVlqE/hqdefault.jpg",
+    "title":"Christian Lilley - Going Postal with Angular in Promises",
+    "url":"http://www.youtube.com/watch?v=XcRdO5QVlqE"
+  },
+  {
+    "category":"advanced",
+    "imageUrl":"https://i.ytimg.com/vi/jVzymluqmg4/hqdefault.jpg",
+    "title":"Jason Aden - Using ngModelController to Make Sexy Custom Components",
+    "url":"http://www.youtube.com/watch?v=jVzymluqmg4"
+  }
+]

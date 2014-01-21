@@ -275,19 +275,26 @@ div.modal-body button {
   height:200px;
 }
 
+.video-item:hover img {
+  box-shadow:0 0 10px #006FCC;
+  cursor:pointer;
+}
+
 .jumbotron-header,
 .jumbotron-actions {
-  background:rgba(0,0,0,0.2);
+  background:rgba(0,0,0,0.3);
 }
 
 .jumbotron-header {
   padding:20px;
-  margin-bottom:30px;
 }
 
 .jumbotron-actions {
   padding:20px 0 30px;
-  margin-top:30px;
+}
+
+.jumbotron-body {
+  padding-bottom:30px;
 }
 
 .jumbotron .btn {
@@ -300,4 +307,90 @@ div.modal-body button {
 
 .video-item-heading {
   margin-top:5px;
+}
+
+.jumbotron-tabs {
+  margin:30px 0 20px;
+}
+
+.jumbotron-tabs-container {
+  display:table;
+  width:90%;
+  margin:0 auto;
+}
+
+.jumbotron-tab {
+  vertical-align:middle;
+  height:50px;
+  font-size:20px;
+  display:table-cell;
+  width:25%;
+  margin:0 10px;
+  color:white;
+  text-decoration:none;
+  border-bottom:2px solid transparent;
+}
+
+.jumbotron-tabs .search-input {
+  margin:2px 0 0;
+  background:transparent;
+  border:0;
+  height:auto;
+  font-size:20px;
+  color:white;
+  border:0;
+  box-shadow:none;
+}
+
+.jumbotron-tab:hover {
+  color:white;
+  text-decoration:none;
+  background:rgba(0,0,0,0.15);
+}
+
+.jumbotron-tab.active {
+  position:relative;
+  background:#222;
+  color:#006FCC;
+}
+
+.jumbotron-tab.active:after {
+  border-width:8px;
+  border-color:#222 transparent transparent;
+  border-style:solid;
+  position:absolute;
+  bottom:-16px;
+  left:50%;
+  margin-left:-8px;
+  content:"";
+}
+
+.animated-item.ng-enter-stagger {
+  -webkit-transition-delay:0.15s;
+  transition-delay:0.15s;
+
+  -webkit-transition-duration:0;
+  transition-duration:0;
+}
+
+.animated-item.ng-enter {
+  transition:0.5s linear all;
+  position:relative;
+  left:-20px;
+  opacity:0;
+}
+
+.animated-item.ng-enter.ng-enter-active {
+  left:0;
+  opacity:1;
+}
+
+.jumbotron-message {
+  background:rgba(0,0,0,0.1);
+  padding:20px 0;
+}
+
+.jumbotron-message strong {
+  color:#006FCC;
+  font-weight:bold!important;
 }
