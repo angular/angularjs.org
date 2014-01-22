@@ -625,17 +625,17 @@
     </script>
     <script type="text/ng-template" id="detail.html">
       <form name="myForm">
-        <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <div class="control-group" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
           <label>Name</label>
           <input type="text" name="name" ng-model="project.name" required>
-          <span ng-show="myForm.name.$error.required" class="help-inline">
-              Required</span>
+          <span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">
+              Required {{myForm.name.$pristine}}</span>
         </div>
 
-        <div class="control-group" ng-class="{error: myForm.site.$invalid}">
+        <div class="control-group" ng-class="{error: myForm.site.$invalid && !myForm.site.$pristine}">
           <label>Website</label>
           <input type="url" name="site" ng-model="project.site" required>
-          <span ng-show="myForm.site.$error.required" class="help-inline">
+          <span ng-show="myForm.site.$error.required && !myForm.name.$pristine" class="help-inline">
               Required</span>
           <span ng-show="myForm.site.$error.url" class="help-inline">
               Not a URL</span>
