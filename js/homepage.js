@@ -247,7 +247,7 @@ angular.module('homepage', ['ngAnimate'])
       terminal: true,
       link: function(scope, element, attr) {
         var name = '',
-            stylesheet = '<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">\n',
+            stylesheet = '<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">\n',
             fields = {
               html: '',
               css: '',
