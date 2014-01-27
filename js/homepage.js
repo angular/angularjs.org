@@ -282,6 +282,8 @@ angular.module('homepage', ['ngAnimate'])
                stylesheet +
                script.angular +
                (attr.resource ? script.resource : '') +
+               (attr.route ? script.route : '') +
+               (attr.firebase ? script.firebase : '') +
                '<style>\n' +
                fields.css) +
             hiddenField('html', fields.html) +
