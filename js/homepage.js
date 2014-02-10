@@ -209,7 +209,7 @@ angular.module('homepage', ['ngAnimate'])
               var token = "__" + (counter++) + "__";
               popovers[token] =
                 '<code class="nocode" rel="popover" title="' + escape('<code>' + key + '</code>') +
-                '" data-content="' + escape(text) + '">' + escape(key) + '</code>';
+                '" data-html="true" data-trigger="hover"  data-content="' + escape(text) + '">' + escape(key) + '</code>';
               return before + token + after;
             });
           });
@@ -247,7 +247,7 @@ angular.module('homepage', ['ngAnimate'])
       terminal: true,
       link: function(scope, element, attr) {
         var name = '',
-            stylesheet = '<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">\n',
+            stylesheet = '<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">\n',
             fields = {
               html: '',
               css: '',
@@ -305,7 +305,7 @@ angular.module('homepage', ['ngAnimate'])
     return {
       template: '<em>Hint:</em> hover over ' +
           '<code class="nocode" rel="popover" title="Hover" ' +
-          'data-content="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
+          'data-trigger="hover" data-content="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
     }
   })
 
@@ -347,8 +347,8 @@ angular.module('homepage', ['ngAnimate'])
     }])
 
     .controller('DownloadCtrl', function($scope, $location) {
-      $scope.CURRENT_STABLE_VERSION = '1.2.11';
-      $scope.CURRENT_UNSTABLE_VERSION = '1.2.11';
+      $scope.CURRENT_STABLE_VERSION = '1.2.12';
+      $scope.CURRENT_UNSTABLE_VERSION = '1.2.12';
       var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
       var BASE_CDN_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/';
       var getRelativeUrl = function(branch, build) {

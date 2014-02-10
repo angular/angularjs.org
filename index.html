@@ -10,17 +10,18 @@
         content="AngularJS is what HTML would have been, had it been designed for building web-apps.
                  Declarative templates with data-binding, MVW, MVVM, MVC, dependency injection and great
                  testability story all implemented with pure client-side JavaScript!">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AngularJS — Superheroic JavaScript MVW Framework</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/docs.css">
-  <link rel="stylesheet" href="css/font-awesome.css">
-  <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/docs.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href="http://angularjs.org/google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
   <base href="/">
 
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular-animate.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-animate.js"></script>
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -30,123 +31,121 @@
     </script>
   <![endif]-->
 </head>
-<body  ng-controller="DownloadCtrl">
+<body ng-controller="DownloadCtrl">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-  <header class="header">
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="http://angularjs.org" style="padding-top: 6px; padding-bottom: 0px;">
-            <img class="AngularJS-small" src="img/AngularJS-small.png">
-          </a>
-          <ul class="nav">
-            <li class="divider-vertical"></li>
-            <li class="active"><a href="http://angularjs.org/"><i class="icon-home icon-white"></i> Home</a></li>
-            <li class="divider-vertical"></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="icon-eye-open icon-white"></i> Learn <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="disabled"><a href="">Home</a></li>
-                <li><a href="http://www.youtube.com/user/angularjs">Videos</a></li>
-                <li><a href="http://docs.angularjs.org/tutorial">Tutorial</a></li>
-                <li><a href="http://builtwith.angularjs.org">Case Studies</a></li>
-                <li><a href="https://github.com/angular/angular-seed">Seed App project template</a></li>
-                <li><a href="http://docs.angularjs.org/misc/faq">FAQ</a></li>
-              </ul>
-            </li>
-            <li class="divider-vertical"></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="icon-book icon-white"></i> Develop <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="http://docs.angularjs.org/tutorial">Tutorial</a></li>
-                <li><a href="http://docs.angularjs.org/guide/">Developer Guide</a></li>
-                <li><a href="http://docs.angularjs.org/api/">API Reference</a></li>
-                <li><a href="http://docs.angularjs.org/misc/contribute">Contribute</a></li>
-                <li><a href="http://code.angularjs.org/">Download</a></li>
-              </ul>
-            </li>
-            <li class="divider-vertical"></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="icon-comment icon-white"></i> Discuss <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="http://blog.angularjs.org">Blog</a></li>
-                <li><a href="http://groups.google.com/group/angular">Mailing List</a></li>
-                <li><a href="http://webchat.freenode.net/?channels=angularjs&uio=d4">Chat Room</a></li>
-                <li class="divider"></li>
-                <li><a href="https://twitter.com/#!/angularjs">Twitter</a></li>
-                <li><a href="https://plus.google.com/110323587230527980117">Google+</a></li>
-                <li class="divider"></li>
-                <li><a href="https://github.com/angular/angular.js">GitHub</a></li>
-                <li><a href="https://github.com/angular/angular.js/issues">Issue Tracker</a></li>
-              </ul>
-            </li>
-            <li class="divider-vertical"></li>
-          </ul>
-          <form class="navbar-search pull-right" method="GET" action="https://www.google.com/search">
-            <input type="text" name="as_q" class="search-query" placeholder="Search">
-            <input type="hidden" name="as_sitesearch" value="angularjs.org">
-          </form>
-        </div>
+  <nav class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://angularjs.org" style="padding-top: 4px;">
+            <img class="AngularJS-medium" src="./img/AngularJS-medium.png">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="divider-vertical"></li>
+          <li class="active"><a href="http://angularjs.org/"><i class="fa fa-home"></i> Home</a></li>
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-eye"></i> Learn <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="disabled"><a href="">Home</a></li>
+              <li><a href="http://www.youtube.com/user/angularjs">Videos</a></li>
+              <li><a href="http://docs.angularjs.org/tutorial">Tutorial</a></li>
+              <li><a href="http://builtwith.angularjs.org">Case Studies</a></li>
+              <li><a href="https://github.com/angular/angular-seed">Seed App project template</a></li>
+              <li><a href="http://docs.angularjs.org/misc/faq">FAQ</a></li>
+            </ul>
+          </li>
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-book"></i> Develop <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="http://docs.angularjs.org/tutorial">Tutorial</a></li>
+              <li><a href="http://docs.angularjs.org/guide/">Developer Guide</a></li>
+              <li><a href="http://docs.angularjs.org/api/">API Reference</a></li>
+              <li><a href="http://docs.angularjs.org/misc/contribute">Contribute</a></li>
+              <li><a href="http://code.angularjs.org/">Download</a></li>
+            </ul>
+          </li>
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-comments"></i> Discuss <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="http://blog.angularjs.org">Blog</a></li>
+              <li><a href="http://groups.google.com/group/angular">Mailing List</a></li>
+              <li><a href="http://webchat.freenode.net/?channels=angularjs&uio=d4">Chat Room</a></li>
+              <li class="divider"></li>
+              <li><a href="https://twitter.com/#!/angularjs">Twitter</a></li>
+              <li><a href="https://plus.google.com/110323587230527980117">Google+</a></li>
+              <li class="divider"></li>
+              <li><a href="https://github.com/angular/angular.js">GitHub</a></li>
+              <li><a href="https://github.com/angular/angular.js/issues">Issue Tracker</a></li>
+            </ul>
+          </li>
+          <li class="divider-vertical"></li>
+        </ul>
+        <form class="navbar-form navbar-right" role="search" method="GET" action="https://www.google.com/search">
+            <div class="form-group">
+                <input type="text" name="as_q" class="form-control search-query" placeholder="Search" name="srch-term" id="srch-term">
+                <input type="hidden" name="as_sitesearch" value="angularjs.org">
+            </div>
+        </form>
       </div>
     </div>
-  </header>
+  </nav>
 
   <div role="main" class="container">
-
-    <div class="row" style="padding-top: 80px;">
-      <div class="span12">
-
-        <div class="hero-unit" style="height: 350px;">
-          <div class="center">
-            <img class="AngularJS-large" src="img/AngularJS-large.png">
-          </div>
-          <div class="center">
-            <h1>HTML enhanced for web apps!</h1>
-          </div>
-          <div class="center">
-            <a class="btn btn-large" href="https://github.com/angular/angular.js">
-              <i class="icon-github-sign"></i> View on GitHub
-            </a>
-            <span class="spacer"></span>
-
-            <a class="btn btn-large btn-primary" href="" ng-click="lightbox('stable')">
-              <i class="icon-download-alt icon-large"></i> Download
-              <span class="version"> (<span>1.2.11</span>) </span>
-
-            </a>
-
-          </div>
-          <ul class='quick-links'>
-            <li class="google-follow">
-              Follow +AngularJS on
-              <a href="https://plus.google.com/110323587230527980117?prsrc=3" rel="publisher" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:20px;height:20px;"/></a>
-            </li>
-            <li style="width: 120px; height: 25px;">
-              <g:plusone size="medium" annotation="inline" width="120" href="http://angularjs.org"></g:plusone>
-            </li>
-            <li style="width: 220px; height: 25px;">
-              <a href="https://twitter.com/angularjs" class="twitter-follow-button" data-show-count="true">Follow @angularjs</a>
-            </li>
-            <li style="width: 107px; height: 25px;">
-              <a href="https://twitter.com/share" class="twitter-share-button"
-                 data-url="http://angularjs.org" data-text="AngularJS - HTML Enhanced for Web Apps" data-via="angularjs">Tweet</a>
-            </li>
-          </ul>
+    <div class="jumbotron" style="margin-top: 80px;">
+      <div class="normal">
+        <p class="text-center">
+          <img class="img-responsive" style="margin: 0 auto;" src="http://angularjs.org/img/AngularJS-large.png">
+        </p>
+        <h1>HTML enhanced for web apps!</h1>
+        <div class="text-center">
+          <a class="btn btn-default btn-lg" href="https://github.com/angular/angular.js">
+            <i class="fa fa-github-square"></i> View on GitHub
+          </a>
+          <span class="spacer"></span>
+          <a class="btn btn-primary btn-lg" href="" data-toggle="modal" data-target="#downloadModal" ng-click="lightbox('stable')">
+            <i class="fa fa-download fa-1x"></i> Download
+            <span class="version"> (<span>1.2.12</span>) </span>
+          </a>
         </div>
+        <ul class="quick-links">
+          <li class="google-follow">
+            Follow +AngularJS on
+            <a href="https://plus.google.com/110323587230527980117?prsrc=3" rel="publisher" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:20px;height:20px;"></a>
+          </li>
+          <li style="width: 120px; height: 25px;">
+            <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 120px; height: 20px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 120px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1391741503582" name="I0_1391741503582" src="https://apis.google.com/u/0/_/+1/fastbutton?usegapi=1&amp;bsv=o&amp;size=medium&amp;annotation=inline&amp;width=120&amp;origin=http%3A%2F%2Fangularjs.org&amp;url=http%3A%2F%2Fangularjs.org%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.Z6gj5B0lzyA.O%2Fm%3D__features__%2Fam%3DIQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAItRSTPU0_gqMrtQ831rDdqYv8Z1ZnxcbA#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh&amp;id=I0_1391741503582&amp;parent=http%3A%2F%2Fangularjs.org&amp;pfname=&amp;rpctoken=64792504" data-gapiattached="true" title="+1"></iframe></div>
+          </li>
+          <li style="width: 220px; height: 25px;">
+            <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.1390956745.html#_=1391741503676&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=angularjs&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 220px; height: 20px;"></iframe>
+          </li>
+          <li style="width: 107px; height: 25px;">
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.1390956745.html#_=1391741503669&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fangularjs.org%2F&amp;size=m&amp;text=AngularJS%20-%20HTML%20Enhanced%20for%20Web%20Apps&amp;url=http%3A%2F%2Fangularjs.org&amp;via=angularjs" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 107px; height: 20px;"></iframe>
+          </li>
+        </ul>
       </div>
     </div>
 
-    <div class="row first">
-      <div class="span4">
-        <h1>Why AngularJS?</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Why AngularJS?</h2>
         <p>
           HTML is great for declaring static documents, but it falters when we try to use it for
           declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary
@@ -154,16 +153,16 @@
           and quick to develop.
         </p>
       </div>
-      <div class="span4">
-        <h1>Alternatives</h1>
+      <div class="col-md-4">
+        <h2>Alternatives</h2>
         <p>
           Other frameworks deal with HTML’s shortcomings by either abstracting away HTML, CSS,
           and/or JavaScript or by providing an imperative way for manipulating the DOM. Neither of
-          these address the root problem that HTML was not designed for dynamic views.
+         these address the root problem that HTML was not designed for dynamic views.
         </p>
       </div>
-      <div class="span4">
-        <h1>Extensibility</h1>
+      <div class="col-md-4">
+        <h2>Extensibility</h2>
         <p>
           AngularJS is a toolset for building the framework most suited to your application
           development. It is fully extensible and works well with other libraries. Every feature
@@ -173,18 +172,20 @@
       </div>
     </div>
   </div>
+
   <div class="jumbotron" ng-controller="JumbotronCtrl" ng-cloak>
-    <div class="jumbotron-header">
-      <h1>ng-conf 2014</h1>
-    </div>
-    <div class="stretched-container">
+    <div class="container">
+      <div class="jumbotron-header">
+        <h1>ng-conf 2014</h1>
+      </div>
+
       <nav class="jumbotron-tabs" ng-if="!loading">
         <div class="jumbotron-tabs-container">
           <a href="" ng-class="{'active':category=='basics'}" class="jumbotron-tab" ng-click="filterByCategory('basics')">Get to know Angular</a>
           <a href="" ng-class="{'active':category=='advanced'}" class="jumbotron-tab" ng-click="filterByCategory('advanced')">Advanced Topics</a>
           <a href="" ng-class="{'active':category=='beyond'}" class="jumbotron-tab" ng-click="filterByCategory('beyond')">Angular and Beyond</a>
           <div class="jumbotron-tab search-tab" ng-class="{'active':searchFocus}">
-            <span class="icon-search search-icon"></span>
+            <span class="fa fa-search"></span>
             <input class="search-input" type="text" ng-model="search" placeholder="Search Videos..." ng-change="filterBySearch(search)" ng-focus="searchFocus=true; filterBySearch(search)" ng-blur="searchFocus=false" />
           </div>
         </div>
@@ -207,38 +208,41 @@
       </div>
 
       <nav class="jumbotron-actions">
-        <a class="btn btn-primary btn-large" href="https://www.youtube.com/user/ngconfvideos?feature=watch" target="_blank">
-          <i class="icon-play-circle"></i> View All Videos
+        <a class="btn btn-primary btn-lg" href="https://www.youtube.com/user/ngconfvideos?feature=watch" target="_blank">
+          <i class="fa fa-play-circle-o"></i> View All Videos
         </a>
         <span class="spacer"></span>
-        <a class="btn btn-default btn-large" href="http://ng-conf.org/" target="_blank">
-          <i class="icon-external-link"></i> Go to ng-conf.org
+        <a class="btn btn-default btn-lg" href="http://ng-conf.org/" target="_blank">
+          <i class="fa fa-external-link"></i> Go to ng-conf.org
         </a>
       </nav>
     </div>
   </div>
 
-  <div role="main" class="container">
-    <h1 id="the-basics">The Basics</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 id="the-basics">The Basics</h1>
+      </div>
+    </div>
+
     <div class="row example">
-      <div class="span8 app-source" app-source="hello.html" annotate="hello.annotation"></div>
-      <div class="span4">
+      <div class="col-md-8 app-source" app-source="hello.html" annotate="hello.annotation"></div>
+      <div class="col-md-4">
         <span hint></span>
         <span class="pull-right" js-fiddle="hello.html"></span>
         <div class="tabs-spacer"></div>
         <div app-run="hello.html" class="well"></div>
         <h3>Watch as we build this app</h3>
-        <div class="video-img" data-toggle="modal" data-video="http://www.youtube.com/embed/uFTFsKmkQnQ?&autoplay=1" href="#videoModal">
-          <img class="video" src="img/video.png">
-        </div>
+        <iframe width="300" height="200" src="http://www.youtube.com/embed/uFTFsKmkQnQ??&autoplay=0" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
-
-
-    <h1 id="add-some-control">Add Some Control</h1>
     <div class="row">
-      <div class="span4">
+      <div class="col-md-12">
+        <h1 id="add-some-control">Add Some Control</h1>
+      </div>
+      <div class="col-md-4">
         <h3>Data Binding</h3>
         <p>
           Data-binding is an automatic way of updating the view whenever the model changes, as
@@ -246,7 +250,7 @@
           eliminates DOM manipulation from the list of things you have to worry about.
         </p>
       </div>
-      <div class="span4">
+      <div class="col-md-4">
         <h3>Controller</h3>
         <p>
           Controllers are the behavior behind the DOM elements. AngularJS lets you express the
@@ -254,7 +258,7 @@
           registering callbacks or watching model changes.
         </p>
       </div>
-      <div class="span4">
+      <div class="col-md-4">
         <h3>Plain JavaScript</h3>
         <p>
           Unlike other frameworks, there is no need to inherit from proprietary types in order to wrap the
@@ -263,33 +267,23 @@
         </p>
       </div>
     </div>
-    <div class=" row example">
-      <div class="span8 app-source" app-source="todo.html todo.js todo.css" annotate="todo.annotation"></div>
-      <div class="span4">
+    <div class="row example">
+      <div class="col-md-8 app-source" app-source="todo.html todo.js todo.css" annotate="todo.annotation"></div>
+      <div class="col-md-4">
         <span hint></span>
         <span class="pull-right" js-fiddle="todo.html todo.js todo.css"></span>
         <div class="tabs-spacer"></div>
         <div app-run="todo.html" class="well"></div>
         <h3>Watch as we build this app</h3>
-        <div class="video-img" data-toggle="modal" data-video="http://www.youtube.com/embed/WuiHuZq_cg4?&autoplay=1" href="#videoModal">
-          <img class="video" src="img/video.png">
-        </div>
+        <iframe width="300" height="200" src="http://www.youtube.com/embed/WuiHuZq_cg4?&autoplay=0" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
-    <div class="modal hide fade" style="display: none;" id="videoModal">
-      <div class="modal-header">
-        <a class="close" data-dismiss="modal">×</a>
-        <h3>AngularJS Todo Tutorial</h3>
-      </div>
-      <div class="modal-body">
-      </div>
-    </div>
-
-
-    <h1 id="wire-up-a-backend">Wire up a Backend</h1>
     <div class="row">
-      <div class="span4">
+      <div class="col-md-12">
+        <h1 id="wire-up-a-backend">Wire up a Backend</h1>
+      </div>
+      <div class="col-md-4">
         <h3>Deep Linking</h3>
         <p>
           A deep link reflects where the user is in the app, this is useful so users can bookmark
@@ -298,7 +292,7 @@
           desktop app-like behavior.
         </p>
       </div>
-      <div class="span4">
+      <div class="col-md-4">
         <h3>Form Validation</h3>
         <p>
           Client-side form validation is an important part of great user experience.
@@ -306,7 +300,7 @@
           JavaScript code. Write less code, go have beer sooner.
         </p>
       </div>
-      <div class="span4">
+      <div class="col-md-4">
         <h3>Server Communication</h3>
         <p>
           AngularJS provides built-in services on top of XHR as well as various other backends
@@ -316,9 +310,9 @@
         </p>
       </div>
     </div>
-    <div class=" row example">
-      <div class="span8 app-source" app-source="project.html project.js list.html detail.html" resource="resource" route="route" firebase="firebase" annotate="project.annotation" module="project"></div>
-      <div class="span4">
+    <div class="row example">
+      <div class="col-md-8 app-source" app-source="project.html project.js list.html detail.html" resource="resource" route="route" firebase="firebase" annotate="project.annotation" module="project"></div>
+      <div class="col-md-4">
         <span hint></span>
         <span class="pull-right" js-fiddle="project.html list.html detail.html project.js" resource="resource" route="route" firebase="firebase" module="project"></span>
         <div class="tabs-spacer"></div>
@@ -332,18 +326,18 @@
       </div>
     </div>
 
-
-
-    <h1 id="create-components">Create Components</h1>
     <div class="row">
-      <div class="span4">
+      <div class="col-md-12">
+        <h1 id="create-components">Create Components</h1>
+      </div>
+      <div class="col-md-4">
         <h3>Directives</h3>
         <p>
           Directives is a unique and powerful feature available only in Angular. Directives let
           you invent new HTML syntax, specific to your application.
         </p>
       </div>
-      <div class="span4">
+      <div class="col-md-4">
         <h3>Reusable Components</h3>
         <p>
           We use directives to create reusable components. A component allows you to hide complex
@@ -351,7 +345,7 @@
           does or how the application looks separately.
         </p>
       </div>
-      <div class="span4">
+      <div class="col-md-4">
         <h3>Localization</h3>
         <p>
           An important part of serious apps is localization. Angular's locale aware filters and
@@ -360,9 +354,9 @@
         </p>
       </div>
     </div>
-    <div class=" row example">
-      <div class="span8 app-source" app-source="tabs.html components.js app.js bootstrap.css" annotate="tabs.annotation" module="app"></div>
-      <div class="span4">
+    <div class="row example">
+      <div class="col-md-8 app-source" app-source="tabs.html components.js app.js bootstrap.css" annotate="tabs.annotation" module="app"></div>
+      <div class="col-md-4">
         <span hint></span>
         <span class="pull-right" js-fiddle="tabs.html components.js app.js" module="app"></span>
         <div class="tabs-spacer"></div>
@@ -374,11 +368,11 @@
       </div>
     </div>
 
-
-
-    <h1 id="embed-and-inject">Embed and Inject</h1>
     <div class="row">
-      <div class="span4">
+      <div class="col-md-12">
+        <h1 id="embed-and-inject">Embed and Inject</h1>
+      </div>
+      <div class="col-md-4">
         <h3>Embeddable</h3>
         <p>
           AngularJS works great with other technologies. Add as much or as little of AngularJS to
@@ -388,7 +382,7 @@
           encourage you to view-source and look around.
         </p>
       </div>
-      <div class="span4">
+      <div class="col-md-4">
         <h3>Injectable</h3>
         <p>
           The dependency injection in AngularJS allows you to declaratively describe how your
@@ -398,7 +392,7 @@
           replaced.
         </p>
       </div>
-      <div class="span4">
+      <div class="col-md-4">
         <h3>Testable</h3>
         <p>
           AngularJS was designed from ground up to be testable. It encourages behavior-view
@@ -408,13 +402,12 @@
         </p>
       </div>
     </div>
-    <div class="spacer"></div>
   </div>
 
   <footer class="footer">
     <div class="container">
       <p class="pull-right"><a href="#" target="_self">Back to top</a></p>
-      <p>Super-powered by Google  ©2010-2013</p>
+      <p>Super-powered by Google ©2010-2014</p>
       <p>Code licensed under the
         <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
           MIT License</a>. Documentation licensed under <a
@@ -431,8 +424,10 @@
 
     <script type="text/ng-template" id="hello.html">
       <div>
-        <label>Name:</label>
-        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <div class="form-group">
+          <label>Name:</label>
+          <input class="form-control" type="text" ng-model="yourName" placeholder="Enter a name here">
+        </div>
         <hr>
         <h1>Hello {{yourName}}!</h1>
       </div>
@@ -494,10 +489,12 @@
             <span class="done-{{todo.done}}">{{todo.text}}</span>
           </li>
         </ul>
-        <form ng-submit="addTodo()">
-          <input type="text" ng-model="todoText"  size="30"
+        <form ng-submit="addTodo()" class="form-inline">
+          <div class="form-group">
+            <input class="form-control" type="text" ng-model="todoText"  size="30"
                  placeholder="add new todo here">
-          <input class="btn-primary" type="submit" value="add">
+          </div>
+          <button class="btn btn-primary" type="submit" value="add">Add</button>
         </form>
       </div>
     </script>
@@ -603,13 +600,15 @@
       <div ng-view></div>
     </script>
     <script type="text/ng-template" id="list.html">
-      <input type="text" ng-model="search" class="search-query" placeholder="Search">
+      <div class="form-group">
+        <input class="form-control" type="text" ng-model="search" class="search-query" placeholder="Search">
+      </div>
       <table>
         <thead>
         <tr>
           <th>Project</th>
           <th>Description</th>
-          <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
+          <th><a href="#/new"><i class="fa fa-plus-circle"></i></a></th>
         </tr>
         </thead>
         <tbody>
@@ -617,7 +616,7 @@
           <td><a href="{{project.site}}" target="_blank">{{project.name}}</a></td>
           <td>{{project.description}}</td>
           <td>
-            <a href="#/edit/{{project.$id}}"><i class="icon-pencil"></i></a>
+            <a href="#/edit/{{project.$id}}"><i class="fa fa-pencil"></i></a>
           </td>
         </tr>
         </tbody>
@@ -788,7 +787,7 @@
       });
     </script>
     <style type="text/css" id="bootstrap.css">
-      @import '//netdna.bootstrapcdn.com/bootstrap/2.0.2/css/bootstrap.min.css';
+      @import 'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css';
     </style>
     <script type="text/ng-template" id="tabs.html">
       <tabs>
@@ -851,93 +850,95 @@
   </div>
 
   <!-- The Download Modal that is to be shown when the user clicks on Download in the main AngularJS.org page -->
-  <div class="modal fade downloadModal" id="downloadModal" ng-class="{in: lightbox()}">
-    <div class="modal-header">
-      <button type="button" class="close" ng-click="lightbox(false)">×</button>
-      <h2 id="downloadLabel">Download AngularJS</h2>
-      <div  ng-show="CURRENT_STABLE_VERSION == CURRENT_UNSTABLE_VERSION"
+  <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true" ng-class="{in: lightbox()}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <!--<button type="button" class="close" ng-click="lightbox(false)">×</button>-->
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h2 id="downloadLabel">Download AngularJS</h2>
+          <div  ng-show="CURRENT_STABLE_VERSION == CURRENT_UNSTABLE_VERSION"
             class="alert alert-info">
             There is currently no unstable version for download.
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <dl class="dl-horizontal">
+            <dt>Branch</dt>
+            <dd>
+              <span>
+                <div class="btn-group" data-toggle="buttons-radio">
+                  <button id="bluePill" type="button" ng-class="getPillClass('stable', currentBranch)" class="btn btn-default bluePill" ng-click="selectType('stable')">Stable</button>
+                  <button id="redPill" type="button" ng-class="getPillClass('unstable', currentBranch)" class="btn btn-default redPill"  ng-click="selectType('unstable')">Unstable</button>
+                </div>
+                <a id="extraInfoBranch" href="" rel="popover" data-html=true data-trigger="hover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Stable</dt><dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd><dt>Unstable</dt><dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd></dl>"><i class="fa fa-question-circle"></i></a>
+              </span>
+            </dd>
+            <dt>Build</dt>
+            <dd>
+              <span>
+                <div class="btn-group" data-toggle="buttons-radio">
+                  <button type="button" class="btn btn-default" ng-class="getPillClass('minified', currentBuild)" ng-click="selectBuild('minified')" ng-class="get">Minified</button>
+                  <button type="button" class="btn btn-default" ng-class="getPillClass('uncompressed', currentBuild)" ng-click="selectBuild('uncompressed')">Uncompressed</button>
+                  <button type="button" class="btn btn-default" ng-class="getPillClass('zipped', currentBuild)" ng-click="selectBuild('zipped')">Zip</button>
+                </div>
+                <a id="extraInfoBuild" href="" rel="popover" data-html=true data-trigger="hover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Minified</dt><dd>Minified and obfuscated version of the AngularJS base code. Use this in your deployed application (but only if you can't use Google's CDN)</dd><dt>Uncompressed</dt><dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd><dt>Zipped</dt><dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd></dl>"><i class="fa fa-question-circle"></i></a>
+              </span>
+            </dd>
+
+            <dt>CDN</dt>
+            <dd>
+              <span class="input-group">
+                <input class="input-xxlarge" type="text" readonly="readonly" ng-model="cdnURL">
+                <a id="extraInfoCDN" href="" rel="popover" data-html=true data-trigger="hover" data-original-title="Why Google CDN?" data-content="While downloading and using the AngularJS source code is great for development, we recommend that you source the script from Google's CDN (Content Delivery Network) in your deployed, customer facing app whenever possible. You get the following advantages for doing so: <ul><li><strong>Better Caching :</strong> If you host AngularJS yourself, your users will have to download the source code atleast once. But if the browser sees that you are referring to Google CDN's version of AngularJS, and your user has visited another app which uses AngularJS, then he can avail the benefits of caching, and thus reduce one download, speeding up his overall experience!</li><li><strong>Decreased Latency :</strong> Google's CDN distributes your static content across the globe, in various diverse, physical locations. It increases the odds that the user gets a version of AngularJS served from a location near him, thus reducing overall latency.</li><li><strong>Increased Parallelism : </strong>Using Google's CDN reduces one request to your domain. Depending on the browser, the number of parallel requests it can make to a domain is restricted (as low as 2 in IE 7). So it can make a gigantic difference in loading times for users of those browsers.</li></ul>"><i class="fa fa-question-circle"></i></a>
+              </span>
+            </dd>
+
+            <dt>Bower</dt>
+            <dd>
+              <span class="input-group">
+                <input class="input-xxlarge" type="text" readonly="readonly" value="bower install angular">
+                <a id="extraInfoBower" href="" rel="popover" data-html=true data-trigger="hover" data-original-title="What is Bower?" data-content="Bower is a package manager for client-side JavaScript components.<br><br>For more info please see: https://github.com/bower/bower"><i class="fa fa-question-circle"></i></a>
+              </span>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="modal-footer">
+          <a ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
+          <a href="http://code.angularjs.org/">Previous Versions</a>
+          <a class="btn btn-primary btn-lg" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="fa fa-download fa-1x"></i> Download</a>
+        </div>
+
       </div>
     </div>
-    <div class="modal-body">
-
-      <dl class="dl-horizontal">
-        <dt>Branch</dt>
-        <dd>
-          <span>
-            <span class="btn-group" data-toggle="buttons-radio">
-              <button id="bluePill" type="button" ng-class="getPillClass('stable', currentBranch)" class="btn bluePill" ng-click="selectType('stable')">Stable</button>
-              <button id="redPill" type="button" ng-class="getPillClass('unstable', currentBranch)" class="btn redPill"  ng-click="selectType('unstable')">Unstable</button>
-              <a id="extraInfoBranch" href="" rel="popover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Stable</dt><dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd><dt>Unstable</dt><dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd></dl>"><i class="icon-question-sign"></i></a>
-            </span>
-
-          </span>
-
-        </dd>
-        <dt>Build</dt>
-        <dd>
-          <span>
-            <span class="btn-group" data-toggle="buttons-radio">
-              <button type="button" class="btn" ng-class="getPillClass('minified', currentBuild)" ng-click="selectBuild('minified')" ng-class="get">Minified</button>
-              <button type="button" class="btn" ng-class="getPillClass('uncompressed', currentBuild)" ng-click="selectBuild('uncompressed')">Uncompressed</button>
-              <button type="button" class="btn" ng-class="getPillClass('zipped', currentBuild)" ng-click="selectBuild('zipped')">Zip</button>
-              <a id="extraInfoBuild" href="" rel="popover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Minified</dt><dd>Minified and obfuscated version of the AngularJS base code. Use this in your deployed application (but only if you can't use Google's CDN)</dd><dt>Uncompressed</dt><dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd><dt>Zipped</dt><dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd></dl>"><i class="icon-question-sign"></i></a>
-            </span>
-
-          </span>
-        </dd>
-
-        <dt>CDN</dt>
-        <dd>
-          <span class="input-append">
-            <input class="input-xxlarge" type="text" readonly="readonly" ng-model="cdnURL">
-            <a id="extraInfoCDN" href="" rel="popover" data-original-title="Why Google CDN?" data-content="While downloading and using the AngularJS source code is great for development, we recommend that you source the script from Google's CDN (Content Delivery Network) in your deployed, customer facing app whenever possible. You get the following advantages for doing so: <ul><li><strong>Better Caching :</strong> If you host AngularJS yourself, your users will have to download the source code atleast once. But if the browser sees that you are referring to Google CDN's version of AngularJS, and your user has visited another app which uses AngularJS, then he can avail the benefits of caching, and thus reduce one download, speeding up his overall experience!</li><li><strong>Decreased Latency :</strong> Google's CDN distributes your static content across the globe, in various diverse, physical locations. It increases the odds that the user gets a version of AngularJS served from a location near him, thus reducing overall latency.</li><li><strong>Increased Parallelism : </strong>Using Google's CDN reduces one request to your domain. Depending on the browser, the number of parallel requests it can make to a domain is restricted (as low as 2 in IE 7). So it can make a gigantic difference in loading times for users of those browsers.</li></ul>"><i class="icon-question-sign"></i></a>
-          </span>
-        </dd>
-
-        <dt>Bower</dt>
-        <dd>
-          <span class="input-append">
-            <input class="input-xxlarge" type="text" readonly="readonly" value="bower install angular">
-            <a id="extraInfoBower" href="" rel="popover" data-original-title="What is Bower?" data-content="Bower is a package manager for client-side JavaScript components.<br><br>For more info please see: https://github.com/bower/bower"><i class="icon-question-sign"></i></a>
-          </span>
-        </dd>
-      </dl>
-
-    </div>
-    <div class="modal-footer">
-      <a ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
-      <a href="http://code.angularjs.org/">Previous Versions</a>
-
-      <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
-    </div>
   </div>
-  <div id="downloadModalBackdrop" class="modal-backdrop fade" ng-class="{in: lightbox()}" ng-click='lightbox(false)'></div>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script>
     $().dropdown();
   </script>
-  <script src="google-code-prettify/prettify.min.js"></script>
-  <script src="js/homepage.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular-resource.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular-route.min.js"></script>
+  <script src="http://angularjs.org/google-code-prettify/prettify.min.js"></script>
+  <script src="./js/homepage.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.min.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
-  <script src="http://code.angularjs.org/1.2.11/i18n/angular-locale_sk.js"></script>
+  <script src="http://code.angularjs.org/1.2.12/i18n/angular-locale_sk.js"></script>
   <script>
     angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
   </script>
-  <script src="http://code.angularjs.org/1.2.11/i18n/angular-locale_en-us.js"></script>
+  <script src="http://code.angularjs.org/1.2.12/i18n/angular-locale_en-us.js"></script>
   <script>
     angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
     angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
   </script>
 
   <script src="https://apis.google.com/js/plusone.js"></script>
-  <script src="//platform.twitter.com/widgets.js"></script>
+  <script src="http://platform.twitter.com/widgets.js"></script>
   <script type="text/javascript">
     var _gaq=[
       ['_setAccount','UA-8594346-3'],
