@@ -459,16 +459,13 @@ angular.module('homepage', ['ngAnimate'])
         });
 
       $('[rel=popover]').
-        popover({html: true, trigger: 'hover'}).
-        pulse();
-      startPulse();
+        popover({html: true, trigger: 'hover'});
     });
-  })
+  });
 
 angular.module('Group', ['ngResource']);
 
-function GroupCtrl($scope, $resource)
-{
+var GroupCtrl = function($scope, $resource){
   $scope.featuredGroups = $resource('groups/index/getfeatured');
   $scope.featuredGroups.get();
 
