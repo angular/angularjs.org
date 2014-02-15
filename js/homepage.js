@@ -1,3 +1,4 @@
+/* global angular, $, jQuery, prettyPrintOne */
 angular.module('homepage', ['ngAnimate'])
 
   .config(function($provide, $locationProvider) {
@@ -92,7 +93,7 @@ angular.module('homepage', ['ngAnimate'])
   .factory('fetchCode', function(indent) {
     return function get(id, spaces) {
       return indent(angular.element(document.getElementById(id)).html(), spaces);
-    }
+    };
   })
 
   .directive('code', function() {
@@ -170,14 +171,14 @@ angular.module('homepage', ['ngAnimate'])
               '<a href="#' + id(filename) + '" data-toggle="tab">' + (index ? filename : 'index.html') + '</a>' +
             '</li>');
 
-          if (index == 0) {
+          if (index === 0) {
             var head = [];
 
             angular.forEach(attrs.appSource.split(' '), function(tab, index) {
               var filename = tab.split(':')[0],
                   fileType = filename.split(/\./)[1];
 
-              if (index == 0) return;
+              if (index === 0) return;
               if (fileType == 'js') {
                 head.push('    <script src="' + filename + '"></script>\n');
               } else if (fileType == 'css') {
@@ -206,7 +207,7 @@ angular.module('homepage', ['ngAnimate'])
             var regexp = new RegExp('(\\W|^)(' + key.replace(/([\W\-])/g, '\\$1') + ')(\\W|$)');
 
             content = content.replace(regexp, function(_, before, token, after) {
-              var token = "__" + (counter++) + "__";
+              token = '__' + (counter++) + '__';
               popovers[token] =
                 '<code class="nocode" rel="popover" title="' + escape('<code>' + key + '</code>') +
                 '" data-content="' + escape(text) + '">' + escape(key) + '</code>';
@@ -237,9 +238,9 @@ angular.module('homepage', ['ngAnimate'])
 
         function id(id) {
           return id.replace(/\W/g, '-');
-        }
+        };
       }
-    }
+    };
   })
 
   .directive('jsFiddle', function(fetchCode, escape, script) {
@@ -258,7 +259,7 @@ angular.module('homepage', ['ngAnimate'])
           var fileType = file.split('.')[1];
 
           if (fileType == 'html') {
-            if (index == 0) {
+            if (index === 0) {
               fields[fileType] +=
                   '<div ng-app' + (attr.module ? '="' + attr.module + '"' : '') + '>\n' +
                     fetchCode(file, 2);
@@ -298,7 +299,7 @@ angular.module('homepage', ['ngAnimate'])
           return '<input type="hidden" name="' +  name + '" value="' + escape(value) + '">';
         }
       }
-    }
+    };
   })
 
   .directive('hint', function() {
@@ -306,7 +307,7 @@ angular.module('homepage', ['ngAnimate'])
       template: '<em>Hint:</em> hover over ' +
           '<code class="nocode" rel="popover" title="Hover" ' +
           'data-content="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
-    }
+    };
   })
 
   .filter('byCategory', function() {
@@ -316,7 +317,7 @@ angular.module('homepage', ['ngAnimate'])
         video.category == category && results.push(video);
       });
       return results;
-    }
+    };
   })
 
     .controller('NavigationControler', function($scope){
@@ -350,9 +351,10 @@ angular.module('homepage', ['ngAnimate'])
       };
     }])
 
-    .controller('DownloadCtrl', function($scope, $location) {
+    .controller('DownloadCtrl', function($scope) {
       $scope.CURRENT_STABLE_VERSION = '1.2.13';
       $scope.CURRENT_UNSTABLE_VERSION = '1.2.13';
+
       var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
       var BASE_CDN_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/';
       var getRelativeUrl = function(branch, build) {
@@ -403,7 +405,7 @@ angular.module('homepage', ['ngAnimate'])
           $scope.lightbox(false);
           $scope.$apply();
         }
-      }
+      };
 
       $scope.lightbox = function(arg) {
         if (typeof arg !== 'undefined') {
@@ -414,12 +416,13 @@ angular.module('homepage', ['ngAnimate'])
       };
 
       $scope.downloadLink = function() {
-        if ($scope.cdnURL && $scope.cdnURL.indexOf('http://') == 0) {
+        if ($scope.cdnURL && $scope.cdnURL.indexOf('http://') === 0) {
           return $scope.cdnURL;
         } else {
           return BASE_CODE_ANGULAR_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
         }
       };
+
       $scope.updateCdnLink = function() {
         if ($scope.currentBuild === 'zipped') {
           $scope.cdnURL = 'Unavailable for zip archives';
@@ -429,7 +432,7 @@ angular.module('homepage', ['ngAnimate'])
       };
     })
 
-  .run(function($rootScope, startPulse){
+  .run(function($rootScope){
     $rootScope.version = angular.version;
     $rootScope.$evalAsync(function(){
       var videoURL;
@@ -441,7 +444,7 @@ angular.module('homepage', ['ngAnimate'])
 
       $('#videoModal').
         modal({show:false}).
-        on('shown', function(event, a, b, c) {
+        on('shown', function() {
           var iframe = $(this).find('.modal-body').append('<iframe>').find('iframe');
 
           iframe.attr({
