@@ -82,10 +82,10 @@ angular.module('homepage', ['ngAnimate'])
   .factory('script', function() {
 
     return {
-      angular: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
-      resource: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n',
-      route: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-route.min.js"></script>\n',
-      firebase: '<script src="https://cdn.firebase.com/v0/firebase.js"></script>\n    <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>\n'
+      angular: '<script src="//ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
+      resource: '<script src="//ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n',
+      route: '<script src="//ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-route.min.js"></script>\n',
+      firebase: '<script src="//cdn.firebase.com/v0/firebase.js"></script>\n    <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>\n'
     };
   })
 
@@ -288,7 +288,7 @@ angular.module('homepage', ['ngAnimate'])
                fields.css) +
             hiddenField('html', fields.html) +
             hiddenField('js', fields.js) +
-            '<button class="btn btn-primary">' +
+            '<button class="edit btn btn-default">' +
               '<i class="icon-white icon-pencil"></i> ' +
               'Edit Me' +
             '</button>' +
@@ -318,6 +318,10 @@ angular.module('homepage', ['ngAnimate'])
       return results;
     }
   })
+
+    .controller('NavigationControler', function($scope){
+      $scope.isCollapsed = false;
+    })
 
     .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', 'byCategoryFilter',
                           function($scope,   $http,   filterFilter,   byCategoryFilter) {
@@ -455,7 +459,7 @@ angular.module('homepage', ['ngAnimate'])
         });
 
       $('[rel=popover]').
-        popover().
+        popover({html: true, trigger: 'hover'}).
         pulse();
       startPulse();
     });
