@@ -18,7 +18,10 @@
   <link rel="stylesheet" href="css/font-awesome.css">
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Roboto:400,300' rel='stylesheet' type='text/css'>
-  <base href="/">
+
+  <!-- includes HTML5 shim for IE6-8  -->
+  <script src="js/modernizr.min.js"></script>
+ 
 
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
@@ -46,7 +49,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://angularjs.org"><img class="AngularJS-small" src="img/AngularJS.svg"></a>
+          <a class="navbar-brand" href="http://angularjs.org"><h1 id="logo">AngularJS</h1></a>
         </div>
         <div id="main-navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -383,7 +386,7 @@
         <span js-fiddle="project.html list.html detail.html project.js" resource="resource" route="route" firebase="firebase" module="project"></span>
         <div class="tabs-spacer"></div>
         <!--[if lt IE 10]>
-          <div class="alert alert-error">
+          <div class="alert alert-danger">
             Your browser doesn't support <a href="http://www.w3.org/TR/cors/">CORS</a>, therefore
             it can not fetch data from an external domain resulting in no projects shown in this example.
           </div>
@@ -914,9 +917,6 @@
   </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script>
-    $().dropdown();
-  </script>
   <script src="google-code-prettify/prettify.min.js"></script>
   <script src="js/homepage.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource.min.js"></script>

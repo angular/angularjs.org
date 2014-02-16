@@ -9,6 +9,23 @@ h1,h2,h3,h4,h5,h6{
   font-weight: 200;
 }
 
+#logo{
+  background: url(../img/AngularJS.png) center no-repeat;
+  background: url(../img/AngularJS.svg) center no-repeat;
+  background-size: 172px;
+  overflow: hidden;
+  text-indent: -10000px;
+  height: 40px;
+  width: 150px;
+  margin: 0;
+  margin-top: 2px;
+}
+
+html.no-svg #logo{
+  background: url(../img/AngularJS.png) center no-repeat !important;
+  background-size: auto;
+}
+
 .forkme{
   position: absolute;
   top: 90px;
@@ -73,8 +90,15 @@ h1,h2,h3,h4,h5,h6{
   overflow: hidden;
   text-indent: -10000px;
   width: 100%;
-  background: url('../img/AngularJS-Shield-medium.png') center no-repeat;
+  background: url(../img/AngularJS-Shield-medium.png) center no-repeat;
+  background: url(../img/shield.svg) center no-repeat;
+  background-size: 190px;
   margin-bottom: 35px;
+}
+
+html.no-svg #top-hero .jumbotron h1{
+  background: url(../img/AngularJS-Shield-medium.png) center no-repeat !important;
+  background-size: auto;
 }
 
 
