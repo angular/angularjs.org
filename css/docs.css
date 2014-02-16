@@ -31,7 +31,7 @@ html.no-svg #logo{
   top: 90px;
   right: -50px;
   background: red;
-  background: #FF5644;
+  background: #F06455;
   -webkit-transform: rotateZ(45deg);
   -moz-transform: rotateZ(45deg);
   -o-transform: rotateZ(45deg);
@@ -94,11 +94,13 @@ html.no-svg #logo{
   background: url(../img/shield.svg) center no-repeat;
   background-size: 190px;
   margin-bottom: 35px;
+  opacity: 0.8;
 }
 
 html.no-svg #top-hero .jumbotron h1{
   background: url(../img/AngularJS-Shield-medium.png) center no-repeat !important;
   background-size: auto;
+  opacity: 1;
 }
 
 
@@ -138,9 +140,9 @@ html.no-svg #top-hero .jumbotron h1{
   box-shadow: 0 0 1px rgb(10, 10, 10);
   box-shadow: 0 2px 0px #BDBDBD;*/
   margin-top: 20px;
-  background: #EB4747;
-  border: 1px solid #CE3C3C;
-  box-shadow: 0 2px 0px #D64141;
+  background: #DF4E4E;
+  border: 1px solid #AC2828;
+  box-shadow: 0 2px 0px #A82D2D;
   text-shadow: 0 1px #C51919;
   -webkit-transition: 100ms background linear;
   -moz-transition: 100ms background linear;
