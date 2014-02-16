@@ -1,53 +1,9 @@
-/* global angular, $, jQuery, prettyPrintOne */
+/* global angular, $, prettyPrintOne */
 angular.module('homepage', ['ngAnimate'])
 
   .config(function($provide, $locationProvider) {
-    var pulseElements = $(),
-        pulseColor = {r:0xE6, g:0xF0, b: 0xFF},
-        baseColor = {r:0x99, g:0xc2, b: 0xFF},
-        pulseDuration = 1000,
-        pulseDelay = 15000;
-
-    function hex(number) {
-      return ('0' + Number(number).toString(16)).slice(-2);
-    }
-
-    jQuery.fn.pulse = function () {
-      pulseElements = pulseElements.add(this);
-    };
-    var lastPulse;
-
-    function tick() {
-      var duration = new Date().getTime() - lastPulse,
-          index = duration * Math.PI / pulseDuration ,
-          level = Math.pow(Math.sin(index), 10),
-          color = {
-            r: Math.round(pulseColor.r * level + baseColor.r * (1 - level)),
-            g: Math.round(pulseColor.g * level + baseColor.g * (1 - level)),
-            b: Math.round(pulseColor.b * level + baseColor.b * (1 - level))
-          },
-          style = '#' + hex(color.r) + hex(color.g) + hex(color.b);
-
-      pulseElements.css('backgroundColor', style);
-      if (duration > pulseDuration) {
-        setTimeout(function() {
-          lastPulse = new Date().getTime();
-          tick();
-        }, pulseDelay);
-      } else {
-        setTimeout(tick, 50);
-      }
-    }
-
-    $provide.value('startPulse', function() {
-       setTimeout(function() {
-         lastPulse = new Date().getTime();
-         tick();
-       }, 2000);
-    });
-
-    // $locationProvider.html5Mode(true);
-    // $locationProvider.hashPrefix('!');
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('!');
   })
 
   .value('indent', function(text, spaces) {
@@ -474,4 +430,8 @@ var GroupCtrl = function($scope, $resource){
 
   $scope.recommendedGroups = $resource('groups/index/getrecommended');
   $scope.recommendedGroups.get();
-}
+};
+
+angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);

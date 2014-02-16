@@ -36,7 +36,7 @@
     </script>
   <![endif]-->
 </head>
-<body  ng-controller="DownloadCtrl">
+<body ng-controller="DownloadCtrl">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -867,7 +867,7 @@
       });
     </script>
     <style type="text/css" id="bootstrap.css">
-      @import '//netdna.bootstrapcdn.com/bootstrap/2.0.2/css/bootstrap.min.css';
+      /* get bootstrap from getbootstrap.com */
     </style>
     <script type="text/ng-template" id="tabs.html">
       <tabs>
@@ -928,26 +928,18 @@
       }
     </script>
   </div>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script async src="js/bootstrap.min.js"></script>
   <script src="google-code-prettify/prettify.min.js"></script>
-  <script src="js/homepage.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.min.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
   <script src="http://code.angularjs.org/1.2.13/i18n/angular-locale_sk.js"></script>
-  <script>
-    angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
-  </script>
   <script src="http://code.angularjs.org/1.2.13/i18n/angular-locale_en-us.js"></script>
-  <script>
-    angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
-    angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
-  </script>
-
-  <script src="https://apis.google.com/js/plusone.js"></script>
-  <script src="//platform.twitter.com/widgets.js"></script>
+  <script async src="js/homepage.js"></script>
+  <script async src="https://apis.google.com/js/plusone.js"></script>
+  <script async src="//platform.twitter.com/widgets.js"></script>
   <script type="text/javascript">
     var _gaq=[
       ['_setAccount','UA-8594346-3'],
