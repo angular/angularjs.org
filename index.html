@@ -132,47 +132,44 @@
         <div class="downloadBox ng-hide" ng-show="showDownload">
           <div class="header">
             <button type="button" class="close" ng-click="lightbox(false); showDownload=!showDownload;">×</button>
-            <div  ng-show="CURRENT_STABLE_VERSION == CURRENT_UNSTABLE_VERSION"
-                  class="alert alert-info">
-                  There is currently no unstable version for download.
-            </div>
           </div>
           
           <form class="form-horizontal" role="form">
             <div class="form-group">
-              <label class="control-label col-sm-3" for="dl-type">Branch</label>
+              <label class="control-label col-sm-4" for="dl-type">Branch</label>
               <div class="col-sm-6">
                 <span id="dl-type" class="btn-group" data-toggle="buttons-radio">
                   <button id="bluePill" type="button" ng-class="getPillClass('stable', currentBranch)" class="btn btn-default bluePill" ng-click="selectType('stable')">Stable</button>
-                  <button id="redPill" type="button" ng-class="getPillClass('unstable', currentBranch)" class="btn btn-default redPill"  ng-click="selectType('unstable')">Unstable</button>
+                  <button ng-disabled="CURRENT_STABLE_VERSION == CURRENT_UNSTABLE_VERSION" id="redPill" type="button" ng-class="getPillClass('unstable', currentBranch)" class="btn btn-default redPill"  ng-click="selectType('unstable')">Unstable</button>
                 </span>
-                <i class="icon-question-sign" id="extraInfoBranch" href="" rel="popover" data-original-title="Branches" data-html="true" data-content="<dl class='dl-horizontal'><dt>Stable</dt><dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd><dt>Unstable</dt><dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd></dl>"></i>
+                <i class="icon-question-sign" id="extraInfoBranch" rel="popover" data-original-title="Branches" data-html="true" data-content="<dl class='dl-horizontal'><dt>Stable</dt><dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd><dt>Unstable</dt><dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd></dl>"></i>
+                <span class="help-text ng-hide" ng-show="CURRENT_STABLE_VERSION == CURRENT_UNSTABLE_VERSION">There currently is no unstable version for download.</span>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="control-label col-sm-3" for="dl-build">Build</label>
+              <label class="control-label col-sm-4" for="dl-build">Build</label>
               <div class="col-sm-6">
                 <span id="dl-build" class="btn-group" data-toggle="buttons-radio">
                   <button type="button" class="btn btn-default" ng-class="getPillClass('minified', currentBuild)" ng-click="selectBuild('minified')" ng-class="get">Minified</button>
                   <button type="button" class="btn btn-default" ng-class="getPillClass('uncompressed', currentBuild)" ng-click="selectBuild('uncompressed')">Uncompressed</button>
                   <button type="button" class="btn btn-default" ng-class="getPillClass('zipped', currentBuild)" ng-click="selectBuild('zipped')">Zip</button>
                 </span>
-                <i class="icon-question-sign" id="extraInfoBuild" href="" rel="popover" data-html="true" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Minified</dt><dd>Minified and obfuscated version of the AngularJS base code. Use this in your deployed application (but only if you can't use Google's CDN)</dd><dt>Uncompressed</dt><dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd><dt>Zipped</dt><dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd></dl>"></i>
+                <i class="icon-question-sign" id="extraInfoBuild" rel="popover" data-html="true" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Minified</dt><dd>Minified and obfuscated version of the AngularJS base code. Use this in your deployed application (but only if you can't use Google's CDN)</dd><dt>Uncompressed</dt><dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd><dt>Zipped</dt><dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd></dl>"></i>
               </div>
             </div>
             <div class="form-group has-feedback">
-              <label class="control-label col-sm-3" for="dl-cdnField">CDN</label>
+              <label class="control-label col-sm-4" for="dl-cdnField">CDN</label>
               <div class="col-sm-6">
                 <input id="dl-cdnField" class="form-control" type="text" readonly="readonly" ng-model="cdnURL">
-                <i class="icon-question-sign form-control-feedback" id="extraInfoCDN" href="" rel="popover" data-original-title="Why Google CDN?" data-html="true" data-content="While downloading and using the AngularJS source code is great for development, we recommend that you source the script from Google's CDN (Content Delivery Network) in your deployed, customer facing app whenever possible. You get the following advantages for doing so: <ul><li><strong>Better Caching :</strong> If you host AngularJS yourself, your users will have to download the source code atleast once. But if the browser sees that you are referring to Google CDN's version of AngularJS, and your user has visited another app which uses AngularJS, then he can avail the benefits of caching, and thus reduce one download.</li><li><strong>Decreased Latency :</strong> Google's CDN distributes your static content across the globe, in various diverse, physical locations. It increases the odds that the user gets a version of AngularJS served from a location near him, thus reducing overall latency.</li><li><strong>Increased Parallelism : </strong>Using Google's CDN reduces one request to your domain. Depending on the browser, the number of parallel requests it can make to a domain is restricted (as low as 2 in IE 7). So it can make a gigantic difference in loading times for users of those browsers.</li></ul>"></i>
+                <i class="icon-question-sign form-control-feedback" id="extraInfoCDN" rel="popover" data-original-title="Why Google CDN?" data-html="true" data-content="While downloading and using the AngularJS source code is great for development, we recommend that you source the script from Google's CDN (Content Delivery Network) in your deployed, customer facing app whenever possible. You get the following advantages for doing so: <ul><li><strong>Better Caching :</strong> If you host AngularJS yourself, your users will have to download the source code atleast once. But if the browser sees that you are referring to Google CDN's version of AngularJS, and your user has visited another app which uses AngularJS, then he can avail the benefits of caching, and thus reduce one download.</li><li><strong>Decreased Latency :</strong> Google's CDN distributes your static content across the globe, in various diverse, physical locations. It increases the odds that the user gets a version of AngularJS served from a location near him, thus reducing overall latency.</li><li><strong>Increased Parallelism : </strong>Using Google's CDN reduces one request to your domain. Depending on the browser, the number of parallel requests it can make to a domain is restricted (as low as 2 in IE 7). So it can make a gigantic difference in loading times for users of those browsers.</li></ul>"></i>
               </div>
             </div>
             <div class="form-group has-feedback">
-              <label class="control-label col-sm-3" for="dl-bowerField">Bower</label>
+              <label class="control-label col-sm-4" for="dl-bowerField">Bower</label>
               <div class="col-sm-6">
                 <input id="dl-bowerField" class="form-control" type="text" readonly="readonly" value="bower install angular">
-                <i class="icon-question-sign form-control-feedback" id="extraInfoBower" href="" rel="popover" data-original-title="What is Bower?" data-content="Bower is a package manager for client-side JavaScript components.<br><br>For more info please see: https://github.com/bower/bower"></i>
+                <i class="icon-question-sign form-control-feedback" id="extraInfoBower" rel="popover" data-original-title="What is Bower?" data-content="Bower is a package manager for client-side JavaScript components.<br><br>For more info please see: https://github.com/bower/bower"></i>
               </div>
             </div>
           </form>

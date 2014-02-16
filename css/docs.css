@@ -60,24 +60,13 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .btn-primary{
-  box-shadow: 0 1px 0px rgba(255, 255, 255, 0.45) inset, 0 0 1px rgb(0, 133, 255);
+  box-shadow: 0 1px 0px rgba(255, 255, 255, 0.35) inset;
 }
 
 #top-hero .jumbotron{
   height: 480px;
   overflow: hidden;
-  -webkit-transition: 300ms height ease;
-  -moz-transition: 300ms height ease;
-  -o-transition: 300ms height ease;
-  -ms-transition: 300ms height ease;
-  transition: 300ms height ease;
 }
-
-#top-hero .jumbotron.downloadVisible{
-  height: 520px;
-}
-
-
 
 #top-hero .jumbotron h1{
   height: 200px;
@@ -99,11 +88,11 @@ h1,h2,h3,h4,h5,h6{
   overflow: hidden;
   height: 300px;
   opacity: 1;
-  -webkit-transition: 300ms height ease;
-  -moz-transition: 300ms height ease;
-  -o-transition: 300ms height ease;
-  -ms-transition: 300ms height ease;
-  transition: 300ms height ease;
+  -webkit-transition: 600ms height ease;
+  -moz-transition: 600ms height ease;
+  -o-transition: 600ms height ease;
+  -ms-transition: 600ms height ease;
+  transition: 600ms height ease;
 
 }
 
@@ -148,6 +137,7 @@ h1,h2,h3,h4,h5,h6{
 
 .downloadBox{
   position: relative;
+  text-align: left;
   background: white;
   border-radius: 4px;
   margin: 0 auto;
@@ -155,7 +145,7 @@ h1,h2,h3,h4,h5,h6{
   height: 400px;
   color: black;
   opacity: 1;
-  transition: 300ms opacity linear;
+  transition: 600ms opacity linear;
 }
 
 .downloadBox::after{
@@ -197,8 +187,16 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .downloadBox form{
-  margin-left: 20px;
-  margin-right: 20px;
+  padding: 30px 20px 0 20px;
+}
+
+.downloadBox form .help-text{
+  color: gray;
+  margin-left: 10px;
+}
+
+.downloadBox form i.icon-question-sign{
+  margin-left: 5px;
 }
 
 .social{
@@ -305,7 +303,7 @@ h1,h2,h3,h4,h5,h6{
   }
 
   #top-hero .jumbotron.downloadVisible {
-    height: 520px;
+    height: 480px;
   }
 }
 
@@ -588,11 +586,6 @@ img.cache {
 
 #downloadModal {
   width: 620px;
-}
-
-#extraInfoBranch, #extraInfoBuild, #extraInfoCDN, #extraInfoBower {
-  background-color: #ffffff!important;
-  padding-left: 5px;
 }
 
 div.modal-body button {
