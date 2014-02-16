@@ -28,7 +28,7 @@ html.no-svg #logo{
 
 .forkme{
   position: absolute;
-  top: 90px;
+  top: 70px;
   right: -50px;
   background: red;
   background: #F06455;
@@ -38,7 +38,7 @@ html.no-svg #logo{
   -ms-transform: rotateZ(45deg);
   transform: rotateZ(45deg);
   padding: 4px;
-  padding-left: 30px;
+  padding-left: 50px;
   padding-right: 32px;
   width: 250px;
   text-align: center;
@@ -297,6 +297,10 @@ html.no-svg #top-hero .jumbotron h1{
   right: 15px;
 }
 
+.example .col-md-4{
+  margin-top: 0;
+}
+
 @media (min-width: 250px){
 
   .example .col-md-4{
@@ -323,6 +327,11 @@ html.no-svg #top-hero .jumbotron h1{
 }
 
 @media (min-width: 992px){
+
+  .example .col-md-4{
+    margin-top: 0;
+  }
+
   .example .col-md-4::before{ 
     content: "\f054";
     position: absolute;
