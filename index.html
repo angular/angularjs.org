@@ -124,7 +124,7 @@
             <div class="center">
               <a id="main-download" ng-class="{'active': showDownload}" class="btn btn-large btn-primary" href="#" ng-click="showDownload=!showDownload; lightbox('stable');">
                 <i class="icon-download-alt icon-large"></i> Download
-                <span class="version"> (<span>1.2.12</span>) </span>
+                <span class="version"> (<span ng-bind="CURRENT_STABLE_VERSION">1.2.13</span>) </span>
               </a>
 
             </div>
@@ -177,8 +177,11 @@
             </div>
           </form>
           <div class="modal-footer">
-            <a ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
-            <a href="http://code.angularjs.org/">Previous Versions</a>
+            <div class="pull-left">
+              <a ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
+              <a href="http://code.angularjs.org/">Previous Versions</a>
+            </div>
+            
 
             <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
           </div>
