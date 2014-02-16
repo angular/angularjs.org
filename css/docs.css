@@ -297,12 +297,17 @@ html.no-svg #top-hero .jumbotron h1{
   right: 15px;
 }
 
-@media (min-width: 450px){
+@media (min-width: 250px){
+
+  .example .col-md-4{
+    margin-top: 35px;
+  }
+
   .example .col-md-4::before{ 
     content: "\f078";
     position: absolute;
     left: 50%;
-    top: -24px;
+    top: -44px;
     color: #F3560C;
     font-family: "FontAwesome";
     font-size: 34px;
