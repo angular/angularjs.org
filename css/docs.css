@@ -335,7 +335,7 @@ html.no-svg #top-hero .jumbotron h1{
 
 hr.shield{
   border-bottom: 1px solid #EEE;
-  margin-top: 35px;
+  margin-top: 45px;
   margin-bottom: 70px;
   text-align: center;
 }
@@ -385,26 +385,6 @@ code.nocode {
   margin-top: 1em;
 }
 
-.container h1,
-.container h2,
-.container h3,
-.container h4 {
-  margin-bottom: .5em;
-}
-
-
-.container h2 {
-  margin-top: 1em;
-}
-
-.container h3 {
-  margin-top: 0;
-}
-
-.row.first h1 {
-  margin-top: .5em;
-}
-
 .navbar{
   border-bottom: 1px solid #C33C3A;
   outline: 3px solid rgba(95, 95, 95, 0.15);
@@ -437,32 +417,6 @@ code.nocode {
   text-align: center;
 }
 
-.hero-unit h1 {
-  padding-top: 1.5em;
-  padding-bottom: 1em;
-  margin: 0;
-  font-size: 30px;
-  color: #535353;
-  font-family: 'helvetica neue', Helvetica, Arial;
-  font-weight: 300;
-}
-
-.hero-unit .btn-large {
-  font-size: 22px;
-  font-family: Helvetica;
-  font-weight: lighter;
-}
-
-.spacer {
-  display: inline-block;
-  width: 6em;
-  height: 3em;
-}
-
-.hero-unit .btn-large .version {
-  font-size: 12px;
-}
-
 .quick-links {
   text-align: center;
   list-style: none;
@@ -481,14 +435,6 @@ code.nocode {
   font-weight: bold;
 }
 
-img.AngularJS-large {
-  
-}
-
-img.AngularJS-small {
-  width: 135px;
-  height: auto;
-}
 
 .video-img {
   width: 300px;
@@ -507,19 +453,6 @@ img.AngularJS-small {
 img.cache {
   width: 0;
   height: 0;
-}
-
-#videoModal {
-  display: block;
-  width: 1000px;
-  height: 705px;
-  margin-left: -500px;
-  margin-top: -337px;
-}
-#videoModal .modal-body {
-  max-height: 611px;
-  height: 611px;
-  overflow: hidden;
 }
 
 .tabs-spacer {
@@ -551,56 +484,6 @@ img.cache {
   margin-bottom: 0px!important;
 }
 
-.modal.fade {
-    top: -150%;
-}
-.modal.fade.in {
-    top: 40%;
-}
-#downloadModalBackdrop {
-    display: none;
-    z-index: -2000;
-}
-#downloadModalBackdrop.fade.in {
-    display: block;
-    z-index: 1040;
-}
-
-.popover {
-  z-index: 1200;
-}
-
-.popover-inner {
-  width: 600px!important;
-}
-
-.modal-body .input-xxlarge {
-  width: 400px;
-}
-
-.modal-body > h3 {
-  text-align: center;
-}
-
-.modal-body > h3 > span {
-  display: inline-block;
-}
-
-.modal-body > dl > dt {
-  margin-top: 7px;
-  padding-bottom: 20px;
-}
-
-.modal-body > dl > dd {
-    margin-top: 7px;
-    padding-bottom: 20px;
-}
-
-.modal-footer > a {
-  float: left;
-  padding-right: 20px;
-  padding-top: 7px;
-}
 
 #bluePill {
  color: #22AA22;
@@ -764,4 +647,10 @@ div.modal-body button {
 .jumbotron-message strong {
   color:#006FCC;
   font-weight:bold!important;
+}
+
+.spacer {
+  display: inline-block;
+  width: 6em;
+  height: 3em;
 }

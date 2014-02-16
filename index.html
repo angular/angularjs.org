@@ -245,7 +245,7 @@
     <div class="jumbotron-header">
       <h2>ng-conf 2014</h2>
     </div>
-    <div class="stretched-container">
+    <div>
       <nav class="jumbotron-tabs" ng-if="!loading">
         <div class="jumbotron-tabs-container">
           <a href="" ng-class="{'active':category=='basics'}" class="jumbotron-tab" ng-click="filterByCategory('basics')">Get to know Angular</a>
@@ -332,7 +332,7 @@
 
     <div class="row example">
       <div class="col-md-8">
-       <span js-fiddle="todo.html todo.js todo.css"></span>
+        <span js-fiddle="todo.html todo.js todo.css"></span>
         <div app-source="todo.html todo.js todo.css" annotate="todo.annotation"></div>
         <span hint></span>
       </div>
@@ -379,11 +379,11 @@
     </div>
     <div class=" row example">
       <div class="col-md-8">
+        <span js-fiddle="project.html list.html detail.html project.js" resource="resource" route="route" firebase="firebase" module="project"></span>
         <div app-source="project.html project.js list.html detail.html" resource="resource" route="route" firebase="firebase" annotate="project.annotation" module="project"></div>
         <span hint></span>
       </div>
       <div class="col-md-4">    
-        <span js-fiddle="project.html list.html detail.html project.js" resource="resource" route="route" firebase="firebase" module="project"></span>
         <div class="tabs-spacer"></div>
         <!--[if lt IE 10]>
           <div class="alert alert-danger">
@@ -425,13 +425,12 @@
     </div>
     <div class=" row example">
       <div class="col-md-8">
+        <span js-fiddle="tabs.html components.js app.js" module="app"></span>
         <div app-source="tabs.html components.js app.js bootstrap.css" annotate="tabs.annotation" module="app"></div>
         <span hint></span>
       </div>
       <div class="col-md-4">
-        <span js-fiddle="tabs.html components.js app.js" module="app"></span>
         <div class="tabs-spacer"></div>
-
         <h4>Locale: US</h4>
         <div app-run="tabs.html" module="app-us" class="preview"></div>
         <div class="tabs-spacer"></div>
@@ -440,7 +439,7 @@
       </div>
     </div>
 
-
+    <hr class="shield" />
 
     <h1 id="embed-and-inject">Embed and Inject</h1>
     <div class="row">
