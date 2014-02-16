@@ -1,0 +1,3 @@
+# makes no sense to see the diff
+*.min.js binary
+*.min.css binary
