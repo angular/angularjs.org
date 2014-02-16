@@ -16,6 +16,10 @@ h1,h2,h3,h4,h5,h6{
   background: red;
   background: #FF5644;
   -webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  -ms-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
   padding: 4px;
   padding-left: 30px;
   padding-right: 32px;
@@ -24,6 +28,10 @@ h1,h2,h3,h4,h5,h6{
   color: #333;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
   border: 1px solid #141414;
+  -webkit-transition: background 200ms ease;
+  -moz-transition: background 200ms ease;
+  -o-transition: background 200ms ease;
+  -ms-transition: background 200ms ease;
   transition: background 200ms ease;
   font-family: Helvetica, Arial, sans-serif;
 }
@@ -58,6 +66,11 @@ h1,h2,h3,h4,h5,h6{
 #top-hero .jumbotron{
   height: 480px;
   overflow: hidden;
+  -webkit-transition: 300ms height ease;
+  -moz-transition: 300ms height ease;
+  -o-transition: 300ms height ease;
+  -ms-transition: 300ms height ease;
+  transition: 300ms height ease;
 }
 
 #top-hero .jumbotron.downloadVisible{
@@ -86,7 +99,12 @@ h1,h2,h3,h4,h5,h6{
   overflow: hidden;
   height: 300px;
   opacity: 1;
-  transition: 300ms height ease, 300ms box-shadow ease;
+  -webkit-transition: 300ms height ease;
+  -moz-transition: 300ms height ease;
+  -o-transition: 300ms height ease;
+  -ms-transition: 300ms height ease;
+  transition: 300ms height ease;
+
 }
 
 #top-hero .slogan.ng-hide{
@@ -111,6 +129,10 @@ h1,h2,h3,h4,h5,h6{
   border: 1px solid #CE3C3C;
   box-shadow: 0 2px 0px #D64141;
   text-shadow: 0 1px #C51919;
+  -webkit-transition: 100ms background linear;
+  -moz-transition: 100ms background linear;
+  -o-transition: 100ms background linear;
+  -ms-transition: 100ms background linear;
   transition: 100ms background linear;
 }
 
@@ -371,11 +393,12 @@ code.nocode {
 }
 
 .navbar .navbar-brand:hover{
-  background: #FFA988;
+  background: #E7E7E7;
 }
 
 .navbar .navbar-brand:active{
-  background: #F79975;
+  background: #E4E4E4;
+  box-shadow: 0 0 1px #808080;
 }
 
 .navbar .navbar-brand:active > img{
