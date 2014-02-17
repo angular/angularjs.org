@@ -74,8 +74,8 @@ angular.module('homepage', ['ngAnimate'])
           });
           $provide.value('$anchorScroll', angular.noop);
           $provide.value('$browser', $browser);
-          // $locationProvider.html5Mode(true);
-          // $locationProvider.hashPrefix('!');
+          $locationProvider.html5Mode(true);
+          $locationProvider.hashPrefix('!');
         });
         if (attrs.module) {
           modules.push(attrs.module);
