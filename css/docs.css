@@ -225,6 +225,14 @@ html.no-svg #top-hero .jumbotron h1{
   margin-left: 5px;
 }
 
+.downloadBox .modal-footer{
+  text-align: left;
+}
+
+.downloadBox .dl-area{
+  text-align: right;
+}
+
 .social{
   background-color: #f5f5f5;
   border-top: 1px solid #fff;

@@ -23,10 +23,8 @@
   <!-- includes HTML5 shim for IE6-8  -->
   <script src="js/modernizr.min.js"></script>
  
-
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
-
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -178,13 +176,12 @@
             </div>
           </form>
           <div class="modal-footer">
-            <div class="pull-left">
-              <a ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
-              <a href="http://code.angularjs.org/">Previous Versions</a>
+            <a class="col-xs-2 col-sm-1" ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
+            <a class="col-xs-4 col-sm-2" href="http://code.angularjs.org/">Previous Versions</a>
+          
+            <div class="col-xs-6 col-sm-9 dl-area">
+              <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
             </div>
-            
-
-            <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
           </div>
         </div>
         </div>
