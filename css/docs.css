@@ -56,6 +56,11 @@ code.nocode {
   text-align: center;
 }
 
+.hero-unit {
+  margin-top: 80px;
+  height: 350px;
+}
+
 .hero-unit h1 {
   padding-top: 1.5em;
   padding-bottom: 1em;
