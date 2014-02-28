@@ -399,3 +399,11 @@ div.modal-body button {
   color:#006FCC;
   font-weight:bold!important;
 }
+
+h1[id]:before {
+  content: '';
+  display: block;
+  /* 50px = .navbar height + 10px bottom padding */
+  height: 50px;
+  margin: -50px 0 0;
+}
