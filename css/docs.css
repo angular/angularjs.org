@@ -56,6 +56,11 @@ code.nocode {
   text-align: center;
 }
 
+.hero-unit {
+  margin-top: 80px;
+  height: 350px;
+}
+
 .hero-unit h1 {
   padding-top: 1.5em;
   padding-bottom: 1em;
@@ -393,4 +398,12 @@ div.modal-body button {
 .jumbotron-message strong {
   color:#006FCC;
   font-weight:bold!important;
+}
+
+h1[id]:before {
+  content: '';
+  display: block;
+  /* 50px = .navbar height + 10px bottom padding */
+  height: 50px; 
+  margin: -50px 0 0;
 }
