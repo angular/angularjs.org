@@ -347,7 +347,7 @@ angular.module('homepage', ['ngAnimate'])
     }])
 
     .controller('DownloadCtrl', function($scope, $location) {
-      $scope.CURRENT_STABLE_VERSION = '1.3.0-beta.1';
+      $scope.CURRENT_STABLE_VERSION = '1.2.14';
       $scope.CURRENT_UNSTABLE_VERSION = '1.3.0-beta.1';
       var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
       var BASE_CDN_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/';
