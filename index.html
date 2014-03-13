@@ -19,6 +19,7 @@
   <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
   <base href="/">
 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-animate.js"></script>
 
@@ -30,7 +31,7 @@
     </script>
   <![endif]-->
 </head>
-<body  ng-controller="DownloadCtrl">
+<body  ng-controller="AppCtrl">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -117,10 +118,10 @@
             </a>
             <span class="spacer"></span>
 
-            <a class="btn btn-large btn-primary" href="" ng-click="lightbox('stable')">
+            <a class="btn btn-large btn-primary" href="" ng-click="showDownloadModal()">
               <i class="icon-download-alt icon-large"></i> Download
               <span class="version">
-                (<span>{{CURRENT_STABLE_VERSION}} / {{CURRENT_UNSTABLE_VERSION}}</span>)
+                (<span ng-repeat="branch in BRANCHES">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
               </span>
 
             </a>
@@ -230,7 +231,7 @@
         <div class="tabs-spacer"></div>
         <div app-run="hello.html" class="well"></div>
         <h3>Watch as we build this app</h3>
-        <div class="video-img" data-toggle="modal" data-video="http://www.youtube.com/embed/uFTFsKmkQnQ?&autoplay=1" href="#videoModal">
+        <div class="video-img" ng-click="showVideo('http://www.youtube.com/embed/uFTFsKmkQnQ?&autoplay=1')">
           <img class="video" src="img/video.png">
         </div>
       </div>
@@ -273,7 +274,7 @@
         <div class="tabs-spacer"></div>
         <div app-run="todo.html" class="well"></div>
         <h3>Watch as we build this app</h3>
-        <div class="video-img" data-toggle="modal" data-video="http://www.youtube.com/embed/WuiHuZq_cg4?&autoplay=1" href="#videoModal">
+        <div class="video-img" ng-click="showVideo('http://www.youtube.com/embed/WuiHuZq_cg4?&autoplay=1')">
           <img class="video" src="img/video.png">
         </div>
       </div>
@@ -416,7 +417,7 @@
   <footer class="footer">
     <div class="container">
       <p class="pull-right"><a href="#" target="_self">Back to top</a></p>
-      <p>Super-powered by Google  ©2010-2013</p>
+      <p>Super-powered by Google  ©2010-2014</p>
       <p>Code licensed under the
         <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
           MIT License</a>. Documentation licensed under <a
@@ -790,7 +791,7 @@
       });
     </script>
     <style type="text/css" id="bootstrap.css">
-      @import '//netdna.bootstrapcdn.com/bootstrap/2.0.2/css/bootstrap.min.css';
+      // Uncomment this in Plunker or JSFiddle: @import '//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css';
     </style>
     <script type="text/ng-template" id="tabs.html">
       <tabs>
@@ -852,78 +853,9 @@
     </script>
   </div>
 
-  <!-- The Download Modal that is to be shown when the user clicks on Download in the main AngularJS.org page -->
-  <div class="modal fade downloadModal" id="downloadModal" ng-class="{in: lightbox()}">
-    <div class="modal-header">
-      <button type="button" class="close" ng-click="lightbox(false)">×</button>
-      <h2 id="downloadLabel">Download AngularJS</h2>
-      <div  ng-show="CURRENT_STABLE_VERSION == CURRENT_UNSTABLE_VERSION"
-            class="alert alert-info">
-            There is currently no unstable version for download.
-      </div>
-    </div>
-    <div class="modal-body">
-
-      <dl class="dl-horizontal">
-        <dt>Branch</dt>
-        <dd>
-          <span>
-            <span class="btn-group" data-toggle="buttons-radio">
-              <button id="bluePill" type="button" ng-class="getPillClass('stable', currentBranch)" class="btn bluePill" ng-click="selectType('stable')">Stable</button>
-              <button id="redPill" type="button" ng-class="getPillClass('unstable', currentBranch)" class="btn redPill"  ng-click="selectType('unstable')">Unstable</button>
-              <a id="extraInfoBranch" href="" rel="popover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Stable</dt><dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd><dt>Unstable</dt><dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd></dl>"><i class="icon-question-sign"></i></a>
-            </span>
-
-          </span>
-
-        </dd>
-        <dt>Build</dt>
-        <dd>
-          <span>
-            <span class="btn-group" data-toggle="buttons-radio">
-              <button type="button" class="btn" ng-class="getPillClass('minified', currentBuild)" ng-click="selectBuild('minified')" ng-class="get">Minified</button>
-              <button type="button" class="btn" ng-class="getPillClass('uncompressed', currentBuild)" ng-click="selectBuild('uncompressed')">Uncompressed</button>
-              <button type="button" class="btn" ng-class="getPillClass('zipped', currentBuild)" ng-click="selectBuild('zipped')">Zip</button>
-              <a id="extraInfoBuild" href="" rel="popover" data-original-title="Branches" data-content="<dl class='dl-horizontal'><dt>Minified</dt><dd>Minified and obfuscated version of the AngularJS base code. Use this in your deployed application (but only if you can't use Google's CDN)</dd><dt>Uncompressed</dt><dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd><dt>Zipped</dt><dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd></dl>"><i class="icon-question-sign"></i></a>
-            </span>
-
-          </span>
-        </dd>
-
-        <dt>CDN</dt>
-        <dd>
-          <span class="input-append">
-            <input class="input-xxlarge" type="text" readonly="readonly" ng-model="cdnURL">
-            <a id="extraInfoCDN" href="" rel="popover" data-original-title="Why Google CDN?" data-content="While downloading and using the AngularJS source code is great for development, we recommend that you source the script from Google's CDN (Content Delivery Network) in your deployed, customer facing app whenever possible. You get the following advantages for doing so: <ul><li><strong>Better Caching :</strong> If you host AngularJS yourself, your users will have to download the source code atleast once. But if the browser sees that you are referring to Google CDN's version of AngularJS, and your user has visited another app which uses AngularJS, then he can avail the benefits of caching, and thus reduce one download, speeding up his overall experience!</li><li><strong>Decreased Latency :</strong> Google's CDN distributes your static content across the globe, in various diverse, physical locations. It increases the odds that the user gets a version of AngularJS served from a location near him, thus reducing overall latency.</li><li><strong>Increased Parallelism : </strong>Using Google's CDN reduces one request to your domain. Depending on the browser, the number of parallel requests it can make to a domain is restricted (as low as 2 in IE 7). So it can make a gigantic difference in loading times for users of those browsers.</li></ul>"><i class="icon-question-sign"></i></a>
-          </span>
-        </dd>
-
-        <dt>Bower</dt>
-        <dd>
-          <span class="input-append">
-            <input class="input-xxlarge" type="text" readonly="readonly" value="bower install angular">
-            <a id="extraInfoBower" href="" rel="popover" data-original-title="What is Bower?" data-content="Bower is a package manager for client-side JavaScript components.<br><br>For more info please see: https://github.com/bower/bower"><i class="icon-question-sign"></i></a>
-          </span>
-        </dd>
-      </dl>
-
-    </div>
-    <div class="modal-footer">
-      <a ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
-      <a href="http://code.angularjs.org/">Previous Versions</a>
-
-      <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
-    </div>
-  </div>
-  <div id="downloadModalBackdrop" class="modal-backdrop fade" ng-class="{in: lightbox()}" ng-click='lightbox(false)'></div>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script>
-    $().dropdown();
-  </script>
   <script src="google-code-prettify/prettify.min.js"></script>
   <script src="js/homepage.js"></script>
+  <script src="js/angular-ui-bootstrap.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-resource.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-route.min.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>

@@ -1,4 +1,4 @@
-angular.module('homepage', ['ngAnimate'])
+angular.module('homepage', ['ngAnimate', 'ui.bootstrap'])
 
   .config(function($provide, $locationProvider) {
     var pulseElements = $(),
@@ -76,7 +76,7 @@ angular.module('homepage', ['ngAnimate'])
   })
 
   .value('escape', function(text) {
-    return text.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/"/g, '&quot;');
+    return text.replace(/\&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   })
 
   .factory('script', function() {
@@ -92,7 +92,7 @@ angular.module('homepage', ['ngAnimate'])
   .factory('fetchCode', function(indent) {
     return function get(id, spaces) {
       return indent(angular.element(document.getElementById(id)).html(), spaces);
-    }
+    };
   })
 
   .directive('code', function() {
@@ -136,9 +136,10 @@ angular.module('homepage', ['ngAnimate'])
     };
   })
 
-  .directive('appSource', function(fetchCode, escape, script) {
+  .directive('appSource', function(fetchCode, escape, script, $compile) {
     return {
       terminal: true,
+      scope: true,
       link: function(scope, element, attrs) {
         var tabs = [],
             panes = [],
@@ -206,10 +207,14 @@ angular.module('homepage', ['ngAnimate'])
             var regexp = new RegExp('(\\W|^)(' + key.replace(/([\W\-])/g, '\\$1') + ')(\\W|$)');
 
             content = content.replace(regexp, function(_, before, token, after) {
-              var token = "__" + (counter++) + "__";
+              token = "__" + (counter++) + "__";
               popovers[token] =
-                '<code class="nocode" rel="popover" title="' + escape('<code>' + key + '</code>') +
-                '" data-content="' + escape(text) + '">' + escape(key) + '</code>';
+                '<span class="nocode"\n' +
+                '      popover-title="' + escape(key) + '"\n' +
+                '      popover-trigger="mouseenter"\n' +
+                '      popover-append-to-body="true"\n' +
+                '      popover="' + escape(text) + '">' + escape(key) +
+                '</span>';
               return before + token + after;
             });
           });
@@ -235,11 +240,14 @@ angular.module('homepage', ['ngAnimate'])
             '</div>');
         // element.find('[rel=popover]').popover().pulse();
 
-        function id(id) {
-          return id.replace(/\W/g, '-');
+        // Compile up the HTML to get the directives to kick-in
+        $compile(element.children())(scope);
+
+        function id(i) {
+          return i.replace(/\W/g, '-');
         }
       }
-    }
+    };
   })
 
   .directive('jsFiddle', function(fetchCode, escape, script) {
@@ -304,9 +312,9 @@ angular.module('homepage', ['ngAnimate'])
   .directive('hint', function() {
     return {
       template: '<em>Hint:</em> hover over ' +
-          '<code class="nocode" rel="popover" title="Hover" ' +
-          'data-content="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
-    }
+          '<code class="nocode" popover-title="Hover" popover-trigger="mouseenter" popover-append-to-body="true"' +
+          'popover="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
+    };
   })
 
   .filter('byCategory', function() {
@@ -319,147 +327,204 @@ angular.module('homepage', ['ngAnimate'])
     }
   })
 
-    .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', 'byCategoryFilter',
+  .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', 'byCategoryFilter',
                           function($scope,   $http,   filterFilter,   byCategoryFilter) {
 
-      var defaultCategory = 'basics';
-      $scope.category = defaultCategory;
+    var defaultCategory = 'basics';
+    $scope.category = defaultCategory;
 
-      var allVideos;
-      $scope.loading = true;
-      $http.get('./featured-videos.json').success(function(results) {
-        $scope.loading = false;
-        allVideos = results;
-        $scope.filterByCategory($scope.category);
-      });
-
-      $scope.filterBySearch = function(q) {
-        $scope.search = q;
-        $scope.category = null;
-        $scope.videos = filterFilter(allVideos, q);
-      };
-
-      $scope.filterByCategory = function(category) {
-        $scope.search = null;
-        $scope.category = category;
-        $scope.videos = byCategoryFilter(allVideos, category);
-      };
-    }])
-
-    .controller('DownloadCtrl', function($scope, $location) {
-      $scope.CURRENT_STABLE_VERSION = '1.2.14';
-      $scope.CURRENT_UNSTABLE_VERSION = '1.3.0-beta.1';
-      var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
-      var BASE_CDN_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/';
-      var getRelativeUrl = function(branch, build) {
-        var version = $scope.getVersion(branch);
-        if (build === 'minified') {
-          return version + '/angular.min.js';
-        } else if (build === 'uncompressed') {
-          return version + '/angular.js';
-        } else {
-          return version + '/angular-' + version + '.zip';
-        }
-      };
-
-      var currentBranch = false;
-
-      $scope.currentBranch = 'stable';
-      $scope.currentBuild = 'minified';
-
-      $scope.selectType = function(type) {
-        if (type === false) {
-          return;
-        }
-        $scope.currentBranch = type || 'stable';
-        $scope.updateCdnLink();
-      };
-
-      $scope.getVersion = function(branch) {
-        return branch === 'stable' ? $scope.CURRENT_STABLE_VERSION : $scope.CURRENT_UNSTABLE_VERSION;
-      };
-
-      $scope.selectBuild = function(build) {
-        $scope.currentBuild = build;
-        $scope.updateCdnLink();
-      };
-      angular.forEach(['#extraInfoBranch', '#extraInfoBuild', '#extraInfoCDN'], function(id) {
-        $(id).popover({
-          placement: 'left',
-          trigger: 'hover',
-          delay: {hide: '300'}
-        });
-      });
-      $scope.getPillClass = function(pill, actual) {
-        return pill === actual ? 'active' : '';
-      };
-
-      window.onkeydown = function (ev) {
-        if (ev.keyCode === 27 && currentBranch) {
-          $scope.lightbox(false);
-          $scope.$apply();
-        }
-      }
-
-      $scope.lightbox = function(arg) {
-        if (typeof arg !== 'undefined') {
-          currentBranch = arg;
-          $scope.selectType(currentBranch);
-        }
-        return currentBranch;
-      };
-
-      $scope.downloadLink = function() {
-        if ($scope.cdnURL && $scope.cdnURL.indexOf('http://') == 0) {
-          return $scope.cdnURL;
-        } else {
-          return BASE_CODE_ANGULAR_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
-        }
-      };
-      $scope.updateCdnLink = function() {
-        if ($scope.currentBuild === 'zipped') {
-          $scope.cdnURL = 'Unavailable for zip archives';
-        } else {
-          $scope.cdnURL = BASE_CDN_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
-        }
-      };
-    })
-
-  .run(function($rootScope, startPulse){
-    $rootScope.version = angular.version;
-    $rootScope.$evalAsync(function(){
-      var videoURL;
-
-      $('.video-img').
-        bind('click', function() {
-          videoURL = $(this).data('video');
-        });
-
-      $('#videoModal').
-        modal({show:false}).
-        on('shown', function(event, a, b, c) {
-          var iframe = $(this).find('.modal-body').append('<iframe>').find('iframe');
-
-          iframe.attr({
-            width: 1280, height: 720, allowfullscreen: true,
-            src: videoURL
-          });
-
-          // HACK: The only way I know of tricking YouTube to play HD is to show big and then resize.
-          setTimeout(function() {
-            iframe.attr({ width: 970, height: 556 });
-          }, 2500);
-        }).
-        on('hidden', function() {
-          $(this).find('.modal-body').html('');
-        });
-
-      $('[rel=popover]').
-        popover().
-        pulse();
-      startPulse();
+    var allVideos;
+    $scope.loading = true;
+    $http.get('./featured-videos.json').success(function(results) {
+      $scope.loading = false;
+      allVideos = results;
+      $scope.filterByCategory($scope.category);
     });
+
+    $scope.filterBySearch = function(q) {
+      $scope.search = q;
+      $scope.category = null;
+      $scope.videos = filterFilter(allVideos, q);
+    };
+
+    $scope.filterByCategory = function(category) {
+      $scope.search = null;
+      $scope.category = category;
+      $scope.videos = byCategoryFilter(allVideos, category);
+    };
+  }])
+
+  .value('BRANCHES', [
+      { branch: '1.2.*', version: '1.2.14', title: '1.2.x (legacy)', cssClass: 'bluePill' },
+      { branch: '1.3.*', version: '1.3.0-beta.1', title: '1.3.x (latest)', cssClass: 'redPill' }
+  ])
+
+  .value('BUILDS', [
+      { name: 'Minified' },
+      { name: 'Uncompressed' },
+      { name: 'Zip' }
+  ])
+
+
+  .controller('AppCtrl', function($scope, $modal, BRANCHES) {
+    $scope.BRANCHES = BRANCHES;
+    
+    $scope.showDownloadModal = function() {
+      $modal.open({
+        templateUrl: 'partials/download-modal.html',
+        windowClass: 'download-modal'
+      });
+    };
+
+    $scope.showVideo = function(videoUrl) {
+      $modal.open({
+        templateUrl: 'partials/video-modal.html',
+        windowClass: 'video-modal',
+        controller: 'VideoController',
+        resolve: {
+          videoUrl: function() { return videoUrl; }
+        }
+      });
+    };
+
   })
+
+  .controller('DownloadCtrl', function($scope, BRANCHES, BUILDS) {
+
+    $scope.BRANCHES = BRANCHES;
+    $scope.BUILDS = BUILDS;
+
+    $scope.currentBranch = $scope.BRANCHES[0];
+    $scope.currentBuild = $scope.BUILDS[0];
+
+    $scope.setBranch = function(branch) {
+      $scope.currentBranch = branch;
+    };
+
+    $scope.setBuild = function(build) {
+      $scope.currentBuild = build;
+    };
+
+    $scope.branchesInfo =
+      "<dl class='dl-horizontal'>"+
+      "  <dt class='bluePill'>Legacy 1.2.x</dt>"+
+      "  <dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd>"+
+      "  <dt class='redPill'>Latest 1.3.x</dt>"+
+      "  <dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd>"+
+      "</dl>";
+
+    $scope.buildsInfo =
+      "<dl class='dl-horizontal'>"+
+      "  <dt>Minified</dt>"+
+      "  <dd>Minified and obfuscated version of the AngularJS base code. Use this in your deployed application (but only if you can't use Google's CDN)</dd>"+
+      "  <dt>Uncompressed</dt>"+
+      "  <dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd>"+
+      "  <dt>Zipped</dt>"+
+      "  <dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd>"+
+      "</dl>";
+
+    $scope.cdnInfo =
+      "While downloading and using the AngularJS source code is great for development, "+
+      "we recommend that you source the script from Google's CDN (Content Delivery Network) in your deployed, customer facing app whenever possible. "+
+      "You get the following advantages for doing so:"+
+      "<ul>"+
+      "  <li><strong>Better Caching :</strong> If you host AngularJS yourself, your users will have to download the source code atleast once. But if the browser sees that you are referring to Google CDN's version of AngularJS, and your user has visited another app which uses AngularJS, then he can avail the benefits of caching, and thus reduce one download, speeding up his overall experience!</li>"+
+      "  <li><strong>Decreased Latency :</strong> Google's CDN distributes your static content across the globe, in various diverse, physical locations. It increases the odds that the user gets a version of AngularJS served from a location near him, thus reducing overall latency.</li>"+
+      "  <li><strong>Increased Parallelism : </strong>Using Google's CDN reduces one request to your domain. Depending on the browser, the number of parallel requests it can make to a domain is restricted (as low as 2 in IE 7). So it can make a gigantic difference in loading times for users of those browsers.</li>"+
+      "</ul>";
+
+    $scope.bowerInfo =
+      "Bower is a package manager for client-side JavaScript components.<br><br>"+
+      "For more info please see: <a href='https://github.com/bower/bower'>https://github.com/bower/bower</a>";
+
+
+
+    var getRelativeUrl = function(branch, build) {
+      switch (build.name) {
+        case 'Minified':
+          return branch.version + '/angular.min.js';
+        case 'Uncompressed':
+          return branch.version + '/angular.js';
+        case 'Zip':
+          return branch.version + '/angular-' + branch.version + '.zip';
+      }
+    };
+
+
+    var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
+    $scope.downloadLink = function() {
+      return $scope.cdnUrl() || BASE_CODE_ANGULAR_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
+    };
+
+
+    var BASE_CDN_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/';
+    $scope.cdnUrl = function() {
+      if ($scope.currentBuild.name !== 'Zip') {
+        return BASE_CDN_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
+      }
+    };
+
+  })
+
+.controller('VideoController', function($scope, $timeout, $sce, videoUrl) {
+
+  // HACK: Trick YouTube to play HD by showing big and then resizing after 2500ms.
+  
+  $scope.video = {
+    width: 1280,
+    height: 720,
+    allowfullscreen: true,
+    src: $sce.trustAsResourceUrl(videoUrl)
+  };
+
+  $timeout(function() {
+    $scope.video.width = 970;
+    $scope.video.height = 556;
+  }, 2500);
+
+})
+
+
+// Angular UI Bootstrap provide some excellent directives, but the popover didn't allow for HTML content
+// The popoverHtmlUnsafe and popoverHtmlUnsafePopup implement this on top of the AngularUI Bootstrap's $tooltip service
+.directive( 'popoverHtmlUnsafePopup', function ($templateCache) {
+
+  $templateCache.put("template/popover/popover-html-unsafe-popup.html",
+    "<div class=\"popover {{placement}}\" ng-class=\"{ in: isOpen(), fade: animation() }\">\n" +
+    "  <div class=\"arrow\"></div>\n" +
+    "\n" +
+    "  <div class=\"popover-inner\">\n" +
+    "      <h3 class=\"popover-title\" ng-bind=\"title\" ng-show=\"title\"></h3>\n" +
+    "      <div class=\"popover-content\" bind-html-unsafe=\"content\"></div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "");
+
+  return {
+    restrict: 'EA',
+    replace: true,
+    scope: { title: '@', content: '@', placement: '@', animation: '&', isOpen: '&' },
+    templateUrl: 'template/popover/popover-html-unsafe-popup.html'
+  };
+})
+
+.directive( 'popoverHtmlUnsafe', [ '$compile', '$timeout', '$parse', '$window', '$tooltip', function ( $compile, $timeout, $parse, $window, $tooltip ) {
+  return $tooltip( 'popoverHtmlUnsafe', 'popover', 'click' );
+}])
+
+
+
+.run(function($rootScope, startPulse){
+  $rootScope.version = angular.version;
+
+  //   $('[rel=popover]').
+  //     popover().
+  //     pulse();
+  //   startPulse();
+  // });
+
+});
+
 
 angular.module('Group', ['ngResource']);
 
