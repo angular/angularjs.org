@@ -142,7 +142,6 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap'])
       scope: true,
       link: function(scope, element, attrs) {
         var tabs = [],
-            panes = [],
             annotation = attrs.annotate && angular.fromJson(fetchCode(attrs.annotate)) || {},
             TEMPLATE = {
               'index.html':
@@ -166,19 +165,14 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap'])
         angular.forEach(attrs.appSource.split(' '), function(filename, index) {
           var content;
 
-          tabs.push(
-            '<li class="' + (!index ? ' active' : '') + '">' +
-              '<a href="#' + id(filename) + '" data-toggle="tab">' + (index ? filename : 'index.html') + '</a>' +
-            '</li>');
-
-          if (index == 0) {
+          if (index === 0) {
             var head = [];
 
             angular.forEach(attrs.appSource.split(' '), function(tab, index) {
               var filename = tab.split(':')[0],
                   fileType = filename.split(/\./)[1];
 
-              if (index == 0) return;
+              if (index === 0) return;
               if (fileType == 'js') {
                 head.push('    <script src="' + filename + '"></script>\n');
               } else if (fileType == 'css') {
@@ -223,21 +217,17 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap'])
             content = content.replace(token, text);
           });
 
-          panes.push(
-            '<div class="tab-pane' + (!index ? ' active' : '') + '" id="' + id(filename) + '">' +
-              '<pre class="prettyprint linenums nocode">' + content +'</pre>' +
-            '</div>');
+          tabs.push(
+            '<tab heading="' + (index ? filename : 'index.html')  + '">\n' +
+            '  <pre class="prettyprint linenums nocode">' + content +'</pre>\n' +
+            '</tab>\n'
+          );
         });
 
         element.html(
-          '<div class="tabbable">' +
-            '<ul class="nav nav-tabs">' +
+          '<tabset>' +
             tabs.join('') +
-            '</ul>' +
-            '<div class="tab-content">' +
-            panes.join('') +
-            '</div>' +
-            '</div>');
+          '</tabset>');
         // element.find('[rel=popover]').popover().pulse();
 
         // Compile up the HTML to get the directives to kick-in
