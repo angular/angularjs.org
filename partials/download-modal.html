@@ -32,7 +32,8 @@
       <dd>
         <span class="btn-group pull-left" data-toggle="buttons-radio">
           <button ng-repeat="build in BUILDS" type="button" class="btn" 
-                  ng-class="{ active: currentBuild == build }" ng-click="setBuild(build)">
+                  ng-class="{ active: currentBuild == build }"
+                  ng-click="setBuild(build)">
             {{build.name}}
           </button>
         </span>
