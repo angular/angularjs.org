@@ -136,7 +136,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
   })
 
-  .directive('appSource', function(fetchCode, escape, script, $compile) {
+  .directive('appSource', function(fetchCode, escape, script, $compile, $timeout) {
     return {
       terminal: true,
       scope: true,
@@ -160,7 +160,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
                 '</html>'
           };
 
-    element.css('clear', 'both');
+        element.css('clear', 'both');
 
         angular.forEach(attrs.appSource.split(' '), function(filename, index) {
           var content;
@@ -207,7 +207,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
                 '      popover-title="' + escape(key) + '"\n' +
                 '      popover-trigger="mouseenter"\n' +
                 '      popover-append-to-body="true"\n' +
-                '      popover="' + escape(text) + '">' + escape(key) +
+                '      popover-html-unsafe="' + escape(text) + '"><code>' + escape(key) + '</code>' +
                 '</span>';
               return before + token + after;
             });
@@ -219,7 +219,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
           tabs.push(
             '<tab heading="' + (index ? filename : 'index.html')  + '">\n' +
-            '  <pre class="prettyprint linenums nocode">' + content +'</pre>\n' +
+            '  <pre class="prettyprint linenums nocode"><code>' + content +'</code></pre>\n' +
             '</tab>\n'
           );
         });
@@ -232,10 +232,10 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
         // Compile up the HTML to get the directives to kick-in
         $compile(element.children())(scope);
-
-        function id(i) {
-          return i.replace(/\W/g, '-');
-        }
+        $timeout(function() {
+          var annotationElements = element.find('span[popover-html-unsafe]');
+          $compile(annotationElements)(scope);
+        }, 0);
       }
     };
   })
@@ -256,7 +256,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
           var fileType = file.split('.')[1];
 
           if (fileType == 'html') {
-            if (index == 0) {
+            if (index === 0) {
               fields[fileType] +=
                   '<div ng-app' + (attr.module ? '="' + attr.module + '"' : '') + '>\n' +
                     fetchCode(file, 2);
