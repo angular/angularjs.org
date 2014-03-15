@@ -307,18 +307,17 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
   })
 
-  .filter('byCategory', function() {
-    return function(array, category) {
+  .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', function($scope,   $http,   filterFilter) {
+    
+    function byCategoryFilter(array, category) {
       var results = [];
       angular.forEach(array, function(video) {
-        video.category == category && results.push(video);
+        if ( video.category == category ) {
+          results.push(video);
+        }
       });
       return results;
     }
-  })
-
-  .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', 'byCategoryFilter',
-                          function($scope,   $http,   filterFilter,   byCategoryFilter) {
 
     var defaultCategory = 'basics';
     $scope.category = defaultCategory;
