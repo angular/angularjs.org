@@ -9,7 +9,7 @@ angular.module('download-data', [])
     {
       branch: '1.3.*', version: '1.3.0-beta.2',
       title: '1.3.x (latest)',
-      cssClass: 'redPill'
+      cssClass: 'bluePill'
     }
 ])
 
