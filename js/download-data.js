@@ -22,10 +22,10 @@ angular.module('download-data', [])
 .value('DOWNLOAD_INFO', {
   branchesInfo:
     "<dl class='dl-horizontal'>"+
-    "  <dt class='bluePill'>Legacy 1.2.x</dt>"+
-    "  <dd>The Release has been well tested, and the API for this version will not undergo any further change.</dd>"+
-    "  <dt class='redPill'>Latest 1.3.x</dt>"+
-    "  <dd>This version is still being worked on, and API's are subject to change without any prior notice. Use only if you want to remain on the most cutting edge...</dd>"+
+    "  <dt>Legacy 1.2.x</dt>"+
+    "  <dd>This branch is in maintenance mode. It is stable and the API will not undergo any further changes. New releases will only contain bug-fixes.</dd>"+
+    "  <dt>Latest 1.3.x</dt>"+
+    "  <dd>This branch is being actively developed. The API's are subject to change without any prior notice. Use if you want to have access to the most recent features.</dd>"+
     "</dl>",
 
   buildsInfo:
