@@ -4,12 +4,12 @@ angular.module('download-data', [])
     {
       branch: '1.2.*', version: '1.2.15',
       title: '1.2.x (legacy)',
-      cssClass: ''
+      cssClass: 'branch-1-2-x'
     },
     {
       branch: '1.3.*', version: '1.3.0-beta.3',
       title: '1.3.x (latest)',
-      cssClass: ''
+      cssClass: 'branch-1-3-x'
     }
 ])
 
