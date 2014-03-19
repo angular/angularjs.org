@@ -11,9 +11,9 @@
     <dl class="dl-horizontal" ng-hide="BRANCHES.length == 0">
       <dt>Branch</dt>
       <dd>
-        <span class="btn-group pull-left" data-toggle="buttons-radio">
-          <button ng-repeat="branch in BRANCHES" type="button" 
-                  class="btn {{branch.cssClass}}" ng-class="{active: currentBranch == branch}"
+        <span class="btn-group pull-left branch-btns" data-toggle="buttons-radio">
+          <button ng-repeat="branch in BRANCHES" type="button"
+                  class="btn {{branch.cssClass}}" ng-class="{active: currentBranch == branch, legacy: !$index, latest: $index}"
                   ng-click="setBranch(branch)" >
             {{branch.title}}
           </button>
@@ -31,7 +31,8 @@
       <dt>Build</dt>
       <dd>
         <span class="btn-group pull-left" data-toggle="buttons-radio">
-          <button ng-repeat="build in BUILDS" type="button" class="btn" 
+          <button ng-repeat="build in BUILDS" type="button"
+                  class="btn {{build.name | lowercase}}"
                   ng-class="{ active: currentBuild == build }"
                   ng-click="setBuild(build)">
             {{build.name}}
@@ -49,7 +50,7 @@
       <dt>CDN</dt>
       <dd>
         <span class="pull-left">
-          <input class="input-xxlarge pull-left" type="text" readonly="readonly"
+          <input class="input-xxlarge pull-left" id="cdnURL" type="text" readonly="readonly"
                   value="{{ cdnUrl() || 'Unavailable for zip archives' }}">
         </span>
         <a href=""

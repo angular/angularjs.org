@@ -308,7 +308,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   })
 
   .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', function($scope,   $http,   filterFilter) {
-    
+
     function byCategoryFilter(array, category) {
       var results = [];
       angular.forEach(array, function(video) {
@@ -347,7 +347,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
   .controller('AppCtrl', function($scope, $modal, BRANCHES) {
     $scope.BRANCHES = BRANCHES;
-    
+
     $scope.showDownloadModal = function() {
       $modal.open({
         templateUrl: 'partials/download-modal.html',
@@ -415,7 +415,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 .controller('VideoController', function($scope, $timeout, $sce, videoUrl) {
 
   // HACK: Trick YouTube to play HD by showing big and then resizing after 2500ms.
-  
+
   $scope.video = {
     width: 1280,
     height: 720,
