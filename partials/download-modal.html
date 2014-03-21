@@ -12,7 +12,7 @@
       <dt>Branch</dt>
       <dd>
         <span class="btn-group pull-left" data-toggle="buttons-radio">
-          <button ng-repeat="branch in BRANCHES" type="button" 
+          <button ng-repeat="branch in BRANCHES" type="button"
                   class="btn {{branch.cssClass}}" ng-class="{active: currentBranch == branch}"
                   ng-click="setBranch(branch)" >
             {{branch.title}}
@@ -31,7 +31,7 @@
       <dt>Build</dt>
       <dd>
         <span class="btn-group pull-left" data-toggle="buttons-radio">
-          <button ng-repeat="build in BUILDS" type="button" class="btn" 
+          <button ng-repeat="build in BUILDS" type="button" class="btn"
                   ng-class="{ active: currentBuild == build }"
                   ng-click="setBuild(build)">
             {{build.name}}
@@ -73,12 +73,21 @@
             popover-trigger="mouseenter" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
+        </a>
+      </dd>
+
+      <dt>Extras</dt>
+      <dd>
+        <span class="pull-left">
+          <a ng-href="http://code.angularjs.org/{{currentBranch.version}}">
+            Browse additional modules
+          </a>
+        </span>
       </dd>
     </dl>
 
   </div>
   <div class="modal-footer">
-    <a ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
     <a href="http://code.angularjs.org/">Previous Versions</a>
 
     <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
