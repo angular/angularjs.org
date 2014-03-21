@@ -245,7 +245,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
       terminal: true,
       link: function(scope, element, attr) {
         var name = '',
-            stylesheet = '<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">\n',
+            stylesheet = '<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">\n',
             fields = {
               html: '',
               css: '',
@@ -308,7 +308,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   })
 
   .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', function($scope,   $http,   filterFilter) {
-    
+
     function byCategoryFilter(array, category) {
       var results = [];
       angular.forEach(array, function(video) {
@@ -347,7 +347,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
   .controller('AppCtrl', function($scope, $modal, BRANCHES) {
     $scope.BRANCHES = BRANCHES;
-    
+
     $scope.showDownloadModal = function() {
       $modal.open({
         templateUrl: 'partials/download-modal.html',
@@ -415,7 +415,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 .controller('VideoController', function($scope, $timeout, $sce, videoUrl) {
 
   // HACK: Trick YouTube to play HD by showing big and then resizing after 2500ms.
-  
+
   $scope.video = {
     width: 1280,
     height: 720,
