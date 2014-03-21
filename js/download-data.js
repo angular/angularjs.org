@@ -2,7 +2,7 @@ angular.module('download-data', [])
 
 .value('BRANCHES', [
     {
-      branch: '1.2.*', version: '1.2.14',
+      branch: '1.2.*', version: '1.2.15',
       title: '1.2.x (legacy)',
       cssClass: ''
     },
