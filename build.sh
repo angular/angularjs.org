@@ -1,5 +1,6 @@
 #!/bin/sh
 set -ex
+shopt -s extglob
 
 CDN_REPLACE_FILES=(
   build/index.html
@@ -56,7 +57,19 @@ function testBuildResult {
   ./node_modules/.bin/protractor protractorConf.js
 }
 
+function moveBuildToDist {
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  git checkout dist
+  rm -rf !(build)
+  cp -rf build/* .
+  rm -rf build
+  git add . -A
+  git commit --allow-empty -m "update site from src"
+  git checkout $branch
+}
+
 copySrcToBuild
 getCdnVersions
 replaceCdnVersionInFiles
-testBuildResult
+# testBuildResult
+moveBuildToDist
