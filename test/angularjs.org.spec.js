@@ -26,7 +26,8 @@ describe('Angularjs.org', function () {
 
 
     describe('Download', function () {
-      var stableVersion, cdnInput;
+      var stableVersion, cdnInput,
+          downloadVersions = process.env.ANGULAR_DOWNLOAD_VERSIONS.split(' ');
 
       beforeEach(function () {
         var downloadBtn = tractor.findElement(protractor.By.css('.hero-unit .btn-primary')), done;
@@ -68,25 +69,23 @@ describe('Angularjs.org', function () {
         });
       });
 
-      it('should have the correct version available for download', function () {
-        if (!process.env.ANGULAR_VERSION) {
-          throw new Error('Required environment variable ANGULAR_VERSION is missing');
-        }
+      downloadVersions.forEach(function(version) {
+        it('should have the correct version available for download', function () {
+          var versionAndBranch = version.split(':'),
+              branchBtnSelector = '.branch-' + versionAndBranch[1].
+                      replace(/\./g, '-').
+                      replace(/\*/g, 'x'),
 
-        if (!process.env.ANGULAR_BRANCH) {
-          throw new Error('Required environment variable ANGULAR_BRANCH is missing');
-        }
-        var branchBtnSelector = '.branch-' + process.env.ANGULAR_BRANCH.
-                    replace(/\./g, '-').
-                    replace(/\*/g, 'x');
+              branchBtn = tractor.findElement(
+              protractor.By.css(branchBtnSelector));
+          branchBtn.click();
 
-        var branchBtn = tractor.findElement(
-            protractor.By.css(branchBtnSelector));
-        branchBtn.click();
-
-        expect(cdnInput.getAttribute('value')).
-            toContain(process.env.ANGULAR_VERSION);
+          expect(cdnInput.getAttribute('value')).
+              toContain(versionAndBranch[0]);
+        });
       });
+
+
 
       it('should allow downloading uncompressed angular', function () {
         var uncompressedBtn = tractor.findElement(
