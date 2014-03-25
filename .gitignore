@@ -4,3 +4,5 @@ node_modules/
 old-yellow/
 slides/gitFetchSite.log
 .DS_Store
+build/
+
