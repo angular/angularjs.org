@@ -20,7 +20,7 @@ npm install .
 ./node_modules/.bin/webdriver-manager update
 
 # Start basic webserver to serve the app
-./node_modules/.bin/http-server &
+./node_modules/.bin/http-server build/ &
 serverPid=$!
 
 ./node_modules/.bin/protractor protractorConf.js
