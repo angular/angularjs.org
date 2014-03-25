@@ -71,5 +71,5 @@ function moveBuildToDist {
 copySrcToBuild
 getCdnVersions
 replaceCdnVersionInFiles
-# testBuildResult
+testBuildResult
 moveBuildToDist
