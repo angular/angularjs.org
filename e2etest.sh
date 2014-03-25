@@ -11,6 +11,7 @@
 # Example:
 #   ./e2etest.sh 1.3.0-beta.2 1.3.x true
 
+export ANGULAR_HOME_HOST='http://localhost:8080';
 export ANGULAR_VERSION=$1
 export ANGULAR_BRANCH=$2
 export CHECK_SCRIPT_TAG=$3
