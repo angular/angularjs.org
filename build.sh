@@ -36,7 +36,7 @@ function replaceCdnVersionInFiles {
 
 
 function testBuildResult {
-  export ANGULAR_HOME_HOST='http://localhost:8080';
+  export ANGULAR_HOME_HOST='http://localhost:8100';
   export ANGULAR_DOWNLOAD_VERSIONS="$CDN_VERSION_1_2:1.2.x $CDN_VERSION_1_3:1.3.x"
   export ANGULAR_VERSION="$CDN_VERSION_1_3"
   export CHECK_SCRIPT_TAG="true"
@@ -49,7 +49,7 @@ function testBuildResult {
   ./node_modules/.bin/webdriver-manager update
 
   # Start basic webserver to serve the app
-  ./node_modules/.bin/http-server build/ &
+  ./node_modules/.bin/http-server -p 8100 build/ &
   serverPid=$!
 
   trap killServer EXIT
@@ -68,8 +68,39 @@ function moveBuildToDist {
   git checkout $branch
 }
 
-copySrcToBuild
-getCdnVersions
-replaceCdnVersionInFiles
-testBuildResult
-moveBuildToDist
+function parseArgs {
+  # defaults if no args are given
+  if (( $# == 0 )); then
+    DO_COPY=1
+    DO_TEST=1
+  fi
+
+  # parse args
+  while (( $# > 0 )); do
+    case "$1" in
+      (copy) DO_COPY=1 ;;
+      (test) DO_TEST=1 ;;
+      (dist) DO_DIST=1 ;;
+      (*) echo "$0: error - unrecognized option $1" 1>&2; exit 1;;
+    esac
+    shift
+  done
+}
+
+# --------------
+# main
+parseArgs "$@"
+
+if [[ "$DO_COPY" ]]; then
+  copySrcToBuild
+  getCdnVersions
+  replaceCdnVersionInFiles
+fi
+
+if [[ "$DO_TEST" ]]; then
+  testBuildResult
+fi
+
+if [[ "$DO_DIST" ]]; then
+  moveBuildToDist
+fi

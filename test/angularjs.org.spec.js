@@ -40,12 +40,6 @@ describe('Angularjs.org', function () {
         });
       });
 
-      afterEach(function () {
-        tractor.findElement(protractor.By.css(".modal-backdrop")).click();
-        tractor.driver.sleep(500);
-      });
-
-
       it('should open a modal prompting for download configuration', function () {
         var downloadModal = tractor.findElement(protractor.By.css('.download-modal'))
         expect(downloadModal.getCssValue('display')).toEqual('block');
