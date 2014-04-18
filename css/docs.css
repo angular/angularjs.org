@@ -50,7 +50,7 @@ html.no-svg #logo{
   -o-transition: background 200ms ease;
   -ms-transition: background 200ms ease;
   transition: background 200ms ease;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .forkme:hover{
