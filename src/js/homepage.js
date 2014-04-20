@@ -1,4 +1,4 @@
-/* global angular, $, prettyPrintOne */
+/* global angular, prettyPrintOne */
 
 angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
