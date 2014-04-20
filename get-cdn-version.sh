@@ -84,7 +84,7 @@ function log() {
 
 # replaceInFile(file, findText, replaceText)
 function replaceInFile {
-  sed -i .tmp "s/$2/$3/" $1
+  sed -i.tmp "s/$2/$3/" $1
   rm $1.tmp
 }
 

@@ -11,12 +11,12 @@ function copySrcToBuild {
   rm -rf build/
   mkdir build/
 
-  cp -r src/ build/
+  cp -r src/* build/
 }
 
 # replaceInFile(file, findText, replaceText)
 function replaceInFile {
-  sed -i .tmp "s/$2/$3/" $1
+  sed -i.tmp "s/$2/$3/" $1
   rm $1.tmp
 }
 
