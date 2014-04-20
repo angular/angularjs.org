@@ -99,14 +99,8 @@
             </li>
             <li class="divider-vertical"></li>
           </ul>
-          <form style="display: none;" class="navbar-form navbar-right" method="GET" action="https://www.google.com/search" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" name="as_q" class="search-query" placeholder="Search">
-              <input type="hidden" name="as_sitesearch" value="angularjs.org">
-            </div>
-          </form>
-        </div>
-      </div>
+        </div> <!-- /.navbar-collapse -->
+      </div> <!-- /.container-fluid -->
     </nav>
   </header>
 
@@ -120,7 +114,7 @@
               <h2>HTML enhanced for web apps!</h2>
             </div>
             <div class="center">
-              <a id="main-download" ng-class="{'active': showDownload}" class="btn btn-large btn-primary" href="#" ng-click="showDownload=!showDownload; lightbox('stable');">
+              <a id="main-download" ng-class="{'active': showDownload}" class="btn btn-large btn-primary" href="#" ng-click="showDownload=!showDownload;">
                 <i class="icon-download-alt icon-large"></i> Download
                 <span class="version" ng-cloak> (<span ng-repeat="branch in BRANCHES">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>) </span>
               </a>
@@ -129,84 +123,87 @@
         </div>
       </div>
       <div class="container">
-        <div class="downloadBox ng-hide" ng-show="showDownload" ng-controller="DownloadCtrl">
+        <div class="downloadBox ng-hide" ng-show="showDownload">
           <div class="header">
-            <button type="button" class="close" ng-click="lightbox(false); showDownload=!showDownload;">×</button>
+            <button type="button" class="close" ng-click="showDownload=!showDownload;">×</button>
           </div>
           
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="dl-type">Branch</label>
-              <div class="col-sm-6">
-                <span id="dl-type" class="btn-group" data-toggle="buttons-radio">
-                  <button ng-repeat="branch in BRANCHES" class="btn btn-default {{branch.cssClass}}" ng-class="{active: currentBranch == branch, legacy: !$index, latest: $index}"
-                  ng-click="setBranch(branch)">{{branch.title}}</button>
-                </span>
-                <i class="icon-question-sign" id="extraInfoBranch" rel="popover"
-                    popover-title="Branches"
-                    popover-html-unsafe="{{DOWNLOAD_INFO.branchesInfo}}"
-                    popover-trigger="mouseenter" popover-placement="bottom"
-                    popover-delay="300">
-                </i>
-                <span class="help-text ng-hide" ng-show="BRANCHES.length == 0">There currently is no unstable version for download.</span>
+          <div ng-controller="DownloadCtrl">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="dl-type">Branch</label>
+                <div class="col-sm-6">
+                  <span id="dl-type" class="btn-group" data-toggle="buttons-radio">
+                    <button ng-repeat="branch in BRANCHES" class="btn btn-default {{branch.cssClass}}" ng-class="{active: currentBranch == branch, legacy: !$index, latest: $index}"
+                    ng-click="setBranch(branch)">{{branch.title}}</button>
+                  </span>
+                  <i class="icon-question-sign" id="extraInfoBranch" rel="popover"
+                      popover-title="Branches"
+                      popover-html-unsafe="{{DOWNLOAD_INFO.branchesInfo}}"
+                      popover-trigger="mouseenter" popover-placement="bottom"
+                      popover-delay="300">
+                  </i>
+                  <span class="help-text ng-hide" ng-show="BRANCHES.length == 0">There currently is no unstable version for download.</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="dl-build">Build</label>
+                <div class="col-sm-6">
+                  <span id="dl-build" class="btn-group" data-toggle="buttons-radio">
+                    <button ng-repeat="build in BUILDS" type="button"
+                            class="btn btn-default {{build.name | lowercase}}"
+                            ng-class="{ active: currentBuild == build }"
+                            ng-click="setBuild(build)">
+                      {{build.name}}
+                    </button>
+                  </span>
+                  <i class="icon-question-sign" rel="popover" 
+                      popover-title="Builds"
+                      popover-html-unsafe="{{DOWNLOAD_INFO.buildsInfo}}"
+                      popover-trigger="mouseenter" popover-placement="bottom"
+                      popover-delay="300">
+                  </i>
+                </div>
+              </div>
+              <div class="form-group has-feedback">
+                <label class="control-label col-sm-4" for="dl-cdnField">CDN</label>
+                <div class="col-sm-6">
+                  <input id="dl-cdnField" class="form-control" type="text" readonly="readonly" value="{{ cdnUrl() || 'Unavailable for zip archives' }}">
+                    <i class="icon-question-sign form-control-feedback" rel="popover"
+                        popover-title="Why Google CDN?"
+                        popover-html-unsafe="{{ DOWNLOAD_INFO.cdnInfo }}"
+                        popover-trigger="mouseenter" popover-placement="left"
+                        popover-delay="300">
+                    </i>
+                </div>
+              </div>
+              <div class="form-group has-feedback">
+                <label class="control-label col-sm-4" for="dl-bowerField">Bower</label>
+                <div class="col-sm-6">
+                  <kbd id="dl-bowerField">bower install angular</kbd>
+                  <i class="icon-question-sign icon-white form-control-feedback" rel="popover"
+                      popover-title="What is Bower?"
+                      popover-html-unsafe="{{ DOWNLOAD_INFO.bowerInfo }}"
+                      popover-trigger="mouseenter" popover-placement="left"
+                      popover-delay="300"
+                  ></i>
+                </div>
+              </div>
+            </form> <!-- /.form-horizontal -->
+            <div class="modal-footer">
+              <a class="col-xs-2 col-sm-1" ng-href="http://code.angularjs.org/{{currentBranch.version}}">Extras</a>
+              <a class="col-xs-4 col-sm-2" href="http://code.angularjs.org/">Previous Versions</a>
+            
+              <div class="col-xs-6 col-sm-9 dl-area">
+                <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="control-label col-sm-4" for="dl-build">Build</label>
-              <div class="col-sm-6">
-                <span id="dl-build" class="btn-group" data-toggle="buttons-radio">
-                  <button ng-repeat="build in BUILDS" type="button"
-                          class="btn btn-default {{build.name | lowercase}}"
-                          ng-class="{ active: currentBuild == build }"
-                          ng-click="setBuild(build)">
-                    {{build.name}}
-                  </button>
-                </span>
-                <i class="icon-question-sign" rel="popover" 
-                    popover-title="Builds"
-                    popover-html-unsafe="{{DOWNLOAD_INFO.buildsInfo}}"
-                    popover-trigger="mouseenter" popover-placement="bottom"
-                    popover-delay="300">
-                </i>
-              </div>
-            </div>
-            <div class="form-group has-feedback">
-              <label class="control-label col-sm-4" for="dl-cdnField">CDN</label>
-              <div class="col-sm-6">
-                <input id="dl-cdnField" class="form-control" type="text" readonly="readonly" value="{{ cdnUrl() || 'Unavailable for zip archives' }}">
-                  <i class="icon-question-sign form-control-feedback" rel="popover"
-                      popover-title="Why Google CDN?"
-                      popover-html-unsafe="{{ DOWNLOAD_INFO.cdnInfo }}"
-                      popover-trigger="mouseenter" popover-placement="left"
-                      popover-delay="300">
-                  </i>
-              </div>
-            </div>
-            <div class="form-group has-feedback">
-              <label class="control-label col-sm-4" for="dl-bowerField">Bower</label>
-              <div class="col-sm-6">
-                <kbd id="dl-bowerField">bower install angular</kbd>
-                <i class="icon-question-sign icon-white form-control-feedback" rel="popover"
-                    popover-title="What is Bower?"
-                    popover-html-unsafe="{{ DOWNLOAD_INFO.bowerInfo }}"
-                    popover-trigger="mouseenter" popover-placement="left"
-                    popover-delay="300"
-                ></i>
-              </div>
-            </div>
-          </form>
-          <div class="modal-footer">
-            <a class="col-xs-2 col-sm-1" ng-href="http://code.angularjs.org/{{getVersion(currentBranch)}}">Extras</a>
-            <a class="col-xs-4 col-sm-2" href="http://code.angularjs.org/">Previous Versions</a>
-          
-            <div class="col-xs-6 col-sm-9 dl-area">
-              <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
-            </div>
           </div>
-        </div>
-        </div>
-      </div>
+        </div> <!-- /.downloadBox -->
+      </div> <!-- /.container -->
+    </div> <!-- /.jumbotron -->
   
       <a href="https://github.com/angular/angular.js">
         <span class="forkme">contribute on GitHub</span>
@@ -943,7 +940,6 @@
     </script>
   </div>
   
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="google-code-prettify/prettify.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/${CDN_VERSION_1_3}/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/${CDN_VERSION_1_3}/angular-route.min.js"></script>
