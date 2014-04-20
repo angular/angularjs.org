@@ -1,0 +1,96 @@
+<div ng-controller="DownloadCtrl">
+  <div class="modal-header">
+    <h2 id="downloadLabel">Download AngularJS</h2>
+    <div  ng-show="BRANCHES.length == 0"
+          class="alert alert-info">
+          There are currently no versions for download.
+    </div>
+  </div>
+  <div class="modal-body">
+
+    <dl class="dl-horizontal" ng-hide="BRANCHES.length == 0">
+      <dt>Branch</dt>
+      <dd>
+        <span class="btn-group pull-left branch-btns" data-toggle="buttons-radio">
+          <button ng-repeat="branch in BRANCHES" type="button"
+                  class="btn {{branch.cssClass}}" ng-class="{active: currentBranch == branch, legacy: !$index, latest: $index}"
+                  ng-click="setBranch(branch)" >
+            {{branch.title}}
+          </button>
+        </span>
+
+        <a href=""
+            popover-title="Branches"
+            popover-html-unsafe="{{DOWNLOAD_INFO.branchesInfo}}"
+            popover-trigger="mouseenter" popover-placement="bottom"
+            popover-delay="300" popover-append-to-body="true">
+              &nbsp;<i class="icon-question-sign"></i>
+        </a>
+
+      </dd>
+      <dt>Build</dt>
+      <dd>
+        <span class="btn-group pull-left" data-toggle="buttons-radio">
+          <button ng-repeat="build in BUILDS" type="button"
+                  class="btn {{build.name | lowercase}}"
+                  ng-class="{ active: currentBuild == build }"
+                  ng-click="setBuild(build)">
+            {{build.name}}
+          </button>
+        </span>
+        <a href=""
+            popover-title="Builds"
+            popover-html-unsafe="{{ DOWNLOAD_INFO.buildsInfo }}"
+            popover-trigger="mouseenter" popover-placement="bottom"
+            popover-delay="300" popover-append-to-body="true">
+              &nbsp;<i class="icon-question-sign"></i>
+        </a>
+      </dd>
+
+      <dt>CDN</dt>
+      <dd>
+        <span class="pull-left">
+          <input class="input-xxlarge pull-left" id="cdnURL" type="text" readonly="readonly"
+                  value="{{ cdnUrl() || 'Unavailable for zip archives' }}">
+        </span>
+        <a href=""
+            popover-title="Why Google CDN?"
+            popover-html-unsafe="{{ DOWNLOAD_INFO.cdnInfo }}"
+            popover-trigger="mouseenter" popover-placement="bottom"
+            popover-delay="300" popover-append-to-body="true">
+              &nbsp;<i class="icon-question-sign"></i>
+        </a>
+      </dd>
+
+      <dt>Bower</dt>
+      <dd>
+        <span class="pull-left">
+          <input class="input-xxlarge" type="text" readonly="readonly"
+                  value="bower install angular#{{currentBranch.version}}">
+        </span>
+        <a href=""
+            popover-title="What is Bower?"
+            popover-html-unsafe="{{ DOWNLOAD_INFO.bowerInfo }}"
+            popover-trigger="mouseenter" popover-placement="bottom"
+            popover-delay="300" popover-append-to-body="true">
+              &nbsp;<i class="icon-question-sign"></i>
+        </a>
+      </dd>
+
+      <dt>Extras</dt>
+      <dd>
+        <span class="pull-left">
+          <a ng-href="http://code.angularjs.org/{{currentBranch.version}}">
+            Browse additional modules
+          </a>
+        </span>
+      </dd>
+    </dl>
+
+  </div>
+  <div class="modal-footer">
+    <a href="http://code.angularjs.org/">Previous Versions</a>
+
+    <a class="btn btn-primary btn-large" style="float: right; font-size: 20px; padding-left: 20px;" ng-href="{{downloadLink()}}" download><i class="icon-download-alt icon-large"></i> Download</a>
+  </div>
+<div>

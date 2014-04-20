@@ -216,6 +216,14 @@ html.no-svg #top-hero .jumbotron h1{
   padding: 30px 20px 0 20px;
 }
 
+.downloadBox form kbd{
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
 .downloadBox form .help-text{
   color: gray;
   margin-left: 10px;
@@ -387,7 +395,7 @@ form.jsfiddle {
   display: inline;
 }
 
-code.nocode {
+.nocode {
   display: inline-block;
 /*  background-color: #99c2ff;
   border: 1px solid #7699d1;
@@ -438,6 +446,7 @@ code.nocode {
 .center {
   text-align: center;
 }
+
 
 .quick-links {
   text-align: center;
@@ -507,16 +516,22 @@ img.cache {
 }
 
 
-#bluePill {
+.bluePill {
  color: #22AA22;
 }
 
-#redPill {
+.redPill {
   color: #BD362F;
 }
 
-#downloadModal {
+.download-modal {
   width: 620px;
+  margin-left: -310px;
+}
+
+.video-modal {
+  width: 970px;
+  margin-left: -460px;
 }
 
 div.modal-body button {
@@ -675,4 +690,12 @@ div.modal-body button {
   display: inline-block;
   width: 6em;
   height: 3em;
+}
+
+.icon-white{
+  color: white;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
