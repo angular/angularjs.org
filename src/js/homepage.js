@@ -1,50 +1,8 @@
+/* global angular, prettyPrintOne */
+
 angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
   .config(function($provide, $locationProvider) {
-    var pulseElements = $(),
-        pulseColor = {r:0xE6, g:0xF0, b: 0xFF},
-        baseColor = {r:0x99, g:0xc2, b: 0xFF},
-        pulseDuration = 1000,
-        pulseDelay = 15000;
-
-    function hex(number) {
-      return ('0' + Number(number).toString(16)).slice(-2);
-    }
-
-    jQuery.fn.pulse = function () {
-      pulseElements = pulseElements.add(this);
-    };
-    var lastPulse;
-
-    function tick() {
-      var duration = new Date().getTime() - lastPulse,
-          index = duration * Math.PI / pulseDuration ,
-          level = Math.pow(Math.sin(index), 10),
-          color = {
-            r: Math.round(pulseColor.r * level + baseColor.r * (1 - level)),
-            g: Math.round(pulseColor.g * level + baseColor.g * (1 - level)),
-            b: Math.round(pulseColor.b * level + baseColor.b * (1 - level))
-          },
-          style = '#' + hex(color.r) + hex(color.g) + hex(color.b);
-
-      pulseElements.css('backgroundColor', style);
-      if (duration > pulseDuration) {
-        setTimeout(function() {
-          lastPulse = new Date().getTime();
-          tick();
-        }, pulseDelay);
-      } else {
-        setTimeout(tick, 50);
-      }
-    }
-
-    $provide.value('startPulse', function() {
-       setTimeout(function() {
-         lastPulse = new Date().getTime();
-         tick();
-       }, 2000);
-    });
-
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
   })
@@ -82,10 +40,10 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   .factory('script', function() {
 
     return {
-      angular: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
-      resource: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n',
-      route: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-route.min.js"></script>\n',
-      firebase: '<script src="https://cdn.firebase.com/v0/firebase.js"></script>\n    <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>\n'
+      angular: '<script src="//ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
+      resource: '<script src="//ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n',
+      route: '<script src="//ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-route.min.js"></script>\n',
+      firebase: '<script src="//cdn.firebase.com/v0/firebase.js"></script>\n    <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>\n'
     };
   })
 
@@ -233,7 +191,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
         // Compile up the HTML to get the directives to kick-in
         $compile(element.children())(scope);
         $timeout(function() {
-          var annotationElements = element.find('span[popover-html-unsafe]');
+          var annotationElements = element.find('span');
           $compile(annotationElements)(scope);
         }, 0);
       }
@@ -286,8 +244,8 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
                fields.css) +
             hiddenField('html', fields.html) +
             hiddenField('js', fields.js) +
-            '<button class="btn btn-primary">' +
-              '<i class="icon-white icon-pencil"></i> ' +
+            '<button class="edit btn btn-default">' +
+              '<i class="icon-pencil"></i> ' +
               'Edit Me' +
             '</button>' +
           '</form>');
@@ -296,15 +254,19 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
           return '<input type="hidden" name="' +  name + '" value="' + escape(value) + '">';
         }
       }
-    }
+    };
   })
 
   .directive('hint', function() {
     return {
       template: '<em>Hint:</em> hover over ' +
-          '<code class="nocode" popover-title="Hover" popover-trigger="mouseenter" popover-append-to-body="true"' +
-          'popover="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
+          '<code class="nocode" rel="popover" title="Hover" ' +
+          'data-content="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
     };
+  })
+
+  .controller('NavigationControler', function($scope){
+      $scope.isCollapsed = false;
   })
 
   .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', function($scope,   $http,   filterFilter) {
@@ -409,8 +371,8 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
       return $scope.cdnUrl() || BASE_CODE_ANGULAR_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
     };
 
-
   })
+
 
 .controller('VideoController', function($scope, $timeout, $sce, videoUrl) {
 
@@ -460,25 +422,22 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
 
 
-.run(function($rootScope, startPulse){
+.run(function($rootScope){
   $rootScope.version = angular.version;
-
-  //   $('[rel=popover]').
-  //     popover().
-  //     pulse();
-  //   startPulse();
-  // });
 
 });
 
 
 angular.module('Group', ['ngResource']);
 
-function GroupCtrl($scope, $resource)
-{
+var GroupCtrl = function($scope, $resource){
   $scope.featuredGroups = $resource('groups/index/getfeatured');
   $scope.featuredGroups.get();
 
   $scope.recommendedGroups = $resource('groups/index/getrecommended');
   $scope.recommendedGroups.get();
-}
+};
+
+angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
