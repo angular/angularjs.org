@@ -64,7 +64,8 @@ function moveBuildToDist {
   cp -rf build/* .
   rm -rf build
   git add . -A
-  git commit --allow-empty -m "update site from src"
+  # ||true if we had no changes
+  git commit -m "update site from src" || true
   git checkout $branch
 }
 
