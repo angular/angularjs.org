@@ -638,7 +638,7 @@
         <div class="control-group" ng-class="{error: myForm.site.$invalid && !myForm.site.$pristine}">
           <label>Website</label>
           <input type="url" name="site" ng-model="project.site" required>
-          <span ng-show="myForm.site.$error.required && !myForm.name.$pristine" class="help-inline">
+          <span ng-show="myForm.site.$error.required && !myForm.site.$pristine" class="help-inline">
               Required</span>
           <span ng-show="myForm.site.$error.url" class="help-inline">
               Not a URL</span>
