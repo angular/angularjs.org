@@ -57,8 +57,18 @@ form.jsfiddle {
 }
 
 .hero-unit {
-  margin-top: 80px;
-  height: 350px;
+  padding:100px 80px 120px;
+  margin:0;
+background: -moz-linear-gradient(top,  rgba(221,221,221,1) 0%, rgba(225,225,225,0) 21%, rgba(235,235,235,0) 81%, rgba(238,238,238,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(221,221,221,1)), color-stop(21%,rgba(225,225,225,0)), color-stop(81%,rgba(235,235,235,0)), color-stop(100%,rgba(238,238,238,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(221,221,221,1) 0%,rgba(225,225,225,0) 21%,rgba(235,235,235,0) 81%,rgba(238,238,238,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(221,221,221,1) 0%,rgba(225,225,225,0) 21%,rgba(235,235,235,0) 81%,rgba(238,238,238,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(221,221,221,1) 0%,rgba(225,225,225,0) 21%,rgba(235,235,235,0) 81%,rgba(238,238,238,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(221,221,221,1) 0%,rgba(225,225,225,0) 21%,rgba(235,235,235,0) 81%,rgba(238,238,238,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+
+  background-color:white;
+  
 }
 
 .hero-unit h1 {
@@ -88,15 +98,16 @@ form.jsfiddle {
 }
 
 .quick-links {
-  text-align: center;
-  list-style: none;
-  margin-top: 50px;
+  list-style:none;
+  max-width:800px;
+  margin:0 auto;
 }
-
 .quick-links > li {
-  display: inline-block;
-  margin: 0 1em;
-  vertical-align: top;
+  width:24%;
+  text-align:center;
+  vertical-align:middle;
+  display:inline-block;
+  margin:auto;
 }
 
 .google-follow {
@@ -265,7 +276,6 @@ div.modal-body button {
   box-shadow:inset 0 0 100px #000;
   padding:0;
   background:#444;
-  margin-top:50px;
   overflow:auto;
   text-align:center;
 }
@@ -276,6 +286,7 @@ div.modal-body button {
 }
 
 .jumbotron h1 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   margin-top:0;
 }
 
@@ -300,6 +311,7 @@ div.modal-body button {
 
 .jumbotron-header,
 .jumbotron-actions {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   background:rgba(0,0,0,0.3);
 }
 
@@ -419,4 +431,60 @@ h1[id]:before {
   /* 50px = .navbar height + 10px bottom padding */
   height: 50px;
   margin: -50px 0 0;
+}
+
+.quick-links-container {
+  margin-top:50px;
+}
+
+.jumbo-banner {
+  border:1px solid #ddd;
+  box-shadow:0 0 5px #ddd;
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  margin-top:-60px;
+  margin-bottom:60px;
+background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(255,255,255,0.72) 28%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(28%,rgba(255,255,255,0.72)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(255,255,255,0.72) 28%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(255,255,255,0.72) 28%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(255,255,255,0.72) 28%,rgba(255,255,255,0) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(238,238,238,1) 0%,rgba(255,255,255,0.72) 28%,rgba(255,255,255,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+  background-color:white;
+}
+.jumbo-banner-inner {
+  padding:20px;
+  overflow:hidden;
+  box-sizing:border-box;
+}
+.jumbo-banner-content {
+  overflow:auto;
+}
+.jumbo-banner-content .heading {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight:normal;
+  margin:0 0 10px;
+  color:#406AB7;
+}
+.jumbo-banner-inner em {
+  text-decoration:none;
+  font-style:normal;
+  color:#d9534f;
+}
+.jumbo-banner-content,
+.jumbo-banner-content p {
+  font-size:15px;
+}
+.jumbo-banner-content nav {
+  margin-top:20px;
+}
+
+.ng-europe-logo {
+  float:left;
+  margin-right:50px;
+}
+.about-container {
+  padding:30px 0 50px;
 }
