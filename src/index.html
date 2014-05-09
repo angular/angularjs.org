@@ -143,7 +143,7 @@
       </div>
     </div>
 
-    
+
 
     <div class="container about-container">
       <div class="ng-europe-banner jumbo-banner">
@@ -884,11 +884,11 @@
   <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
   <script src="//code.angularjs.org/${CDN_VERSION_1_3}/i18n/angular-locale_sk.js"></script>
   <script>
-    angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+    angular.module('ngLocal.sk', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
   </script>
   <script src="//code.angularjs.org/${CDN_VERSION_1_3}/i18n/angular-locale_en-us.js"></script>
   <script>
-    angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+    angular.module('ngLocal.us', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
     angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
   </script>
 
