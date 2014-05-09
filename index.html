@@ -20,8 +20,8 @@
   <base href="/">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script id="angularScript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular-animate.js"></script>
+  <script id="angularScript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-animate.js"></script>
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -143,7 +143,7 @@
       </div>
     </div>
 
-    
+
 
     <div class="container about-container">
       <div class="ng-europe-banner jumbo-banner">
@@ -878,17 +878,17 @@
   <script src="js/homepage.js"></script>
   <script src="js/download-data.js"></script>
   <script src="js/angular-ui-bootstrap.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular-route.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-resource.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-route.min.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
-  <script src="//code.angularjs.org/1.3.0-beta.7/i18n/angular-locale_sk.js"></script>
+  <script src="//code.angularjs.org/1.3.0-beta.8/i18n/angular-locale_sk.js"></script>
   <script>
-    angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+    angular.module('ngLocal.sk', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
   </script>
-  <script src="//code.angularjs.org/1.3.0-beta.7/i18n/angular-locale_en-us.js"></script>
+  <script src="//code.angularjs.org/1.3.0-beta.8/i18n/angular-locale_en-us.js"></script>
   <script>
-    angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+    angular.module('ngLocal.us', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
     angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
   </script>
 
