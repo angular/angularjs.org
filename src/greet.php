@@ -51,11 +51,11 @@ $greeting = $salutation . ' ' . $name . '!';
 $data = array(
   "name" => $name,
   "salutation" => $salutation,
-  "greeting" => $greeting );  
-$json = json_encode($data);  
-header("Content-type: text/javascript");  
+  "greeting" => $greeting );
+$json = json_encode($data);
+header("Content-type: text/javascript");
 if ($callback)
-  echo $callback .' (' . $json . ');';  
+  echo $callback .' (' . $json . ');';
 else
-  echo $json;  
+  echo $json;
 ?>
