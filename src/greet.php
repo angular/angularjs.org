@@ -2,6 +2,10 @@
 error_reporting(0);
 $name = $_GET['name'];
 $callback = $_GET['callback'];
+$pattern = '/^[\\w\\._\\d]+$/';
+if (!preg_match($pattern, $callback)) {
+  exit('invalid callback');
+}
 $salutations = array(
     "Adab",
     "Ahoj",
