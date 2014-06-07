@@ -2,6 +2,10 @@
 error_reporting(0);
 $name = $_GET['name'];
 $callback = $_GET['callback'];
+$pattern = '/^[\\w\\._\\d]+$/';
+if (!preg_match($pattern, $callback)) {
+  exit('invalid callback');
+}
 $salutations = array(
     "Adab",
     "Ahoj",
@@ -47,11 +51,11 @@ $greeting = $salutation . ' ' . $name . '!';
 $data = array(
   "name" => $name,
   "salutation" => $salutation,
-  "greeting" => $greeting );  
-$json = json_encode($data);  
-header("Content-type: text/javascript");  
+  "greeting" => $greeting );
+$json = json_encode($data);
+header("Content-type: text/javascript");
 if ($callback)
-  echo $callback .' (' . $json . ');';  
+  echo $callback .' (' . $json . ');';
 else
-  echo $json;  
+  echo $json;
 ?>
