@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "devDependencies": {
     "http-server": "*",
-    "protractor": "~0.20.1",
+    "protractor": "~0.24",
     "selenium-webdriver": "~2.40.0"
   }
 }

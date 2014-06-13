@@ -105,7 +105,7 @@ describe('Angularjs.org', function () {
 
 
       it('should update the Hello text after entering a name', function () {
-        var el = tractor.findElement(protractor.By.input('yourName'));
+        var el = tractor.findElement(protractor.By.model('yourName'));
         el.click()
         el.sendKeys('Jeff')
 
@@ -124,7 +124,7 @@ describe('Angularjs.org', function () {
 
 
       it('should add a new todo when added through text field', function () {
-        var el = tractor.findElement(protractor.By.input('todoText'));
+        var el = tractor.findElement(protractor.By.model('todoText'));
         el.click();
         el.sendKeys('Write tests!');
         el.sendKeys(webdriver.Key.RETURN);
