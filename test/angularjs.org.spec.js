@@ -137,7 +137,7 @@ describe('Angularjs.org', function () {
       it('should show a secondary tab when selected', function () {
         var todoJsTab = tractor.findElement(protractor.By.css('[annotate="todo.annotation"] ul.nav-tabs li:nth-child(2) a'));
         todoJsTab.click()
-        tractor.driver.sleep(100);
+        tractor.driver.sleep(500);
         var todojs = tractor.findElement(protractor.By.css('[annotate="todo.annotation"] .tab-pane:nth-child(2)'));
         expect(todojs.getCssValue('display')).toEqual('block');
       });
@@ -148,7 +148,7 @@ describe('Angularjs.org', function () {
       it('should show a secondary tab when selected', function () {
         var listBtn = tractor.findElement(protractor.By.css('[annotate="project.annotation"] ul.nav-tabs li:nth-child(2) a'));
         listBtn.click();
-        tractor.driver.sleep(100);
+        tractor.driver.sleep(500);
         var listTab = tractor.findElement(protractor.By.css('[module="project"] .tab-pane:nth-child(2)'));
         expect(listTab.getCssValue('display')).toEqual('block');
       });
