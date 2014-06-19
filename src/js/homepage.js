@@ -198,6 +198,9 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
               counter = 0;
 
           angular.forEach(annotation[filename], function(text, key) {
+
+            text = text.replace('{{', '&#123;&#123;').replace('}}', '&#125;&#125;');
+
             var regexp = new RegExp('(\\W|^)(' + key.replace(/([\W\-])/g, '\\$1') + ')(\\W|$)');
 
             content = content.replace(regexp, function(_, before, token, after) {
