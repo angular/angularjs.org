@@ -208,7 +208,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
               popovers[token] =
                 '<span class="nocode"\n' +
                 '      popover-title="' + escape(key) + '"\n' +
-                '      popover-trigger="mouseenter"\n' +
+                '      popover-trigger="click"\n' +
                 '      popover-append-to-body="true"\n' +
                 '      popover-html-unsafe="' + escape(text) + '"><code>' + escape(key) + '</code>' +
                 '</span>';
@@ -304,9 +304,9 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
   .directive('hint', function() {
     return {
-      template: '<em>Hint:</em> hover over ' +
-          '<code class="nocode" popover-title="Hover" popover-trigger="mouseenter" popover-append-to-body="true"' +
-          'popover="Place your mouse over highlighted areas in the code for explanations.">me</code>.'
+      template: '<em>Hint:</em> Click ' +
+          '<code class="nocode" popover-title="Hover" popover-trigger="click" popover-append-to-body="true"' +
+          'popover="Click highlighted areas in the code for explanations.">me</code>.'
     };
   })
 
