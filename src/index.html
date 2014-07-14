@@ -486,36 +486,37 @@
       }
     </style>
     <script id="todo.js">
-      function TodoCtrl($scope) {
-        $scope.todos = [
-          {text:'learn angular', done:true},
-          {text:'build an angular app', done:false}];
+      angular.module('todoApp', [])
+        .controller('TodoController', ['$scope', function($scope) {
+          $scope.todos = [
+            {text:'learn angular', done:true},
+            {text:'build an angular app', done:false}];
 
-        $scope.addTodo = function() {
-          $scope.todos.push({text:$scope.todoText, done:false});
-          $scope.todoText = '';
-        };
+          $scope.addTodo = function() {
+            $scope.todos.push({text:$scope.todoText, done:false});
+            $scope.todoText = '';
+          };
 
-        $scope.remaining = function() {
-          var count = 0;
-          angular.forEach($scope.todos, function(todo) {
-            count += todo.done ? 0 : 1;
-          });
-          return count;
-        };
+          $scope.remaining = function() {
+            var count = 0;
+            angular.forEach($scope.todos, function(todo) {
+              count += todo.done ? 0 : 1;
+            });
+            return count;
+          };
 
-        $scope.archive = function() {
-          var oldTodos = $scope.todos;
-          $scope.todos = [];
-          angular.forEach(oldTodos, function(todo) {
-            if (!todo.done) $scope.todos.push(todo);
-          });
-        };
-      }
+          $scope.archive = function() {
+            var oldTodos = $scope.todos;
+            $scope.todos = [];
+            angular.forEach(oldTodos, function(todo) {
+              if (!todo.done) $scope.todos.push(todo);
+            });
+          };
+        }]);
     </script>
     <script type="text/ng-template" id="todo.html">
       <h2>Todo</h2>
-      <div ng-controller="TodoCtrl">
+      <div ng-app="todoApp" ng-controller="TodoController">
         <span>{{remaining()}} of {{todos.length}} remaining</span>
         [ <a href="" ng-click="archive()">archive</a> ]
         <ul class="unstyled">
@@ -536,7 +537,7 @@
         { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
         , "angular.min.js": "Load AngularJS."
         , "todo.js": "Your behavior lives in JavaScript controllers."
-        , "ng-controller": "The behavior of content under this element will be managed using the <code>TodoCtrl</code> class defined in <code>todo.js</code>."
+        , "ng-controller": "The behavior of content under this element will be managed using the <code>TodoController</code> class defined in <code>todo.js</code>."
         , "{{remaining()}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the <code>remaining()</code> function return value changes."
         , "ng-click": "Instead of registering event-handlers, you declare which method on the controller to call. Here clicking the link will call <code>archive()</code> method."
         , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every object in <code>todos</code>, AngularJS will create new copy of the <code>&lt;li&gt;</code> element. When objects are added to the <code>todos</code> collection the <code>ng-repeat</code> automatically adds new <code>&lt;li&gt;</code> elements into the DOM. Similarly when the objects are removed from <code>todos</code> then the corresponding <code>&lt;li&gt;</code> element is removed as well. This is one of the most versatile directives in AngularJS."
@@ -550,7 +551,7 @@
         }
 
       , "todo.js":
-        { "TodoCtrl": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
+        { "TodoController": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
         , "$scope": "<code>$scope</code> contains your model data. It is the glue between the controller and the view. The <code>$scope</code> is just one of the services that can be injected into the controller."
         , "todos": "We are creating the model with two initial todo items. Notice that you simply assign your model to the <code>$scope</code> and AngularJS reflects the state in the UI automatically. The model data is a Plain-Old-JavaScript-Object no need to wrap it in proxy or accesses the property through special setter methods."
         , "addTodo": "We are assigning the behavior into the <code>$scope</code> so that the <code>ng-submit</code> can invoke it."

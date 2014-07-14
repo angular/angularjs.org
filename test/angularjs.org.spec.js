@@ -117,7 +117,7 @@ describe('Angularjs.org', function () {
 
     describe('Add Some Control', function () {
       it('should strike out a todo when clicked', function () {
-        var el = tractor.findElement(protractor.By.css('[ng-controller="TodoCtrl"] ul >li:nth-child(2) input'));
+        var el = tractor.findElement(protractor.By.css('[ng-controller="TodoController"] ul >li:nth-child(2) input'));
         el.click();
         expect(el.getAttribute('value')).toBe('on');
       });
