@@ -555,11 +555,11 @@
         , "$scope": "<code>$scope</code> contains your model data. It is the glue between the controller and the view. The <code>$scope</code> is just one of the services that can be injected into the controller."
         , "todos": "We are creating the model with two initial todo items. Notice that you simply assign your model to the <code>$scope</code> and AngularJS reflects the state in the UI automatically. The model data is a Plain-Old-JavaScript-Object no need to wrap it in proxy or accesses the property through special setter methods."
         , "addTodo": "We are assigning the behavior into the <code>$scope</code> so that the <code>ng-submit</code> can invoke it."
-        , "push": "This is unmodified <code>Array.push</code> method. Calling it updates the model, which then updates the view through data-binding. The <code>ng&ndash;repeat</code> is bound to this array. It automatically unrolls the array and adds the new DOM element into the view. (see <code>ng&ndash;repeat</code> in <code>index.html</code> tab.)"
-        , "todoText": "Because of  bi-directional data-binding, the model is always up to date. This means that we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API."
+        , "push": "This is just the <code>Array.push</code> method. Calling it updates the model, which then updates the view through data-binding. The <code>ng&ndash;repeat</code> is bound to this array. It automatically unrolls the array and adds the new DOM element into the view. (see <code>ng&ndash;repeat</code> in the <code>index.html</code> tab.)"
+        , "todoText = ''": "Because of  bi-directional data-binding, the model is always up to date. This means that we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API."
         , "''": "Writing to the form controls is just as easy. The data-binding will clear the control for us."
         , "remaining": "This is a computed property. No need to define its dependencies or worry about when it needs to be updated."
-        , "[]": "You can replace the model with new instance at any time, without doing any special model listener registration."
+        , "todos = []": "You can replace the model with new instance at any time, without doing any special model listener registration."
         }
       }
     </script>
