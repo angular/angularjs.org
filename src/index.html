@@ -299,7 +299,7 @@
         <span hint></span>
         <span class="pull-right" js-fiddle="todo.html todo.js todo.css"></span>
         <div class="tabs-spacer"></div>
-        <div app-run="todo.html" class="well"></div>
+        <div app-run="todo.html" module="todoApp" class="well"></div>
         <h3>Watch as we build this app</h3>
         <div class="video-img" ng-click="showVideo('https://www.youtube.com/embed/WuiHuZq_cg4?&autoplay=1')">
           <img class="video" src="img/video.png">
@@ -516,7 +516,7 @@
     </script>
     <script type="text/ng-template" id="todo.html">
       <h2>Todo</h2>
-      <div ng-app="todoApp" ng-controller="TodoController">
+      <div ng-controller="TodoController">
         <span>{{remaining()}} of {{todos.length}} remaining</span>
         [ <a href="" ng-click="archive()">archive</a> ]
         <ul class="unstyled">
