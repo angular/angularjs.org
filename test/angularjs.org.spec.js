@@ -49,6 +49,7 @@ describe('Angularjs.org', function () {
       it('should change the CDN url based on user selection of stable or unstable', function () {
         var okay;
         var unstableButton = tractor.findElement(protractor.By.css(".branch-btns button:nth-child(1)"));
+        tractor.driver.sleep(500);
         unstableButton.click();
         cdnInput.getAttribute('value').then(function (val) {
           var unstableVersion = val.split('/').splice(-2,1)[0];
