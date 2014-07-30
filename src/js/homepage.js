@@ -85,7 +85,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
       angular: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular.min.js"></script>\n',
       resource: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-resource.min.js"></script>\n',
       route: '<script src="https://ajax.googleapis.com/ajax/libs/angularjs/' + angular.version.full + '/angular-route.min.js"></script>\n',
-      firebase: '<script src="https://cdn.firebase.com/v0/firebase.js"></script>\n    <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>\n'
+      firebase: '<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>\n    <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>\n'
     };
   })
 

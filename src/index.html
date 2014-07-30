@@ -579,7 +579,7 @@
       .value('fbURL', 'https://angularjs-projects.firebaseio.com/')
 
       .factory('Projects', function($firebase, fbURL) {
-        return $firebase(new Firebase(fbURL));
+        return $firebase(new Firebase(fbURL)).$asArray();
       })
 
       .config(function($routeProvider) {
@@ -607,25 +607,31 @@
 
       .controller('CreateCtrl', function($scope, $location, $timeout, Projects) {
         $scope.save = function() {
-          Projects.$add($scope.project, function() {
-            $timeout(function() { $location.path('/'); });
-          });
+            Projects.$add($scope.project).then(function(data) {
+                $location.path('/');
+            });
         };
       })
 
       .controller('EditCtrl',
-        function($scope, $location, $routeParams, $firebase, fbURL) {
-          var projectUrl = fbURL + $routeParams.projectId;
-          $scope.project = $firebase(new Firebase(projectUrl));
+        function($scope, $location, $routeParams, Projects) {
+          var projectId = $routeParams.projectId,
+              projectIndex;
+
+          $scope.projects = Projects;
+          projectIndex = $scope.projects.$indexFor(projectId);
+          $scope.project = $scope.projects[projectIndex];
 
           $scope.destroy = function() {
-            $scope.project.$remove();
-            $location.path('/');
+              $scope.projects.$remove($scope.project).then(function(data) {
+                  $location.path('/');
+              });
           };
 
           $scope.save = function() {
-            $scope.project.$save();
-            $location.path('/');
+              $scope.projects.$save($scope.project).then(function(data) {
+                 $location.path('/');
+              });
           };
       });
     </script>
@@ -644,11 +650,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="project in projects | orderByPriority | filter:search | orderBy:'name'">
-          <td><a href="{{project.site}}" target="_blank">{{project.name}}</a></td>
+        <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
+          <td><a ng-href="{{project.site}}" target="_blank">{{project.name}}</a></td>
           <td>{{project.description}}</td>
           <td>
-            <a href="#/edit/{{project.$id}}"><i class="icon-pencil"></i></a>
+            <a ng-href="#/edit/{{project.$id}}"><i class="icon-pencil"></i></a>
           </td>
         </tr>
         </tbody>
@@ -680,7 +686,7 @@
         <button ng-click="save()" ng-disabled="myForm.$invalid"
                 class="btn btn-primary">Save</button>
         <button ng-click="destroy()"
-                ng-show="project.$remove" class="btn btn-danger">Delete</button>
+                ng-show="project.$id" class="btn btn-danger">Delete</button>
       </form>
     </script>
     <script type="text/ng-template" id="project.annotation">
@@ -690,7 +696,7 @@
        , "angular.min.js": "Load AngularJS."
        , "angular-resource.min.js": "Load AngularJS resource module."
        , "angular-route.min.js": "Load AngularJS route module."
-       , "v0/firebase.js": "Load the Firebase JavaScript SDK."
+       , "firebase.js": "Load the Firebase JavaScript SDK."
        , "angularfire.min.js": "Load the Angular bindings for Firebase."
        , "project.js": "The <code>project.js</code> file contains the controllers which specify your application’s behavior."
        , "ng-view": "We’re marking this <code>&lt;div&gt;</code> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section. In this case, we’ll be switching between a list of “projects” and the form to add new or edit existing “projects”."
@@ -702,6 +708,7 @@
        , "fbURL": "The URL to the Firebase location from which we want to load data (and store changes)."
        , "factory": "Define a factory that will return a singleton object that can be injected into controllers and services."
        , "$firebase": "A service provided by AngularFire for binding data from Firebase to Angular models."
+       , "$asArray": "A method that returns data from Firebase in the form of a synchronized array."
        , "config": "You use <code>config()</code> to configure existing services. Here, we’re configuring the <code>$routeProvider</code> responsible for mapping URL paths to partials."
        , "controller": "Define a controller function that can be attached to the DOM using <code>ng-controller</code> or to a view template by specifying it in the route configuration."
        , "when": "When the URL is <code>/</code> it will load <code>list.html</code> into the view and attach the <code>ListCtrl</code> controller. You can instantly get an overview of an app's structure by reading the route definitions."
@@ -723,7 +730,6 @@
        { "ng-model": "Bind the input field to the <code>search</code> property. The property is then used to filter for only the projects which contain the text entered by the user."
        , "#/new": "A link to a <code>/new</code> route defined in <code>projects.js</code>. Note that we follow the spirit of the web. There is no need to register callbacks on links, we are simply navigating to a new URL. This automatically updates the browser history, and enables deep-linking. But unlike a server round trip application, this navigation event gets rendered instantly in the browser."
        , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
-       , "orderByPriority": "A special filter provided by AngularFire to convert an object into an ordered array as defined by Firebase."
        , "filter": "The <code>filter</code> uses the <code>search</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
        , "orderBy": "Returns the <code>project</code> list ordered by <code>name</code> property."
        , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id serves the purpose of deep-linking, back button, as well as a way to communicate to <code>EditCtrl</code> which project should be edited."
@@ -887,8 +893,8 @@
   <script src="js/angular-ui-bootstrap.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/${CDN_VERSION_1_3}/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/${CDN_VERSION_1_3}/angular-route.min.js"></script>
-  <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-  <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
   <script src="//code.angularjs.org/${CDN_VERSION_1_3}/i18n/angular-locale_sk.js"></script>
   <script>
     angular.module('ngLocal.sk', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
