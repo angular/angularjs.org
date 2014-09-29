@@ -113,7 +113,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
                 value = value.replace(/\#\//mg, '/');
               }
               return value;
-            }
+            },
             put: function(key, value) {
               // noop, we don't need the cache for anything in examples
             }
@@ -302,7 +302,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
           return '<input type="hidden" name="' +  name + '" value="' + escape(value) + '">';
         }
       }
-    }
+    };
   })
 
   .directive('hint', function() {
