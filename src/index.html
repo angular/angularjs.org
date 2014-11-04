@@ -184,48 +184,55 @@
     </div>
   </div>
 
-  <div class="jumbotron" ng-controller="JumbotronCtrl" ng-cloak>
+  <div class="jumbotron" ng-controller="JumbotronCtrl as stage" ng-cloak ng-class="stage.section">
     <div class="jumbotron-header">
-      <h1>ng-conf 2014</h1>
+      <nav class="jumbotron-sections">
+        <a href="" class="ng-europe-link" ng-class="{active:stage.section=='ng-europe'}" ng-click="stage.setSection('ng-europe')">
+          <img src="./img/ng-europe-logo.png" class="jumbotron-logo">
+          <h2>ng-europe 2014</h2>
+        </a>
+        <a href="" class="ng-conf-link" ng-class="{active:stage.section=='ng-conf'}" ng-click="stage.setSection('ng-conf')">
+          <h2>ng-conf 2014</h2>
+          <img src="./img/ng-conf-logo.png" class="jumbotron-logo">
+        </a>
+      </nav>
     </div>
     <div class="stretched-container">
-      <nav class="jumbotron-tabs" ng-if="!loading">
-        <div class="jumbotron-tabs-container">
-          <a href="" ng-class="{'active':category=='basics'}" class="jumbotron-tab" ng-click="filterByCategory('basics')">Get to know Angular</a>
-          <a href="" ng-class="{'active':category=='advanced'}" class="jumbotron-tab" ng-click="filterByCategory('advanced')">Advanced Topics</a>
-          <a href="" ng-class="{'active':category=='beyond'}" class="jumbotron-tab" ng-click="filterByCategory('beyond')">Angular and Beyond</a>
-          <div class="jumbotron-tab search-tab" ng-class="{'active':searchFocus}">
-            <span class="icon-search search-icon"></span>
-            <input class="search-input" type="text" ng-model="search" placeholder="Search Videos..." ng-change="filterBySearch(search)" ng-focus="searchFocus=true; filterBySearch(search)" ng-blur="searchFocus=false" />
-          </div>
-        </div>
-      </nav>
-
-      <div ng-if="loading">
+      <div ng-if="stage.loading">
         <h2 class="jumbotron-message"><strong>Loading...</strong></h2>
       </div>
 
-      <div ng-if="!loading">
-        <div ng-if="videos.length==0">
+      <div ng-if="!stage.loading">
+        <div ng-if="stage.videos.length==0">
           <h2 class="jumbotron-message"><strong>No videos</strong> were found by your search query</h2>
         </div>
-        <div class="gallery jumbotron-body" ng-if="videos.length > 0">
-          <a ng-href="{{ video.url }}" ng-repeat="video in videos" class="gallery-item video-item animated-item" target="_blank">
-            <img ng-src="{{ video.imageUrl }}" />
+        <div class="gallery jumbotron-body" ng-if="stage.videos.length > 0">
+          <a ng-href="{{ video.url }}" ng-repeat="video in stage.videos" class="gallery-item video-item animated-item" target="_blank">
+            <div class="video-item-image">
+              <img ng-src="{{ video.imageUrl }}" />
+            </div>
             <h4 class="video-item-heading">{{ video.title }}</h4>
           </a>
         </div>
       </div>
 
-      <nav class="jumbotron-actions">
-        <a class="btn btn-primary btn-large" href="https://www.youtube.com/user/ngconfvideos?feature=watch" target="_blank">
-          <i class="icon-play-circle"></i> View All Videos
+      <div ng-show="stage.section=='ng-europe'" class="jumbotron-buttons">
+        <a href="https://www.youtube.com/channel/UCEGUP3TJJfMsEM_1y8iviSQ" target="_blank" class="btn btn-primary btn-large" rel="nofollow"> 
+          view all videos
         </a>
-        <span class="spacer"></span>
-        <a class="btn btn-default btn-large" href="http://ng-conf.org/" target="_blank">
-          <i class="icon-external-link"></i> Go to ng-conf.org
+        <a href="http://www.ng-europe.org/" target="_blank" class="btn btn-large"  rel="nofollow">
+          www.ngeurope.org
         </a>
-      </nav>
+      </div>
+      
+      <div ng-show="stage.section=='ng-conf'" class="jumbotron-buttons">
+        <a href="https://www.youtube.com/user/ngconfvideos" target="_blank" class="btn btn-large btn-primary" rel="nofollow"> 
+          view all videos
+        </a>
+        <a href="http://ng-conf.org/" target="_blank" class="btn btn-large"  rel="nofollow">
+          www.ng-conf.org
+        </a>
+      </div>
     </div>
   </div>
 

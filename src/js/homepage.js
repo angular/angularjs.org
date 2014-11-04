@@ -315,38 +315,25 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
   .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', function($scope,   $http,   filterFilter) {
 
-    function byCategoryFilter(array, category) {
-      var results = [];
-      angular.forEach(array, function(video) {
-        if ( video.category == category ) {
-          results.push(video);
-        }
-      });
-      return results;
-    }
-
-    var defaultCategory = 'basics';
-    $scope.category = defaultCategory;
-
+    var self = this;
     var allVideos;
-    $scope.loading = true;
+    var defaultSection = 'ng-europe';
+    self.section = defaultSection;
+
+    self.setSection = function(section) {
+      self.section = section;
+      if (!self.loading) {
+        self.videos = allVideos[self.section];
+      }
+    };
+
+    self.loading = true;
     $http.get('./featured-videos.json').success(function(results) {
-      $scope.loading = false;
+      self.loading = false;
+  
       allVideos = results;
-      $scope.filterByCategory($scope.category);
+      self.videos = results[self.section];
     });
-
-    $scope.filterBySearch = function(q) {
-      $scope.search = q;
-      $scope.category = null;
-      $scope.videos = filterFilter(allVideos, q);
-    };
-
-    $scope.filterByCategory = function(category) {
-      $scope.search = null;
-      $scope.category = category;
-      $scope.videos = byCategoryFilter(allVideos, category);
-    };
   }])
 
 

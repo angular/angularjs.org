@@ -299,7 +299,7 @@ div.modal-body button {
 .jumbotron {
   box-shadow:inset 0 0 100px #000;
   padding:0;
-  background:#444;
+  background:#444 url(../img/videos-bg.png);
   overflow:auto;
   text-align:center;
 }
@@ -314,23 +314,127 @@ div.modal-body button {
   margin-top:0;
 }
 
+.jumbotron-sections a {
+  display:inline-block;
+  padding:10px 20px;
+  overflow:auto;
+  color:white;
+}
+
+.jumbotron-sections a.active {
+  background:black;
+  border-radius:10px;
+}
+
+.jumbotron-sections h2 {
+  padding:0 20px;
+  overflow:auto;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.jumbotron-logo {
+  height:70px;
+  vertical-align:middle;
+}
+
 .gallery-item {
+  box-sizing:border-box;
   display:inline-block;
   vertical-align:top;
-  width:280px;
+  width:340px;
+}
+
+.gallery-item img {
+  box-sizing:border-box;
+}
+
+.video-item-heading {
+  box-sizing:border-box;
+  font-weight:bold;
+  line-height:25px;
+  padding:20px 10px 0;
+  font-size:20px;
+  font-family:helvetica;
 }
 
 .video-item {
   padding:10px 5px;
+  margin:20px 20px 30px;
+  text-decoration:none!important;
 }
 
-.video-item img {
-  height:200px;
+.video-item-image {
+  border-radius:10px;
+  position:relative;
+  height:170px;
+  overflow:hidden;
+  border:5px solid rgba(0,0,0,0.4);
+}
+
+.video-item:hover .video-item-image {
+  transition:0.2s linear all;
+  -webkit-transition:0.2s linear all;
+}
+
+.ng-europe .video-item:hover .video-item-image {
+  border-color:#006FCC;
+}
+
+.ng-europe .jumbotron-sections a.active,
+.ng-europe .video-item:hover .video-item-image:after {
+  color:#006FCC;
+}
+
+.ng-conf .video-item:hover .video-item-image {
+  border-color:#D32C25;
+}
+
+.ng-conf .jumbotron-sections a.active,
+.ng-conf .video-item:hover .video-item-image:after {
+  color:#D32C25;
+}
+
+.ng-conf .video-item:hover .video-item-image:after {
+  color:#D32C25;
+}
+
+.video-item-image img {
+  margin-top:-40px;
+  max-height:250px;
+}
+
+.video-item-image {
+  position:relative;
 }
 
 .video-item:hover img {
   box-shadow:0 0 10px #006FCC;
   cursor:pointer;
+}
+
+.video-item:hover .video-item-image:before {
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background:rgba(0,0,0,0.4);
+  content:"";
+}
+
+.video-item:hover .video-item-image:after {
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100px;
+  height:100px;
+  margin-top:-50px;
+  margin-left:-50px;
+  font-family: "FontAwesome";
+  line-height:100px;
+  font-size:80px;
+  content: "\f04b";
 }
 
 .jumbotron-header,
@@ -349,6 +453,7 @@ div.modal-body button {
 
 .jumbotron-body {
   padding-bottom:30px;
+  padding-top:20px;
 }
 
 .jumbotron .btn {
@@ -359,84 +464,52 @@ div.modal-body button {
   font-weight:normal;
 }
 
-.video-item-heading {
-  margin-top:5px;
+.jumbotron-buttons {
+  padding:0 0 20px;
 }
 
-.jumbotron-tabs {
-  margin:30px 0 20px;
-}
-
-.jumbotron-tabs-container {
-  display:table;
-  width:90%;
-  margin:0 auto;
-}
-
-.jumbotron-tab {
-  vertical-align:middle;
-  height:50px;
-  font-size:20px;
-  display:table-cell;
-  width:25%;
-  margin:0 10px;
-  color:white;
-  text-decoration:none;
-  border-bottom:2px solid transparent;
-}
-
-.jumbotron-tabs .search-input {
-  margin:2px 0 0;
-  background:transparent;
-  border:0;
-  height:auto;
-  font-size:20px;
-  color:white;
-  border:0;
-  box-shadow:none;
-}
-
-.jumbotron-tab:hover {
-  color:white;
-  text-decoration:none;
-  background:rgba(0,0,0,0.15);
-}
-
-.jumbotron-tab.active {
-  position:relative;
-  background:#222;
-  color:#006FCC;
-}
-
-.jumbotron-tab.active:after {
-  border-width:8px;
-  border-color:#222 transparent transparent;
-  border-style:solid;
-  position:absolute;
-  bottom:-16px;
-  left:50%;
-  margin-left:-8px;
-  content:"";
+.jumbotron-buttons .btn {
+  font-size:30px;
+  margin:0 20px 20px;
 }
 
 .animated-item.ng-enter-stagger {
-  -webkit-transition-delay:0.15s;
-  transition-delay:0.15s;
+  -webkit-animation-delay:150ms;
+  animation-delay:150ms;
 
-  -webkit-transition-duration:0;
-  transition-duration:0;
+  -webkit-animation-duration:0;
+  animation-duration:0;
 }
 
 .animated-item.ng-enter {
-  transition:0.5s linear all;
   position:relative;
-  left:-20px;
-  opacity:0;
+  backface-visibility: visible !important;
+  animation: 0.4s fadeInDown;
+  -webkit-animation: 0.8s fadeInDown;
 }
 
-.animated-item.ng-enter.ng-enter-active {
-  left:0;
-  opacity:1;
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -30px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+  }
 }
 
 .jumbotron-message {
