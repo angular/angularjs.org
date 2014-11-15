@@ -473,46 +473,47 @@
     </style>
     <script id="todo.js">
       angular.module('todoApp', [])
-        .controller('TodoController', ['$scope', function($scope) {
-          $scope.todos = [
+        .controller('TodoListController', function() {
+          var todoList = this;
+          todoList.todos = [
             {text:'learn angular', done:true},
             {text:'build an angular app', done:false}];
 
-          $scope.addTodo = function() {
-            $scope.todos.push({text:$scope.todoText, done:false});
-            $scope.todoText = '';
+          todoList.addTodo = function() {
+            todoList.todos.push({text:todoList.todoText, done:false});
+            todoList.todoText = '';
           };
 
-          $scope.remaining = function() {
+          todoList.remaining = function() {
             var count = 0;
-            angular.forEach($scope.todos, function(todo) {
+            angular.forEach(todoList.todos, function(todo) {
               count += todo.done ? 0 : 1;
             });
             return count;
           };
 
-          $scope.archive = function() {
-            var oldTodos = $scope.todos;
-            $scope.todos = [];
+          todoList.archive = function() {
+            var oldTodos = todoList.todos;
+            todoList.todos = [];
             angular.forEach(oldTodos, function(todo) {
-              if (!todo.done) $scope.todos.push(todo);
+              if (!todo.done) todoList.todos.push(todo);
             });
           };
-        }]);
+        });
     </script>
     <script type="text/ng-template" id="todo.html">
       <h2>Todo</h2>
-      <div ng-controller="TodoController">
-        <span>{{remaining()}} of {{todos.length}} remaining</span>
-        [ <a href="" ng-click="archive()">archive</a> ]
+      <div ng-controller="TodoListController as todoList">
+        <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+        [ <a href="" ng-click="todoList.archive()">archive</a> ]
         <ul class="unstyled">
-          <li ng-repeat="todo in todos">
+          <li ng-repeat="todo in todoList.todos">
             <input type="checkbox" ng-model="todo.done">
             <span class="done-{{todo.done}}">{{todo.text}}</span>
           </li>
         </ul>
-        <form ng-submit="addTodo()">
-          <input type="text" ng-model="todoText"  size="30"
+        <form ng-submit="todoList.addTodo()">
+          <input type="text" ng-model="todoList.todoText"  size="30"
                  placeholder="add new todo here">
           <input class="btn-primary" type="submit" value="add">
         </form>
@@ -537,7 +538,7 @@
         }
 
       , "todo.js":
-        { "TodoController": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
+        { "TodoListController": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
         , "$scope": "<code>$scope</code> contains your model data. It is the glue between the controller and the view. The <code>$scope</code> is just one of the services that can be injected into the controller."
         , "todos": "We are creating the model with two initial todo items. Notice that you simply assign your model to the <code>$scope</code> and AngularJS reflects the state in the UI automatically. The model data is a Plain-Old-JavaScript-Object no need to wrap it in proxy or accesses the property through special setter methods."
         , "addTodo": "We are assigning the behavior into the <code>$scope</code> so that the <code>ng-submit</code> can invoke it."
@@ -665,7 +666,7 @@
       .config(function($routeProvider) {
         $routeProvider
           .when('/', {
-            controller:'ListCtrl',
+            controller:'ProjectListController as projectList',
             templateUrl:'list.html',
             resolve: {
               projects: function (Projects) {
@@ -674,11 +675,11 @@
             }
           })
           .when('/edit/:projectId', {
-            controller:'EditCtrl',
+            controller:'EditProjectController as editProject',
             templateUrl:'detail.html'
           })
           .when('/new', {
-            controller:'CreateCtrl',
+            controller:'NewProjectController as editProject',
             templateUrl:'detail.html'
           })
           .otherwise({
@@ -686,35 +687,38 @@
           });
       })
 
-      .controller('ListCtrl', function($scope, projects) {
-        $scope.projects = projects;
+      .controller('ProjectListController', function(projects) {
+        var projectList = this;
+        projectList.projects = projects;
       })
 
-      .controller('CreateCtrl', function($scope, $location, Projects) {
-        $scope.save = function() {
-            Projects.projects.$add($scope.project).then(function(data) {
+      .controller('NewProjectController', function($location, Projects) {
+        var editProject = this;
+        editProject.save = function() {
+            Projects.$add(editProject.project).then(function(data) {
                 $location.path('/');
             });
         };
       })
 
-      .controller('EditCtrl',
-        function($scope, $location, $routeParams, Projects) {
+      .controller('EditProjectController',
+        function($location, $routeParams, Projects) {
+          var editProject = this;
           var projectId = $routeParams.projectId,
               projectIndex;
 
-          $scope.projects = Projects.projects;
-          projectIndex = $scope.projects.$indexFor(projectId);
-          $scope.project = $scope.projects[projectIndex];
+          editProject.projects = Projects.projects;
+          projectIndex = editProject.projects.$indexFor(projectId);
+          editProject.project = editProject.projects[projectIndex];
 
-          $scope.destroy = function() {
-              $scope.projects.$remove($scope.project).then(function(data) {
+          editProject.destroy = function() {
+              editProject.projects.$remove(editProject.project).then(function(data) {
                   $location.path('/');
               });
           };
 
-          $scope.save = function() {
-              $scope.projects.$save($scope.project).then(function(data) {
+          editProject.save = function() {
+              editProject.projects.$save(editProject.project).then(function(data) {
                  $location.path('/');
               });
           };
@@ -725,7 +729,8 @@
       <div ng-view></div>
     </script>
     <script type="text/ng-template" id="list.html">
-      <input type="text" ng-model="search" class="search-query" id="projects_search" placeholder="Search">
+      <input type="text" ng-model="projectList.search" class="search-query" id="projects_search"
+             placeholder="Search">
       <table>
         <thead>
         <tr>
@@ -735,7 +740,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
+        <tr ng-repeat="project in projectList.projects | filter:projectList.search | orderBy:'name'">
           <td><a ng-href="{{project.site}}" target="_blank">{{project.name}}</a></td>
           <td>{{project.description}}</td>
           <td>
@@ -749,14 +754,14 @@
       <form name="myForm">
         <div class="control-group" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
           <label>Name</label>
-          <input type="text" name="name" ng-model="project.name" required>
+          <input type="text" name="name" ng-model="editProject.project.name" required>
           <span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">
               Required {{myForm.name.$pristine}}</span>
         </div>
 
         <div class="control-group" ng-class="{error: myForm.site.$invalid && !myForm.site.$pristine}">
           <label>Website</label>
-          <input type="url" name="site" ng-model="project.site" required>
+          <input type="url" name="site" ng-model="editProject.project.site" required>
           <span ng-show="myForm.site.$error.required && !myForm.site.$pristine" class="help-inline">
               Required</span>
           <span ng-show="myForm.site.$error.url" class="help-inline">
@@ -764,14 +769,14 @@
         </div>
 
         <label>Description</label>
-        <textarea name="description" ng-model="project.description"></textarea>
+        <textarea name="description" ng-model="editProject.project.description"></textarea>
 
         <br>
         <a href="#/" class="btn">Cancel</a>
-        <button ng-click="save()" ng-disabled="myForm.$invalid"
+        <button ng-click="editProject.save()" ng-disabled="myForm.$invalid"
                 class="btn btn-primary">Save</button>
-        <button ng-click="destroy()"
-                ng-show="project.$id" class="btn btn-danger">Delete</button>
+        <button ng-click="editProject.destroy()"
+                ng-show="editProject.project.$id" class="btn btn-danger">Delete</button>
       </form>
     </script>
     <script type="text/ng-template" id="project.annotation">
@@ -813,6 +818,7 @@
      , "list.html":
        { "ng-model": "Bind the input field to the <code>search</code> property. The property is then used to filter for only the projects which contain the text entered by the user."
        , "#/new": "A link to a <code>/new</code> route defined in <code>projects.js</code>. Note that we follow the spirit of the web. There is no need to register callbacks on links, we are simply navigating to a new URL. This automatically updates the browser history, and enables deep-linking. But unlike a server round trip application, this navigation event gets rendered instantly in the browser."
+       , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
        , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
        , "filter": "The <code>filter</code> uses the <code>search</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
        , "orderBy": "Returns the <code>project</code> list ordered by <code>name</code> property."
@@ -956,7 +962,7 @@
         , "replace": "Tells AngularJS that the original <code>&lt;tabs&gt;</code> element should be replaced with the <code>template</code> rather than appending to it."
         , "active": "We set the <code>active</code> CSS class to show the currently active tab."
         , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside a <code>&lt;tabs&gt;</code> component. This gives the <code>&lt;pane&gt;</code> component to access to the <code>&lt;tabs&gt;</code>' controller methods -- the <code>addPane()</code> method in this case."
-        , "tabsCtrl": "As we've specified we <code>require</code> the <code>&lt;tabs&gt;</code> as our container, we get passed its controller instance."
+        , "tabsController": "As we've specified we <code>require</code> the <code>&lt;tabs&gt;</code> as our container, we get passed its controller instance."
         , "ng-click": "Select the clicked tab."
         , "bind": "Specifies how is the <code>title</code> attribute on the <code>&lt;pane&gt;</code> element interpreted. The <code>bind</code> strategy copies the interpolated value to <code>&lt;pane&gt;</code>'s scope. This makes <code>title</code> available for binding in <code>template</code>."
         }
