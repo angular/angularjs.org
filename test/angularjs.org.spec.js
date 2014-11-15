@@ -117,19 +117,18 @@ describe('Angularjs.org', function () {
 
     describe('Add Some Control', function () {
       it('should strike out a todo when clicked', function () {
-        var el = browser.findElement(protractor.By.css('[ng-controller="TodoController"] ul >li:nth-child(2) input'));
+        var el = browser.findElement(protractor.By.css('[ng-controller="TodoListController as todoList"] ul >li:nth-child(2) input'));
         el.click();
         expect(el.getAttribute('value')).toBe('on');
       });
 
 
       it('should add a new todo when added through text field', function () {
-        var el = browser.findElement(protractor.By.model('todoText'));
+        var el = browser.findElement(protractor.By.model('todoList.todoText'));
         el.click();
         el.sendKeys('Write tests!');
         el.sendKeys(webdriver.Key.RETURN);
-
-        var lastTodo = browser.findElement(protractor.By.css('[ng-repeat="todo in todos"]:nth-child(3) span'));
+        var lastTodo = browser.findElement(protractor.By.css('[ng-repeat="todo in todoList.todos"]:nth-child(3) span'));
         expect(lastTodo.getText()).toEqual('Write tests!');
       });
 
@@ -156,7 +155,7 @@ describe('Angularjs.org', function () {
 
       it('should search the list of projects', function() {
         browser.driver.sleep(2000);
-        var list = element.all(by.repeater('project in projects'));
+        var list = element.all(by.repeater('project in projectList.projects'));
         element(by.id('projects_search')).sendKeys('Ang');
         browser.driver.sleep(50);
         expect(list.count()).toBe(1);
