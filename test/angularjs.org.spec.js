@@ -118,19 +118,19 @@ describe('Angularjs.org', function () {
 
     describe('Add Some Control', function () {
       it('should strike out a todo when clicked', function () {
-        var el = tractor.findElement(protractor.By.css('[ng-controller="TodoController"] ul >li:nth-child(2) input'));
+        var el = tractor.findElement(protractor.By.css('[ng-controller="TodoListCtrl as todoList"] ul >li:nth-child(2) input'));
         el.click();
         expect(el.getAttribute('value')).toBe('on');
       });
 
 
       it('should add a new todo when added through text field', function () {
-        var el = tractor.findElement(protractor.By.model('todoText'));
+        var el = tractor.findElement(protractor.By.model('todoList.todoText'));
         el.click();
         el.sendKeys('Write tests!');
         el.sendKeys(webdriver.Key.RETURN);
 
-        var lastTodo = tractor.findElement(protractor.By.css('[ng-repeat="todo in todos"]:nth-child(3) span'));
+        var lastTodo = tractor.findElement(protractor.By.css('[ng-repeat="todo in todoList.todos"]:nth-child(3) span'));
         expect(lastTodo.getText()).toEqual('Write tests!');
       });
 
