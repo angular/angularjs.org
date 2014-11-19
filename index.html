@@ -590,7 +590,7 @@
         $scope.projects = Projects;
       })
 
-      .controller('CreateCtrl', function($scope, $location, $timeout, Projects) {
+      .controller('CreateCtrl', function($scope, $location, Projects) {
         $scope.save = function() {
             Projects.$add($scope.project).then(function(data) {
                 $location.path('/');
@@ -701,7 +701,6 @@
        , "otherwise": "The <code>otherwise</code> route specifies which view to display when the URL doesn’t match any of the explicit routes. It’s the default."
        , "Projects": "<code>Projects</code> is an instance of <code>$firebase</code>, and is defined in the <code>projects</code> module. It exposes method to add, remove and update projects in the collection. Its purpose is to abstract the server communication. This lets the controller focus on the behavior rather than the complexities of server access."
        , "$scope": "We can immediately assign the set of projects to our scope, and they will be displayed in the view."
-       , "$timeout": "The callback for Projects.$add is called asynchronously, and we have to use $timeout to ensure $location has the right context when it executes."
        , "$location": "You use the <code>$location</code> service to access the browser's location."
        , "path": "Use the <code>path</code> method to change the application's 'deep-linking' location. Changing the URL will automatically activate the new route, and transition the application to display that view -- in this case, the <code>/edit/</code> view."
        , "$routeParams": "Here, we ask AngularJS to inject the <code>$routeParams</code> service.  We use it to access the parameters extracted from the route path definitions."
