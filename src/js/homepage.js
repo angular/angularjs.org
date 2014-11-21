@@ -330,7 +330,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     self.loading = true;
     $http.get('./featured-videos.json').success(function(results) {
       self.loading = false;
-
+  
       allVideos = results;
       self.videos = results[self.section];
     });
