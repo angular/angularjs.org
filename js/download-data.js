@@ -24,8 +24,8 @@ angular.module('download-data', [])
     "<dl class='dl-horizontal'>"+
     "  <dt>Legacy 1.2.x</dt>"+
     "  <dd>This branch is in maintenance mode. It is stable and the API will not undergo any further changes. New releases will only contain bug-fixes.</dd>"+
-    "  <dt>Latest 1.3.x</dt>"+
-    "  <dd>This branch is being actively developed. The API's are subject to change without any prior notice. Use if you want to have access to the most recent features.</dd>"+
+    "  <dt>Stable 1.3.x</dt>"+
+    "  <dd>This is the latest stable branch, with regular bug fixes, performance improvements and small features added.</dd>"+
     "</dl>",
 
   buildsInfo:
