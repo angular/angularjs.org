@@ -23,6 +23,7 @@ function replaceInFile {
 function getCdnVersions {
   CDN_VERSION_1_2=$(./get-cdn-version.sh 1.2)
   CDN_VERSION_1_3=$(./get-cdn-version.sh 1.3)
+  CDN_VERSION_1_4=$(./get-cdn-version.sh 1.4)
 }
 
 function replaceCdnVersionInFiles {
@@ -30,6 +31,7 @@ function replaceCdnVersionInFiles {
   do
     replaceInFile $FILE '${CDN_VERSION_1_2}' $CDN_VERSION_1_2
     replaceInFile $FILE '${CDN_VERSION_1_3}' $CDN_VERSION_1_3
+    replaceInFile $FILE '${CDN_VERSION_1_4}' $CDN_VERSION_1_4
   done
 }
 
@@ -37,8 +39,8 @@ function replaceCdnVersionInFiles {
 
 function testBuildResult {
   export ANGULAR_HOME_HOST='http://localhost:8100';
-  export ANGULAR_DOWNLOAD_VERSIONS="$CDN_VERSION_1_2:1.2.x $CDN_VERSION_1_3:1.3.x"
-  export ANGULAR_VERSION="$CDN_VERSION_1_3"
+  export ANGULAR_DOWNLOAD_VERSIONS="$CDN_VERSION_1_2:1.2.x $CDN_VERSION_1_3:1.3.x $CDN_VERSION_1_4:1.4.x"
+  export ANGULAR_VERSION="$CDN_VERSION_1_4"
   export CHECK_SCRIPT_TAG="true"
 
   function killServer () {

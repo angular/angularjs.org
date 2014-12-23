@@ -8,8 +8,13 @@ angular.module('download-data', [])
     },
     {
       branch: '1.3.*', version: '${CDN_VERSION_1_3}',
-      title: '1.3.x (latest)',
+      title: '1.3.x (stable)',
       cssClass: 'branch-1-3-x'
+    },
+    {
+      branch: '1.4.*', version: '${CDN_VERSION_1_4}',
+      title: '1.4.x (next)',
+      cssClass: 'branch-1-4-x'
     }
 ])
 
@@ -26,6 +31,8 @@ angular.module('download-data', [])
     "  <dd>This branch is in maintenance mode. It is stable and the API will not undergo any further changes. New releases will only contain bug-fixes.</dd>"+
     "  <dt>Stable 1.3.x</dt>"+
     "  <dd>This is the latest stable branch, with regular bug fixes, performance improvements and small features added.</dd>"+
+    "  <dt>Next 1.4.x</dt>"+
+    "  <dd>This is the master development branch, with new features, bug fixes and performance improvements. Breaking changes are allowed in this branch.</dd>"+
     "</dl>",
 
   buildsInfo:
