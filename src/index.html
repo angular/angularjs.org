@@ -558,20 +558,107 @@
         padding: 0 .25em;
       }
     </style>
+    <script>
+      window.projectsArray = [
+          {
+            name: 'AngularJS',
+            site: 'http://angularjs.org',
+            description: 'HTML enhanced for web apps!'
+          },
+          {
+            name: 'jQuery',
+            site: 'http://jquery.com/',
+            description: 'Write less, do more.'
+          },
+          {
+            name: 'Backbone',
+            site: 'http://documentcloud.github.com/backbone/',
+            description: 'Models for your apps.'
+          },
+          {
+            name: 'SproutCore',
+            site: 'http://sproutcore.com/',
+            description: 'Innovative web-apps.'
+          },
+          {
+            name: 'Sammy',
+            site: 'http://sammyjs.org/',
+            description: 'Small with class.'
+          },
+          {
+            name: 'Spine',
+            site: 'http://spinejs.com/',
+            description: 'Awesome MVC Apps.'
+          },
+          {
+            name: 'Cappucino',
+            site: 'http://cappuccino.org/',
+            description: 'Objective-J.'
+          },
+          {
+            name: 'Knockout',
+            site: 'http://knockoutjs.com/',
+            description: 'MVVM pattern.'
+          },
+          {
+            name: 'GWT',
+            site: 'https://developers.google.com/web-toolkit/',
+            description: 'JS in Java.'
+          },
+          {
+            name: 'Ember',
+            site: 'http://emberjs.com/',
+            description: 'Ambitious web apps.'
+          },
+          {
+            name: 'Batman',
+            site: 'http://batmanjs.org/',
+            description: 'Quick and beautiful.'
+          }
+        ];
+    </script>
     <script id="project.js">
       angular.module('project', ['ngRoute', 'firebase'])
 
-      .value('fbURL', 'https://angularjs-projects.firebaseio.com/')
+      .value('fbURL', 'https://ng-projects-list.firebaseio.com/')
+      .service('fbRef', function(fbURL) {
+        return new Firebase(fbURL)
+      })
+      .service('fbAuth', function($q, $firebase, $firebaseAuth, fbRef) {
+        var auth;
+        return function () {
+            if (auth) return $q.when(auth);
+            var deferred = $q.defer();
+            $firebaseAuth(fbRef).$authAnonymously().then(function(authData) {
+                auth = authData;
+                deferred.resolve(authData);
+            });
+            return deferred.promise;
+        }
+      })
 
-      .factory('Projects', function($firebase, fbURL) {
-        return $firebase(new Firebase(fbURL)).$asArray();
+      .service('Projects', function($q, $firebase, fbRef, fbAuth) {
+        var self = this;
+        this.fetch = function () {
+          if (this.projects) return $q.when(this.projects);
+          return fbAuth().then(function(auth) {
+            var $projects = $firebase(fbRef.child('projects/' + auth.auth.uid));
+            $projects.$set(window.projectsArray);
+            return self.projects = $projects.$asArray();
+          });
+        };
       })
 
       .config(function($routeProvider) {
         $routeProvider
           .when('/', {
             controller:'ListCtrl',
-            templateUrl:'list.html'
+            templateUrl:'list.html',
+            resolve: {
+              projects: function (Projects) {
+                return Projects.fetch();
+              }
+            }
           })
           .when('/edit/:projectId', {
             controller:'EditCtrl',
@@ -586,13 +673,13 @@
           });
       })
 
-      .controller('ListCtrl', function($scope, Projects) {
-        $scope.projects = Projects;
+      .controller('ListCtrl', function($scope, projects) {
+        $scope.projects = projects;
       })
 
       .controller('CreateCtrl', function($scope, $location, Projects) {
         $scope.save = function() {
-            Projects.$add($scope.project).then(function(data) {
+            Projects.projects.$add($scope.project).then(function(data) {
                 $location.path('/');
             });
         };
@@ -603,7 +690,7 @@
           var projectId = $routeParams.projectId,
               projectIndex;
 
-          $scope.projects = Projects;
+          $scope.projects = Projects.projects;
           projectIndex = $scope.projects.$indexFor(projectId);
           $scope.project = $scope.projects[projectIndex];
 
@@ -625,7 +712,7 @@
       <div ng-view></div>
     </script>
     <script type="text/ng-template" id="list.html">
-      <input type="text" ng-model="search" class="search-query" placeholder="Search">
+      <input type="text" ng-model="search" class="search-query" id="projects_search" placeholder="Search">
       <table>
         <thead>
         <tr>
