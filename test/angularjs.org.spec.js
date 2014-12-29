@@ -1,26 +1,25 @@
 describe('Angularjs.org', function () {
   var protractor = require('protractor')
-    , tractor = protractor.getInstance()
     , protractorConfig = require('../protractorConf.js')
     , webdriver = require('selenium-webdriver');
 
   describe('App', function () {
     beforeEach(function () {
-      tractor.get('');
+      browser.get('');
     });
 
 
     it('should have the correct version of angularjs loaded', function() {
       //This only runs if an environment variable tells us to check
       if (process.env.CHECK_SCRIPT_TAG !== 'true') return;
-      var scriptTag = tractor.findElement(protractor.By.css('script#angularScript'));
+      var scriptTag = browser.findElement(protractor.By.css('script#angularScript'));
       expect(scriptTag.getAttribute('src')).
           toContain(process.env.ANGULAR_VERSION);
     })
 
 
     it('should load the web page', function () {
-      var body = tractor.findElement(protractor.By.css('body'));
+      var body = browser.findElement(protractor.By.css('body'));
       expect(body.getAttribute('ng-controller')).toEqual('AppCtrl');
     });
 
@@ -30,10 +29,10 @@ describe('Angularjs.org', function () {
           downloadVersions = process.env.ANGULAR_DOWNLOAD_VERSIONS.split(' ');
 
       beforeEach(function () {
-        var downloadBtn = tractor.findElement(protractor.By.css('.hero-unit .btn-primary')), done;
+        var downloadBtn = browser.findElement(protractor.By.css('.hero-unit .btn-primary')), done;
         downloadBtn.click();
-        tractor.driver.sleep(500);
-        cdnInput = tractor.findElement(protractor.By.css('#cdnURL'));
+        browser.driver.sleep(500);
+        cdnInput = browser.findElement(protractor.By.css('#cdnURL'));
         cdnInput.getAttribute('value')
         cdnInput.getText().then(function (text) {
           stableVersion = text.toString().split('/').splice(-2,1)[0];
@@ -41,15 +40,15 @@ describe('Angularjs.org', function () {
       });
 
       it('should open a modal prompting for download configuration', function () {
-        var downloadModal = tractor.findElement(protractor.By.css('.download-modal'))
+        var downloadModal = browser.findElement(protractor.By.css('.download-modal'))
         expect(downloadModal.getCssValue('display')).toEqual('block');
       });
 
 
       it('should change the CDN url based on user selection of stable or unstable', function () {
         var okay;
-        var unstableButton = tractor.findElement(protractor.By.css(".branch-btns button:nth-child(1)"));
-        tractor.driver.sleep(500);
+        var unstableButton = browser.findElement(protractor.By.css(".branch-btns button:nth-child(1)"));
+        browser.driver.sleep(500);
         unstableButton.click();
         cdnInput.getAttribute('value').then(function (val) {
           var unstableVersion = val.split('/').splice(-2,1)[0];
@@ -71,7 +70,7 @@ describe('Angularjs.org', function () {
                       replace(/\./g, '-').
                       replace(/\*/g, 'x'),
 
-              branchBtn = tractor.findElement(
+              branchBtn = browser.findElement(
               protractor.By.css(branchBtnSelector));
           branchBtn.click();
 
@@ -83,7 +82,7 @@ describe('Angularjs.org', function () {
 
 
       it('should allow downloading uncompressed angular', function () {
-        var uncompressedBtn = tractor.findElement(
+        var uncompressedBtn = browser.findElement(
             protractor.By.css(
                 '.download-modal .modal-body > dl button.uncompressed'));
         uncompressedBtn.click()
@@ -94,23 +93,23 @@ describe('Angularjs.org', function () {
 
     describe('The Basics', function () {
       it('should show the code example', function () {
-        var hello = tractor.findElement(protractor.By.css('[app-source="hello.html"]'));
+        var hello = browser.findElement(protractor.By.css('[app-source="hello.html"]'));
         expect(hello.getText()).toContain('{{yourName}}');
       });
 
 
       it('should have a hoverable region called ng-app', function () {
-        var noCode = tractor.findElement(protractor.By.css('[popover-title="ng-app"]'))
+        var noCode = browser.findElement(protractor.By.css('[popover-title="ng-app"]'))
         expect(noCode.getText()).toEqual('ng-app');
       });
 
 
       it('should update the Hello text after entering a name', function () {
-        var el = tractor.findElement(protractor.By.model('yourName'));
+        var el = browser.findElement(protractor.By.model('yourName'));
         el.click()
         el.sendKeys('Jeff')
 
-        var bound = tractor.findElement(protractor.By.css('[app-run="hello.html"] h1'));
+        var bound = browser.findElement(protractor.By.css('[app-run="hello.html"] h1'));
         expect(bound.getText()).toEqual('Hello Jeff!');
       });
     });
@@ -118,28 +117,28 @@ describe('Angularjs.org', function () {
 
     describe('Add Some Control', function () {
       it('should strike out a todo when clicked', function () {
-        var el = tractor.findElement(protractor.By.css('[ng-controller="TodoController"] ul >li:nth-child(2) input'));
+        var el = browser.findElement(protractor.By.css('[ng-controller="TodoController"] ul >li:nth-child(2) input'));
         el.click();
         expect(el.getAttribute('value')).toBe('on');
       });
 
 
       it('should add a new todo when added through text field', function () {
-        var el = tractor.findElement(protractor.By.model('todoText'));
+        var el = browser.findElement(protractor.By.model('todoText'));
         el.click();
         el.sendKeys('Write tests!');
         el.sendKeys(webdriver.Key.RETURN);
 
-        var lastTodo = tractor.findElement(protractor.By.css('[ng-repeat="todo in todos"]:nth-child(3) span'));
+        var lastTodo = browser.findElement(protractor.By.css('[ng-repeat="todo in todos"]:nth-child(3) span'));
         expect(lastTodo.getText()).toEqual('Write tests!');
       });
 
 
       it('should show a secondary tab when selected', function () {
-        var todoJsTab = tractor.findElement(protractor.By.css('[annotate="todo.annotation"] ul.nav-tabs li:nth-child(2) a'));
+        var todoJsTab = browser.findElement(protractor.By.css('[annotate="todo.annotation"] ul.nav-tabs li:nth-child(2) a'));
         todoJsTab.click()
-        tractor.driver.sleep(500);
-        var todojs = tractor.findElement(protractor.By.css('[annotate="todo.annotation"] .tab-pane:nth-child(2)'));
+        browser.driver.sleep(500);
+        var todojs = browser.findElement(protractor.By.css('[annotate="todo.annotation"] .tab-pane:nth-child(2)'));
         expect(todojs.getCssValue('display')).toEqual('block');
       });
     });
@@ -147,18 +146,29 @@ describe('Angularjs.org', function () {
 
     describe('Wire up a Backend', function () {
       it('should show a secondary tab when selected', function () {
-        var listBtn = tractor.findElement(protractor.By.css('[annotate="project.annotation"] ul.nav-tabs li:nth-child(2) a'));
+        var listBtn = browser.findElement(protractor.By.css('[annotate="project.annotation"] ul.nav-tabs li:nth-child(2) a'));
         listBtn.click();
-        tractor.driver.sleep(500);
-        var listTab = tractor.findElement(protractor.By.css('[module="project"] .tab-pane:nth-child(2)'));
+        browser.driver.sleep(500);
+        var listTab = browser.findElement(protractor.By.css('[module="project"] .tab-pane:nth-child(2)'));
         expect(listTab.getCssValue('display')).toEqual('block');
+      });
+
+
+      it('should search the list of projects', function() {
+        browser.driver.sleep(2000);
+        var list = element.all(by.repeater('project in projects'));
+        element(by.id('projects_search')).sendKeys('Ang');
+        browser.driver.sleep(50);
+        expect(list.count()).toBe(1);
+        expect(list.get(0).getText()).toContain('AngularJS');
+        browser.driver.sleep(5000);
       });
     });
 
 
     describe('Create Components', function () {
       it('should show the US localization of date', function () {
-        var dateText = tractor.findElement(protractor.By.css('[module="app-us"] .tab-content > .tab-pane > span:first-child'));
+        var dateText = browser.findElement(protractor.By.css('[module="app-us"] .tab-content > .tab-pane > span:first-child'));
         var text = dateText.getText();
 
         expect(text).toMatch(/^Date: [A-Za-z]*, [A-Za-z]+ [0-9]{1,2}, [0-9]{4}$/);
@@ -166,19 +176,19 @@ describe('Angularjs.org', function () {
 
 
       /*it('should show the US pluralization of beer', function () {
-        var pluralTabLink = tractor.findElement(protractor.By.css('[module="app-us"] .nav-tabs > li:nth-child(2) a'));
+        var pluralTabLink = browser.findElement(protractor.By.css('[module="app-us"] .nav-tabs > li:nth-child(2) a'));
         pluralTabLink.click()
 
-        var pluralTab = tractor.findElement(protractor.By.css('[module="app-us"] [ng-controller="BeerCounter"] > div > ng-pluralize'));
+        var pluralTab = browser.findElement(protractor.By.css('[module="app-us"] [ng-controller="BeerCounter"] > div > ng-pluralize'));
         expect(pluralTab.getText()).toEqual('no beers');
       });
 
 
       it('should show the Slovak pluralization of beer', function () {
-        var pluralTabLink = tractor.findElement(protractor.By.css('[module="app-sk"] .nav-tabs > li:nth-child(2) a'));
+        var pluralTabLink = browser.findElement(protractor.By.css('[module="app-sk"] .nav-tabs > li:nth-child(2) a'));
         pluralTabLink.click();
 
-        var pluralTab = tractor.findElement(protractor.By.css('[module="app-sk"] [ng-controller="BeerCounter"] > div > ng-pluralize'));
+        var pluralTab = browser.findElement(protractor.By.css('[module="app-sk"] [ng-controller="BeerCounter"] > div > ng-pluralize'));
         expect(pluralTab.getText()).toEqual('žiadne pivo');
       });*/
     });
@@ -186,7 +196,7 @@ describe('Angularjs.org', function () {
 
     describe('Embed and Inject', function () {
       it('should have some content under and "Embeddable" heading', function () {
-        var embedAndInject = tractor.findElement(protractor.By.css('#embed-and-inject'))
+        var embedAndInject = browser.findElement(protractor.By.css('#embed-and-inject'))
         expect(embedAndInject.getText()).toEqual('Embed and Inject');
       });
     });
