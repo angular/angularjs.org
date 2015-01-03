@@ -628,8 +628,12 @@
         var auth;
         return function () {
             if (auth) return $q.when(auth);
+            var authObj = $firebaseAuth(fbRef);
+            if (authObj.$getAuth()) {
+              return $q.when(auth = authObj.$getAuth());
+            }
             var deferred = $q.defer();
-            $firebaseAuth(fbRef).$authAnonymously().then(function(authData) {
+            authObj.$authAnonymously().then(function(authData) {
                 auth = authData;
                 deferred.resolve(authData);
             });
@@ -642,9 +646,17 @@
         this.fetch = function () {
           if (this.projects) return $q.when(this.projects);
           return fbAuth().then(function(auth) {
-            var $projects = $firebase(fbRef.child('projects/' + auth.auth.uid));
-            $projects.$set(window.projectsArray);
-            return self.projects = $projects.$asArray();
+            var deferred = $q.defer();
+            var ref = fbRef.child('projects/' + auth.auth.uid);
+            var $projects = $firebase(ref);
+            ref.on('value', function(snapshot) {
+              if (snapshot.val() === null) {
+                $projects.$set(window.projectsArray);
+              }
+              self.projects = $projects.$asArray();
+              deferred.resolve(self.projects);
+            });
+            return deferred.promise;
           });
         };
       })
