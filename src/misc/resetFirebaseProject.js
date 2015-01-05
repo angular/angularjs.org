@@ -142,7 +142,7 @@ function exitClean(projects) {
     }
     setTimeout(function() {
       exitError(new Error('Could not verify new marker set successfully'));
-    }, 1000);
+    }, 10000);
   });
 }
 
