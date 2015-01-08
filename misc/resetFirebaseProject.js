@@ -1,6 +1,7 @@
 var FirebaseTokenGenerator = require('firebase-token-generator');
 var Firebase = require('firebase');
 var Promise = require('promise');
+var newMarkerKey;
 
 if (process.argv.indexOf('--test') > -1) {
   auth().
@@ -97,10 +98,10 @@ function addNewMarker(projects) {
       date.getHours() + ':' +
       doubleDigitDate(date.getMinutes()) + ':' +
       doubleDigitDate(date.getSeconds());
-    var marker = projects.push({timestamp: Firebase.ServerValue.TIMESTAMP, clientTime: fmtDate}, function(err) {
+    newMarkerKey = projects.push({timestamp: Firebase.ServerValue.TIMESTAMP, clientTime: fmtDate}, function(err) {
       if (err) return reject(err);
       resolve(projects);
-    });
+    }).key();
   });
 }
 
@@ -135,8 +136,8 @@ function cleanupProjects(projects) {
 }
 
 function exitClean(projects) {
-  projects.orderByKey().limitToLast(1).on('child_added', function(snapshot) {
-    if (snapshot.child('timestamp').val()) {
+  projects.child(newMarkerKey).once('value', function(snapshot) {
+    if (snapshot.val()) {
       console.log('New marker added successfully');
       process.exit(0);
     }
