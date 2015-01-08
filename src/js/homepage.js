@@ -378,7 +378,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     $scope.BUILDS = BUILDS;
     $scope.DOWNLOAD_INFO = DOWNLOAD_INFO;
 
-    $scope.currentBranch = $scope.BRANCHES[0];
+    $scope.currentBranch = $scope.BRANCHES[$scope.BRANCHES.length -1];
     $scope.currentBuild = $scope.BUILDS[0];
 
     $scope.setBranch = function(branch) {
