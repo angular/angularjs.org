@@ -2,14 +2,14 @@ angular.module('download-data', [])
 
 .value('BRANCHES', [
     {
-      branch: '1.2.*', version: '${CDN_VERSION_1_2}',
-      title: '1.2.x (legacy)',
-      cssClass: 'branch-1-2-x'
+      branch: '1.3.*', version: '${CDN_VERSION_1_3}',
+      title: '1.3.x (stable)',
+      cssClass: 'branch-1-3-x'
     },
     {
-      branch: '1.3.*', version: '${CDN_VERSION_1_3}',
-      title: '1.3.x (latest)',
-      cssClass: 'branch-1-3-x'
+      branch: '1.4.*', version: '${CDN_VERSION_1_4}',
+      title: '1.4.x (latest)',
+      cssClass: 'branch-1-4-x'
     }
 ])
 
@@ -22,10 +22,10 @@ angular.module('download-data', [])
 .value('DOWNLOAD_INFO', {
   branchesInfo:
     "<dl class='dl-horizontal'>"+
-    "  <dt>Legacy 1.2.x</dt>"+
-    "  <dd>This branch is in maintenance mode. It is stable and the API will not undergo any further changes. New releases will only contain bug-fixes.</dd>"+
+    "  <dt>Latest 1.4.x</dt>"+
+    "  <dd>This branch is the actively-developed feature branch (<a href='https://github.com/angular/angular.js/tree/master' target='_blank'>master on Github</a>), not yet considered stable.</dd>"+
     "  <dt>Stable 1.3.x</dt>"+
-    "  <dd>This is the latest stable branch, with regular bug fixes, performance improvements and small features added.</dd>"+
+    "  <dd>This is the latest stable branch (<a href='https://github.com/angular/angular.js/tree/v1.3.x' target='_blank'>v1.3.x on Github</a>), with regular bug fixes, performance improvements and small features added.</dd>"+
     "</dl>",
 
   buildsInfo:
