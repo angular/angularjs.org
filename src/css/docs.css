@@ -585,3 +585,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 .about-container {
   padding:30px 0 50px;
 }
+
+.pagination a {
+  padding: 0 12px;
+}
