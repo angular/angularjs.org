@@ -296,6 +296,15 @@ div.modal-body button {
   z-index: 1051;
 }
 
+.stage-buttons .btn {
+  margin:5px!important;
+}
+
+@media only screen and (max-width: 50em) {
+  .stage-container .btn { display:block; }
+  .stage-container .spacer { display:none; }
+}
+
 .jumbotron {
   box-shadow:inset 0 0 100px #000;
   padding:0;
