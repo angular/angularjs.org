@@ -280,7 +280,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
         fields.html += '</div>\n';
 
         element.html(
-          '<form class="jsfiddle" method="post" action="http://jsfiddle.net/api/post/library/pure/" target="_blank">' +
+          '<form class="jsfiddle" method="post" action="https://jsfiddle.net/api/post/library/pure/" target="_blank">' +
             hiddenField('title', 'AngularJS Example: ' + name) +
             hiddenField('css', '</style> <!-- Ugly Hack due to jsFiddle issue: http://goo.gl/BUfGZ --> \n' +
                stylesheet +
@@ -330,7 +330,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     self.loading = true;
     $http.get('./featured-videos.json').success(function(results) {
       self.loading = false;
-  
+
       allVideos = results;
       self.videos = results[self.section];
     });
