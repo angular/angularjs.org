@@ -463,15 +463,3 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   // });
 
 });
-
-
-angular.module('Group', ['ngResource']);
-
-function GroupCtrl($scope, $resource)
-{
-  $scope.featuredGroups = $resource('groups/index/getfeatured');
-  $scope.featuredGroups.get();
-
-  $scope.recommendedGroups = $resource('groups/index/getrecommended');
-  $scope.recommendedGroups.get();
-}
