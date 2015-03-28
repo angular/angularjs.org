@@ -15,12 +15,12 @@ describe('Angularjs.org', function () {
       var scriptTag = browser.findElement(protractor.By.css('script#angularScript'));
       expect(scriptTag.getAttribute('src')).
           toContain(process.env.ANGULAR_VERSION);
-    })
+    });
 
 
     it('should load the web page', function () {
       var body = browser.findElement(protractor.By.css('body'));
-      expect(body.getAttribute('ng-controller')).toEqual('AppCtrl');
+      expect(body.getAttribute('ng-controller')).toEqual('AppController');
     });
 
 
