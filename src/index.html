@@ -31,7 +31,7 @@
     </script>
   <![endif]-->
 </head>
-<body  ng-controller="AppCtrl">
+<body  ng-controller="AppController">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> to experience this site.</p><![endif]-->
@@ -780,7 +780,7 @@
        , "$asArray": "A method that returns data from Firebase in the form of a synchronized array."
        , "config": "You use <code>config()</code> to configure existing services. Here, we’re configuring the <code>$routeProvider</code> responsible for mapping URL paths to partials."
        , "controller": "Define a controller function that can be attached to the DOM using <code>ng-controller</code> or to a view template by specifying it in the route configuration."
-       , "'/'": "When the URL is <code>/</code> it will load <code>list.html</code> into the view and attach the <code>ListCtrl</code> controller. You can instantly get an overview of an app's structure by reading the route definitions."
+       , "'/'": "When the URL is <code>/</code> it will load <code>list.html</code> into the view and attach the <code>ProjectListController</code> controller. You can instantly get an overview of an app's structure by reading the route definitions."
        , "/edit/:projectId": "This route definition has a colon ':' in it. You use colons to make a component of the URL available to your controller. So now, <code>EditCtrl</code> can refer to the <code>projectId</code> property which tells it which project to edit."
        , "otherwise": "The <code>otherwise</code> route specifies which view to display when the URL doesn’t match any of the explicit routes. It’s the default."
        , "Projects": "<code>Projects</code> is an instance of <code>$firebase</code>, and is defined in the <code>projects</code> module. It exposes method to add, remove and update projects in the collection. Its purpose is to abstract the server communication. This lets the controller focus on the behavior rather than the complexities of server access."
@@ -801,7 +801,7 @@
        , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
        , "filter": "The <code>filter</code> uses the <code>search</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
        , "orderBy": "Returns the <code>project</code> list ordered by <code>name</code> property."
-       , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id serves the purpose of deep-linking, back button, as well as a way to communicate to <code>EditCtrl</code> which project should be edited."
+       , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id serves the purpose of deep-linking, back button, as well as a way to communicate to <code>EditProjectController</code> which project should be edited."
        }
      , "detail.html":
        { "myForm": "Create a form named <code>myForm</code>. We will declare form validation rules here which we'll use to show input errors and disable buttons."
@@ -858,8 +858,8 @@
             restrict: 'E',
             transclude: true,
             scope: { title: '@' },
-            link: function(scope, element, attrs, tabsCtrl) {
-              tabsCtrl.addPane(scope);
+            link: function(scope, element, attrs, tabsController) {
+              tabsController.addPane(scope);
             },
             template:
               '<div class="tab-pane" ng-class="{active: selected}" ng-transclude>' +
