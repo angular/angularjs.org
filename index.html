@@ -182,55 +182,32 @@
     </div>
   </div>
 
-  <div class="jumbotron" ng-controller="JumbotronCtrl as stage" ng-cloak ng-class="stage.section">
+  <div class="jumbotron" ng-cloak>
     <div class="jumbotron-header">
       <nav class="jumbotron-sections">
-        <a href="" class="ng-europe-link" ng-class="{active:stage.section=='ng-europe'}" ng-click="stage.setSection('ng-europe')">
-          <img src="./img/ng-europe-logo.png" class="jumbotron-logo">
-          <h2>ng-europe 2014</h2>
-        </a>
-        <a href="" class="ng-conf-link" ng-class="{active:stage.section=='ng-conf'}" ng-click="stage.setSection('ng-conf')">
-          <h2>ng-conf 2014</h2>
-          <img src="./img/ng-conf-logo.png" class="jumbotron-logo">
-        </a>
-      </nav>
-    </div>
-    <div class="stretched-container">
-      <div ng-if="stage.loading">
-        <h2 class="jumbotron-message"><strong>Loading...</strong></h2>
-      </div>
-
-      <div ng-if="!stage.loading">
-        <div ng-if="stage.videos.length==0">
-          <h2 class="jumbotron-message"><strong>No videos</strong> were found by your search query</h2>
-        </div>
-        <div class="gallery jumbotron-body" ng-if="stage.videos.length > 0">
-          <a ng-href="{{ video.url }}" ng-repeat="video in stage.videos" class="gallery-item video-item animated-item" target="_blank">
-            <div class="video-item-image">
-              <img ng-src="{{ video.imageUrl }}" />
+        <div class="ng-link-left">
+          <a href="https://angularu.com/ng/" target="_blank">
+            <div class="jumbotron-logo">
+              <img src="./img/angular-u-logo.png">
             </div>
-            <h4 class="video-item-heading">{{ video.title }}</h4>
+            <div class="data">
+              <h2>Angular U 2015</h2>
+              <p>San Fransico, California</p>
+            </div>
           </a>
         </div>
-      </div>
-
-      <div ng-show="stage.section=='ng-europe'" class="jumbotron-buttons">
-        <a href="https://www.youtube.com/channel/UCEGUP3TJJfMsEM_1y8iviSQ" target="_blank" class="btn btn-primary btn-large" rel="nofollow">
-          view all videos
-        </a>
-        <a href="http://www.ngeurope.org/" target="_blank" class="btn btn-large"  rel="nofollow">
-          www.ngeurope.org
-        </a>
-      </div>
-
-      <div ng-show="stage.section=='ng-conf'" class="jumbotron-buttons">
-        <a href="https://www.youtube.com/user/ngconfvideos" target="_blank" class="btn btn-large btn-primary" rel="nofollow">
-          view all videos
-        </a>
-        <a href="http://ng-conf.org/" target="_blank" class="btn btn-large"  rel="nofollow">
-          www.ng-conf.org
-        </a>
-      </div>
+        <div class="ng-link-right">
+          <a href="http://www.ng-conf.org/" target="_blank">
+            <div class="jumbotron-logo">
+              <img src="./img/ng-conf-logo.png">
+            </div>
+            <div class="data">
+              <h2>ng-conf 2015</h2>
+              <p>Salt Lake City, Utah</p>
+            </div>
+          </a>
+        </div>
+      </nav>
     </div>
   </div>
 
