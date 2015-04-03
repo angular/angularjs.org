@@ -313,31 +313,6 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
   })
 
-  .controller('JumbotronCtrl', ['$scope', '$http', 'filterFilter', function($scope,   $http,   filterFilter) {
-
-    var self = this;
-    var allVideos;
-    var defaultSection = 'ng-europe';
-    self.section = defaultSection;
-
-    self.setSection = function(section) {
-      self.section = section;
-      if (!self.loading) {
-        self.videos = allVideos[self.section];
-      }
-    };
-
-    self.loading = true;
-    $http.get('./featured-videos.json').success(function(results) {
-      self.loading = false;
-
-      allVideos = results;
-      self.videos = results[self.section];
-    });
-  }])
-
-
-
   .controller('AppCtrl', function($scope, $modal, BRANCHES) {
     $scope.BRANCHES = BRANCHES;
 
