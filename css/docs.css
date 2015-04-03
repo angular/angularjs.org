@@ -335,6 +335,14 @@ div.modal-body button {
   font-size:30px;
 }
 
+.jumbotron-sections p {
+  margin:3px 0 0;
+  padding:0;
+}
+.jumbotron-sections p.date {
+  color:#ccc;
+}
+
 .jumbotron-sections a {
   box-sizing:border-box;
   display:table;
