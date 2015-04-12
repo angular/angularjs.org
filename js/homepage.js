@@ -313,7 +313,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
   })
 
-  .controller('AppCtrl', function($scope, $modal, BRANCHES) {
+  .controller('AppController', function($scope, $modal, BRANCHES) {
     $scope.BRANCHES = BRANCHES;
 
     $scope.showDownloadModal = function() {
@@ -336,7 +336,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
   })
 
-  .controller('DownloadCtrl', function($scope, BRANCHES, BUILDS, DOWNLOAD_INFO) {
+  .controller('DownloadController', function($scope, BRANCHES, BUILDS, DOWNLOAD_INFO) {
 
     function getRelativeUrl(branch, build) {
       switch (build.name) {
@@ -438,15 +438,3 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   // });
 
 });
-
-
-angular.module('Group', ['ngResource']);
-
-function GroupCtrl($scope, $resource)
-{
-  $scope.featuredGroups = $resource('groups/index/getfeatured');
-  $scope.featuredGroups.get();
-
-  $scope.recommendedGroups = $resource('groups/index/getrecommended');
-  $scope.recommendedGroups.get();
-}
