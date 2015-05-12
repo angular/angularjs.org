@@ -54,7 +54,7 @@ function auth() {
 
 function getProjectsRef(ref) {
   return new Promise(function(resolve, reject) {
-    resolve(ref.child('projects'));
+    resolve(ref.child('projects-fresh'));
   });
 }
 
