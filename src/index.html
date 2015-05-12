@@ -628,7 +628,7 @@
           if (this.projects) return $q.when(this.projects);
           return fbAuth().then(function(auth) {
             var deferred = $q.defer();
-            var ref = fbRef.child('projects/' + auth.auth.uid);
+            var ref = fbRef.child('projects-fresh/' + auth.auth.uid);
             var $projects = $firebase(ref);
             ref.on('value', function(snapshot) {
               if (snapshot.val() === null) {
@@ -637,6 +637,9 @@
               self.projects = $projects.$asArray();
               deferred.resolve(self.projects);
             });
+
+            //Remove projects list when no longer needed.
+            ref.onDisconnect().remove();
             return deferred.promise;
           });
         };
