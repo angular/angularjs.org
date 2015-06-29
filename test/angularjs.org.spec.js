@@ -193,10 +193,10 @@ describe('Angularjs.org', function () {
     });
 
 
-    describe('Embed and Inject', function () {
-      it('should have some content under and "Embeddable" heading', function () {
-        var embedAndInject = browser.findElement(protractor.By.css('#embed-and-inject'))
-        expect(embedAndInject.getText()).toEqual('Embed and Inject');
+    describe('Testability Built-in', function () {
+      it('should have some content under and "Testability Built-in" heading', function () {
+        var testability = browser.findElement(protractor.By.css('#testability'))
+        expect(testability.getText()).toEqual('Testability Built-in');
       });
     });
   });
