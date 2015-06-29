@@ -664,23 +664,27 @@
       })
 
       .config(function($routeProvider) {
+        var resolveProjects = {
+          projects: function (Projects) {
+            return Projects.fetch();
+          }
+        };
+
         $routeProvider
           .when('/', {
             controller:'ProjectListController as projectList',
             templateUrl:'list.html',
-            resolve: {
-              projects: function (Projects) {
-                return Projects.fetch();
-              }
-            }
+            resolve: resolveProjects
           })
           .when('/edit/:projectId', {
             controller:'EditProjectController as editProject',
-            templateUrl:'detail.html'
+            templateUrl:'detail.html',
+            resolve: resolveProjects
           })
           .when('/new', {
             controller:'NewProjectController as editProject',
-            templateUrl:'detail.html'
+            templateUrl:'detail.html',
+            resolve: resolveProjects
           })
           .otherwise({
             redirectTo:'/'
@@ -692,22 +696,22 @@
         projectList.projects = projects;
       })
 
-      .controller('NewProjectController', function($location, Projects) {
+      .controller('NewProjectController', function($location, projects) {
         var editProject = this;
         editProject.save = function() {
-            Projects.$add(editProject.project).then(function(data) {
+            projects.$add(editProject.project).then(function(data) {
                 $location.path('/');
             });
         };
       })
 
       .controller('EditProjectController',
-        function($location, $routeParams, Projects) {
+        function($location, $routeParams, projects) {
           var editProject = this;
           var projectId = $routeParams.projectId,
               projectIndex;
 
-          editProject.projects = Projects.projects;
+          editProject.projects = projects;
           projectIndex = editProject.projects.$indexFor(projectId);
           editProject.project = editProject.projects[projectIndex];
 
