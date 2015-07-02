@@ -2,14 +2,14 @@ angular.module('download-data', [])
 
 .value('BRANCHES', [
     {
-      branch: '1.3.*', version: '${CDN_VERSION_1_3}',
-      title: '1.3.x (stable)',
-      cssClass: 'branch-1-3-x'
+      branch: '1.4.*', version: '${CDN_VERSION_1_4}',
+      title: '1.4.x (stable)',
+      cssClass: 'branch-1-4-x'
     },
     {
-      branch: '1.4.*', version: '${CDN_VERSION_1_4}',
-      title: '1.4.x (latest)',
-      cssClass: 'branch-1-4-x'
+      branch: '1.2.*', version: '${CDN_VERSION_1_2}',
+      title: '1.2.x (legacy)',
+      cssClass: 'branch-1-2-x'
     }
 ])
 
@@ -23,9 +23,9 @@ angular.module('download-data', [])
   branchesInfo:
     "<dl class='dl-horizontal'>"+
     "  <dt>Latest 1.4.x</dt>"+
-    "  <dd>This branch is the actively-developed feature branch (<a href='https://github.com/angular/angular.js/tree/master' target='_blank'>master on Github</a>), not yet considered stable.</dd>"+
-    "  <dt>Stable 1.3.x</dt>"+
-    "  <dd>This is the latest stable branch (<a href='https://github.com/angular/angular.js/tree/v1.3.x' target='_blank'>v1.3.x on Github</a>), with regular bug fixes, performance improvements and small features added.</dd>"+
+    "  <dd>This is the latest stable branch (<a href='https://github.com/angular/angular.js/tree/master' target='_blank'>master on Github</a>), with regular bug fixes.</dd>"+
+    "  <dt>Legacy 1.2.x</dt>"+
+    "  <dd>This branch contains a legacy version of AngularJS that supported IE8 (<a href='https://github.com/angular/angular.js/tree/v1.2.x' target='_blank'>v1.2.x on Github</a>), ony essential bug fixes will appear here.</dd>"+
     "</dl>",
 
   buildsInfo:
