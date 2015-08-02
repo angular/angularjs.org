@@ -964,7 +964,7 @@
         , "scope": "Our component needs to have a private scope so that its view properties are not accidentally modified outside the <code>&lt;tabs&gt;</code>. If you do need to expose attributes, you can declare input/output attributes. See the <code>&lt;pane&gt;</code> component below for an example."
         , "replace": "Tells AngularJS that the original <code>&lt;tabs&gt;</code> element should be replaced with the <code>template</code> rather than appending to it."
         , "active": "We set the <code>active</code> CSS class to show the currently active tab."
-        , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside a <code>&lt;tabs&gt;</code> component. This gives the <code>&lt;pane&gt;</code> component to access to the <code>&lt;tabs&gt;</code>' controller methods -- the <code>addPane()</code> method in this case."
+        , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside a <code>&lt;tabs&gt;</code> component. This gives the <code>&lt;pane&gt;</code> component access to the <code>&lt;tabs&gt;</code>' controller methods -- the <code>addPane()</code> method in this case."
         , "tabsController": "As we've specified we <code>require</code> the <code>&lt;tabs&gt;</code> as our container, we get passed its controller instance."
         , "ng-click": "Select the clicked tab."
         , "bind": "Specifies how is the <code>title</code> attribute on the <code>&lt;pane&gt;</code> element interpreted. The <code>bind</code> strategy copies the interpolated value to <code>&lt;pane&gt;</code>'s scope. This makes <code>title</code> available for binding in <code>template</code>."
