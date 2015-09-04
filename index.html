@@ -20,8 +20,8 @@
   <base href="/">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script id="angularScript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-animate.min.js"></script>
+  <script id="angularScript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -667,23 +667,27 @@
       })
 
       .config(function($routeProvider) {
+        var resolveProjects = {
+          projects: function (Projects) {
+            return Projects.fetch();
+          }
+        };
+
         $routeProvider
           .when('/', {
             controller:'ProjectListController as projectList',
             templateUrl:'list.html',
-            resolve: {
-              projects: function (Projects) {
-                return Projects.fetch();
-              }
-            }
+            resolve: resolveProjects
           })
           .when('/edit/:projectId', {
             controller:'EditProjectController as editProject',
-            templateUrl:'detail.html'
+            templateUrl:'detail.html',
+            resolve: resolveProjects
           })
           .when('/new', {
             controller:'NewProjectController as editProject',
-            templateUrl:'detail.html'
+            templateUrl:'detail.html',
+            resolve: resolveProjects
           })
           .otherwise({
             redirectTo:'/'
@@ -695,22 +699,22 @@
         projectList.projects = projects;
       })
 
-      .controller('NewProjectController', function($location, Projects) {
+      .controller('NewProjectController', function($location, projects) {
         var editProject = this;
         editProject.save = function() {
-            Projects.$add(editProject.project).then(function(data) {
+            projects.$add(editProject.project).then(function(data) {
                 $location.path('/');
             });
         };
       })
 
       .controller('EditProjectController',
-        function($location, $routeParams, Projects) {
+        function($location, $routeParams, projects) {
           var editProject = this;
           var projectId = $routeParams.projectId,
               projectIndex;
 
-          editProject.projects = Projects.projects;
+          editProject.projects = projects;
           projectIndex = editProject.projects.$indexFor(projectId);
           editProject.project = editProject.projects[projectIndex];
 
@@ -984,15 +988,15 @@
   <script src="js/homepage.js"></script>
   <script src="js/download-data.js"></script>
   <script src="js/angular-ui-bootstrap.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
-  <script src="//code.angularjs.org/1.4.4/i18n/angular-locale_sk.js"></script>
+  <script src="//code.angularjs.org/1.4.5/i18n/angular-locale_sk.js"></script>
   <script>
     angular.module('ngLocal.sk', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
   </script>
-  <script src="//code.angularjs.org/1.4.4/i18n/angular-locale_en-us.js"></script>
+  <script src="//code.angularjs.org/1.4.5/i18n/angular-locale_en-us.js"></script>
   <script>
     angular.module('ngLocal.us', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
     angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
