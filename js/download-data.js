@@ -25,7 +25,7 @@ angular.module('download-data', [])
     "  <dt>Latest 1.4.x</dt>"+
     "  <dd>This is the latest stable branch (<a href='https://github.com/angular/angular.js/tree/master' target='_blank'>master on Github</a>), with regular bug fixes.</dd>"+
     "  <dt>Legacy 1.2.x</dt>"+
-    "  <dd>This branch contains a legacy version of AngularJS that supported IE8 (<a href='https://github.com/angular/angular.js/tree/v1.2.x' target='_blank'>v1.2.x on Github</a>), ony essential bug fixes will appear here.</dd>"+
+    "  <dd>This branch contains a legacy version of AngularJS that supported IE8 (<a href='https://github.com/angular/angular.js/tree/v1.2.x' target='_blank'>v1.2.x on Github</a>), only essential bug fixes will appear here.</dd>"+
     "</dl>",
 
   buildsInfo:
