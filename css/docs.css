@@ -68,7 +68,7 @@ background: linear-gradient(to bottom,  rgba(221,221,221,1) 0%,rgba(225,225,225,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
 
   background-color:white;
-  
+
 }
 
 .hero-unit h1 {
@@ -369,6 +369,7 @@ div.modal-body button {
 
 .jumbotron-sections a:hover {
   background:black;
+  color: white;
 }
 
 .jumbotron-logo img {
@@ -416,6 +417,10 @@ div.modal-body button {
 .jumbotron-buttons .btn {
   font-size:30px;
   margin:0 20px 20px;
+}
+
+.track-2-link {
+  margin: 3px 0;
 }
 
 .animated-item.ng-enter-stagger {
