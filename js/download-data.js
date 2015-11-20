@@ -7,7 +7,7 @@ angular.module('download-data', [])
       cssClass: 'branch-1-5-x'
     },
     {
-      branch: '1.4.*', version: '1.4.7',
+      branch: '1.4.*', version: '1.4.8',
       title: '1.4.x (stable)',
       cssClass: 'branch-1-4-x'
     },
