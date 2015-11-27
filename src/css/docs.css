@@ -204,6 +204,7 @@ img.cache {
 
 .well h1.ng-binding {
   margin: 0;
+  word-break: break-all;
 }
 
 .no-margins {
