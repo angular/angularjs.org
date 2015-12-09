@@ -4,17 +4,20 @@ angular.module('download-data', [])
     {
       branch: '1.5.*', version: '${CDN_VERSION_1_5}',
       title: '1.5.x (release candidate)',
-      cssClass: 'branch-1-5-x'
+      cssClass: 'branch-1-5-x',
+      showOnButton: true
     },
     {
       branch: '1.4.*', version: '${CDN_VERSION_1_4}',
       title: '1.4.x (stable)',
-      cssClass: 'branch-1-4-x'
+      cssClass: 'branch-1-4-x',
+      showOnButton: true
     },
     {
       branch: '1.2.*', version: '${CDN_VERSION_1_2}',
       title: '1.2.x (legacy)',
-      cssClass: 'branch-1-2-x'
+      cssClass: 'branch-1-2-x',
+      showOnButton: false
     },
 ])
 
