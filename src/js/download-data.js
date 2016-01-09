@@ -3,7 +3,7 @@ angular.module('download-data', [])
 .value('BRANCHES', [
     {
       branch: '1.5.*', version: '${CDN_VERSION_1_5}',
-      title: '1.5.x (beta)',
+      title: '1.5.x (release candidate)',
       cssClass: 'branch-1-5-x'
     },
     {
