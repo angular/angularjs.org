@@ -278,7 +278,11 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
         });
 
         fields.html += '</div>\n';
-
+        fields.html +=
+          '<p style="text-align: center; font-size:10px">\n' +
+          'Copyright 2016 Google Inc. All Rights Reserved.<br>\n' +
+          'Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at <a href="http://angular.io/license">http://angular.io/license</a>\n' +
+          '</p>';
         element.html(
           '<form class="jsfiddle" method="post" action="https://jsfiddle.net/api/post/library/pure/" target="_blank">' +
             hiddenField('title', 'AngularJS Example: ' + name) +
