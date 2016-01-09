@@ -117,7 +117,7 @@
           <a class="btn btn-large btn-primary" href="" ng-click="showDownloadModal()">
             <i class="icon-download-alt icon-large"></i> Download
             <span class="version" ng-cloak>
-              (<span ng-repeat="branch in BRANCHES">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
+              (<span ng-repeat="branch in BRANCHES | filter:{showOnButton: true}">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
             </span>
           </a>
           <a class="btn btn-large btn-warning" href="http://goo.gl/sj0Nk1" target="_blank">
