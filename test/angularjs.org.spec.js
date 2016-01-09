@@ -29,7 +29,7 @@ describe('Angularjs.org', function () {
           downloadVersions = process.env.ANGULAR_DOWNLOAD_VERSIONS.split(' ');
 
       beforeEach(function () {
-        var downloadBtn = browser.findElement(protractor.By.css('.hero-unit .btn-primary')), done;
+        var downloadBtn = browser.findElement(protractor.By.css('.download-btn')), done;
         downloadBtn.click();
         browser.driver.sleep(500);
         cdnInput = browser.findElement(protractor.By.css('#cdnURL'));

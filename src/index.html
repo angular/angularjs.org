@@ -120,7 +120,7 @@
           <a class="btn btn-large" href="https://github.com/angular/angular.js">
             <i class="icon-github-sign"></i> View on GitHub
           </a>
-          <a class="btn btn-large btn-primary" href="" ng-click="showDownloadModal()">
+          <a class="btn btn-large btn-primary download-btn" href="" ng-click="showDownloadModal()">
             <i class="icon-download-alt icon-large"></i> Download
             <span class="version" ng-cloak>
               (<span ng-repeat="branch in BRANCHES | filter:{showOnButton: true}">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
