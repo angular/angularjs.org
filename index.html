@@ -13,6 +13,7 @@
   <title>AngularJS — Superheroic JavaScript MVW Framework</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/docs.css">
   <link rel="stylesheet" href="css/font-awesome.css">
@@ -109,12 +110,17 @@
         </div>
         <div class="center">
           <h1>HTML enhanced for web apps!</h1>
+          <a href="http://angular.io" target="_blank" class="btn btn-large btn-primary ng2-beta">
+            Try the new Angular<br>
+            <img src="https://angular.io/resources/images/logos/angular2/shield-with-beta.png">
+          </a>
+
         </div>
         <div class="center stage-buttons">
           <a class="btn btn-large" href="https://github.com/angular/angular.js">
             <i class="icon-github-sign"></i> View on GitHub
           </a>
-          <a class="btn btn-large btn-primary" href="" ng-click="showDownloadModal()">
+          <a class="btn btn-large btn-primary download-btn" href="" ng-click="showDownloadModal()">
             <i class="icon-download-alt icon-large"></i> Download
             <span class="version" ng-cloak>
               (<span ng-repeat="branch in BRANCHES | filter:{showOnButton: true}">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
@@ -146,29 +152,6 @@
         </div>
       </div>
     </div>
-
-  <div class="jumbotron" ng-cloak>
-    <div class="jumbotron-header">
-      <nav class="jumbotron-sections">
-        <div class="ng-link-left">
-          <a href="http://angularconnect.com/?utm_source=angularjs-org&amp;utm_medium=angularjs-org&amp;utm_campaign=angularjs-org" target="_blank">
-            <div class="jumbotron-logo">
-              <img src="./img/angularconnect-conf.png">
-            </div>
-            <div class="data">
-              <h2>AngularConnect</h2>
-              <p class="date">Oct 20th - 21st 2015</p>
-              <p>London, United Kingdom</p>
-            </div>
-          </a>
-          <div class="track-1-link">
-            <a class="btn btn-mini" href="https://www.youtube.com/channel/UCzrskTiT_ObAk3xBkVxMz5g">Watch Talk Videos</a>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
-
 
 
     <div class="container about-container">
@@ -390,6 +373,18 @@
       <h1 id="previous-conferences">Previous Conferences</h1>
       <nav class="jumbotron-sections">
         <div class="ng-link-left">
+          <a href="http://angularconnect.com/?utm_source=angularjs-org&amp;utm_medium=angularjs-org&amp;utm_campaign=angularjs-org" target="_blank">
+            <div class="jumbotron-logo">
+              <img src="./img/angularconnect-conf.png">
+            </div>
+            <div class="data">
+              <h2>Angular Connect</h2>
+              <p class="date">October 19th - 21st 2015</p>
+              <p>London, United Kingdom</p>
+            </div>
+          </a>
+        </div>
+        <div class="ng-link-left">
           <a href="https://angularu.com/ng/" target="_blank">
             <div class="jumbotron-logo">
               <img src="./img/angular-u-logo.png">
@@ -421,7 +416,7 @@
             <div class="data">
               <h2>ng-vegas</h2>
               <p class="date">May 7-8, 2015</p>
-              <p>Salt Lake City, Utah</p>
+              <p>Las Vegas, Nevada</p>
             </div>
           </a>
         </div>
@@ -527,7 +522,7 @@
         { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
         , "angular.min.js": "Load AngularJS."
         , "todo.js": "Your behavior lives in JavaScript controllers."
-        , "ng-controller": "The behavior of content under this element will be managed using the <code>TodoController</code> class defined in <code>todo.js</code>."
+        , "ng-controller": "The behavior of content under this element will be managed using the <code>TodoListController</code> class defined in <code>todo.js</code>."
         , "{{remaining()}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the <code>remaining()</code> function return value changes."
         , "ng-click": "Instead of registering event-handlers, you declare which method on the controller to call. Here clicking the link will call <code>archive()</code> method."
         , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every object in <code>todos</code>, AngularJS will create new copy of the <code>&lt;li&gt;</code> element. When objects are added to the <code>todos</code> collection the <code>ng-repeat</code> automatically adds new <code>&lt;li&gt;</code> elements into the DOM. Similarly when the objects are removed from <code>todos</code> then the corresponding <code>&lt;li&gt;</code> element is removed as well. This is one of the most versatile directives in AngularJS."
@@ -971,7 +966,7 @@
         , "scope": "Our component needs to have a private scope so that its view properties are not accidentally modified outside the <code>&lt;tabs&gt;</code>. If you do need to expose attributes, you can declare input/output attributes. See the <code>&lt;pane&gt;</code> component below for an example."
         , "replace": "Tells AngularJS that the original <code>&lt;tabs&gt;</code> element should be replaced with the <code>template</code> rather than appending to it."
         , "active": "We set the <code>active</code> CSS class to show the currently active tab."
-        , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside a <code>&lt;tabs&gt;</code> component. This gives the <code>&lt;pane&gt;</code> component to access to the <code>&lt;tabs&gt;</code>' controller methods -- the <code>addPane()</code> method in this case."
+        , "require": "Specify that the <code>&lt;pane&gt;</code> component must be inside a <code>&lt;tabs&gt;</code> component. This gives the <code>&lt;pane&gt;</code> component access to the <code>&lt;tabs&gt;</code>' controller methods -- the <code>addPane()</code> method in this case."
         , "tabsController": "As we've specified we <code>require</code> the <code>&lt;tabs&gt;</code> as our container, we get passed its controller instance."
         , "ng-click": "Select the clicked tab."
         , "bind": "Specifies how is the <code>title</code> attribute on the <code>&lt;pane&gt;</code> element interpreted. The <code>bind</code> strategy copies the interpolated value to <code>&lt;pane&gt;</code>'s scope. This makes <code>title</code> available for binding in <code>template</code>."
