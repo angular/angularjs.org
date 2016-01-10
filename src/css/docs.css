@@ -324,7 +324,17 @@ div.modal-body button {
 }
 
 .ng2-beta img {
-  width: 200px;
+  height: 100px;
+}
+
+.download-btn {
+  height: 125px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.download-btn img {
+  height: 80px;
 }
 
 .jumbotron h1 {
