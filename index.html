@@ -110,8 +110,16 @@
         </div>
         <div class="center">
           <h1>HTML enhanced for web apps!</h1>
+          <a class="btn btn-large btn-primary download-btn" href="" ng-click="showDownloadModal()">
+            <i class="icon-download-alt icon-large"></i> Download AngularJS 1<br>
+            <img src="img/ng-logo.png"><br>
+            <span class="version" ng-cloak>
+              (<span ng-repeat="branch in BRANCHES | filter:{showOnButton: true}">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
+            </span>
+          </a>
+          or
           <a href="http://angular.io" target="_blank" class="btn btn-large btn-primary ng2-beta">
-            Try the new Angular<br>
+            Try the new Angular 2<br>
             <img src="https://angular.io/resources/images/logos/angular2/shield-with-beta.png">
           </a>
 
@@ -119,12 +127,6 @@
         <div class="center stage-buttons">
           <a class="btn btn-large" href="https://github.com/angular/angular.js">
             <i class="icon-github-sign"></i> View on GitHub
-          </a>
-          <a class="btn btn-large btn-primary download-btn" href="" ng-click="showDownloadModal()">
-            <i class="icon-download-alt icon-large"></i> Download
-            <span class="version" ng-cloak>
-              (<span ng-repeat="branch in BRANCHES | filter:{showOnButton: true}">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
-            </span>
           </a>
           <a class="btn btn-large btn-warning" href="http://goo.gl/sj0Nk1" target="_blank">
             <i class="icon-folder-open icon-large"></i> Design Docs &amp; Notes
