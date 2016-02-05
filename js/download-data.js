@@ -3,21 +3,15 @@ angular.module('download-data', [])
 .value('BRANCHES', [
     {
       branch: '1.5.*', version: '1.5.0',
-      title: '1.5.x (release candidate)',
+      title: '1.5.x (stable)',
       cssClass: 'branch-1-5-x',
-      showOnButton: true
-    },
-    {
-      branch: '1.4.*', version: '1.4.9',
-      title: '1.4.x (stable)',
-      cssClass: 'branch-1-4-x',
       showOnButton: true
     },
     {
       branch: '1.2.*', version: '1.2.29',
       title: '1.2.x (legacy)',
       cssClass: 'branch-1-2-x',
-      showOnButton: false
+      showOnButton: true
     },
 ])
 
@@ -30,10 +24,10 @@ angular.module('download-data', [])
 .value('DOWNLOAD_INFO', {
   branchesInfo:
     "<dl class='dl-horizontal'>"+
-    "  <dt>Beta 1.5.x</dt>"+
+    "  <dt>Beta 1.6.x</dt>"+
     "  <dd>This is the currently active development branch (<a href='https://github.com/angular/angular.js/tree/master' target='_blank'>master on Github</a>), which receives new features and may contain breaking changes.</dd>"+
-    "  <dt>Stable 1.4.x</dt>"+
-    "  <dd>This is the latest stable branch (<a href='https://github.com/angular/angular.js/tree/v1.4.x' target='_blank'>v1.4.x on Github</a>), with regular bug fixes.</dd>"+
+    "  <dt>Stable 1.5.x</dt>"+
+    "  <dd>This is the latest stable branch (<a href='https://github.com/angular/angular.js/tree/v1.5.x' target='_blank'>v1.5.x on Github</a>), with regular bug fixes.</dd>"+
     "  <dt>Legacy 1.2.x</dt>"+
     "  <dd>This branch contains a legacy version of AngularJS that supports IE8 (<a href='https://github.com/angular/angular.js/tree/v1.2.x' target='_blank'>v1.2.x on Github</a>)." +
     "      It is not actively developed and will only receive security fixes. It is not recommended for new applications</dd>"+
