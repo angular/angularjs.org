@@ -29,7 +29,6 @@ function replaceCdnVersionInFiles {
   for FILE in "${CDN_REPLACE_FILES[@]}"
   do
     replaceInFile $FILE '${CDN_VERSION_1_2}' $CDN_VERSION_1_2
-    replaceInFile $FILE '${CDN_VERSION_1_4}' $CDN_VERSION_1_4
     replaceInFile $FILE '${CDN_VERSION_1_5}' $CDN_VERSION_1_5
   done
 }
