@@ -21,8 +21,8 @@
   <base href="/">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script id="angularScript" src="//ajax.googleapis.com/ajax/libs/angularjs/${CDN_VERSION_1_4}/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/${CDN_VERSION_1_4}/angular-animate.min.js"></script>
+  <script id="angularScript" src="//ajax.googleapis.com/ajax/libs/angularjs/${CDN_VERSION_1_5}/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/${CDN_VERSION_1_5}/angular-animate.min.js"></script>
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -116,8 +116,7 @@
             <span class="version" ng-cloak>
               (<span ng-repeat="branch in BRANCHES | filter:{showOnButton: true}">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
             </span>
-          </a>
-          or
+          </a>&nbsp;
           <a href="http://angular.io" target="_blank" class="btn btn-large btn-primary ng2-beta">
             Try the new Angular 2<br>
             <img src="https://angular.io/resources/images/logos/angular2/shield-with-beta.png">

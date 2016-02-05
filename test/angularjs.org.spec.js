@@ -64,7 +64,7 @@ describe('Angularjs.org', function () {
       });
 
       downloadVersions.forEach(function(version) {
-        it('should have the correct version available for download', function () {
+        it('should have the correct version available for download ' + version, function () {
           var versionAndBranch = version.split(':'),
               branchBtnSelector = '.branch-' + versionAndBranch[1].
                       replace(/\./g, '-').
