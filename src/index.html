@@ -507,8 +507,10 @@
         [ <a href="" ng-click="todoList.archive()">archive</a> ]
         <ul class="unstyled">
           <li ng-repeat="todo in todoList.todos">
-            <input type="checkbox" ng-model="todo.done">
-            <span class="done-{{todo.done}}">{{todo.text}}</span>
+            <label class="checkbox">
+              <input type="checkbox" ng-model="todo.done">
+              <span class="done-{{todo.done}}">{{todo.text}}</span>
+            </label>
           </li>
         </ul>
         <form ng-submit="todoList.addTodo()">
@@ -567,6 +569,11 @@
             description: 'HTML enhanced for web apps!'
           },
           {
+            name: 'Angular 2',
+            site: 'http://angular.io',
+            description: 'One framework. Mobile and desktop.'
+          },
+          {
             name: 'jQuery',
             site: 'http://jquery.com/',
             description: 'Write less, do more.'
@@ -582,9 +589,9 @@
             description: 'Innovative web-apps.'
           },
           {
-            name: 'Sammy',
-            site: 'http://sammyjs.org/',
-            description: 'Small with class.'
+            name: 'Polymer',
+            site: 'https://www.polymer-project.org/',
+            description: 'Reusable components for the modern web.'
           },
           {
             name: 'Spine',
@@ -612,9 +619,9 @@
             description: 'Ambitious web apps.'
           },
           {
-            name: 'Batman',
-            site: 'http://batmanjs.org/',
-            description: 'Quick and beautiful.'
+            name: 'React',
+            site: 'https://facebook.github.io/react/',
+            description: 'A JavaScript library for building user interfaces.'
           }
         ];
     </script>
