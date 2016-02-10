@@ -158,8 +158,9 @@ describe('Angularjs.org', function () {
         var list = element.all(by.repeater('project in projectList.projects'));
         element(by.id('projects_search')).sendKeys('Ang');
         browser.driver.sleep(50);
-        expect(list.count()).toBe(1);
-        expect(list.get(0).getText()).toContain('AngularJS');
+        expect(list.count()).toBe(2);
+        expect(list.get(0).getText()).toContain('Angular 2');
+        expect(list.get(1).getText()).toContain('AngularJS');
         browser.driver.sleep(5000);
       });
     });
