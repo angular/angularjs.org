@@ -290,7 +290,7 @@
       <div class="span8 app-source" app-source="project.html project.js list.html detail.html" resource="resource" route="route" firebase="firebase" annotate="project.annotation" module="project"></div>
       <div class="span4">
         <span hint></span>
-        <span class="pull-right" plnkr="project.html bootstrap.css list.html detail.html project.js" resource="resource" route="route" firebase="firebase" module="project"></span>
+        <span class="pull-right" plnkr="project.html bootstrap.css list.html detail.html project.js project-list.js" resource="resource" route="route" firebase="firebase" module="project"></span>
         <div class="tabs-spacer"></div>
         <!--[if lt IE 10]>
           <div class="alert alert-error">
@@ -561,70 +561,6 @@
         padding: 0 .25em;
       }
     </style>
-    <script>
-      window.projectsArray = [
-          {
-            name: 'AngularJS',
-            site: 'http://angularjs.org',
-            description: 'HTML enhanced for web apps!'
-          },
-          {
-            name: 'Angular 2',
-            site: 'http://angular.io',
-            description: 'One framework. Mobile and desktop.'
-          },
-          {
-            name: 'jQuery',
-            site: 'http://jquery.com/',
-            description: 'Write less, do more.'
-          },
-          {
-            name: 'Backbone',
-            site: 'http://documentcloud.github.com/backbone/',
-            description: 'Models for your apps.'
-          },
-          {
-            name: 'SproutCore',
-            site: 'http://sproutcore.com/',
-            description: 'Innovative web-apps.'
-          },
-          {
-            name: 'Polymer',
-            site: 'https://www.polymer-project.org/',
-            description: 'Reusable components for the modern web.'
-          },
-          {
-            name: 'Spine',
-            site: 'http://spinejs.com/',
-            description: 'Awesome MVC Apps.'
-          },
-          {
-            name: 'Cappucino',
-            site: 'http://cappuccino.org/',
-            description: 'Objective-J.'
-          },
-          {
-            name: 'Knockout',
-            site: 'http://knockoutjs.com/',
-            description: 'MVVM pattern.'
-          },
-          {
-            name: 'GWT',
-            site: 'https://developers.google.com/web-toolkit/',
-            description: 'JS in Java.'
-          },
-          {
-            name: 'Ember',
-            site: 'http://emberjs.com/',
-            description: 'Ambitious web apps.'
-          },
-          {
-            name: 'React',
-            site: 'https://facebook.github.io/react/',
-            description: 'A JavaScript library for building user interfaces.'
-          }
-        ];
-    </script>
     <script id="project.js">
       angular.module('project', ['ngRoute', 'firebase'])
 
@@ -649,7 +585,7 @@
         }
       })
 
-      .service('Projects', function($q, $firebase, fbRef, fbAuth) {
+      .service('Projects', function($q, $firebase, fbRef, fbAuth, projectListValue) {
         var self = this;
         this.fetch = function () {
           if (this.projects) return $q.when(this.projects);
@@ -659,7 +595,7 @@
             var $projects = $firebase(ref);
             ref.on('value', function(snapshot) {
               if (snapshot.val() === null) {
-                $projects.$set(window.projectsArray);
+                $projects.$set(projectListValue);
               }
               self.projects = $projects.$asArray();
               deferred.resolve(self.projects);
@@ -736,6 +672,70 @@
               });
           };
       });
+    </script>
+    <script id="project-list.js">
+      angular.module('project').value('projectListValue', [
+        {
+          name: 'AngularJS',
+          site: 'http://angularjs.org',
+          description: 'HTML enhanced for web apps!'
+        },
+        {
+          name: 'Angular 2',
+          site: 'http://angular.io',
+          description: 'One framework. Mobile and desktop.'
+        },
+        {
+          name: 'jQuery',
+          site: 'http://jquery.com/',
+          description: 'Write less, do more.'
+        },
+        {
+          name: 'Backbone',
+          site: 'http://documentcloud.github.com/backbone/',
+          description: 'Models for your apps.'
+        },
+        {
+          name: 'SproutCore',
+          site: 'http://sproutcore.com/',
+          description: 'A Framework for Innovative web-apps.'
+        },
+        {
+          name: 'Polymer',
+          site: 'https://www.polymer-project.org/',
+          description: 'Reusable components for the modern web.'
+        },
+        {
+          name: 'Spine',
+          site: 'http://spinejs.com/',
+          description: 'Awesome MVC Apps.'
+        },
+        {
+          name: 'Cappucino',
+          site: 'http://cappuccino.org/',
+          description: 'Objective-J.'
+        },
+        {
+          name: 'Knockout',
+          site: 'http://knockoutjs.com/',
+          description: 'MVVM pattern.'
+        },
+        {
+          name: 'GWT',
+          site: 'https://developers.google.com/web-toolkit/',
+          description: 'JS in Java.'
+        },
+        {
+          name: 'Ember',
+          site: 'http://emberjs.com/',
+          description: 'Ambitious web apps.'
+        },
+        {
+          name: 'React',
+          site: 'https://facebook.github.io/react/',
+          description: 'A JavaScript library for building user interfaces.'
+        }
+      ])
     </script>
     <script type="text/ng-template" id="project.html">
       <h2>JavaScript Projects</h2>
