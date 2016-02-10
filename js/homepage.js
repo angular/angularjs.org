@@ -95,6 +95,65 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
   })
 
+  .factory('formPostData', ['$document', function($document) {
+    return function(url, newWindow, fields) {
+      /**
+       * If the form posts to target="_blank", pop-up blockers can cause it not to work.
+       * If a user choses to bypass pop-up blocker one time and click the link, they will arrive at
+       * a new default plnkr, not a plnkr with the desired template.  Given this undesired behavior,
+       * some may still want to open the plnk in a new window by opting-in via ctrl+click.  The
+       * newWindow param allows for this possibility.
+       */
+      var target = newWindow ? '_blank' : '_self';
+      var form = angular.element('<form style="display: none;" method="post" action="' + url + '" target="' + target + '"></form>');
+      angular.forEach(fields, function(value, name) {
+        var input = angular.element('<input type="hidden" name="' +  name + '">');
+        input.attr('value', value);
+        form.append(input);
+      });
+      $document.find('body').append(form);
+      form[0].submit();
+      form.remove();
+    };
+  }])
+
+  .factory('templateBuilder', function(script) {
+    return {
+      createLocalDependencies: function(files) {
+        var head = [];
+
+        angular.forEach(files.split(' '), function(file, index) {
+          var filename = file.split(':')[0],
+              fileType = filename.split(/\./)[1];
+
+          if (index === 0) return;
+          if (fileType == 'js') {
+            head.push('    <script src="' + filename + '"></script>\n');
+          } else if (fileType == 'css') {
+            head.push('    <link rel="stylesheet" href="' + filename + '">\n');
+          }
+        });
+
+        return head;
+      },
+      getIndexTemplate: function(deps) {
+        return '<!doctype html>\n' +
+            '<html ng-app__MODULE__>\n' +
+            '  <head>\n' +
+            '    ' + script.angular +
+           (deps.resource ? ('    ' + script.resource.replace('></', '>\n    </')) : '') +
+           (deps.route ? ('    ' + script.route.replace('></', '>\n   </')) : '') +
+           (deps.firebase ? ('    ' + script.firebase) : '') +
+            '__HEAD__' +
+            '  </head>\n' +
+            '  <body>\n' +
+            '__BODY__' +
+            '  </body>\n' +
+            '</html>';
+      }
+    };
+  })
+
   .directive('code', function() {
     return {restrict: 'E', terminal: true};
   })
@@ -139,29 +198,13 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
   })
 
-  .directive('appSource', function(fetchCode, escape, script, $compile, $timeout) {
+  .directive('appSource', function(fetchCode, escape, $compile, $timeout, templateBuilder) {
     return {
       terminal: true,
       scope: true,
       link: function(scope, element, attrs) {
         var tabs = [],
-            annotation = attrs.annotate && angular.fromJson(fetchCode(attrs.annotate)) || {},
-            TEMPLATE = {
-              'index.html':
-                '<!doctype html>\n' +
-                '<html ng-app__MODULE__>\n' +
-                '  <head>\n' +
-                '    ' + script.angular +
-               (attrs.resource ? ('    ' + script.resource.replace('></', '>\n    </')) : '') +
-               (attrs.route ? ('    ' + script.route.replace('></', '>\n   </')) : '') +
-               (attrs.firebase ? ('    ' + script.firebase) : '') +
-                '__HEAD__' +
-                '  </head>\n' +
-                '  <body>\n' +
-                '__BODY__' +
-                '  </body>\n' +
-                '</html>'
-          };
+            annotation = attrs.annotate && angular.fromJson(fetchCode(attrs.annotate)) || {};
 
         element.css('clear', 'both');
 
@@ -169,20 +212,9 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
           var content;
 
           if (index === 0) {
-            var head = [];
+            var head = templateBuilder.createLocalDependencies(attrs.appSource);
 
-            angular.forEach(attrs.appSource.split(' '), function(tab, index) {
-              var filename = tab.split(':')[0],
-                  fileType = filename.split(/\./)[1];
-
-              if (index === 0) return;
-              if (fileType == 'js') {
-                head.push('    <script src="' + filename + '"></script>\n');
-              } else if (fileType == 'css') {
-                head.push('    <link rel="stylesheet" href="' + filename + '">\n');
-              }
-            });
-            content = TEMPLATE['index.html'];
+            content = templateBuilder.getIndexTemplate(attrs);
             content = content.
               replace('__MODULE__', attrs.module ? '="' + attrs.module + '"' : '').
               replace('__HEAD__', head.join('')).
@@ -246,65 +278,69 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
   })
 
-  .directive('jsFiddle', function(fetchCode, escape, script) {
+  .directive('plnkr', function(fetchCode, formPostData, script, templateBuilder) {
     return {
-      terminal: true,
-      link: function(scope, element, attr) {
+      template: '<button ng-click="plnkr.open($event)" class="btn btn-primary">' +
+                '<i class="icon-white icon-pencil"></i> ' +
+                'Edit Me' +
+              '</button>',
+      scope: {},
+      bindToController: {
+        'files': '@plnkr',
+        'module': '@?module',
+        'resource': '@?',
+        'route': '@?',
+        'firebase': '@?',
+      },
+      controllerAs: 'plnkr',
+      controller: function() {
+        var ctrl = this;
+
         var name = '',
-            stylesheet = '<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">\n',
-            fields = {
-              html: '',
-              css: '',
-              js: ''
-            };
+          bootstrapStylesheet = 'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css',
+          plnkrFiles = [];
 
-        angular.forEach(attr.jsFiddle.split(' '), function(file, index) {
-          var fileType = file.split('.')[1];
+        angular.forEach(ctrl.files.split(' '), function(filename, index) {
+          var content;
 
-          if (fileType == 'html') {
-            if (index === 0) {
-              fields[fileType] +=
-                  '<div ng-app' + (attr.module ? '="' + attr.module + '"' : '') + '>\n' +
-                    fetchCode(file, 2);
-            } else {
-              fields[fileType] += '\n\n\n  <!-- CACHE FILE: ' + file + ' -->\n' +
-                  '  <script type="text/ng-template" id="' + file + '">\n' +
-                      fetchCode(file, 4) +
-                  '  </script>\n';
-            }
+          if (index === 0) {
+            var head = templateBuilder.createLocalDependencies(ctrl.files);
+
+            head.push('    <link rel="stylesheet" href="' + bootstrapStylesheet + '">\n');
+            content = templateBuilder.getIndexTemplate({resource: ctrl.resource, route: ctrl.route, firebase: ctrl.firebase});
+            content = content.
+              replace('__MODULE__', ctrl.module ? '="' + ctrl.module + '"' : '').
+              replace('__HEAD__', head.join('')).
+              replace('__BODY__', fetchCode(filename, 4));
           } else {
-            fields[fileType] += fetchCode(file) + '\n';
+            content = fetchCode(filename);
           }
+
+          plnkrFiles.push({
+            name: index === 0 ? 'index.html' : filename, // plnkr expects an index.html
+            content: content
+          });
         });
 
-        fields.html += '</div>\n';
-        fields.html +=
-          '<p style="text-align: center; font-size:10px">\n' +
-          'Copyright 2016 Google Inc. All Rights Reserved.<br>\n' +
-          'Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at <a href="http://angular.io/license">http://angular.io/license</a>\n' +
-          '</p>';
-        element.html(
-          '<form class="jsfiddle" method="post" action="https://jsfiddle.net/api/post/library/pure/" target="_blank">' +
-            hiddenField('title', 'AngularJS Example: ' + name) +
-            hiddenField('css', '</style> <!-- Ugly Hack due to jsFiddle issue: http://goo.gl/BUfGZ --> \n' +
-               stylesheet +
-               script.angular +
-               (attr.resource ? script.resource : '') +
-               (attr.route ? script.route : '') +
-               (attr.firebase ? script.firebase : '') +
-               '<style>\n' +
-               fields.css) +
-            hiddenField('html', fields.html) +
-            hiddenField('js', fields.js) +
-            '<button class="btn btn-primary">' +
-              '<i class="icon-white icon-pencil"></i> ' +
-              'Edit Me' +
-            '</button>' +
-          '</form>');
+        ctrl.open = function(clickEvent) {
 
-        function hiddenField(name, value) {
-          return '<input type="hidden" name="' +  name + '" value="' + escape(value) + '">';
-        }
+          var newWindow = clickEvent.ctrlKey || clickEvent.metaKey;
+
+          var postData = {
+            'tags[0]': "angularjs",
+            'tags[1]': "example",
+            'private': true
+          };
+
+          angular.forEach(plnkrFiles, function(file) {
+            postData['files[' + file.name + ']'] = file.content;
+          });
+
+          postData.description = 'AngularJS Example: ' + name;
+
+          formPostData('http://plnkr.co/edit/?p=preview', newWindow, postData);
+        };
+
       }
     };
   })
