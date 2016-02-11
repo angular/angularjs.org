@@ -118,6 +118,12 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   }])
 
   .factory('templateBuilder', function(script) {
+    var COPYRIGHT = 'Copyright ' + (new Date()).getFullYear() + ' Google Inc. All Rights Reserved.\n'
+     + 'Use of this source code is governed by an MIT-style license that\n'
+     + 'can be found in the LICENSE file at http://angular.io/license';
+    var COPYRIGHT_JS_CSS = '\n\n/*\n' + COPYRIGHT + '\n*/';
+    var COPYRIGHT_HTML = '\n\n<!-- \n' + COPYRIGHT + '\n-->';
+
     return {
       createLocalDependencies: function(files) {
         var head = [];
@@ -150,6 +156,18 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
             '__BODY__' +
             '  </body>\n' +
             '</html>';
+      },
+      getCopyright: function(filename) {
+        switch (filename.substr(filename.lastIndexOf('.'))) {
+          case '.html':
+            return COPYRIGHT_HTML;
+          case '.js':
+          case '.css':
+            return COPYRIGHT_JS_CSS;
+          case '.md':
+            return COPYRIGHT;
+        }
+        return '';
       }
     };
   })
@@ -315,6 +333,8 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
           } else {
             content = fetchCode(filename);
           }
+
+          content += templateBuilder.getCopyright(filename);
 
           plnkrFiles.push({
             name: index === 0 ? 'index.html' : filename, // plnkr expects an index.html
