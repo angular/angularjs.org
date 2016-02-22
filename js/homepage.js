@@ -216,10 +216,10 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
   })
 
-  .directive('appSource', function(fetchCode, escape, $compile, $timeout, templateBuilder) {
+  .directive('appSource', function(fetchCode, escape, $compile, $timeout, templateBuilder, $sce) {
     return {
       terminal: true,
-      scope: true,
+      scope: {},
       link: function(scope, element, attrs) {
         var tabs = [],
             annotation = attrs.annotate && angular.fromJson(fetchCode(attrs.annotate)) || {};
@@ -251,19 +251,22 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
               counter = 0;
 
           angular.forEach(annotation[filename], function(text, key) {
+            counter++;
 
             text = text.replace('{{', '&#123;&#123;').replace('}}', '&#125;&#125;');
 
             var regexp = new RegExp('(\\W|^)(' + key.replace(/([\W\-])/g, '\\$1') + ')(\\W|$)');
 
+            scope['popover' + index + counter] = $sce.trustAsHtml(text);
+
             content = content.replace(regexp, function(_, before, token, after) {
-              token = "__" + (counter++) + "__";
+              token = "__" + (counter) + "__";
               popovers[token] =
                 '<span class="nocode"\n' +
                 '      popover-title="' + escape(key) + '"\n' +
-                '      popover-trigger="click"\n' +
+                '      popover-trigger="outsideClick"\n' +
                 '      popover-append-to-body="true"\n' +
-                '      popover-html-unsafe="' + escape(text) + '"><code>' + escape(key) + '</code>' +
+                '      uib-popover-html="popover' + index + counter + '"><code>' + escape(key) + '</code>' +
                 '</span>';
               return before + token + after;
             });
@@ -274,22 +277,21 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
           });
 
           tabs.push(
-            '<tab heading="' + (index ? filename : 'index.html')  + '">\n' +
+            '<uib-tab heading="' + (index ? filename : 'index.html')  + '">\n' +
             '  <pre class="prettyprint linenums nocode"><code>' + content +'</code></pre>\n' +
-            '</tab>\n'
+            '</uib-tab>\n'
           );
         });
 
         element.html(
-          '<tabset>' +
+          '<uib-tabset>' +
             tabs.join('') +
-          '</tabset>');
-        // element.find('[rel=popover]').popover().pulse();
+          '</uib-tabset>');
 
         // Compile up the HTML to get the directives to kick-in
         $compile(element.children())(scope);
         $timeout(function() {
-          var annotationElements = element.find('span[popover-html-unsafe]');
+          var annotationElements = element.find('span[uib-popover-html]');
           $compile(annotationElements)(scope);
         }, 0);
       }
@@ -368,23 +370,23 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   .directive('hint', function() {
     return {
       template: '<em>Hint:</em> Click ' +
-          '<code class="nocode" popover-title="Hover" popover-trigger="click" popover-append-to-body="true"' +
-          'popover="Click highlighted areas in the code for explanations.">me</code>.'
+          '<code class="nocode" popover-title="Hover" popover-trigger="outsideClick" popover-append-to-body="true"' +
+          'uib-popover="Click highlighted areas in the code for explanations.">me</code>.'
     };
   })
 
-  .controller('AppController', function($scope, $modal, BRANCHES) {
+  .controller('AppController', function($scope, $uibModal, BRANCHES) {
     $scope.BRANCHES = BRANCHES;
 
     $scope.showDownloadModal = function() {
-      $modal.open({
+      $uibModal.open({
         templateUrl: 'partials/download-modal.html',
         windowClass: 'download-modal'
       });
     };
 
     $scope.showVideo = function(videoUrl) {
-      $modal.open({
+      $uibModal.open({
         templateUrl: 'partials/video-modal.html',
         windowClass: 'video-modal',
         controller: 'VideoController',
@@ -457,36 +459,6 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   }, 2500);
 
 })
-
-
-// Angular UI Bootstrap provide some excellent directives, but the popover didn't allow for HTML content
-// The popoverHtmlUnsafe and popoverHtmlUnsafePopup implement this on top of the AngularUI Bootstrap's $tooltip service
-.directive( 'popoverHtmlUnsafePopup', function ($templateCache) {
-
-  $templateCache.put("template/popover/popover-html-unsafe-popup.html",
-    "<div class=\"popover {{placement}}\" ng-class=\"{ in: isOpen(), fade: animation() }\">\n" +
-    "  <div class=\"arrow\"></div>\n" +
-    "\n" +
-    "  <div class=\"popover-inner\">\n" +
-    "      <h3 class=\"popover-title\" ng-bind=\"title\" ng-show=\"title\"></h3>\n" +
-    "      <div class=\"popover-content\" bind-html-unsafe=\"content\"></div>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "");
-
-  return {
-    restrict: 'EA',
-    replace: true,
-    scope: { title: '@', content: '@', placement: '@', animation: '&', isOpen: '&' },
-    templateUrl: 'template/popover/popover-html-unsafe-popup.html'
-  };
-})
-
-.directive( 'popoverHtmlUnsafe', [ '$compile', '$timeout', '$parse', '$window', '$tooltip', function ( $compile, $timeout, $parse, $window, $tooltip ) {
-  return $tooltip( 'popoverHtmlUnsafe', 'popover', 'click' );
-}])
-
-
 
 .run(function($rootScope, startPulse){
   $rootScope.version = angular.version;
