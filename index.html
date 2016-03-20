@@ -950,9 +950,9 @@
     <script type="text/ng-template" id="tabs.html">
       <tabs>
         <pane title="Localization">
-          Date: {{ '2012-04-01' | date:'fullDate' }} <br>
-          Currency: {{ 123456 | currency }} <br>
-          Number: {{ 98765.4321 | number }} <br>
+          <span>Date: {{ '2012-04-01' | date:'fullDate' }}</span><br>
+          <span>Currency: {{ 123456 | currency }}</span><br>
+          <span>Number: {{ 98765.4321 | number }}</span><br>
         </pane>
         <pane title="Pluralization">
           <div ng-controller="BeerCounter">
