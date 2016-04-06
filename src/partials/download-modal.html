@@ -23,9 +23,9 @@
         </span>
 
         <a href=""
+            uib-popover-html="DOWNLOAD_INFO_TRUSTED.branchesInfo"
             popover-title="Branches"
-            popover-html-unsafe="{{DOWNLOAD_INFO.branchesInfo}}"
-            popover-trigger="click" popover-placement="bottom"
+            popover-trigger="outsideClick" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
         </a>
@@ -42,9 +42,9 @@
           </button>
         </span>
         <a href=""
+            uib-popover-html="DOWNLOAD_INFO_TRUSTED.buildsInfo"
             popover-title="Builds"
-            popover-html-unsafe="{{ DOWNLOAD_INFO.buildsInfo }}"
-            popover-trigger="click" popover-placement="bottom"
+            popover-trigger="outsideClick" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
         </a>
@@ -57,9 +57,9 @@
                   value="{{ cdnUrl() || 'Unavailable for zip archives' }}">
         </span>
         <a href=""
+            uib-popover-html="DOWNLOAD_INFO_TRUSTED.cdnInfo"
             popover-title="Why Google CDN?"
-            popover-html-unsafe="{{ DOWNLOAD_INFO.cdnInfo }}"
-            popover-trigger="click" popover-placement="bottom"
+            popover-trigger="outsideClick" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
         </a>
@@ -72,9 +72,9 @@
                   value="bower install angular#{{currentBranch.version}}">
         </span>
         <a href=""
+            uib-popover-html="DOWNLOAD_INFO_TRUSTED.bowerInfo"
             popover-title="What is Bower?"
-            popover-html-unsafe="{{ DOWNLOAD_INFO.bowerInfo }}"
-            popover-trigger="click" popover-placement="bottom"
+            popover-trigger="outsideClick" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
         </a>

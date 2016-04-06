@@ -398,7 +398,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
   })
 
-  .controller('DownloadController', function($scope, BRANCHES, BUILDS, DOWNLOAD_INFO) {
+  .controller('DownloadController', function($scope, $sce, BRANCHES, BUILDS, DOWNLOAD_INFO) {
 
     function getRelativeUrl(branch, build) {
       switch (build.name) {
@@ -413,7 +413,12 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
     $scope.BRANCHES = BRANCHES;
     $scope.BUILDS = BUILDS;
-    $scope.DOWNLOAD_INFO = DOWNLOAD_INFO;
+    $scope.DOWNLOAD_INFO_TRUSTED = {
+      branchesInfo: $sce.trustAsHtml(DOWNLOAD_INFO.branchesInfo),
+      buildsInfo: $sce.trustAsHtml(DOWNLOAD_INFO.buildsInfo),
+      bowerInfo: $sce.trustAsHtml(DOWNLOAD_INFO.bowerInfo),
+      cdnInfo: $sce.trustAsHtml(DOWNLOAD_INFO.cdnInfo)
+    };
 
     $scope.currentBranch = $scope.BRANCHES[0];
     $scope.currentBuild = $scope.BUILDS[0];

@@ -33,7 +33,7 @@ describe('Angularjs.org', function () {
         downloadBtn.click();
         browser.driver.sleep(500);
         cdnInput = browser.findElement(protractor.By.css('#cdnURL'));
-        cdnInput.getAttribute('value')
+        cdnInput.getAttribute('value');
         cdnInput.getText().then(function (text) {
           stableVersion = text.toString().split('/').splice(-2,1)[0];
         });
@@ -80,12 +80,11 @@ describe('Angularjs.org', function () {
       });
 
 
-
       it('should allow downloading uncompressed angular', function () {
         var uncompressedBtn = browser.findElement(
             protractor.By.css(
                 '.download-modal .modal-body > dl button.uncompressed'));
-        uncompressedBtn.click()
+        uncompressedBtn.click();
 
         expect(cdnInput.getAttribute('value')).toContain('angular.js');
       });
@@ -96,6 +95,21 @@ describe('Angularjs.org', function () {
         closeButton.click();
         expect(element(by.css('.download-modal')).isPresent()).toBe(false);
       });
+
+      describe('explanatory popover', function() {
+        ['Branches', 'Builds', 'Why Google CDN?','What is Bower?'].forEach(function(value) {
+
+          it('should be displayed for ' + value, function () {
+            var popoverButton = browser.findElement(protractor.By.css('.download-modal [popover-title="'+value+'"]'));
+            popoverButton.click();
+
+            var popover = browser.findElement(protractor.By.css('.popover'));
+            expect(popover.getCssValue('display')).toEqual('block');
+          });
+
+        });
+      });
+
 
     });
 
