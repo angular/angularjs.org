@@ -89,6 +89,14 @@ describe('Angularjs.org', function () {
 
         expect(cdnInput.getAttribute('value')).toContain('angular.js');
       });
+
+
+      it('should have a working close button', function () {
+        var closeButton = browser.findElement(protractor.By.css('.download-modal .modal-header button.close'));
+        closeButton.click();
+        expect(element(by.css('.download-modal')).isPresent()).toBe(false);
+      });
+
     });
 
     describe('The Basics', function () {
