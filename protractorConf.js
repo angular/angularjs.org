@@ -1,5 +1,5 @@
 exports.config = {
-  seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.44.0.jar',
+  seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.47.1.jar',
   seleniumArgs: [],
   baseUrl: process.env.ANGULAR_HOME_HOST || 'http://angularjs.org',
   capabilities: {
