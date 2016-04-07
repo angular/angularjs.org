@@ -1,12 +1,15 @@
 <div ng-controller="DownloadController">
   <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" ng-click="$close()">
+      <span class="aria-hidden">&times;</span>
+    </button>
     <h2 id="downloadLabel">Download AngularJS</h2>
+  </div>
+  <div class="modal-body">
     <div  ng-show="BRANCHES.length == 0"
           class="alert alert-info">
           There are currently no versions for download.
     </div>
-  </div>
-  <div class="modal-body">
 
     <dl class="dl-horizontal" ng-hide="BRANCHES.length == 0">
       <dt>Branch</dt>
@@ -20,9 +23,9 @@
         </span>
 
         <a href=""
+            uib-popover-html="DOWNLOAD_INFO_TRUSTED.branchesInfo"
             popover-title="Branches"
-            popover-html-unsafe="{{DOWNLOAD_INFO.branchesInfo}}"
-            popover-trigger="click" popover-placement="bottom"
+            popover-trigger="outsideClick" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
         </a>
@@ -39,9 +42,9 @@
           </button>
         </span>
         <a href=""
+            uib-popover-html="DOWNLOAD_INFO_TRUSTED.buildsInfo"
             popover-title="Builds"
-            popover-html-unsafe="{{ DOWNLOAD_INFO.buildsInfo }}"
-            popover-trigger="click" popover-placement="bottom"
+            popover-trigger="outsideClick" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
         </a>
@@ -54,9 +57,9 @@
                   value="{{ cdnUrl() || 'Unavailable for zip archives' }}">
         </span>
         <a href=""
+            uib-popover-html="DOWNLOAD_INFO_TRUSTED.cdnInfo"
             popover-title="Why Google CDN?"
-            popover-html-unsafe="{{ DOWNLOAD_INFO.cdnInfo }}"
-            popover-trigger="click" popover-placement="bottom"
+            popover-trigger="outsideClick" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
         </a>
@@ -69,9 +72,9 @@
                   value="bower install angular#{{currentBranch.version}}">
         </span>
         <a href=""
+            uib-popover-html="DOWNLOAD_INFO_TRUSTED.bowerInfo"
             popover-title="What is Bower?"
-            popover-html-unsafe="{{ DOWNLOAD_INFO.bowerInfo }}"
-            popover-trigger="click" popover-placement="bottom"
+            popover-trigger="outsideClick" popover-placement="bottom"
             popover-delay="300" popover-append-to-body="true">
               &nbsp;<i class="icon-question-sign"></i>
         </a>
