@@ -260,13 +260,15 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
             scope['popover' + index + counter] = $sce.trustAsHtml(text);
 
             content = content.replace(regexp, function(_, before, token, after) {
-              token = "__" + (counter) + "__";
+              token = '__' + counter + '__';
               popovers[token] =
-                '<span class="nocode"\n' +
-                '      popover-title="' + escape(key) + '"\n' +
-                '      popover-trigger="outsideClick"\n' +
-                '      popover-append-to-body="true"\n' +
-                '      uib-popover-html="popover' + index + counter + '"><code>' + escape(key) + '</code>' +
+                '<span ' +
+                    'class="nocode code-annotation" ' +
+                    'popover-append-to-body="true" ' +
+                    'popover-trigger="mouseenter" ' +
+                    'popover-title="' + escape(key) + '" ' +
+                    'uib-popover-html="popover' + index + counter + '">' +
+                  '<code>' + escape(key) + '</code>' +
                 '</span>';
               return before + token + after;
             });
@@ -369,9 +371,17 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
   .directive('hint', function() {
     return {
-      template: '<em>Hint:</em> Click ' +
-          '<code class="nocode" popover-title="Hover" popover-trigger="outsideClick" popover-append-to-body="true"' +
-          'uib-popover="Click highlighted areas in the code for explanations.">me</code>.'
+      template:
+        '<em>Hint:</em> ' +
+          'hover over ' +
+          '<code ' +
+              'class="nocode code-annotation" ' +
+              'popover-append-to-body="true" ' +
+              'popover-trigger="mouseenter" ' +
+              'popover-title="Hover" ' +
+              'uib-popover="Place your mouse over highlighted areas in the code for explanations.">' +
+            'me' +
+          '</code>.'
     };
   })
 
