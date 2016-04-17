@@ -140,7 +140,7 @@ function keepOnly(fileOrDir, notIgnoreHidden) {
 
 function killProcess(proc) {
   const pid = proc.pid;
-  const cmd = (isWindows() ? 'taskkill /t /f /pid ' : 'kill -f ') + pid;
+  const cmd = (isWindows() ? 'taskkill /t /f /pid ' : 'kill ') + pid;
 
   return spawnAsPromised(cmd);
 }
