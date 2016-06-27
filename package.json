@@ -1,6 +1,9 @@
 {
   "name": "angularjs.org",
   "version": "0.0.0",
+  "scripts": {
+    "build": "node scripts/build"
+  },
   "devDependencies": {
     "http-server": "*",
     "protractor": "~2.5",

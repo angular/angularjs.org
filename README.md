@@ -1,10 +1,10 @@
-The angularjs.org site is not designed to be used by third parties. 
+The angularjs.org site is not designed to be used by third parties.
 It is only kept here as part of our own deployment processes.
 
 
 If you want to have a go at hosting it yourself you can try running
 
-    ./build.sh
+    npm run build
 
 but we will not be providing support for doing this.
 
