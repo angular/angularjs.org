@@ -138,7 +138,10 @@ function testBuild() {
   const httpServerCmd = `${utils.getExecutable('http-server')} -p ${PTOR_PORT} ${DST_DIR}`;
   const protractorCmd = `${utils.getExecutable('protractor')} ${PTOR_CONF}`;
 
-  const protractorOptions = {env: PTOR_ENV, stdio: 'inherit'};
+  const protractorOptions = {
+    env: Object.assign(process.env, PTOR_ENV),
+    stdio: 'inherit'
+  };
 
   const npmInstallPromise = chain(Promise.resolve(), npmInstallCmd);
   const wdrManagerPromise = chain(npmInstallPromise, wdrManagerCmd);
