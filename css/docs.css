@@ -558,3 +558,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
   border: 0;
   opacity: 0.4;
 }
+
+.code-annotation {
+  cursor: help;
+}
