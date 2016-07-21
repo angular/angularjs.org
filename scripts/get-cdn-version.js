@@ -8,7 +8,7 @@ const utils = require('./utils');
 
 // Constants
 const GIT_REMOTE = 'https://github.com/angular/angular.js.git';
-const VERSION_REGEXP = /^(\d+)\.(\d+)\.(\d+)(?:-([^.]+)\.(\d+))?$/;
+const VERSION_REGEXP = /^(\d+)\.(\d+)\.(\d+)(?:-?([^.\d]+)\.?(\d+))?$/;
 
 // Exports
 module.exports = getCdnVersion;
@@ -52,7 +52,7 @@ function getAngularVersions(version) {
   // cfffd1cd5607c0df03720614221c6b0e9c3e8189  refs/tags/v1.5.3
   // 514639b585affc218a6899f1b1755863647fa5a8  refs/tags/v1.5.3^{}
   // ...
-  const versionRegExp = new RegExp(`v(${version.replace(/\./g, '\\.')}\\..*\\d)\\s*$`, 'gi');
+  const versionRegExp = new RegExp(`v(${version.replace(/\./g, '\\.')}\\..*\\d)\\s*$`, 'i');
 
   return utils.
     execAsPromised(`git ls-remote --tags ${GIT_REMOTE}`).
