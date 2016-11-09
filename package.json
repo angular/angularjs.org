@@ -5,8 +5,8 @@
     "build": "node scripts/build"
   },
   "devDependencies": {
+    "eslint": "^3.9.1",
     "http-server": "*",
-    "protractor": "~2.5",
-    "selenium-webdriver": "~2.47.0"
+    "protractor": "^4.0.10"
   }
 }

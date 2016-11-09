@@ -1,10 +1,9 @@
 exports.config = {
-  seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.47.1.jar',
-  seleniumArgs: [],
   baseUrl: process.env.ANGULAR_HOME_HOST || 'http://angularjs.org',
   capabilities: {
     'browserName': 'chrome'
   },
+  directConnect: true,
   specs: [
     'test/angularjs.org.spec.js',
   ],
