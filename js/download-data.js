@@ -8,7 +8,7 @@ angular.module('download-data', [])
       showOnButton: true
     },
     {
-      branch: '1.2.*', version: '1.2.30',
+      branch: '1.2.*', version: '1.2.32',
       title: '1.2.x (legacy)',
       cssClass: 'branch-1-2-x',
       showOnButton: true
