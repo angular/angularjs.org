@@ -6,12 +6,5 @@ exports.config = {
   directConnect: true,
   specs: [
     'test/angularjs.org.spec.js',
-  ],
-  jasmineNodeOpts: {
-    onComplete: null,
-    isVerbose: true,
-    showColors: false,
-    includeStackTrace: true,
-    defaultTimeoutInterval: 10000
-  }
+  ]
 };
