@@ -430,7 +430,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
       cdnInfo: $sce.trustAsHtml(DOWNLOAD_INFO.cdnInfo)
     };
 
-    $scope.currentBranch = $scope.BRANCHES[0];
+    $scope.currentBranch = $scope.BRANCHES[$scope.BRANCHES.length -1];
     $scope.currentBuild = $scope.BUILDS[0];
 
     $scope.setBranch = function(branch) {
