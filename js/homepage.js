@@ -316,55 +316,57 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
       },
       controllerAs: 'plnkr',
       controller: function() {
-        var ctrl = this;
 
-        var name = '',
-          bootstrapStylesheet = 'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css',
-          plnkrFiles = [];
+        this.$onInit = function() {
+          var ctrl = this;
 
-        angular.forEach(ctrl.files.split(' '), function(filename, index) {
-          var content;
+          var name = '',
+            bootstrapStylesheet = 'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css',
+            plnkrFiles = [];
 
-          if (index === 0) {
-            var head = templateBuilder.createLocalDependencies(ctrl.files);
+          angular.forEach(ctrl.files.split(' '), function(filename, index) {
+            var content;
 
-            head.push('    <link rel="stylesheet" href="' + bootstrapStylesheet + '">\n');
-            content = templateBuilder.getIndexTemplate({resource: ctrl.resource, route: ctrl.route, firebase: ctrl.firebase});
-            content = content.
-              replace('__MODULE__', ctrl.module ? '="' + ctrl.module + '"' : '').
-              replace('__HEAD__', head.join('')).
-              replace('__BODY__', fetchCode(filename, 4));
-          } else {
-            content = fetchCode(filename);
-          }
+            if (index === 0) {
+              var head = templateBuilder.createLocalDependencies(ctrl.files);
 
-          content += templateBuilder.getCopyright(filename);
+              head.push('    <link rel="stylesheet" href="' + bootstrapStylesheet + '">\n');
+              content = templateBuilder.getIndexTemplate({resource: ctrl.resource, route: ctrl.route, firebase: ctrl.firebase});
+              content = content.
+                replace('__MODULE__', ctrl.module ? '="' + ctrl.module + '"' : '').
+                replace('__HEAD__', head.join('')).
+                replace('__BODY__', fetchCode(filename, 4));
+            } else {
+              content = fetchCode(filename);
+            }
 
-          plnkrFiles.push({
-            name: index === 0 ? 'index.html' : filename, // plnkr expects an index.html
-            content: content
+            content += templateBuilder.getCopyright(filename);
+
+            plnkrFiles.push({
+              name: index === 0 ? 'index.html' : filename, // plnkr expects an index.html
+              content: content
+            });
           });
-        });
 
-        ctrl.open = function(clickEvent) {
+          ctrl.open = function(clickEvent) {
 
-          var newWindow = clickEvent.ctrlKey || clickEvent.metaKey;
+            var newWindow = clickEvent.ctrlKey || clickEvent.metaKey;
 
-          var postData = {
-            'tags[0]': "angularjs",
-            'tags[1]': "example",
-            'private': true
+            var postData = {
+              'tags[0]': "angularjs",
+              'tags[1]': "example",
+              'private': true
+            };
+
+            angular.forEach(plnkrFiles, function(file) {
+              postData['files[' + file.name + ']'] = file.content;
+            });
+
+            postData.description = 'AngularJS Example: ' + name;
+
+            formPostData('http://plnkr.co/edit/?p=preview', newWindow, postData);
           };
-
-          angular.forEach(plnkrFiles, function(file) {
-            postData['files[' + file.name + ']'] = file.content;
-          });
-
-          postData.description = 'AngularJS Example: ' + name;
-
-          formPostData('http://plnkr.co/edit/?p=preview', newWindow, postData);
         };
-
       }
     };
   })
