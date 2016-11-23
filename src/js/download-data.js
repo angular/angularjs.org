@@ -2,6 +2,12 @@ angular.module('download-data', [])
 
 .value('BRANCHES', [
     {
+      branch: '1.6.*', version: '${CDN_VERSION_1_6}',
+      title: '1.6.x (release candidate)',
+      cssClass: 'branch-1-6-x',
+      showOnButton: true
+    },
+    {
       branch: '1.5.*', version: '${CDN_VERSION_1_5}',
       title: '1.5.x (stable)',
       cssClass: 'branch-1-5-x',
