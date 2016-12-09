@@ -3,14 +3,8 @@ angular.module('download-data', [])
 .value('BRANCHES', [
     {
       branch: '1.6.*', version: '1.6.0',
-      title: '1.6.x (release candidate)',
+      title: '1.6.x (latest)',
       cssClass: 'branch-1-6-x',
-      showOnButton: true
-    },
-    {
-      branch: '1.5.*', version: '1.5.9',
-      title: '1.5.x (stable)',
-      cssClass: 'branch-1-5-x',
       showOnButton: true
     },
     {
