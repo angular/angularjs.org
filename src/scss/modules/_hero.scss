@@ -1,0 +1,17 @@
+
+/*
+* Hero Module
+*
+* Css for the hero on AngularJS
+*
+*/
+
+$hero: '.hero';
+$hero-padding: $unit * 7;
+$hero-bgcolor: $white;
+$hero-color: $blue-grey-600;
+
+#{$hero} {
+  background: $hero-bgcolor;
+  padding: $hero-padding;
+}

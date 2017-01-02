@@ -1,0 +1,45 @@
+
+/*
+* Top Navigation Module
+*
+* Css for the top navigation bar for AngularJS
+*
+*/
+
+$topnav: '.navbar';
+$topnav-height: $unit * 7;
+$topnav-bgcolor: $blue-grey-900;
+$topnav-color: $white;
+
+
+#{$topnav} {
+  #{$topnav}-inner {
+    background: $topnav-bgcolor;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .12), 0 4px 4px rgba(0, 0, 0, .24);
+    height: $topnav-height;
+  }
+
+  .container {
+    padding: 0 ($unit * 2);
+    width: auto;
+  }
+
+  .brand {
+
+  }
+
+  .nav {
+
+    .active {
+
+    }
+
+    .dropdown {
+
+    }
+  }
+
+  .navbar-search  {
+
+  }
+}
