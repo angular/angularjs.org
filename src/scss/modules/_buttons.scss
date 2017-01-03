@@ -76,6 +76,15 @@ $button: '.button';
     line-height: $unit * 7;
   }
 
+  &#{$button}-small {
+    font-size: 11px;
+    line-height: $unit * 3;
+
+    i {
+      font-size: 14px;
+    }
+  }
+
 
   /*
   * Primary Button
@@ -119,6 +128,32 @@ $button: '.button';
     &:focus {
       border: 1px solid $blue-500;
       color: $blue-500;
+    }
+  }
+
+
+  /*
+  * Plain Button
+  *
+  */
+
+  &#{$button}-plain {
+    background: none;
+    color: $blue-grey-400;
+    padding: 0 $unit;
+
+    i {
+      color: $blue-grey-300;
+    }
+
+    &:hover,
+    &:focus {
+      background: $white;
+      color: $blue-500;
+
+      i {
+        color: $blue-500;
+      }
     }
   }
 }
