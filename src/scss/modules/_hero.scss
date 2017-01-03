@@ -7,11 +7,41 @@
 */
 
 $hero: '.hero';
-$hero-padding: $unit * 7;
 $hero-bgcolor: $white;
-$hero-color: $blue-grey-600;
 
 #{$hero} {
   background: $hero-bgcolor;
-  padding: $hero-padding;
+  padding: ($unit * 16) ($unit * 6) ($unit * 6) ($unit * 6);
+
+  h2 {
+    background: url('/img/angularjs-hero-logo.png') top left no-repeat;
+    height: 120px;
+    margin: 0 auto ($unit * 10) auto;
+    overflow: hidden;
+    text-indent: -3000px;
+    width: 460px;
+  }
+
+
+  .button-primary,
+  .button-secondary {
+    min-width: $unit * 30;
+  }
+
+  .button-primary {
+    margin-bottom: $unit * 2;
+  }
+
+  .button-secondary {
+    margin-bottom: $unit * 8;
+
+    .version {
+      font-size: 10px;
+      line-height: 16px;
+      position: absolute;
+      right: $unit * 2;
+      top: 4px;
+      z-index: 1;
+    }
+  }
 }
