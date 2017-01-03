@@ -9,12 +9,16 @@
 $topnav: '.navbar';
 $topnav-height: $unit * 7;
 $topnav-bgcolor: $blue-grey-900;
+$topnav-bgcolor-hover: $blue-grey-800;
 $topnav-color: $white;
 
 // SEARCH BAR
 $topnav-search-bg: $blue-grey-800;
 $topnav-search-color: $blue-500;
 $topnav-search-placedholder: $blue-grey-600;
+
+// DROPDOWN
+$topnav-dropdown-bg-hover: $blue-grey-700;
 
 
 #{$topnav} {
@@ -51,29 +55,74 @@ $topnav-search-placedholder: $blue-grey-600;
   .nav {
     float: right;
 
-    .active {
-
-    }
-
-    .dropdown {
-
-    }
-
-    // BUTTON
+    // TOGGLE BUTTON
     .dropdown-toggle {
-      color: rgba($white, .87);
-      font-size: 18px;
+      color: rgba($topnav-color, .87);
+      font-size: 16px;
       font-weight: 300;
       line-height: $topnav-height;
       padding: 0 ($unit * 3);
       text-transform: uppercase;
+      transition: all .3s;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: $topnav-bgcolor-hover;
+        color: $topnav-color;
+      }
+    }
+
+    // DROPDOWN MENU
+    .dropdown-menu {
+      background: $topnav-bgcolor-hover;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 0 16px rgba(0, 0, 0, .12), 0 16px 16px rgba(0, 0, 0, .24);
+      color: $topnav-color;
+      left: auto;
+      margin: 0;
+      padding: 0;
+      right: 0;
+
+      &:after,
+      &:before {
+        display: none;
+      }
+
+      li {
+        border-bottom: 1px solid rgba($topnav-bgcolor, .56);
+        box-sizing: border-box;
+        line-height: ($unit * 6);
+
+        &:last-child {
+          border: none;
+        }
+      }
+
+      a {
+        background: $topnav-bgcolor-hover;
+        color: $topnav-color;
+        font-weight: 300;
+        line-height: ($unit * 6);
+        padding: 0 ($unit * 2);
+        transition: all .2s;
+
+        &:hover,
+        &:focus {
+          background: $topnav-dropdown-bg-hover;
+        }
+      }
     }
   }
 
   .navbar-search  {
-    margin: $unit;
-    position: relative;
-    width: 440px;
+    left: 240px;
+    margin: 0;
+    position: absolute;
+    right: 440px;
+    top: $unit;
+    width: auto;
 
     i {
       color: $topnav-search-placedholder;
@@ -92,7 +141,7 @@ $topnav-search-placedholder: $blue-grey-600;
       color: $topnav-search-placedholder;
       font-size: 14px;
       height: $topnav-height - ($unit * 2);
-      width: 440px;
+      width: 100%;
       padding: 0 ($unit * 2) 0 ($unit * 4);
       text-shadow: none;
       transition: all .3s;
