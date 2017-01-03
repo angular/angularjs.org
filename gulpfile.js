@@ -11,8 +11,18 @@ gulp.task('sass', function () {
   return gulp.src('./src/scss/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'})
     .on('error', sass.logError))
-    .pipe(gulp.dest('./src/css'))
-    .pipe(gulp.dest('./build/css'));
+    .pipe(gulp.dest('./src/css'));
+});
+
+
+/*
+* DEVELOPMENT
+*
+*/
+
+gulp.task('dev', ['sass'], function() {
+  gulp.watch('./src/scss/**/*', ['sass']);
+  console.log('Watching Sass files for changes...');
 });
 
 
@@ -22,10 +32,7 @@ gulp.task('sass', function () {
 */
 
 gulp.task('default', ['sass'], function() {
-  gulp.watch('./src/scss/**/*', ['sass']);
-
   console.log('Building production assets');
 });
-
 
 module.exports = gulp;
