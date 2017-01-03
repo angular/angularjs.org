@@ -1,0 +1,83 @@
+$topnav: '.navbar';
+$hero: '.hero';
+$homepage: '.homepage';
+
+#{$homepage} {
+  @include mobile {
+    /*
+    * Layout
+    *
+    */
+
+    .container {
+      padding: $unit * 2;
+      width: auto;
+    }
+
+    @for $i from 1 through 10 {
+      .span#{$i} {
+        width: auto;
+      }
+    }
+
+    /*
+    * Top Navigation
+    *
+    */
+
+    #{$topnav} {
+      #{$topnav}-inner {
+        height: $unit * 6;
+      }
+
+      .container {
+        padding: 0 $unit;
+      }
+
+      .brand a {
+        background-size: 68px 18px;
+        height: 18px;
+        margin: $unit 0;
+        width: 68px;
+      }
+
+      .nav .dropdown-toggle {
+        font-size: 12px;
+        line-height: $topnav-height - $unit;
+        padding: 0 $unit;
+      }
+
+      .dropdown-menu {
+        a {
+          padding: 0 $unit;
+        }
+      }
+
+      .navbar-search  {
+        background: $topnav-bgcolor;
+        left: 0;
+        padding: $unit;
+        right: 0;
+        top: 100%;
+
+        i {
+          left: ($unit * 2) + 4;
+          top: ($unit * 2) + 3;
+        }
+      }
+    }
+
+    /*
+    * Hero
+    *
+    */
+
+    #{$hero} {
+      h2 {
+        background-size: 230px 60px ;
+        height: 60px;
+        width: 230px;
+      }
+    }
+  }
+}

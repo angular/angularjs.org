@@ -5,5 +5,33 @@
 *
 */
 
+
+/*
+* Variables
+*
+*/
+
 $unit: 8px;
 $font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$mobile-breakpoint: 800px !default;
+
+
+/*
+* Mixins
+*
+*/
+
+@mixin mobile {
+  @media handheld and (max-width: $mobile-breakpoint),
+  screen and (max-device-width: $mobile-breakpoint),
+  screen and (max-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin retina {
+  @media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+    @content;
+  }
+}
