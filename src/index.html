@@ -108,9 +108,6 @@
         <div class="text-center">
           <a class="button button-large button-secondary has-shield" href="" ng-click="showDownloadModal()">
             Download Angular 1
-            <span class="version" ng-cloak>
-              <span ng-repeat="branch in BRANCHES | filter:{showOnButton: true}">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>
-            </span>
           </a>
         </div>
       </div>
@@ -366,7 +363,7 @@
 
   <div class="jumbotron" ng-cloak>
     <div class="jumbotron-header">
-      <h3 class="text-display-1" id="previous-conferences">Previous Conferences</h3>
+      <h3 class="text-display-1 text-inverse" id="previous-conferences">Previous Conferences</h3>
       <nav class="jumbotron-sections">
         <div class="ng-link-left">
           <a href="http://angularconnect.com/?utm_source=angularjs-org&amp;utm_medium=angularjs-org&amp;utm_campaign=angularjs-org" target="_blank">

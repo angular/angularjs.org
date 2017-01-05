@@ -13,11 +13,9 @@ body {
   font-family: $font-family;
 }
 
-#{$text}-center {
-  text-align: center;
-}
 
 
+// STANDARD DISPLAY TYPES
 #{$text}-display-1 {
   color: $blue-grey-800;
   font-family: $font-family;
@@ -46,4 +44,14 @@ body {
   line-height: 24px;
   margin: 0 0 ($unit * 2) 0;
   opacity: .87;
+}
+
+// ALIGNMENT
+#{$text}-center {
+  text-align: center;
+}
+
+// COLORS & STYLE
+#{$text}-inverse {
+  color: $white;
 }

@@ -27,26 +27,33 @@ $homepage: '.homepage';
 
     #{$topnav} {
       #{$topnav}-inner {
-        height: $unit * 6;
+        height: $unit * 5;
       }
 
       .container {
         padding: 0 $unit;
       }
 
-      .brand a {
-        background-size: 68px 18px;
-        height: 18px;
-        margin: $unit 0;
-        width: 68px;
+      .brand {
+        margin: ($unit + 2) 0 0 0;
+
+        a {
+          background-size: 68px 18px;
+          height: 18px;
+          margin: 0;
+          width: 68px;
+        }
       }
 
-      .nav .dropdown-toggle {
-        font-size: 12px;
-        line-height: $topnav-height - $unit;
-        padding: 0 $unit;
-      }
+      .nav {
+        margin: 0;
 
+        .dropdown-toggle {
+          font-size: 12px;
+          line-height: $unit * 5;
+          padding: 0 $unit;
+        }
+      }
       .dropdown-menu {
         a {
           padding: 0 $unit;
@@ -55,14 +62,19 @@ $homepage: '.homepage';
 
       .navbar-search  {
         background: $topnav-bgcolor;
+        border-bottom: 1px solid $topnav-bgcolor;
         left: 0;
-        padding: $unit;
         right: 0;
         top: 100%;
 
         i {
-          left: ($unit * 2) + 4;
-          top: ($unit * 2) + 3;
+          left: $unit + 4;
+          top: $unit - 1;
+        }
+
+        .search-query {
+          border-radius: 0;
+          height: $unit * 4;
         }
       }
     }
