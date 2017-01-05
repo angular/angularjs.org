@@ -14,14 +14,21 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./src/css'));
 });
 
+gulp.task('sass-dev', function () {
+  return gulp.src('./src/scss/**/*.scss')
+    .pipe(sass({outputStyle: 'compressed'})
+    .on('error', sass.logError))
+    .pipe(gulp.dest('./src/css'))
+    .pipe(gulp.dest('./build/css'));
+});
 
 /*
 * DEVELOPMENT
 *
 */
 
-gulp.task('dev', ['sass'], function() {
-  gulp.watch('./src/scss/**/*', ['sass']);
+gulp.task('dev', ['sass-dev'], function() {
+  gulp.watch('./src/scss/**/*', ['sass-dev']);
   console.log('Watching Sass files for changes...');
 });
 

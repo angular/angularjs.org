@@ -35,11 +35,13 @@ $hero-bgcolor: $white;
     margin-bottom: $unit * 8;
 
     .version {
+      color: $blue-grey-200;
       font-size: 10px;
+      left: 0;
       line-height: 16px;
       position: absolute;
-      right: $unit * 2;
-      top: 4px;
+      right: 0;
+      bottom: 2px;
       z-index: 1;
     }
   }
