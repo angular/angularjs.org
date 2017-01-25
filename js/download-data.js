@@ -40,7 +40,7 @@ angular.module('download-data', [])
     "  <dt>Uncompressed</dt>"+
     "  <dd>The main AngularJS source code, as is. Useful for debugging and development purpose, but should ideally not be used in your deployed application</dd>"+
     "  <dt>Zipped</dt>"+
-    "  <dd>The zipped version of the Angular Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd>"+
+    "  <dd>The zipped version of the AngularJS Build, which contains both the builds of AngularJS, as well as documentation and other extras</dd>"+
     "</dl>",
 
   cdnInfo:

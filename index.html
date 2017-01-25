@@ -111,14 +111,14 @@
         <div class="center">
           <h1>HTML enhanced for web apps!</h1>
           <a class="btn btn-large btn-primary download-btn" href="" ng-click="showDownloadModal()">
-            <i class="icon-download-alt icon-large"></i> Download AngularJS 1<br>
+            <i class="icon-download-alt icon-large"></i> Download AngularJS<br>
             <img src="img/ng-logo.png"><br>
             <span class="version" ng-cloak>
               (<span ng-repeat="branch in BRANCHES | filter:{showOnButton: true}">{{branch.version}}{{ !$last ? ' / ' : '' }}</span>)
             </span>
           </a>&nbsp;
           <a href="http://angular.io" target="_blank" class="btn btn-large btn-primary ng2-beta">
-            Try the new Angular 2<br>
+            Try the new Angular<br>
             <img src="https://angular.io/resources/images/logos/angular2/angular.svg">
           </a>
 
@@ -147,8 +147,8 @@
           </ul>
 
           <a class="learn-link" href="http://angular.codeschool.com">
-            <img class="learn-link-badge" src="img/codeschool-badge.png" alt="Shaping up with Angular.js" width="52" height="52" />
-            Learn Angular in your browser for free!
+            <img class="learn-link-badge" src="img/codeschool-badge.png" alt="Shaping up with AngularJS" width="52" height="52" />
+            Learn AngularJS in your browser for free!
           </a>
         </div>
       </div>
@@ -228,7 +228,7 @@
         <h3>Plain JavaScript</h3>
         <p>
           Unlike other frameworks, there is no need to inherit from proprietary types in order to wrap the
-          model in accessors methods. Angular models are plain old JavaScript objects. This makes your code easy to
+          model in accessors methods. AngularJS models are plain old JavaScript objects. This makes your code easy to
           test, maintain, reuse, and again free from boilerplate.
         </p>
       </div>
@@ -282,7 +282,7 @@
           AngularJS provides built-in services on top of XHR as well as various other backends
           using third party libraries. Promises further simplify your code
           by handling asynchronous return of data. In this example, we use the AngularFire
-          library to wire up a <a href="https://www.firebase.com/">Firebase</a> backend to a simple Angular app.
+          library to wire up a <a href="https://www.firebase.com/">Firebase</a> backend to a simple AngularJS app.
         </p>
       </div>
     </div>
@@ -309,7 +309,7 @@
       <div class="span4">
         <h3>Directives</h3>
         <p>
-          Directives are a unique and powerful feature available only in Angular. Directives let
+          Directives are a unique and powerful feature available in AngularJS. Directives let
           you invent new HTML syntax, specific to your application.
         </p>
       </div>
@@ -324,7 +324,7 @@
       <div class="span4">
         <h3>Localization</h3>
         <p>
-          An important part of serious apps is localization. Angular's locale aware filters and
+          An important part of serious apps is localization. AngularJS's locale aware filters and
           stemming directives give you building blocks to make your application available in all
           locales.
         </p>
@@ -451,8 +451,8 @@
         .controller('TodoListController', function() {
           var todoList = this;
           todoList.todos = [
-            {text:'learn angular', done:true},
-            {text:'build an angular app', done:false}];
+            {text:'learn AngularJS', done:true},
+            {text:'build an AngularJS app', done:false}];
 
           todoList.addTodo = function() {
             todoList.todos.push({text:todoList.todoText, done:false});
@@ -657,7 +657,7 @@
           description: 'HTML enhanced for web apps!'
         },
         {
-          name: 'Angular 2',
+          name: 'Angular',
           site: 'http://angular.io',
           description: 'One framework. Mobile and desktop.'
         },
@@ -776,7 +776,7 @@
        , "angular-resource.min.js": "Load AngularJS resource module."
        , "angular-route.min.js": "Load AngularJS route module."
        , "firebase.js": "Load the Firebase JavaScript SDK."
-       , "angularfire.min.js": "Load the Angular bindings for Firebase."
+       , "angularfire.min.js": "Load the AngularJS bindings for Firebase."
        , "project.js": "The <code>project.js</code> file contains the controllers which specify your application’s behavior."
        , "ng-view": "We’re marking this <code>&lt;div&gt;</code> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section. In this case, we’ll be switching between a list of “projects” and the form to add new or edit existing “projects”."
        }
@@ -786,7 +786,7 @@
        , "value": "Define a singleton object that can be injected into controllers and services."
        , "fbURL": "The URL to the Firebase location from which we want to load data (and store changes)."
        , "factory": "Define a factory that will return a singleton object that can be injected into controllers and services."
-       , "$firebase": "A service provided by AngularFire for binding data from Firebase to Angular models."
+       , "$firebase": "A service provided by AngularFire for binding data from Firebase to AngularJS models."
        , "$asArray": "A method that returns data from Firebase in the form of a synchronized array."
        , "config": "You use <code>config()</code> to configure existing services. Here, we’re configuring the <code>$routeProvider</code> responsible for mapping URL paths to partials."
        , "controller": "Define a controller function that can be attached to the DOM using <code>ng-controller</code> or to a view template by specifying it in the route configuration."
