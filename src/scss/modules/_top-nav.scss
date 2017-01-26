@@ -41,14 +41,14 @@ $topnav-dropdown-bg-hover: $blue-grey-700;
     padding: 0;
 
     a {
-      background: url('/img/angularjs-topnav-logo.png') top left no-repeat;
+      background: url('/img/AngularJS-small.png') top left no-repeat;
       display: block;
-      height: 36px;
-      margin: 0;
+      height: 25px;
+      margin: 6px 0 5px 0;
       overflow: hidden;
       padding: 0;
       text-indent: -3000px;
-      width: 160px;
+      width: 95px;
     }
   }
 
@@ -117,7 +117,7 @@ $topnav-dropdown-bg-hover: $blue-grey-700;
   }
 
   .navbar-search  {
-    left: 240px;
+    left: 200px;
     margin: 0;
     position: absolute;
     right: 440px;
