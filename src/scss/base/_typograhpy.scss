@@ -1,0 +1,57 @@
+/*
+* Typography Module
+*
+* Typographic styles for AngularJS
+*
+*/
+
+$text: '.text';
+
+
+body {
+  color: $blue-grey-700;
+  font-family: $font-family;
+}
+
+
+
+// STANDARD DISPLAY TYPES
+#{$text}-display-1 {
+  color: $blue-grey-800;
+  font-family: $font-family;
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 48px;
+  margin: 0;
+  opacity: .56;
+}
+
+#{$text}-title {
+  color: $blue-grey-800;
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 0;
+  opacity: .87;
+}
+
+#{$text}-body {
+  color: $blue-grey-800;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0 0 ($unit * 2) 0;
+  opacity: .87;
+}
+
+// ALIGNMENT
+#{$text}-center {
+  text-align: center;
+}
+
+// COLORS & STYLE
+#{$text}-inverse {
+  color: $white;
+}

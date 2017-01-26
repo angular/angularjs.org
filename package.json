@@ -6,6 +6,8 @@
   },
   "devDependencies": {
     "eslint": "^3.9.1",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.0.0",
     "http-server": "*",
     "protractor": "^4.0.10"
   }
