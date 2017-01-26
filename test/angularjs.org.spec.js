@@ -78,7 +78,7 @@ describe('Angularjs.org', function () {
       });
 
 
-      it('should allow downloading uncompressed angular', function () {
+      it('should allow downloading uncompressed AngularJS', function () {
         var uncompressedBtn = browser.findElement(
             by.css(
                 '.download-modal .modal-body > dl button.uncompressed'));
@@ -179,7 +179,7 @@ describe('Angularjs.org', function () {
         element(by.id('projects_search')).sendKeys('Ang');
         browser.driver.sleep(50);
         expect(list.count()).toBe(2);
-        expect(list.get(0).getText()).toContain('Angular 2');
+        expect(list.get(0).getText()).toContain('Angular');
         expect(list.get(1).getText()).toContain('AngularJS');
         browser.driver.sleep(5000);
       });
