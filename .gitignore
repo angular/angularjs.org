@@ -6,3 +6,6 @@ slides/gitFetchSite.log
 .DS_Store
 build/
 npm-debug.log
+
+src/css/angular.css
+src/css/angular-topnav.css
