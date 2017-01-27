@@ -2,7 +2,7 @@
   "name": "angularjs.org",
   "version": "0.0.0",
   "scripts": {
-    "build": "gulp && node scripts/build"
+    "build": "node_modules/.bin/gulp && node scripts/build"
   },
   "devDependencies": {
     "eslint": "^3.9.1",
