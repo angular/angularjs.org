@@ -121,7 +121,8 @@ $button: '.button';
     color: $blue-grey-300;
 
     &.has-shield {
-      background: $white url('/img/button-logo-grey.png') ($unit * 2) center no-repeat;
+      background: $white url('/img/ng-logo.png') ($unit * 2) center no-repeat;
+      background-size: ($unit * 3);
     }
 
     &:hover,
