@@ -1,0 +1,36 @@
+
+/*
+* Announcement Bar Module
+*
+* Css for the announcements on AngularJS homepage
+*
+*/
+
+$announcement-bar: '.announcement-bar';
+$announcement-bar-padding: $unit * 4;
+$announcement-bar-bgcolor: rgba($blue-grey-50, .56);
+$announcement-bar-color: $blue-grey-600;
+
+#{$announcement-bar} {
+  background: $announcement-bar-bgcolor;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .24);
+  padding: $announcement-bar-padding;
+
+  ul {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      height: $unit * 3;
+      margin: 0 ($unit * 2);
+    }
+  }
+
+  iframe {
+    margin-bottom: -6px;
+    padding: 0;
+  }
+}

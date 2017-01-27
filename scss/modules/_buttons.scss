@@ -1,0 +1,159 @@
+
+/*
+* Buttons Module
+*
+* Css for the hero on AngularJS
+*
+*/
+
+$button: '.button';
+
+
+#{$button} {
+  background-color: $blue-grey-50;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: $unit * 5;
+  padding: 0 ($unit * 3);
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all .3s;
+
+  // HOVER STATE
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 4px rgba(0, 0, 0, .12), 0 4px 4px rgba(0, 0, 0, .24);
+    text-decoration: none;
+  }
+
+
+  /*
+  * Badges
+  *
+  */
+
+  .badge-new {
+    background: url('/img/new-ribbon.png') top left no-repeat;
+    height: 41px;
+    overflow: hidden;
+    position: absolute;
+    right: -2px;
+    text-indent: -3000px;
+    top: -3px;
+    width: 40px;
+    z-index: 1;
+  }
+
+
+  /*
+  * Decorators
+  *
+  */
+
+  &.has-shadow {
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .24);
+    transition: all .3s;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 8px rgba(0, 0, 0, .12), 0 8px 8px rgba(0, 0, 0, .24);
+    }
+  }
+
+  &.has-shield {
+    padding: 0 ($unit * 2) 0 ($unit * 6);
+  }
+
+  /*
+  * Sizes
+  *
+  */
+
+  &#{$button}-large {
+    font-size: 14px;
+    line-height: $unit * 7;
+  }
+
+  &#{$button}-small {
+    font-size: 11px;
+    line-height: $unit * 3;
+
+    i {
+      font-size: 14px;
+    }
+  }
+
+
+  /*
+  * Primary Button
+  *
+  */
+
+  &#{$button}-primary {
+    background-color: $blue-600;
+    color: $white;
+
+    &.has-shield {
+      background: $blue-600 url('/img/button-logo-white.png') ($unit * 2) center no-repeat;
+    }
+
+    &:hover,
+    &:focus {
+      background: $blue-500;
+
+      &.has-shield {
+        background: $blue-500 url('/img/button-logo-white.png') ($unit * 2) center no-repeat;
+      }
+    }
+  }
+
+
+  /*
+  * Secondary Button
+  *
+  */
+
+  &#{$button}-secondary {
+    background: $white;
+    border: 1px solid $blue-grey-50;
+    color: $blue-grey-300;
+
+    &.has-shield {
+      background: $white url('/img/button-logo-grey.png') ($unit * 2) center no-repeat;
+    }
+
+    &:hover,
+    &:focus {
+      border: 1px solid $blue-500;
+      color: $blue-500;
+    }
+  }
+
+
+  /*
+  * Plain Button
+  *
+  */
+
+  &#{$button}-plain {
+    background: none;
+    color: $blue-grey-400;
+    padding: 0 $unit;
+
+    i {
+      color: $blue-grey-300;
+    }
+
+    &:hover,
+    &:focus {
+      background: $white;
+      color: $blue-500;
+
+      i {
+        color: $blue-500;
+      }
+    }
+  }
+}

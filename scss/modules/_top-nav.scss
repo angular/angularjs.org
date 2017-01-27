@@ -1,0 +1,181 @@
+
+/*
+* Top Navigation Module
+*
+* Css for the top navigation bar for AngularJS
+*
+*/
+
+$topnav: '.navbar';
+$topnav-height: $unit * 7;
+$topnav-bgcolor: $blue-grey-900;
+$topnav-bgcolor-hover: $blue-grey-800;
+$topnav-color: $white;
+
+// SEARCH BAR
+$topnav-search-bg: $blue-grey-800;
+$topnav-search-color: $blue-500;
+$topnav-search-placedholder: $blue-grey-600;
+
+// DROPDOWN
+$topnav-dropdown-bg-hover: $blue-grey-700;
+
+
+#{$topnav} {
+  display: block;
+
+  #{$topnav}-inner {
+    background: $topnav-bgcolor;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .12), 0 4px 4px rgba(0, 0, 0, .24);
+    height: $topnav-height;
+  }
+
+  .container {
+    padding: 0 ($unit * 2);
+    width: auto;
+  }
+
+  .brand {
+    float: left;
+    margin: $unit ($unit * 10) 0 $unit;
+    padding: 0;
+
+    a {
+      background: url('/img/AngularJS-small.png') top left no-repeat;
+      display: block;
+      height: 25px;
+      margin: 6px 0 5px 0;
+      overflow: hidden;
+      padding: 0;
+      text-indent: -3000px;
+      width: 95px;
+    }
+  }
+
+  .nav {
+    float: right;
+
+    // TOGGLE BUTTON
+    .dropdown-toggle {
+      color: rgba($topnav-color, .87);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: $topnav-height;
+      padding: 0 ($unit * 3);
+      text-transform: uppercase;
+      transition: all .3s;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: $topnav-bgcolor-hover;
+        color: $topnav-color;
+      }
+    }
+
+    // DROPDOWN MENU
+    .dropdown-menu {
+      background: $topnav-bgcolor-hover;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 0 16px rgba(0, 0, 0, .12), 0 16px 16px rgba(0, 0, 0, .24);
+      color: $topnav-color;
+      left: auto;
+      margin: 0;
+      padding: 0;
+      right: 0;
+
+      &:after,
+      &:before {
+        display: none;
+      }
+
+      li {
+        border-bottom: 1px solid rgba($topnav-bgcolor, .56);
+        box-sizing: border-box;
+        line-height: ($unit * 6);
+
+        &:last-child {
+          border: none;
+        }
+      }
+
+      a {
+        background: $topnav-bgcolor-hover;
+        color: $topnav-color;
+        font-weight: 300;
+        line-height: ($unit * 6);
+        padding: 0 ($unit * 2);
+        transition: all .2s;
+
+        &:hover,
+        &:focus {
+          background: $topnav-dropdown-bg-hover;
+        }
+      }
+    }
+  }
+
+  .navbar-search  {
+    left: 200px;
+    margin: 0;
+    position: absolute;
+    right: 440px;
+    top: $unit;
+    width: auto;
+
+    i {
+      color: $topnav-search-placedholder;
+      font-size: 16px;
+      left: $unit + 4;
+      position: absolute;
+      top: $unit + 3;
+    }
+
+    .search-query {
+      background: $topnav-search-bg;
+      border: none;
+      border-radius: 2px;
+      box-shadow: none;
+      box-sizing: border-box;
+      color: $topnav-search-placedholder;
+      font-size: 14px;
+      height: $topnav-height - ($unit * 2);
+      width: 100%;
+      padding: 0 ($unit * 2) 0 ($unit * 4);
+      text-shadow: none;
+      transition: all .3s;
+
+      // AUTO FILL OVERRIDE
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        background-color: $white;
+        transition: background-color 5000s ease-in-out 0s;
+        -webkit-text-fill-color: $blue-grey-700;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: $white;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, .24);
+        color: $topnav-search-color;
+      }
+
+      // PLACEHOLDER TEXT
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $topnav-search-placedholder;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: $topnav-search-placedholder;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: $topnav-search-placedholder;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: $topnav-search-placedholder;
+      }
+    }
+  }
+}
