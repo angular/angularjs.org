@@ -327,16 +327,6 @@ div.modal-body button {
   height: 100px;
 }
 
-.download-btn {
-  height: 125px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.download-btn img {
-  height: 80px;
-}
-
 .jumbotron h1 {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   margin-top:0;
