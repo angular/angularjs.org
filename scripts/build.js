@@ -133,7 +133,7 @@ function replaceCdnVersionsInFiles(cdnVersions) {
 function testBuild() {
   announce(`Testing the current build (ENV: ${JSON.stringify(PTOR_ENV, null, 2)})...`);
 
-  const npmInstallCmd = `${utils.getExecutable('npm', true)} install`;
+  const installCmd = `${utils.getExecutable('yarn', true)} install`;
   const wdrManagerCmd = `${utils.getExecutable('webdriver-manager')} update`;
   const httpServerCmd = `${utils.getExecutable('http-server')} -p ${PTOR_PORT} ${DST_DIR}`;
   const protractorCmd = `${utils.getExecutable('protractor')} ${PTOR_CONF}`;
@@ -143,8 +143,8 @@ function testBuild() {
     stdio: 'inherit'
   };
 
-  const npmInstallPromise = chain(Promise.resolve(), npmInstallCmd);
-  const wdrManagerPromise = chain(npmInstallPromise, wdrManagerCmd);
+  const installPromise = chain(Promise.resolve(), installCmd);
+  const wdrManagerPromise = chain(installPromise, wdrManagerCmd);
   const httpServerPromise = chain(wdrManagerPromise, httpServerCmd);
   const protractorPromise = chain(wdrManagerPromise, protractorCmd, protractorOptions);
 
