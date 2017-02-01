@@ -35,7 +35,7 @@ $homepage: '.homepage';
       }
 
       .brand {
-        margin: ($unit + 2) 0 0 0;
+        margin: 6px 0 0 0;
 
         a {
           margin: 0;
@@ -82,6 +82,14 @@ $homepage: '.homepage';
     */
 
     #{$hero} {
+      padding: ($unit * 10) ($unit * 4) ($unit * 4) ($unit * 4);
+
+      .site-notice {
+        position: static;
+        margin-bottom: $unit * 4;
+        top: 0;
+      }
+
       h2 {
         background-size: 230px 60px ;
         height: 60px;
