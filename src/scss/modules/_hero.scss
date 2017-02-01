@@ -11,12 +11,29 @@ $hero-bgcolor: $white;
 
 #{$hero} {
   background: $hero-bgcolor;
-  padding: ($unit * 16) ($unit * 6) ($unit * 6) ($unit * 6);
+  padding: ($unit * 20) ($unit * 6) ($unit * 6) ($unit * 6);
+
+  .site-notice {
+    color: $blue-grey-500;
+    font-size: 12px;
+    left: 0;
+    line-height: $unit * 3;
+    right: 0;
+    padding: 0 ($unit * 4);
+    position: absolute;
+    top: $unit * 12;
+    text-align: center;
+    z-index: 1;
+
+    a {
+      color: $blue-600;
+    }
+  }
 
   h2 {
     background: url('/img/AngularJS-large.png') top left no-repeat;
     height: 108px;
-    margin: 0 auto ($unit * 10) auto;
+    margin: 0 auto ($unit * 8) auto;
     overflow: hidden;
     text-indent: -3000px;
     width: 383px;
