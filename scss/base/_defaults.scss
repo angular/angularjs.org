@@ -35,3 +35,12 @@ $mobile-breakpoint: 800px !default;
     @content;
   }
 }
+
+.visible-phone {
+  display: none;
+}
+
+.visible-desktop {
+  display: block;
+}
+

@@ -2,7 +2,18 @@ $topnav: '.navbar';
 $hero: '.hero';
 $homepage: '.homepage';
 
+@include mobile {
+  .visible-phone {
+    display: block;
+  }
+
+  .visible-desktop {
+    display: none;
+  }
+}
+
 #{$homepage} {
+
   @include mobile {
     /*
     * Layout
@@ -20,18 +31,21 @@ $homepage: '.homepage';
       }
     }
 
+
+    #{$topnav} {
+      .container {
+        padding: 0 $unit;
+      }
+    }
+
     /*
     * Top Navigation
     *
     */
 
-    #{$topnav} {
+    #navbar-main {
       #{$topnav}-inner {
         height: $unit * 5;
-      }
-
-      .container {
-        padding: 0 $unit;
       }
 
       .brand {
@@ -58,8 +72,8 @@ $homepage: '.homepage';
       }
 
       .navbar-search  {
-        background: $topnav-bgcolor;
-        border-bottom: 1px solid $topnav-bgcolor;
+        background: $topnav-main-bgcolor;
+        border-bottom: 1px solid $topnav-main-bgcolor;
         left: 0;
         right: 0;
         top: 100%;
@@ -76,6 +90,14 @@ $homepage: '.homepage';
       }
     }
 
+    #navbar-notice {
+      top: $unit * 5;
+
+      .site-notice {
+        font-size: 11px;
+      }
+    }
+
     /*
     * Hero
     *
@@ -83,12 +105,6 @@ $homepage: '.homepage';
 
     #{$hero} {
       padding: ($unit * 10) ($unit * 4) ($unit * 4) ($unit * 4);
-
-      .site-notice {
-        position: static;
-        margin-bottom: $unit * 4;
-        top: 0;
-      }
 
       h2 {
         background-size: 230px 60px ;
