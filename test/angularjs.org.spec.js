@@ -91,6 +91,7 @@ describe('Angularjs.org', function () {
       it('should have a working close button', function () {
         var closeButton = browser.findElement(by.css('.download-modal .modal-header button.close'));
         closeButton.click();
+        browser.driver.sleep(300);
         expect(element(by.css('.download-modal')).isPresent()).toBe(false);
       });
 
