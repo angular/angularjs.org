@@ -3193,7 +3193,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
 
         if (inputFormatter) {
 
-          locals['$model'] = modelValue;
+          locals['.$model'] = modelValue;
           return inputFormatter(originalScope, locals);
 
         } else {
