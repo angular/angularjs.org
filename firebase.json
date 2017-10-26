@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "build",
+    "ignore": [
+      "/scss/",
+      "/*.php",
+      "/propagateClusterUpdate.js"
+    ]
+  }
+}

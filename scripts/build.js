@@ -15,7 +15,7 @@ const SRC_DIR = 'src';
 const CDN_VERSIONS = ['1.2', '1.6'];
 const CDN_REPLACE_FILES = ['index.html', 'js/download-data.js'];
 const GIT_BRANCH_DIST = 'dist';
-const PTOR_CONF = 'protractorConf.js';
+const PTOR_CONF = process.env.TRAVIS ? 'protractorConfTravis.js' : 'protractorConfLocal.js';
 const PTOR_PORT = '8100';
 const PTOR_ENV = {
   ANGULAR_HOME_HOST: `http://localhost:${PTOR_PORT}`,
@@ -133,20 +133,25 @@ function replaceCdnVersionsInFiles(cdnVersions) {
 function testBuild() {
   announce(`Testing the current build (ENV: ${JSON.stringify(PTOR_ENV, null, 2)})...`);
 
-  const installCmd = `${utils.getExecutable('yarn', true)} install`;
-  const wdrManagerCmd = `${utils.getExecutable('webdriver-manager')} update`;
-  const httpServerCmd = `${utils.getExecutable('http-server')} -p ${PTOR_PORT} ${DST_DIR}`;
-  const protractorCmd = `${utils.getExecutable('protractor')} ${PTOR_CONF}`;
-
   const protractorOptions = {
     env: Object.assign(process.env, PTOR_ENV),
     stdio: 'inherit'
   };
 
-  const installPromise = chain(Promise.resolve(), installCmd);
-  const wdrManagerPromise = chain(installPromise, wdrManagerCmd);
-  const httpServerPromise = chain(wdrManagerPromise, httpServerCmd);
-  const protractorPromise = chain(wdrManagerPromise, protractorCmd, protractorOptions);
+  const installCmd = `${utils.getExecutable('yarn', true)} install`;
+  const httpServerCmd = `${utils.getExecutable('http-server')} -p ${PTOR_PORT} ${DST_DIR}`;
+  const wdrManagerCmd = `${utils.getExecutable('webdriver-manager')} update`;
+  const protractorCmd = `${utils.getExecutable('protractor')} ${PTOR_CONF}`;
+
+  let setupPromise = Promise.resolve();
+
+  if (!process.env.TRAVIS) {
+    setupPromise = chain(setupPromise, installCmd);
+    setupPromise = chain(setupPromise, wdrManagerCmd);
+  }
+
+  const httpServerPromise = chain(setupPromise, httpServerCmd);
+  const protractorPromise = chain(setupPromise, protractorCmd, protractorOptions);
 
   const killHttpServer = () => httpServerPromise.$$killProcess();
 
