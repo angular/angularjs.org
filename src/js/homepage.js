@@ -364,7 +364,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
 
             postData.description = 'AngularJS Example: ' + name;
 
-            formPostData('http://plnkr.co/edit/?p=preview', newWindow, postData);
+            formPostData('https://plnkr.co/edit/?p=preview', newWindow, postData);
           };
         };
       }
