@@ -1,10 +1,23 @@
 {
   "hosting": {
     "public": "build",
+    "trailingSlash": false,
     "ignore": [
       "/scss/",
       "/*.php",
       "/propagateClusterUpdate.js"
+    ],
+    "redirects": [
+      {
+        "source": "/docs/api",
+        "destination": "https://docs.angularjs.org/api",
+        "type": 301
+      },
+      {
+        "source": "/@(docs|api)",
+        "destination": "https://docs.angularjs.org/api",
+        "type": 301
+      }
     ]
   }
 }
