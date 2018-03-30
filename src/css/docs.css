@@ -110,30 +110,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', end
   margin:auto;
 }
 
-.learn-link {
-  background: white;
-  border: 1px solid #e2e4e5;
-  border-radius: 100px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-  color: #535353;
-  display: block;
-  font-size: 16px;
-  margin: 0 auto;
-  max-width: 280px;
-  padding: 0.7em 40px 0.7em 60px;
-  position: relative;
-  text-align: center;
-}
-.learn-link:hover,
-.learn-link:focus {
-  text-decoration: none;
-}
-.learn-link-badge {
-  left: -5px;
-  position: absolute;
-  top: -5px;
-}
-
 .google-follow {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   font-size: 11px;
