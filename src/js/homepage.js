@@ -321,7 +321,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
           var ctrl = this;
 
           var name = '',
-            bootstrapStylesheet = 'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css',
+            bootstrapStylesheet = '//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css',
             plnkrFiles = [];
 
           angular.forEach(ctrl.files.split(' '), function(filename, index) {
