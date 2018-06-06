@@ -120,7 +120,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
   .factory('templateBuilder', function(script) {
     var COPYRIGHT = 'Copyright ' + (new Date()).getFullYear() + ' Google Inc. All Rights Reserved.\n'
      + 'Use of this source code is governed by an MIT-style license that\n'
-     + 'can be found in the LICENSE file at http://angular.io/license';
+     + 'can be found in the LICENSE file at https://angular.io/license';
     var COPYRIGHT_JS_CSS = '\n\n/*\n' + COPYRIGHT + '\n*/';
     var COPYRIGHT_HTML = '\n\n<!-- \n' + COPYRIGHT + '\n-->';
 
@@ -321,7 +321,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
           var ctrl = this;
 
           var name = '',
-            bootstrapStylesheet = 'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css',
+            bootstrapStylesheet = 'https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css',
             plnkrFiles = [];
 
           angular.forEach(ctrl.files.split(' '), function(filename, index) {
@@ -451,7 +451,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
     };
 
 
-    var BASE_CODE_ANGULAR_URL = 'http://code.angularjs.org/';
+    var BASE_CODE_ANGULAR_URL = 'https://code.angularjs.org/';
     $scope.downloadLink = function() {
       return $scope.cdnUrl() || BASE_CODE_ANGULAR_URL + getRelativeUrl($scope.currentBranch, $scope.currentBuild);
     };
