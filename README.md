@@ -7,8 +7,7 @@ If you want to have a go at hosting it yourself you can try running
 
 This will build the website in the `build` folder, which you can then serve with something like:
 
-   cd build
-   http-server
+    yarn run http-server build/
 
 and browse to http://localhost:8080
 
