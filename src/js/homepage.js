@@ -193,6 +193,7 @@ angular.module('homepage', ['ngAnimate', 'ui.bootstrap', 'download-data'])
             },
             put: function(key, value) {
               // noop, we don't need the cache for anything in examples
+              return value;
             }
           });
           $provide.value('$anchorScroll', angular.noop);
