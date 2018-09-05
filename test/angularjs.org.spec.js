@@ -164,29 +164,6 @@ describe('Angularjs.org', function () {
     });
 
 
-    describe('Wire up a Backend', function () {
-      it('should show a secondary tab when selected', function () {
-        var listBtn = browser.findElement(by.css('[annotate="project.annotation"] ul.nav-tabs li:nth-child(2) a'));
-        listBtn.click();
-        browser.driver.sleep(500);
-        var listTab = browser.findElement(by.css('[module="project"] .tab-pane:nth-child(2)'));
-        expect(listTab.getCssValue('display')).toEqual('block');
-      });
-
-
-      it('should search the list of projects', function() {
-        browser.driver.sleep(2000);
-        var list = element.all(by.repeater('project in projectList.projects'));
-        element(by.id('projects_search')).sendKeys('Ang');
-        browser.driver.sleep(50);
-        expect(list.count()).toBe(2);
-        expect(list.get(0).getText()).toContain('Angular');
-        expect(list.get(1).getText()).toContain('AngularJS');
-        browser.driver.sleep(5000);
-      });
-    });
-
-
     describe('Create Components', function () {
       it('should show the US localization of date', function () {
         var dateText = browser.findElement(by.css('[module="app-us"] .tab-content > .tab-pane > span:first-child'));
