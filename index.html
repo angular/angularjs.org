@@ -23,9 +23,11 @@
 
   <base href="/">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script id="angularScript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script id="angularScript"
+    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-animate.min.js"></script>
+</head>
 
   ﻿<!--[if lte IE 8]>
     <script>
@@ -38,12 +40,12 @@
 <body ng-controller="AppController" class="homepage">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
-  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> to experience this site.</p><![endif]-->
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="https://browsehappy.com/">Upgrade to a different browser</a> to experience this site.</p><![endif]-->
   <header class="header">
     <nav id="navbar-main" class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <h1 class="brand"><a href="http://angularjs.org"><img width="117" height="30" src="img/angularjs-for-header-only.svg" alt="AngularJS"></a></h1>
+          <h1 class="brand"><a href="https://angularjs.org"><img width="117" height="30" src="img/angularjs-for-header-only.svg" alt="AngularJS"></a></h1>
 
           <ul class="nav">
             <li class="dropdown" uib-dropdown>
@@ -52,7 +54,6 @@
                 <li><a href="https://docs.angularjs.org/tutorial">Tutorial</a></li>
                 <li><a href="https://docs.angularjs.org/misc/faq">FAQ</a></li>
                 <li><a href="https://www.youtube.com/user/angularjs">Videos</a></li>
-                <li><a href="https://angular.codeschool.com/">Free Course</a></li>
                 <li><a href="https://www.madewithangular.com/">Case Studies</a></li>
               </ul>
             </li>
@@ -73,7 +74,6 @@
               <ul class="dropdown-menu" uib-dropdown-menu>
                 <li><a href="https://blog.angularjs.org">Blog</a></li>
                 <li><a href="https://twitter.com/angular">Twitter</a></li>
-                <li><a href="https://plus.google.com/110323587230527980117">Google+</a></li>
                 <li><a href="https://github.com/angular/angular.js/issues">Feature &amp; Bug Tracker</a></li>
                 <li><a href="https://groups.google.com/group/angular">Mailing List</a></li>
                 <li><a href="https://webchat.freenode.net/?channels=angularjs&uio=d4">IRC</a></li>
@@ -107,7 +107,7 @@
         <h2>AngularJS</h2>
 
         <div class="text-center">
-          <a href="http://angular.io" target="_blank" class="button button-large button-primary has-shield has-shadow">
+          <a href="https://angular.io" target="_blank" class="button button-large button-primary has-shield has-shadow">
             Try the New Angular
             <sup class="badge-new">New</sup>
           </a>
@@ -118,6 +118,13 @@
             Download AngularJS
           </a>
         </div>
+
+        <div class="text-center">
+          <span class="alert">
+            <strong>AngularJS is now in Long Term Support (LTS) mode</strong>: <a href="https://docs.angularjs.org/misc/version-support-status">Find out more.</a>
+          </span>
+        </div>
+
       </div>
     </div>
 
@@ -129,17 +136,12 @@
           </a>
         </li>
 
-        <li class="google-follow">
-          Follow +AngularJS on
-          <a href="https://plus.google.com/110323587230527980117?prsrc=3" rel="publisher" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" style="border:0;width:20px;height:20px;" alt=""/></a>
-        </li>
-
         <li>
           <a href="https://twitter.com/angular" class="twitter-follow-button" data-show-count="true">Follow @angular</a>
         </li>
 
         <li>
-          <a class="button button-small button-plain" href="http://goo.gl/sj0Nk1" target="_blank">
+          <a class="button button-small button-plain" href="https://goo.gl/sj0Nk1" target="_blank">
             <i class="icon-folder-open icon-large"></i> Design Docs &amp; Notes
           </a>
         </li>
@@ -178,12 +180,6 @@
           </p>
         </div>
       </div>
-      <div class="spacer"></div>
-
-      <a class="learn-link" href="http://angular.codeschool.com">
-        <img class="learn-link-badge" src="img/codeschool-badge.png" alt="Shaping up with Angular.js" width="52" height="52" />
-        Learn Angular in your browser for free!
-      </a>
 
     </div>
   </div>
@@ -256,54 +252,6 @@
       </div>
     </div>
 
-
-    <h3 class="text-display-1" id="wire-up-a-backend">Wire up a Backend</h3>
-    <div class="row">
-      <div class="span4">
-        <h4 class="text-title">Deep Linking</h4>
-        <p class="text-body">
-          A deep link reflects where the user is in the app. This is useful so users can bookmark
-          and email links to locations within the app. Round trip apps get this automatically, but
-          AJAX apps by their nature do not. AngularJS combines the benefits of deep linking with
-          desktop app-like behavior.
-        </p>
-      </div>
-      <div class="span4">
-        <h4 class="text-title">Form Validation</h4>
-        <p class="text-body">
-          Client-side form validation is an important part of a great user experience.
-          AngularJS lets you declare the validation rules of the form without having to write
-          JavaScript code. Write less code, go have beer sooner.
-        </p>
-      </div>
-      <div class="span4">
-        <h4 class="text-title">Server Communication</h4>
-        <p class="text-body">
-          AngularJS provides built-in services on top of XHR as well as various other backends
-          using third party libraries. Promises further simplify your code
-          by handling asynchronous return of data. In this example, we use the AngularFire
-          library to wire up a <a href="https://www.firebase.com/">Firebase</a> backend to a simple AngularJS app.
-        </p>
-      </div>
-    </div>
-    <div class=" row example">
-      <div class="span8 app-source" app-source="project.html project.js list.html detail.html project-list.js" resource="resource" route="route" firebase="firebase" annotate="project.annotation" module="project"></div>
-      <div class="span4">
-        <span hint></span>
-        <span class="pull-right" plnkr="project.html list.html detail.html project.js project-list.js" resource="resource" route="route" firebase="firebase" module="project"></span>
-        <div class="tabs-spacer"></div>
-        <!--[if lt IE 10]>
-          <div class="alert alert-error">
-            Your browser doesn't support <a href="http://www.w3.org/TR/cors/">CORS</a>, therefore
-            it can not fetch data from an external domain resulting in no projects shown in this example.
-          </div>
-        <![endif]-->
-        <div app-run="project.html" module="project" class="well"></div>
-      </div>
-    </div>
-
-
-
     <h3 class="text-display-1" id="create-components">Create Components</h3>
     <div class="row">
       <div class="span4">
@@ -344,6 +292,35 @@
       </div>
     </div>
 
+    <h3 class="text-display-1" id="wire-up-a-backend">Navigation, Forms and Backends</h3>
+    <div class="row">
+      <div class="span4">
+        <h4 class="text-title">Deep Linking</h4>
+        <p class="text-body">
+          A deep link reflects where the user is in the app. This is useful so users can bookmark
+          and email links to locations within the app. Round trip apps get this automatically, but
+          AJAX apps by their nature do not. AngularJS combines the benefits of deep linking with
+          desktop app-like behavior.
+        </p>
+      </div>
+      <div class="span4">
+        <h4 class="text-title">Form Validation</h4>
+        <p class="text-body">
+          Client-side form validation is an important part of a great user experience.
+          AngularJS lets you declare the validation rules of the form without having to write
+          JavaScript code. Write less code, go have beer sooner.
+        </p>
+      </div>
+      <div class="span4">
+        <h4 class="text-title">Server Communication</h4>
+        <p class="text-body">
+          AngularJS provides built-in services on top of XHR as well as various other backends
+          using third party libraries. Promises further simplify your code
+          by handling asynchronous return of data.
+        </p>
+      </div>
+    </div>
+
     <h3 class="text-display-1" id="testability">Testability Built-in</h3>
     <div class="row">
       <div class="span6">
@@ -376,7 +353,7 @@
       <p>Code licensed under the
         <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
           MIT License</a>. Documentation licensed under <a
-            href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+            href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
       </p>
     </div>
   </footer>
@@ -493,302 +470,6 @@
         , "todos = []": "You can replace the model with new instance at any time, without doing any special model listener registration."
         }
       }
-    </script>
-  </div>
-  <div class="project-code">
-    <!-- ============== Projects ============== -->
-    <style type="text/css" id="project.css">
-      table { text-align: left; }
-      table td, table th {
-        vertical-align: top;
-        padding: 0 .25em;
-      }
-    </style>
-    <script id="project.js">
-      angular.module('project', ['ngRoute', 'firebase'])
-
-      .value('fbURL', 'https://ng-projects-list.firebaseio.com/')
-      .service('fbRef', function(fbURL) {
-        return new Firebase(fbURL)
-      })
-      .service('fbAuth', function($q, $firebase, $firebaseAuth, fbRef) {
-        var auth;
-        return function () {
-            if (auth) return $q.when(auth);
-            var authObj = $firebaseAuth(fbRef);
-            if (authObj.$getAuth()) {
-              return $q.when(auth = authObj.$getAuth());
-            }
-            var deferred = $q.defer();
-            authObj.$authAnonymously().then(function(authData) {
-                auth = authData;
-                deferred.resolve(authData);
-            });
-            return deferred.promise;
-        }
-      })
-
-      .service('Projects', function($q, $firebase, fbRef, fbAuth, projectListValue) {
-        var self = this;
-        this.fetch = function () {
-          if (this.projects) return $q.when(this.projects);
-          return fbAuth().then(function(auth) {
-            var deferred = $q.defer();
-            var ref = fbRef.child('projects-fresh/' + auth.auth.uid);
-            var $projects = $firebase(ref);
-            ref.on('value', function(snapshot) {
-              if (snapshot.val() === null) {
-                $projects.$set(projectListValue);
-              }
-              self.projects = $projects.$asArray();
-              deferred.resolve(self.projects);
-            });
-
-            //Remove projects list when no longer needed.
-            ref.onDisconnect().remove();
-            return deferred.promise;
-          });
-        };
-      })
-
-      .config(function($routeProvider) {
-        var resolveProjects = {
-          projects: function (Projects) {
-            return Projects.fetch();
-          }
-        };
-
-        $routeProvider
-          .when('/', {
-            controller:'ProjectListController as projectList',
-            templateUrl:'list.html',
-            resolve: resolveProjects
-          })
-          .when('/edit/:projectId', {
-            controller:'EditProjectController as editProject',
-            templateUrl:'detail.html',
-            resolve: resolveProjects
-          })
-          .when('/new', {
-            controller:'NewProjectController as editProject',
-            templateUrl:'detail.html',
-            resolve: resolveProjects
-          })
-          .otherwise({
-            redirectTo:'/'
-          });
-      })
-
-      .controller('ProjectListController', function(projects) {
-        var projectList = this;
-        projectList.projects = projects;
-      })
-
-      .controller('NewProjectController', function($location, projects) {
-        var editProject = this;
-        editProject.save = function() {
-            projects.$add(editProject.project).then(function(data) {
-                $location.path('/');
-            });
-        };
-      })
-
-      .controller('EditProjectController',
-        function($location, $routeParams, projects) {
-          var editProject = this;
-          var projectId = $routeParams.projectId,
-              projectIndex;
-
-          editProject.projects = projects;
-          projectIndex = editProject.projects.$indexFor(projectId);
-          editProject.project = editProject.projects[projectIndex];
-
-          editProject.destroy = function() {
-              editProject.projects.$remove(editProject.project).then(function(data) {
-                  $location.path('/');
-              });
-          };
-
-          editProject.save = function() {
-              editProject.projects.$save(editProject.project).then(function(data) {
-                 $location.path('/');
-              });
-          };
-      });
-    </script>
-    <script id="project-list.js">
-      angular.module('project').value('projectListValue', [
-        {
-          name: 'AngularJS',
-          site: 'http://angularjs.org',
-          description: 'HTML enhanced for web apps!'
-        },
-        {
-          name: 'Angular',
-          site: 'http://angular.io',
-          description: 'One framework. Mobile and desktop.'
-        },
-        {
-          name: 'jQuery',
-          site: 'http://jquery.com/',
-          description: 'Write less, do more.'
-        },
-        {
-          name: 'Backbone',
-          site: 'http://backbonejs.org/',
-          description: 'Models for your apps.'
-        },
-        {
-          name: 'SproutCore',
-          site: 'http://sproutcore.com/',
-          description: 'A Framework for Innovative web-apps.'
-        },
-        {
-          name: 'Polymer',
-          site: 'https://www.polymer-project.org/',
-          description: 'Reusable components for the modern web.'
-        },
-        {
-          name: 'Vue.js',
-          site: 'https://vuejs.org/',
-          description: 'The Progressive JavaScript Framework.'
-        },
-        {
-          name: 'Cappucino',
-          site: 'http://www.cappuccino-project.org/',
-          description: 'Objective-J.'
-        },
-        {
-          name: 'Knockout',
-          site: 'http://knockoutjs.com/',
-          description: 'MVVM pattern.'
-        },
-        {
-          name: 'GWT',
-          site: 'http://www.gwtproject.org/',
-          description: 'JS in Java.'
-        },
-        {
-          name: 'Ember',
-          site: 'http://emberjs.com/',
-          description: 'Ambitious web apps.'
-        },
-        {
-          name: 'React',
-          site: 'https://facebook.github.io/react/',
-          description: 'A JavaScript library for building user interfaces.'
-        }
-      ])
-    </script>
-    <script type="text/ng-template" id="project.html">
-      <h2>JavaScript Projects</h2>
-      <div ng-view></div>
-    </script>
-    <script type="text/ng-template" id="list.html">
-      <input type="text" ng-model="projectList.search" class="search-query" id="projects_search"
-             placeholder="Search">
-      <table>
-        <thead>
-        <tr>
-          <th>Project</th>
-          <th>Description</th>
-          <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="project in projectList.projects | filter:projectList.search | orderBy:'name'">
-          <td><a ng-href="{{project.site}}" target="_blank">{{project.name}}</a></td>
-          <td>{{project.description}}</td>
-          <td>
-            <a ng-href="#/edit/{{project.$id}}"><i class="icon-pencil"></i></a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </script>
-    <script type="text/ng-template" id="detail.html">
-      <form name="myForm">
-        <div class="control-group" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
-          <label>Name</label>
-          <input type="text" name="name" ng-model="editProject.project.name" required>
-          <span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">
-              Required {{myForm.name.$pristine}}</span>
-        </div>
-
-        <div class="control-group" ng-class="{error: myForm.site.$invalid && !myForm.site.$pristine}">
-          <label>Website</label>
-          <input type="url" name="site" ng-model="editProject.project.site" required>
-          <span ng-show="myForm.site.$error.required && !myForm.site.$pristine" class="help-inline">
-              Required</span>
-          <span ng-show="myForm.site.$error.url" class="help-inline">
-              Not a URL</span>
-        </div>
-
-        <label>Description</label>
-        <textarea name="description" ng-model="editProject.project.description"></textarea>
-
-        <br>
-        <a href="#/" class="btn">Cancel</a>
-        <button ng-click="editProject.save()" ng-disabled="myForm.$invalid"
-                class="btn btn-primary">Save</button>
-        <button ng-click="editProject.destroy()"
-                ng-show="editProject.project.$id" class="btn btn-danger">Delete</button>
-      </form>
-    </script>
-    <script type="text/ng-template" id="project.annotation">
-    { "project.html":
-       { "ng-app": "Tells AngularJS to be active in this portion of the page. In this case the entire document."
-       , "project": "The <code>ng-app</code> activates the <code>project</code> module for this page region. This lets you have modules that run in different parts of the page."
-       , "angular.min.js": "Load AngularJS."
-       , "angular-resource.min.js": "Load AngularJS resource module."
-       , "angular-route.min.js": "Load AngularJS route module."
-       , "firebase.js": "Load the Firebase JavaScript SDK."
-       , "angularfire.min.js": "Load the AngularJS bindings for Firebase."
-       , "project.js": "The <code>project.js</code> file contains the controllers which specify your application’s behavior."
-       , "ng-view": "We’re marking this <code>&lt;div&gt;</code> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section. In this case, we’ll be switching between a list of “projects” and the form to add new or edit existing “projects”."
-       }
-     , "project.js":
-       { "project": "This defines the <code>project</code> module. You use modules to configure existing services, and define new services, directives, filters, and so on. Here, we’ll set up ‘routes’ that map URLs to partials. AngularJS watches the browser location and automatically updates the partial when the URL changes."
-       , "firebase": "Modules can depend on other modules. Here, <code>project</code> needs <code>firebase</code> which handles the persistence for this application."
-       , "value": "Define a singleton object that can be injected into controllers and services."
-       , "fbURL": "The URL to the Firebase location from which we want to load data (and store changes)."
-       , "factory": "Define a factory that will return a singleton object that can be injected into controllers and services."
-       , "$firebase": "A service provided by AngularFire for binding data from Firebase to AngularJS models."
-       , "$asArray": "A method that returns data from Firebase in the form of a synchronized array."
-       , "config": "You use <code>config()</code> to configure existing services. Here, we’re configuring the <code>$routeProvider</code> responsible for mapping URL paths to partials."
-       , "controller": "Define a controller function that can be attached to the DOM using <code>ng-controller</code> or to a view template by specifying it in the route configuration."
-       , "'/'": "When the URL is <code>/</code> it will load <code>list.html</code> into the view and attach the <code>ProjectListController</code> controller. You can instantly get an overview of an app's structure by reading the route definitions."
-       , "/edit/:projectId": "This route definition has a colon ':' in it. You use colons to make a component of the URL available to your controller. So now, <code>EditCtrl</code> can refer to the <code>projectId</code> property which tells it which project to edit."
-       , "otherwise": "The <code>otherwise</code> route specifies which view to display when the URL doesn’t match any of the explicit routes. It’s the default."
-       , "Projects": "<code>Projects</code> is an instance of <code>$firebase</code>, and is defined in the <code>projects</code> module. It exposes method to add, remove and update projects in the collection. Its purpose is to abstract the server communication. This lets the controller focus on the behavior rather than the complexities of server access."
-       , "$scope": "We can immediately assign the set of projects to our scope, and they will be displayed in the view."
-       , "$location": "You use the <code>$location</code> service to access the browser's location."
-       , "path": "Use the <code>path</code> method to change the application's 'deep-linking' location. Changing the URL will automatically activate the new route, and transition the application to display that view -- in this case, the <code>/edit/</code> view."
-       , "$routeParams": "Here, we ask AngularJS to inject the <code>$routeParams</code> service.  We use it to access the parameters extracted from the route path definitions."
-       , "projectId": "This extracts the <code>projectId</code> from the URL. This allows the controller to use deep-linking information for processing."
-       , "isClean": "Determines whether the user has modified the form. We use this information to enable the save button in the view."
-       , "destroy": "Called when the user clicks the delete button in the view."
-       , "save": "Called when the user clicks the save button in the view."
-       , "null": "We can delete an object by simply setting its value to null."
-       }
-     , "list.html":
-       { "ng-model": "Bind the input field to the <code>search</code> property. The property is then used to filter for only the projects which contain the text entered by the user."
-       , "#/new": "A link to a <code>/new</code> route defined in <code>projects.js</code>. Note that we follow the spirit of the web. There is no need to register callbacks on links, we are simply navigating to a new URL. This automatically updates the browser history, and enables deep-linking. But unlike a server round trip application, this navigation event gets rendered instantly in the browser."
-       , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
-       , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every project in <code>projects</code>, AngularJS will create new copy of the <code>&lt;tr&gt;</code> element."
-       , "filter": "The <code>filter</code> uses the <code>search</code> to return only a subset of items in the <code>projects</code> array. As you enter text into the search box, the <code>filter</code> will narrow down the list according to your criteria. <code>ng-repeat</code> will then add or remove items from the table."
-       , "orderBy": "Returns the <code>project</code> list ordered by <code>name</code> property."
-       , "#/edit/{{project._id.$oid}}": "Creates individual edit links, by embedding the project id into the URL. The embedded project id serves the purpose of deep-linking, back button, as well as a way to communicate to <code>EditProjectController</code> which project should be edited."
-       }
-     , "detail.html":
-       { "myForm": "Create a form named <code>myForm</code>. We will declare form validation rules here which we'll use to show input errors and disable buttons."
-       , "ng-class": "Add an <code>error</code> CSS class when the <code>myForm</code>'s input <code>name</code> is invalid."
-       , "required": "Invalidate the input control when no text is entered."
-       , "ng-show": "Show this error message when the <code>myForm</code>'s input <code>name</code> has <code>required</code> validation error."
-       , "url": "The URL type automatically adds URL validation."
-       , "ng-disabled": "Disable the 'Save' button when the form has not been filled in or is invalid."
-       }
-     }
     </script>
   </div>
   <div class="tabs-code">
@@ -933,22 +614,22 @@
   <script src="google-code-prettify/prettify.min.js"></script>
   <script src="js/homepage.js"></script>
   <script src="js/download-data.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-resource.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
-  <script src="//code.angularjs.org/1.6.7/i18n/angular-locale_sk.js"></script>
+  <script src="https://code.angularjs.org/1.8.0/i18n/angular-locale_sk.js"></script>
   <script>
     angular.module('ngLocal.sk', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
   </script>
-  <script src="//code.angularjs.org/1.6.7/i18n/angular-locale_en-us.js"></script>
+  <script src="https://code.angularjs.org/1.8.0/i18n/angular-locale_en-us.js"></script>
   <script>
     angular.module('ngLocal.us', [])._configBlocks.push(angular.module('ngLocale')._configBlocks[0]);
     angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
   </script>
 
-  <script async src="//platform.twitter.com/widgets.js"></script>
+  <script async src="https://platform.twitter.com/widgets.js"></script>
   <script type="text/javascript">
     var _gaq=[
       ['_setAccount','UA-8594346-3'],
